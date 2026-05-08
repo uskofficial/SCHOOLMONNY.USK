@@ -1,75 +1,43 @@
-
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCHOOL MONEY - ระบบแจ้งค่าใช้จ่าย</title>
+    <title>SCHOOL MONEY - USK</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        :root { --main-blue: #1e3a8a; --border-blue: #1e3a8a; --pink-btn: #ec4899; }
+        :root { --main-blue: #1e3a8a; --pink-btn: #ec4899; }
         body { font-family: 'Kanit', sans-serif; background-color: #fff; margin: 0; padding: 20px; color: #333; }
         .container { max-width: 750px; margin: auto; padding: 10px; }
-        
-        /* ส่วนหัวและโลโก้ */
         .header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
         .logo-img { width: 100px; height: 100px; object-fit: contain; }
-        .school-info h2 { margin: 0; font-size: 24px; color: #333; }
-        .school-info p { margin: 0; font-size: 18px; color: #555; }
-
-        /* ช่องค้นหา */
         .search-area { margin-bottom: 30px; display: flex; gap: 10px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
-        input#nameInput { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Kanit'; font-size: 16px; outline: none; }
-        button.btn-search { background: var(--main-blue); color: white; border: none; padding: 0 30px; border-radius: 8px; cursor: pointer; font-size: 16px; }
-
-        /* การแสดงผลข้อมูลส่วนตัว */
-        .report-section { display: none; animation: fadeIn 0.5s ease; }
-        .info-box { border: 2.5px solid var(--border-blue); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
+        input#nameInput { flex: 1; padding: 12px; border: 1.5px solid #ccc; border-radius: 8px; font-size: 16px; outline: none; }
+        .btn-search { background: var(--main-blue); color: white; border: none; padding: 0 25px; border-radius: 8px; cursor: pointer; }
+        .info-box { border: 2.5px solid var(--main-blue); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
         .info-line { font-size: 20px; margin-bottom: 8px; }
         .label { display: inline-block; width: 150px; font-weight: 500; }
-
-        h3.title { font-size: 19px; color: #333; margin: 30px 0 15px; font-weight: 500; }
-        h3.title span { font-size: 14px; font-weight: 300; color: #666; }
-
-        /* บัตรค่าธรรมเนียมหอพัก */
-        .fee-card { border: 2.5px solid var(--border-blue); border-radius: 8px; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .fee-name { font-size: 19px; font-weight: 500; }
-
-        /* ตารางค่าอาหารรายเดือน */
-        .boarding-box { border: 2.5px solid var(--border-blue); border-radius: 8px; overflow: hidden; }
-        .boarding-header { padding: 15px 20px; border-bottom: 1px solid #ddd; font-size: 18px; font-weight: 500; }
+        .fee-card { border: 2.5px solid var(--main-blue); border-radius: 8px; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .boarding-box { border: 2.5px solid var(--main-blue); border-radius: 8px; overflow: hidden; }
         .month-grid { display: grid; grid-template-columns: repeat(6, 1fr); text-align: center; border-bottom: 1px solid #ddd; }
         .month-item { padding: 15px 5px; border-right: 1px solid #eee; }
-        .month-item:last-child { border-right: none; }
-        .month-label { font-weight: 500; margin-bottom: 8px; font-size: 14px; }
-        
-        /* สไตล์ของสถานะต่างๆ */
         .status-badge { padding: 2px 8px; border-radius: 4px; font-size: 13px; border: 1px solid; }
-        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; }
-        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; }
-        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; }
-
-        .total-section { padding: 20px; display: flex; justify-content: space-between; font-weight: 600; font-size: 20px; background: #fff; }
-
-        /* ปุ่มแนบสลิปและสถานะรอตรวจสอบ */
-        .footer-action { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
-        .btn-upload { border: 2.5px solid var(--pink-btn); color: #be185d; background: white; padding: 12px 35px; border-radius: 6px; cursor: pointer; font-size: 18px; font-weight: 500; }
-        .wait-status { text-align: right; color: #f59e0b; display: none; }
-        .wait-status b { font-size: 20px; display: block; }
-        .wait-status span { font-size: 14px; color: #666; }
-
-        .bottom-info { text-align: center; margin-top: 50px; color: #666; font-size: 14px; line-height: 1.6; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .ชำระแล้ว { border-color: #22c55e; color: #15803d; background: #f0fdf4; }
+        .ค้างชำระ { border-color: #ef4444; color: #b91c1c; background: #fef2f2; }
+        .รอตรวจสอบ { border-color: #f59e0b; color: #92400e; background: #fffbeb; }
+        .total-section { padding: 20px; display: flex; justify-content: space-between; font-weight: 600; font-size: 20px; }
+        .wait-status { color: #f59e0b; text-align: right; margin-top: 10px; display: none; }
+        .btn-upload { border: 2.5px solid var(--pink-btn); color: #be185d; background: white; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <img src="https://i.postimg.cc/FzPbqZ7n/IMG-7790.png" alt="Logo" class="logo-img">
+        <img src="https://i.postimg.cc/FzPbqZ7n/IMG-7790.png" class="logo-img">
         <div class="school-info">
             <h2>SCHOOL MONEY</h2>
             <p>ระบบแจ้งจ่ายค่าใช้จ่ายโรงเรียนอุทยานศึกษากระบี่</p>
@@ -83,144 +51,109 @@
 
     <div id="loading" style="display:none; text-align:center;">กำลังค้นหาข้อมูล...</div>
 
-    <div id="reportArea" class="report-section">
+    <div id="reportArea" style="display:none;">
         <div class="info-box">
             <div class="info-line"><span class="label">ชื่อ - สกุล :</span> <span id="resName"></span></div>
             <div class="info-line"><span class="label">โปรแกรมหอพัก :</span> <span id="resProg"></span></div>
             <div class="info-line"><span class="label">ระดับชั้น :</span> <span id="resLevel"></span></div>
         </div>
 
-        <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
-
         <div class="fee-card">
-            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:300; font-size:14px;">( Dormitory Fee )</span></div>
-            <div style="text-align:right">
-                สถานะ <span id="resFeeStatus"></span><br>
-                จำนวนเงิน <b id="resFeeAmt" style="font-size:18px"></b> บาท
-            </div>
+            <div>ค่าธรรมเนียมหอพัก 1/2569</div>
+            <div style="text-align:right">สถานะ <span id="resFeeStatus"></span><br>จำนวนเงิน <b id="resFeeAmt"></b> บาท</div>
         </div>
 
         <div class="boarding-box">
-            <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:14px; font-weight:300;">( Boarding Fee )</span></div>
-            <div class="month-grid">
-                <div class="month-item"><div class="month-label">พฤษภาคม</div><div id="m1"></div></div>
-                <div class="month-item"><div class="month-label">มิถุนายน</div><div id="m2"></div></div>
-                <div class="month-item"><div class="month-label">กรกฎาคม</div><div id="m3"></div></div>
-                <div class="month-item"><div class="month-label">สิงหาคม</div><div id="m4"></div></div>
-                <div class="month-item"><div class="month-label">กันยายน</div><div id="m5"></div></div>
-                <div class="month-item"><div class="month-label">ตุลาคม</div><div id="m6"></div></div>
-            </div>
+            <div style="padding:15px; border-bottom:1px solid #ddd;">ค่าอาหารรายเดือน 1/2569</div>
+            <div class="month-grid" id="monthGrid">
+                </div>
             <div class="total-section">
-                <span style="font-size:16px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:13px">( Total Outstanding Balance )</span></span>
+                <span>ยอดที่ต้องชำระทั้งหมด</span>
                 <span id="resTotal"></span>
             </div>
         </div>
 
-        <div class="footer-action">
-            <button class="btn-upload" onclick="document.getElementById('fileIn').click()">แนบสลิปการจ่าย</button>
-            <input type="file" id="fileIn" style="display:none" onchange="handleUpload()">
-            
-            <div class="wait-status" id="waitMsg">
-                <b>รอตรวจสอบสถานะการจ่าย</b>
-                <span>โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
-            </div>
+        <div style="margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+            <button class="btn-upload" onclick="triggerUpload()">แนบสลิปการจ่าย</button>
+            <div id="waitMsg" class="wait-status"><b>รอตรวจสอบสถานะการจ่าย</b><br><small>ปกติใช้เวลา 7 วันทำการ</small></div>
         </div>
-    </div>
-
-    <div class="bottom-info">
-        พบปัญหาหรือมีข้อสงสัยโปรดติดต่อ 078 - 789 - 6789<br>
-        “ เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ถูกสัมพันธ์ชุมชน “
+        <input type="file" id="fileIn" style="display:none" onchange="handleUpload()">
     </div>
 </div>
 
 <script>
-    // --- ตั้งค่า Firebase ---
-    const firebaseConfig = { databaseURL: "https://schoolmonny-default-rtdb.asia-southeast1.firebasedatabase.app" };
+    const firebaseConfig = { databaseURL: "https://schoolmonny-e6c5e-default-rtdb.asia-southeast1.firebasedatabase.app" };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
     let userData = null;
-    let userSheetName = "";
+    let userSheet = "";
 
-    // ฟังก์ชันค้นหา
     async function doSearch() {
         const name = document.getElementById('nameInput').value.trim();
         if(!name) return;
-
         document.getElementById('loading').style.display = 'block';
         document.getElementById('reportArea').style.display = 'none';
 
-        const programs = ["หอพักญะมาอะห์ชาย", "หอพักญะมาอะห์หญิง", "หอพักกีฬา", "หอพักฮาฟิซอัลกุรอ่าน"];
+        const progs = ["หอพักญะมาอะห์ชาย", "หอพักญะมาอะห์หญิง", "หอพักกีฬา", "หอพักฮาฟิซอัลกุรอ่าน"];
         let found = false;
 
-        for (let p of programs) {
+        for (let p of progs) {
             const snap = await db.ref(p).once('value');
             const data = snap.val();
             if(data) {
-                const match = data.find(s => (s["ชื่อ-สกุล"] === name || s["ชื่อ-นามสกุล"] === name));
+                const match = data.find(s => s["ชื่อ-นามสกุล"] === name);
                 if(match) {
-                    userData = match;
-                    userSheetName = p;
-                    renderReport(match, p);
-                    found = true;
-                    break;
+                    userData = match; userSheet = p;
+                    render(match, p);
+                    found = true; break;
                 }
             }
         }
         document.getElementById('loading').style.display = 'none';
-        if(!found) alert("ไม่พบข้อมูลนักเรียนคนนี้");
+        if(!found) Swal.fire('ไม่พบข้อมูล', 'โปรดตรวจสอบชื่อ-นามสกุล', 'error');
     }
 
-    // ฟังก์ชันเลือกสีสถานะ
-    function getStatClass(stat) {
-        if (!stat) return 'pending';
-        if (stat.includes('ชำระแล้ว')) return 'paid';
-        if (stat.includes('ค้างชำระ')) return 'unpaid';
-        return 'pending';
-    }
-
-    // ฟังก์ชันแสดงผลข้อมูลลงในหน้าเว็บ
-    function renderReport(s, prog) {
+    function render(s, p) {
         document.getElementById('reportArea').style.display = 'block';
-        document.getElementById('resName').innerText = s["ชื่อ-สกุล"] || s["ชื่อ-นามสกุล"];
-        document.getElementById('resProg').innerText = prog;
-        document.getElementById('resLevel').innerText = "มัธยมศึกษาปีที่ " + (s["ระดับชั้นมัธยมศึกษาปีที่"] || "-");
+        document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"];
+        document.getElementById('resProg').innerText = p;
+        document.getElementById('resLevel').innerText = s["ระดับชั้นมัธยมศึกษาปีที่"];
 
-        const fStat = s["ค่าธรรมเนียมหอพัก สถานะ"] || s["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ";
-        document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
+        const fStat = s["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ";
+        document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${fStat}">${fStat}</span>`;
         document.getElementById('resFeeAmt').innerText = s["ยอดค้างค่าธรรมเนียม"] || "0";
 
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
-        months.forEach((m, i) => {
-            const mStat = s[m] || "ยังไม่ถึงกำหนด";
-            document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(mStat)}">${mStat}</span>`;
+        let mHtml = "";
+        months.forEach(m => {
+            const stat = s[m] || "ยังไม่ถึงกำหนด";
+            mHtml += `<div class="month-item"><div style="font-size:12px;color:#666;">${m}</div><div class="status-badge ${stat}">${stat}</div></div>`;
         });
-
+        document.getElementById('monthGrid').innerHTML = mHtml;
         document.getElementById('resTotal').innerText = (s["ยอดรวมค้างชำระ ( รวมห้าค่าอาหารรายเดือน )"] || 0) + " บาท";
-        
-        // เงื่อนไขแสดง "รอตรวจสอบ..."
-        document.getElementById('waitMsg').style.display = s["สถานะการตรวจสอบ"] === "รอตรวจสอบสถานะการจ่าย" ? 'block' : 'none';
+        document.getElementById('waitMsg').style.display = s["สถานะการตรวจสอบ"] === "รอตรวจสอบ" ? 'block' : 'none';
     }
 
-    // ฟังก์ชันส่งสลิป
+    function triggerUpload() { document.getElementById('fileIn').click(); }
+
     function handleUpload() {
         const file = document.getElementById('fileIn').files[0];
         if(!file) return;
         const reader = new FileReader();
         reader.onload = function(e) {
+            Swal.fire({title:'กำลังส่ง...', didOpen:()=>Swal.showLoading()});
             const payload = {
-                studentName: userData["ชื่อ-สกุล"] || userData["ชื่อ-นามสกุล"],
-                sheetName: userSheetName,
-                fileName: `SLIP_${Date.now()}.png`,
+                studentName: userData["ชื่อ-นามสกุล"],
+                sheetName: userSheet,
                 fileData: e.target.result,
+                fileName: `SLIP_${Date.now()}.png`,
                 fileType: file.type
             };
-            // เรียกใช้ Google Apps Script Web App URL ของคุณ
-            fetch("https://script.google.com/macros/s/AKfycbxKxKXWudQyNA8mToTIfz7eu2p4dldwNfIIrQNU0Z3ZouJhiuXHkUkhsrfca-EVeaAz/exec", {
-                method: "POST", body: JSON.stringify(payload)
+            fetch("https://script.google.com/macros/s/AKfycbzYSM7NNA5psMwEh16nAvBP66hnHdJ0ebKz0EVmyfpEyWDEgsqqmQnQ_4MEi2pRU0fM/exec", {
+                method:"POST", body: JSON.stringify(payload)
             }).then(() => {
-                alert("บันทึกสลิปเรียบร้อย ระบบกำลังส่งข้อมูลไปตรวจสอบ");
-                location.reload();
+                Swal.fire('สำเร็จ', 'บันทึกสลิปแล้ว', 'success').then(()=>location.reload());
             });
         };
         reader.readAsDataURL(file);
