@@ -7,22 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
     <style>
         :root { --main-blue: #1e3a8a; --border-blue: #1e3a8a; --pink-btn: #ec4899; }
         body { font-family: 'Kanit', sans-serif; background-color: #fff; margin: 0; padding: 20px; color: #333; }
         .container { max-width: 750px; margin: auto; padding: 10px; }
         
-        /* 1. หน้ากรอกชื่อเพื่อค้นหา */
+        /* ส่วนหัวและโลโก้ */
         .header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
         .logo-img { width: 100px; height: 100px; object-fit: contain; }
         .school-info h2 { margin: 0; font-size: 24px; color: #333; }
         .school-info p { margin: 0; font-size: 18px; color: #555; }
 
+        /* ช่องค้นหา */
         .search-area { margin-bottom: 30px; display: flex; gap: 10px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
-        input#nameInput { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Kanit'; font-size: 16px; }
+        input#nameInput { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Kanit'; font-size: 16px; outline: none; }
         button.btn-search { background: var(--main-blue); color: white; border: none; padding: 0 30px; border-radius: 8px; cursor: pointer; font-size: 16px; }
 
-        /* 2. ส่วนแสดง ชื่อ สกุล โปรแกรมหอพัก และระดับชั้น */
+        /* การแสดงผลข้อมูลส่วนตัว */
         .report-section { display: none; animation: fadeIn 0.5s ease; }
         .info-box { border: 2.5px solid var(--border-blue); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
         .info-line { font-size: 20px; margin-bottom: 8px; }
@@ -31,11 +33,11 @@
         h3.title { font-size: 19px; color: #333; margin: 30px 0 15px; font-weight: 500; }
         h3.title span { font-size: 14px; font-weight: 300; color: #666; }
 
-        /* 3. สถานะค่าธรรมเนียมหอพัก */
+        /* บัตรค่าธรรมเนียมหอพัก */
         .fee-card { border: 2.5px solid var(--border-blue); border-radius: 8px; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .fee-name { font-size: 19px; font-weight: 500; }
 
-        /* 4. สถานะค่าอาหารรายเดือนและการคำนวณยอดรวม */
+        /* ตารางค่าอาหารรายเดือน */
         .boarding-box { border: 2.5px solid var(--border-blue); border-radius: 8px; overflow: hidden; }
         .boarding-header { padding: 15px 20px; border-bottom: 1px solid #ddd; font-size: 18px; font-weight: 500; }
         .month-grid { display: grid; grid-template-columns: repeat(6, 1fr); text-align: center; border-bottom: 1px solid #ddd; }
@@ -43,19 +45,22 @@
         .month-item:last-child { border-right: none; }
         .month-label { font-weight: 500; margin-bottom: 8px; font-size: 14px; }
         
+        /* สไตล์ของสถานะต่างๆ */
         .status-badge { padding: 2px 8px; border-radius: 4px; font-size: 13px; border: 1px solid; }
         .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; }
         .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; }
+        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; }
 
         .total-section { padding: 20px; display: flex; justify-content: space-between; font-weight: 600; font-size: 20px; background: #fff; }
 
-        /* 5. ส่วนแนบสลิปและสถานะรอตรวจสอบ */
+        /* ปุ่มแนบสลิปและสถานะรอตรวจสอบ */
         .footer-action { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
-        .btn-upload { border: 2.5px solid var(--pink-btn); color: #be185d; background: white; padding: 12px 35px; border-radius: 6px; cursor: pointer; font-size: 18px; font-weight: 500; transition: 0.3s; }
-        .btn-upload:hover { background: #fdf2f8; }
+        .btn-upload { border: 2.5px solid var(--pink-btn); color: #be185d; background: white; padding: 12px 35px; border-radius: 6px; cursor: pointer; font-size: 18px; font-weight: 500; }
         .wait-status { text-align: right; color: #f59e0b; display: none; }
         .wait-status b { font-size: 20px; display: block; }
         .wait-status span { font-size: 14px; color: #666; }
+
+        .bottom-info { text-align: center; margin-top: 50px; color: #666; font-size: 14px; line-height: 1.6; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -112,10 +117,8 @@
         </div>
 
         <div class="footer-action">
-            <div>
-                <button class="btn-upload" onclick="document.getElementById('fileIn').click()">แนบสลิปการจ่าย</button>
-                <input type="file" id="fileIn" style="display:none" multiple onchange="handleUpload()">
-            </div>
+            <button class="btn-upload" onclick="document.getElementById('fileIn').click()">แนบสลิปการจ่าย</button>
+            <input type="file" id="fileIn" style="display:none" onchange="handleUpload()">
             
             <div class="wait-status" id="waitMsg">
                 <b>รอตรวจสอบสถานะการจ่าย</b>
@@ -123,18 +126,23 @@
             </div>
         </div>
     </div>
+
+    <div class="bottom-info">
+        พบปัญหาหรือมีข้อสงสัยโปรดติดต่อ 078 - 789 - 6789<br>
+        “ เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ถูกสัมพันธ์ชุมชน “
+    </div>
 </div>
 
 <script>
-    const firebaseConfig = {
-        databaseURL: "https://schoolmonny-default-rtdb.asia-southeast1.firebasedatabase.app"
-    };
+    // --- ตั้งค่า Firebase ---
+    const firebaseConfig = { databaseURL: "https://schoolmonny-default-rtdb.asia-southeast1.firebasedatabase.app" };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
     let userData = null;
     let userSheetName = "";
 
+    // ฟังก์ชันค้นหา
     async function doSearch() {
         const name = document.getElementById('nameInput').value.trim();
         if(!name) return;
@@ -163,6 +171,15 @@
         if(!found) alert("ไม่พบข้อมูลนักเรียนคนนี้");
     }
 
+    // ฟังก์ชันเลือกสีสถานะ
+    function getStatClass(stat) {
+        if (!stat) return 'pending';
+        if (stat.includes('ชำระแล้ว')) return 'paid';
+        if (stat.includes('ค้างชำระ')) return 'unpaid';
+        return 'pending';
+    }
+
+    // ฟังก์ชันแสดงผลข้อมูลลงในหน้าเว็บ
     function renderReport(s, prog) {
         document.getElementById('reportArea').style.display = 'block';
         document.getElementById('resName').innerText = s["ชื่อ-สกุล"] || s["ชื่อ-นามสกุล"];
@@ -170,48 +187,43 @@
         document.getElementById('resLevel').innerText = "มัธยมศึกษาปีที่ " + (s["ระดับชั้นมัธยมศึกษาปีที่"] || "-");
 
         const fStat = s["ค่าธรรมเนียมหอพัก สถานะ"] || s["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ";
-        document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${fStat === 'ชำระแล้ว' ? 'paid' : 'unpaid'}">${fStat}</span>`;
+        document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
         document.getElementById('resFeeAmt').innerText = s["ยอดค้างค่าธรรมเนียม"] || "0";
 
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
-        months.forEach((m, index) => {
-            const stat = s[m] || "ค้างชำระ";
-            document.getElementById(`m${index+1}`).innerHTML = `<span class="status-badge ${stat === 'ชำระแล้ว' ? 'paid' : 'unpaid'}">${stat}</span>`;
+        months.forEach((m, i) => {
+            const mStat = s[m] || "ยังไม่ถึงกำหนด";
+            document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(mStat)}">${mStat}</span>`;
         });
 
         document.getElementById('resTotal').innerText = (s["ยอดรวมค้างชำระ ( รวมห้าค่าอาหารรายเดือน )"] || 0) + " บาท";
         
-        // เงื่อนไขข้อ 5: แสดงข้อความรอตรวจสอบเฉพาะเมื่อใน Sheet มีคำนี้
-        const isWait = s["สถานะการตรวจสอบ"] === "รอตรวจสอบสถานะการจ่าย";
-        document.getElementById('waitMsg').style.display = isWait ? 'block' : 'none';
+        // เงื่อนไขแสดง "รอตรวจสอบ..."
+        document.getElementById('waitMsg').style.display = s["สถานะการตรวจสอบ"] === "รอตรวจสอบสถานะการจ่าย" ? 'block' : 'none';
     }
 
+    // ฟังก์ชันส่งสลิป
     function handleUpload() {
-        const files = document.getElementById('fileIn').files;
-        if(files.length === 0) return;
-
-        // วนลูปบันทึกไฟล์ (กรณีเลือกหลายไฟล์)
-        Array.from(files).forEach(file => {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const payload = {
-                    studentName: userData["ชื่อ-สกุล"] || userData["ชื่อ-นามสกุล"],
-                    sheetName: userSheetName,
-                    fileName: `SLIP_${Date.now()}_${file.name}`,
-                    fileData: e.target.result,
-                    fileType: file.type
-                };
-
-                fetch("https://script.google.com/macros/s/AKfycbxKxKXWudQyNA8mToTIfz7eu2p4dldwNfIIrQNU0Z3ZouJhiuXHkUkhsrfca-EVeaAz/exec", {
-                    method: "POST",
-                    body: JSON.stringify(payload)
-                }).then(() => {
-                    alert("แนบสลิปเรียบร้อยแล้ว ระบบกำลังส่งข้อมูลไปตรวจสอบ");
-                    location.reload();
-                });
+        const file = document.getElementById('fileIn').files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const payload = {
+                studentName: userData["ชื่อ-สกุล"] || userData["ชื่อ-นามสกุล"],
+                sheetName: userSheetName,
+                fileName: `SLIP_${Date.now()}.png`,
+                fileData: e.target.result,
+                fileType: file.type
             };
-            reader.readAsDataURL(file);
-        });
+            // เรียกใช้ Google Apps Script Web App URL ของคุณ
+            fetch("https://script.google.com/macros/s/AKfycbxKxKXWudQyNA8mToTIfz7eu2p4dldwNfIIrQNU0Z3ZouJhiuXHkUkhsrfca-EVeaAz/exec", {
+                method: "POST", body: JSON.stringify(payload)
+            }).then(() => {
+                alert("บันทึกสลิปเรียบร้อย ระบบกำลังส่งข้อมูลไปตรวจสอบ");
+                location.reload();
+            });
+        };
+        reader.readAsDataURL(file);
     }
 </script>
 </body>
