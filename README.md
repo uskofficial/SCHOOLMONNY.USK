@@ -96,12 +96,12 @@
         .month-label { font-weight: 500; margin-bottom: 5px; font-size: 13px; color: #444; }
         .month-amount { font-size: 11px; color: #666; margin-top: 5px; font-weight: bold; }
         
-        /* สไตล์สีสถานะตามคำสั่ง */
+        /* การตั้งค่าสีสถานะ */
         .status-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; border: 1px solid; display: inline-block; }
-        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; } /* สีเขียว: โอนสำเร็จ / ชำระแล้ว */
-        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; } /* สีแดง: โอนไม่สำเร็จ / ค้างชำระ */
-        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; } /* สีส้ม: รอตรวจสอบการโอน / รอตรวจสอบ */
-        .not-reached { border-color: #3b82f6; color: #1e40af; background: #eff6ff; } /* สีฟ้า: ยังไม่ถึงกำหนด */
+        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; } /* เขียว: โอนสำเร็จ / ชำระแล้ว */
+        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; } /* แดง: โอนไม่สำเร็จ / ค้างชำระ */
+        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; } /* ส้ม: รอตรวจสอบการโอน / รอตรวจสอบ */
+        .not-reached { border-color: #3b82f6; color: #1e40af; background: #eff6ff; } /* ฟ้า: ยังไม่ถึงกำหนด */
 
         .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
 
@@ -184,7 +184,7 @@
             </div>
             <div class="total-section">
                 <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:12px">( Total Outstanding Balance )</span></span>
-                <span id="resTotal" style="color: #333;"></span>
+                <span id="resTotal" style="color: #333;">0 บาท</span>
             </div>
         </div>
 
@@ -213,7 +213,6 @@
     const firebaseConfig = { databaseURL: "https://schoolmonny-e6c5e-default-rtdb.asia-southeast1.firebasedatabase.app" };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-    
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYSM7NNA5psMwEh16nAvBP66hnHdJ0ebKz0EVmyfpEyWDEgsqqmQnQ_4MEi2pRU0fM/exec";
 
     let userData = null;
@@ -250,46 +249,61 @@
         document.getElementById('resProg').innerText = prog;
         document.getElementById('resLevel').innerText = s["ระดับชั้นมัธยมศึกษาปีที่"] || "-";
 
+        // ยอดหอพัก
         const fStat = s["ค่าธรรมเนียมหอพัก สถานะ"] || "ค้างชำระ";
+        const fAmt = parseFloat(String(s["ยอดค้างค่าธรรมเนียม"] || 0).replace(/,/g, '')) || 0;
         document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
-        document.getElementById('resFeeAmt').innerText = (s["ยอดค้างค่าธรรมเนียม"] || 0).toLocaleString();
+        document.getElementById('resFeeAmt').innerText = fAmt.toLocaleString();
 
-        const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
-        months.forEach((m, i) => {
-            const mStat = s[m] || "ยังไม่ถึงกำหนด";
-            document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(mStat)}">${mStat}</span>`;
-            const amtKeys = ["ยอดที่ค้าง (พ.ค.)", "ยอดที่ค้าง (มิ.ย.)", "ยอดที่ค้าง (ก.ค.)", "ยอดที่ค้าง (ส.ค.)", "ยอดที่ค้าง (ก.ย.)", "ยอดที่ค้าง (ต.ค.)"];
-            document.getElementById(`a${i+1}`).innerText = (s[amtKeys[i]] || 0).toLocaleString() + " บาท";
+        // คำนวณยอดรวมค่าอาหารตามชื่อคอลัมน์ที่คุณระบุ
+        let ยอดรวมทั้งหมด = 0;
+        const รายการเดือน = [
+            { สถานะ: "พฤษภาคม", ยอดเงิน: "ยอดที่ค้าง(พฤษภาคม)" },
+            { สถานะ: "มิถุนายน", ยอดเงิน: "ยอดที่ค้าง(มิถุนายน)" },
+            { สถานะ: "กรกฎาคม", ยอดเงิน: "ยอดที่ค้าง(กรกฎาคม)" },
+            { สถานะ: "สิงหาคม", ยอดเงิน: "ยอดที่ค้าง(สิงหาคม)" },
+            { สถานะ: "กันยายน", ยอดเงิน: "ยอดที่ค้าง(กันยายน)" },
+            { สถานะ: "ตุลาคม", ยอดเงิน: "ยอดที่ค้าง(ตุลาคม)" }
+        ];
+
+        รายการเดือน.forEach((เดือน, i) => {
+            const สถานะปัจจุบัน = s[เดือน.สถานะ] || "ยังไม่ถึงกำหนด";
+            const ค่าดิบ = s[เดือน.ยอดเงิน] !== undefined ? String(s[เดือน.ยอดเงิน]) : "0";
+            const จำนวนเงิน = parseFloat(ค่าดิบ.replace(/,/g, '')) || 0;
+            
+            document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(สถานะปัจจุบัน)}">${สถานะปัจจุบัน}</span>`;
+            document.getElementById(`a${i+1}`).innerText = จำนวนเงิน.toLocaleString() + " บาท";
+            
+            // บวกยอดเงินเฉพาะที่ต้องจ่าย (ค้างชำระ / รอตรวจสอบ / โอนไม่สำเร็จ)
+            if (สถานะปัจจุบัน.includes('ค้างชำระ') || สถานะปัจจุบัน.includes('รอตรวจสอบ') || สถานะปัจจุบัน.includes('ไม่สำเร็จ')) {
+                ยอดรวมทั้งหมด += จำนวนเงิน;
+            }
         });
 
-        document.getElementById('resTotal').innerText = (s["ยอดรวมค้างชำระ ( รวมทั้งค่าอาหารรายเดือน )"] || 0).toLocaleString() + " บาท";
+        document.getElementById('resTotal').innerText = ยอดรวมทั้งหมด.toLocaleString() + " บาท";
         
+        // จัดการสถานะรอตรวจสอบ
         const dVerify = s["สถานะการตรวจสอบหอพัก"]; 
         const mVerify = s["สถานะการตรวจสอบค่าอาหาร"]; 
-        
         const waitDorm = document.getElementById('waitDorm');
         const waitMeal = document.getElementById('waitMeal');
 
         if (dVerify && dVerify !== "") {
             waitDorm.style.display = 'block';
             document.getElementById('dormWaitTitle').innerText = dVerify;
-            const waitClass = getStatClass(dVerify);
-            if(waitClass === 'paid') waitDorm.style.color = '#15803d';
-            else if(waitClass === 'unpaid') waitDorm.style.color = '#b91c1c';
-            else waitDorm.style.color = '#f59e0b';
+            const wc = getStatClass(dVerify);
+            waitDorm.style.color = (wc === 'paid') ? '#15803d' : (wc === 'unpaid') ? '#b91c1c' : '#f59e0b';
         } else { waitDorm.style.display = 'none'; }
 
         if (mVerify && mVerify !== "") {
             waitMeal.style.display = 'block';
             document.getElementById('mealWaitTitle').innerText = mVerify;
-            const waitClass = getStatClass(mVerify);
-            if(waitClass === 'paid') waitMeal.style.color = '#15803d';
-            else if(waitClass === 'unpaid') waitMeal.style.color = '#b91c1c';
-            else waitMeal.style.color = '#f59e0b';
+            const wc = getStatClass(mVerify);
+            waitMeal.style.color = (wc === 'paid') ? '#15803d' : (wc === 'unpaid') ? '#b91c1c' : '#f59e0b';
         } else { waitMeal.style.display = 'none'; }
     }
 
-    // ฟังก์ชันเปลี่ยนสีตัวอักษรตามคำที่คุณกำหนด
+    // ฟังก์ชันจัดการสีตามคำที่กำหนด
     function getStatClass(stat) {
         if (!stat) return 'pending';
         // 1. โอนสำเร็จ หรือ ชำระแล้ว -> สีเขียว
