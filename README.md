@@ -16,6 +16,8 @@
             --pink-btn: #ec4899; 
             --light-blue: #eff6ff;
             --orange-status: #f59e0b;
+            --green-success: #22c55e;
+            --red-error: #ef4444;
         }
         * { box-sizing: border-box; }
         
@@ -62,6 +64,10 @@
             padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; 
             width: 100%; 
         }
+        button.btn-search:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
 
         .info-box { 
             border: 2px solid var(--border-blue); 
@@ -104,11 +110,38 @@
         .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
 
         .footer-action { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; margin-bottom: 25px; }
-        .btn-upload { border: 2px solid var(--pink-btn); color: #be185d; background: white; padding: 12px; border-radius: 6px; cursor: pointer; font-size: 15px; font-weight: 500; width: 100%; }
+        .btn-upload { 
+            border: 2px solid var(--pink-btn); 
+            color: #be185d; 
+            background: white; 
+            padding: 12px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 15px; 
+            font-weight: 500; 
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .btn-upload:hover {
+            background: #fdf2f8;
+        }
+        .btn-upload:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         
-        .wait-status { text-align: center; color: var(--orange-status); width: 100%; display: none; }
+        .wait-status { 
+            text-align: center; 
+            width: 100%; 
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
         .wait-status b { font-size: 16px; display: block; }
-        .wait-status span { font-size: 12px; color: #777; }
+        .wait-status span { font-size: 12px; color: #777; display: block; margin-top: 5px; }
+        .wait-status.waiting { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+        .wait-status.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+        .wait-status.error { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; }
 
         .payment-btn-box { 
             background: var(--light-blue); border: 2px solid var(--border-blue); 
@@ -124,7 +157,7 @@
             .month-grid { grid-template-columns: repeat(6, 1fr); }
             .footer-action { flex-direction: row; justify-content: space-between; align-items: center; }
             .btn-upload { width: 45%; }
-            .wait-status { width: 50%; text-align: right; }
+            .wait-status { width: 50%; text-align: left; }
             .info-box { padding: 25px; }
         }
     </style>
@@ -141,7 +174,7 @@
     </div>
 
     <div class="search-area">
-        <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน">
+        <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน" onkeypress="if(event.key==='Enter') doSearch()">
         <button class="btn-search" onclick="doSearch()">ค้นหา</button>
     </div>
 
@@ -164,9 +197,9 @@
         </div>
 
         <div class="footer-action">
-            <button class="btn-upload" onclick="triggerUpload('dorm')">แนบสลิปจ่ายค่าธรรมเนียมหอพัก</button>
-            <div class="wait-status" id="waitDorm">
-                <b id="dormWaitTitle">รอตรวจสอบสถานะการจ่าย</b>
+            <button class="btn-upload" id="btnDormUpload" onclick="triggerUpload('dorm')">แนบสลิปจ่ายค่าธรรมเนียมหอพัก</button>
+            <div class="wait-status waiting" id="waitDorm">
+                <b id="dormWaitTitle">รอตรวจสอบสถานะการโอน</b>
                 <span>โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
             </div>
         </div>
@@ -189,9 +222,9 @@
         </div>
 
         <div class="footer-action">
-            <button class="btn-upload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
-            <div class="wait-status" id="waitMeal">
-                <b id="mealWaitTitle">รอตรวจสอบสถานะการจ่าย</b>
+            <button class="btn-upload" id="btnMealUpload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
+            <div class="wait-status waiting" id="waitMeal">
+                <b id="mealWaitTitle">รอตรวจสอบสถานะการโอน</b>
                 <span>โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
             </div>
         </div>
@@ -201,7 +234,8 @@
         </div>
     </div>
 
-    <input type="file" id="fileIn" style="display:none" onchange="handleUpload()">
+    <!-- รองรับหลายไฟล์ ไม่จำกัดจำนวนและขนาด -->
+    <input type="file" id="fileIn" style="display:none" multiple onchange="handleUpload()">
 
     <div class="bottom-info">
         พบปัญหาหรือมีข้อสงสัยโปรดติดต่อ 078 - 789 - 6789<br>
@@ -220,130 +254,222 @@
     let userData = null;
     let userSheetName = "";
     let uploadTarget = "";
+    let isUploading = false;
 
     async function doSearch() {
         const name = document.getElementById('nameInput').value.trim();
-        if(!name) return;
+        if(!name) {
+            Swal.fire('กรุณากรอกชื่อ-นามสกุล', '', 'warning');
+            return;
+        }
+        
+        const searchBtn = document.querySelector('.btn-search');
+        searchBtn.disabled = true;
+        searchBtn.textContent = 'กำลังค้นหา...';
+        
         Swal.fire({ title: 'กำลังค้นหา...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        
         const programs = ["หอพักญะมาอะห์ชาย", "หอพักญะมาอะห์หญิง", "หอพักกีฬา", "หอพักฮาฟิซอัลกุรอ่าน"];
         let found = false;
-        for (let p of programs) {
-            const snap = await db.ref(p).once('value');
-            const data = snap.val();
-            if(data) {
-                const match = data.find(s => (s["ชื่อ-นามสกุล"] === name || s["ชื่อ-สกุล"] === name));
-                if(match) {
-                    userData = match;
-                    userSheetName = p;
-                    renderReport(match, p);
-                    found = true;
-                    break;
+        
+        try {
+            for (let p of programs) {
+                const snap = await db.ref(p).once('value');
+                const data = snap.val();
+                if(data && Array.isArray(data)) {
+                    const match = data.find(s => (s["ชื่อ-นามสกุล"] === name || s["ชื่อ-สกุล"] === name));
+                    if(match) {
+                        userData = match;
+                        userSheetName = p;
+                        renderReport(match, p);
+                        found = true;
+                        break;
+                    }
                 }
             }
+        } catch (error) {
+            console.error("Search error:", error);
+            Swal.fire('ข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
         }
+        
         Swal.close();
-        if(!found) Swal.fire('ไม่พบข้อมูล', 'โปรดตรวจสอบชื่อ-นามสกุลอีกครั้ง', 'error');
+        searchBtn.disabled = false;
+        searchBtn.textContent = 'ค้นหา';
+        
+        if(!found) {
+            Swal.fire('ไม่พบข้อมูล', 'โปรดตรวจสอบชื่อ-นามสกุลอีกครั้ง', 'error');
+            document.getElementById('reportArea').style.display = 'none';
+        } else {
+            document.getElementById('reportArea').style.display = 'block';
+        }
     }
 
     function renderReport(s, prog) {
-        document.getElementById('reportArea').style.display = 'block';
         document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"];
         document.getElementById('resProg').innerText = prog;
-        document.getElementById('resLevel').innerText = s["ระดับชั้นมัธยมศึกษาปีที่"] || "-";
+        document.getElementById('resLevel').innerText = s["ระดับชั้น"] || s["ระดับชั้นมัธยมศึกษาปีที่"] || "-";
 
-        // แสดงผลสถานะและยอดค่าหอพัก
         const fStat = s["ค่าธรรมเนียมหอพัก สถานะ"] || "ค้างชำระ";
         document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
         document.getElementById('resFeeAmt').innerText = (s["ยอดค้างค่าธรรมเนียม"] || 0).toLocaleString();
 
-        // แสดงผลตารางรายเดือน
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
+        const amtKeys = ["ยอดที่ค้าง (พ.ค.)", "ยอดที่ค้าง (มิ.ย.)", "ยอดที่ค้าง (ก.ค.)", "ยอดที่ค้าง (ส.ค.)", "ยอดที่ค้าง (ก.ย.)", "ยอดที่ค้าง (ต.ค.)"];
+        
         months.forEach((m, i) => {
-            const mStat = s[m] || "ยังไม่ถึงกำหนด";
+            const mStat = s[m] || "ค้างชำระ";
             document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(mStat)}">${mStat}</span>`;
-            const amtKeys = ["ยอดที่ค้าง (พ.ค.)", "ยอดที่ค้าง (มิ.ย.)", "ยอดที่ค้าง (ก.ค.)", "ยอดที่ค้าง (ส.ค.)", "ยอดที่ค้าง (ก.ย.)", "ยอดที่ค้าง (ต.ค.)"];
             document.getElementById(`a${i+1}`).innerText = (s[amtKeys[i]] || 0).toLocaleString() + " บาท";
         });
 
-        document.getElementById('resTotal').innerText = (s["ยอดรวมค้างชำระ ( รวมทั้งค่าอาหารรายเดือน )"] || 0).toLocaleString() + " บาท";
+        const total = s["ยอดรวมค้างชำระ"] || s["ยอดรวมค้างชำระ ( รวมทั้งค่าอาหารรายเดือน )"] || 0;
+        document.getElementById('resTotal').innerHTML = `<b style="font-size:20px; color:#dc2626;">${total.toLocaleString()}</b> บาท`;
         
-        // แยกการตรวจสอบสถานะหอพัก (R) และค่าอาหาร (U)
-        const dVerify = s["สถานะการตรวจสอบหอพัก"]; // ดึงจากคอลัมน์ R ใน Sheet
-        const mVerify = s["สถานะการตรวจสอบค่าอาหาร"]; // ดึงจากคอลัมน์ U ใน Sheet
-        
+        // แสดงสถานะการตรวจสอบหอพัก (คอลัมน์ R)
+        const dVerify = s["สถานะการตรวจสอบหอพัก"] || "";
         const waitDorm = document.getElementById('waitDorm');
-        const waitMeal = document.getElementById('waitMeal');
-
-        // เงื่อนไขการแสดงผลสถานะหอพัก
+        const dormTitle = document.getElementById('dormWaitTitle');
+        
         if (dVerify && dVerify !== "") {
             waitDorm.style.display = 'block';
-            document.getElementById('dormWaitTitle').innerText = dVerify;
+            dormTitle.innerText = dVerify;
+            if (dVerify.includes("สำเร็จ") || dVerify.includes("โอนสำเร็จ")) {
+                waitDorm.className = 'wait-status success';
+            } else if (dVerify.includes("ไม่สำเร็จ")) {
+                waitDorm.className = 'wait-status error';
+            } else {
+                waitDorm.className = 'wait-status waiting';
+            }
         } else {
-            waitDorm.style.display = 'none'; // หายไปเมื่อแอดมินลบค่าใน Sheet
+            waitDorm.style.display = 'none';
         }
 
-        // เงื่อนไขการแสดงผลสถานะค่าอาหาร
+        // แสดงสถานะการตรวจสอบอาหาร (คอลัมน์ U)
+        const mVerify = s["สถานะการตรวจสอบอาหาร"] || "";
+        const waitMeal = document.getElementById('waitMeal');
+        const mealTitle = document.getElementById('mealWaitTitle');
+        
         if (mVerify && mVerify !== "") {
             waitMeal.style.display = 'block';
-            document.getElementById('mealWaitTitle').innerText = mVerify;
+            mealTitle.innerText = mVerify;
+            if (mVerify.includes("สำเร็จ") || mVerify.includes("โอนสำเร็จ")) {
+                waitMeal.className = 'wait-status success';
+            } else if (mVerify.includes("ไม่สำเร็จ")) {
+                waitMeal.className = 'wait-status error';
+            } else {
+                waitMeal.className = 'wait-status waiting';
+            }
         } else {
-            waitMeal.style.display = 'none'; // หายไปเมื่อแอดมินลบค่าใน Sheet
+            waitMeal.style.display = 'none';
         }
     }
 
     function getStatClass(stat) {
         if (!stat) return 'pending';
-        if (stat.includes('ชำระแล้ว')) return 'paid';
-        if (stat.includes('ค้างชำระ')) return 'unpaid';
+        if (stat.includes('ชำระแล้ว') || stat.includes('โอนสำเร็จ')) return 'paid';
+        if (stat.includes('ค้างชำระ') || stat.includes('ไม่สำเร็จ')) return 'unpaid';
         return 'pending';
     }
 
     function triggerUpload(target) {
+        if (!userData) {
+            Swal.fire('กรุณาค้นหาชื่อนักเรียนก่อน', '', 'warning');
+            return;
+        }
+        
         uploadTarget = target;
         document.getElementById('fileIn').click();
     }
 
-    function handleUpload() {
-        const file = document.getElementById('fileIn').files[0];
-        if(!file) return;
+    async function handleUpload() {
+        if (isUploading) {
+            Swal.fire('กำลังดำเนินการ', 'กรุณารอสักครู่', 'info');
+            return;
+        }
         
-        Swal.fire({ title: 'กำลังส่งข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        const fileInput = document.getElementById('fileIn');
+        const files = fileInput.files;
         
-        const reader = new FileReader();
-        reader.onload = function(e) {
+        if(!files || files.length === 0) return;
+        
+        isUploading = true;
+        const uploadBtn = uploadTarget === 'dorm' ? document.getElementById('btnDormUpload') : document.getElementById('btnMealUpload');
+        uploadBtn.disabled = true;
+        uploadBtn.textContent = 'กำลังอัปโหลด...';
+        
+        Swal.fire({ title: `กำลังอัปโหลด ${files.length} ไฟล์...`, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        
+        try {
+            const fileDataArray = [];
+            const studentName = userData["ชื่อ-นามสกุล"] || userData["ชื่อ-สกุล"];
+            
+            for (let i = 0; i < files.length; i++) {
+                const base64 = await toBase64(files[i]);
+                fileDataArray.push({
+                    data: base64,
+                    type: files[i].type,
+                    name: `${studentName}_${uploadTarget}_${Date.now()}_${i}.${files[i].name.split('.').pop()}`
+                });
+            }
+
             const payload = {
-                studentName: userData["ชื่อ-นามสกุล"] || userData["ชื่อ-สกุล"],
+                studentName: studentName,
                 sheetName: userSheetName,
-                paymentType: uploadTarget, // 'dorm' หรือ 'food'
-                fileData: e.target.result,
-                fileType: file.type,
-                fileName: `${uploadTarget}_${Date.now()}.png`
+                paymentType: uploadTarget,
+                files: fileDataArray
             };
             
-            fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(payload) })
-            .then(res => res.text())
-            .then(text => {
-                if (text.includes("Success")) {
-                    Swal.fire('สำเร็จ!', 'แนบสลิปเรียบร้อย ระบบจะตรวจสอบใน 7 วัน', 'success').then(() => location.reload());
-                } else {
-                    throw new Error(text);
-                }
-            })
-            .catch(err => {
-                Swal.fire('ผิดพลาด', 'ไม่สามารถส่งข้อมูลได้: ' + err.message, 'error');
+            await fetch(SCRIPT_URL, { 
+                method: "POST", 
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload) 
             });
-        };
-        reader.readAsDataURL(file);
+            
+            Swal.fire('สำเร็จ!', 'แนบสลิปเรียบร้อย ระบบจะตรวจสอบสถานะโดยเร็วที่สุด', 'success');
+            
+            setTimeout(() => {
+                doSearch();
+            }, 2000);
+            
+        } catch (error) {
+            console.error("Upload error:", error);
+            Swal.fire('ผิดพลาด', 'ไม่สามารถส่งข้อมูลได้: ' + error.message, 'error');
+        } finally {
+            isUploading = false;
+            uploadBtn.disabled = false;
+            uploadBtn.textContent = uploadTarget === 'dorm' ? 'แนบสลิปจ่ายค่าธรรมเนียมหอพัก' : 'แนบสลิปการจ่ายค่าอาหาร';
+            fileInput.value = '';
+        }
+    }
+
+    function toBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
     }
 
     function showPaymentInfo() {
         Swal.fire({
             title: 'ช่องทางการชำระเงิน',
             html: `<div style="text-align:center;">
-                    <p>ธนาคารกสิกรไทย<br>เลขบัญชี: 123-x-xxxxx-x<br>โรงเรียนอุทยานศึกษากระบี่</p>
-                    <img src="https://i.postimg.cc/wBmf1KRW/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:250px; border-radius:10px;">
+                    <p><strong>ธนาคารกสิกรไทย</strong><br>
+                    เลขบัญชี: 123-x-xxxxx-x<br>
+                    ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
+                    <p style="margin-top:15px;">
+                    <strong>QR PromptPay</strong><br>
+                    <img src="https://i.postimg.cc/wBmf1KRW/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:250px; border-radius:10px; margin-top:10px;">
+                    </p>
+                    <p style="font-size:12px; color:#666; margin-top:15px;">
+                    *** กรุณาแคปหน้าจอสลิปการโอนและอัปโหลดผ่านระบบ ***
+                    </p>
                    </div>`,
-            showCloseButton: true, showConfirmButton: false
+            showCloseButton: true, 
+            showConfirmButton: false,
+            width: '400px'
         });
     }
 </script>
