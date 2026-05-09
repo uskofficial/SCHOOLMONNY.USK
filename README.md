@@ -96,12 +96,11 @@
         .month-label { font-weight: 500; margin-bottom: 5px; font-size: 13px; color: #444; }
         .month-amount { font-size: 11px; color: #666; margin-top: 5px; font-weight: bold; }
         
-        /* การตั้งค่าสีสถานะ */
         .status-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; border: 1px solid; display: inline-block; }
-        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; } /* เขียว: โอนสำเร็จ / ชำระแล้ว */
-        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; } /* แดง: โอนไม่สำเร็จ / ค้างชำระ */
-        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; } /* ส้ม: รอตรวจสอบการโอน / รอตรวจสอบ */
-        .not-reached { border-color: #3b82f6; color: #1e40af; background: #eff6ff; } /* ฟ้า: ยังไม่ถึงกำหนด */
+        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; } 
+        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; } 
+        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; } 
+        .not-reached { border-color: #3b82f6; color: #1e40af; background: #eff6ff; } 
 
         .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
 
@@ -151,8 +150,7 @@
         <div class="info-box">
             <div class="info-line"><span class="label">ชื่อ - สกุล :</span> <span id="resName"></span></div>
             <div class="info-line"><span class="label">โปรแกรมหอพัก :</span> <span id="resProg"></span></div>
-            <div class="info-line"><span class="label">ระดับชั้น :</span> <span id="resLevel"></span></div>
-        </div>
+            </div>
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
 
@@ -168,7 +166,7 @@
             <button class="btn-upload" onclick="triggerUpload('dorm')">แนบสลิปจ่ายค่าธรรมเนียมหอพัก</button>
             <div class="wait-status" id="waitDorm">
                 <b id="dormWaitTitle">รอตรวจสอบสถานะการจ่าย</b>
-                <span>โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
+                <span id="dormWaitDetail">โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
             </div>
         </div>
 
@@ -192,7 +190,7 @@
             <button class="btn-upload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
             <div class="wait-status" id="waitMeal">
                 <b id="mealWaitTitle">รอตรวจสอบสถานะการจ่าย</b>
-                <span>โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
+                <span id="mealWaitDetail">โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
             </div>
         </div>
 
@@ -247,7 +245,6 @@
         document.getElementById('reportArea').style.display = 'block';
         document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"];
         document.getElementById('resProg').innerText = prog;
-        document.getElementById('resLevel').innerText = s["ระดับชั้นมัธยมศึกษาปีที่"] || "-";
 
         // ยอดหอพัก
         const fStat = s["ค่าธรรมเนียมหอพัก สถานะ"] || "ค้างชำระ";
@@ -255,7 +252,7 @@
         document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
         document.getElementById('resFeeAmt').innerText = fAmt.toLocaleString();
 
-        // คำนวณยอดรวมค่าอาหารตามชื่อคอลัมน์ที่คุณระบุ
+        // คำนวณยอดรวมค่าอาหาร
         let ยอดรวมทั้งหมด = 0;
         const รายการเดือน = [
             { สถานะ: "พฤษภาคม", ยอดเงิน: "ยอดที่ค้าง(พฤษภาคม)" },
@@ -274,7 +271,6 @@
             document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(สถานะปัจจุบัน)}">${สถานะปัจจุบัน}</span>`;
             document.getElementById(`a${i+1}`).innerText = จำนวนเงิน.toLocaleString() + " บาท";
             
-            // บวกยอดเงินเฉพาะที่ต้องจ่าย (ค้างชำระ / รอตรวจสอบ / โอนไม่สำเร็จ)
             if (สถานะปัจจุบัน.includes('ค้างชำระ') || สถานะปัจจุบัน.includes('รอตรวจสอบ') || สถานะปัจจุบัน.includes('ไม่สำเร็จ')) {
                 ยอดรวมทั้งหมด += จำนวนเงิน;
             }
@@ -282,39 +278,43 @@
 
         document.getElementById('resTotal').innerText = ยอดรวมทั้งหมด.toLocaleString() + " บาท";
         
-        // จัดการสถานะรอตรวจสอบ
-        const dVerify = s["สถานะการตรวจสอบหอพัก"]; 
-        const mVerify = s["สถานะการตรวจสอบค่าอาหาร"]; 
-        const waitDorm = document.getElementById('waitDorm');
-        const waitMeal = document.getElementById('waitMeal');
-
-        if (dVerify && dVerify !== "") {
-            waitDorm.style.display = 'block';
-            document.getElementById('dormWaitTitle').innerText = dVerify;
-            const wc = getStatClass(dVerify);
-            waitDorm.style.color = (wc === 'paid') ? '#15803d' : (wc === 'unpaid') ? '#b91c1c' : '#f59e0b';
-        } else { waitDorm.style.display = 'none'; }
-
-        if (mVerify && mVerify !== "") {
-            waitMeal.style.display = 'block';
-            document.getElementById('mealWaitTitle').innerText = mVerify;
-            const wc = getStatClass(mVerify);
-            waitMeal.style.color = (wc === 'paid') ? '#15803d' : (wc === 'unpaid') ? '#b91c1c' : '#f59e0b';
-        } else { waitMeal.style.display = 'none'; }
+        // จัดการสถานะรอตรวจสอบและข้อความอธิบายด้านล่าง
+        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบหอพัก"], 'waitDorm', 'dormWaitTitle', 'dormWaitDetail');
+        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าอาหาร"], 'waitMeal', 'mealWaitTitle', 'mealWaitDetail');
     }
 
-    // ฟังก์ชันจัดการสีตามคำที่กำหนด
+    // ฟังก์ชันใหม่: จัดการสีและข้อความอธิบายตามสถานะที่ได้รับจากแอดมิน
+    function จัดการข้อความอธิบาย(สถานะจากแผ่นงาน, ไอดีกล่อง, ไอดีหัวข้อ, ไอดีรายละเอียด) {
+        const กล่อง = document.getElementById(ไอดีกล่อง);
+        const หัวข้อ = document.getElementById(ไอดีหัวข้อ);
+        const รายละเอียด = document.getElementById(ไอดีรายละเอียด);
+
+        if (สถานะจากแผ่นงาน && สถานะจากแผ่นงาน !== "") {
+            กล่อง.style.display = 'block';
+            หัวข้อ.innerText = สถานะจากแผ่นงาน;
+            const คลาส = getStatClass(สถานะจากแผ่นงาน);
+
+            if (คลาส === 'paid') {
+                กล่อง.style.color = '#15803d'; // เขียว
+                รายละเอียด.innerText = "ขอบคุณสำหรับการแนบสลิปการโอนเพื่อยืนยันหลักฐาน";
+            } else if (คลาส === 'unpaid') {
+                กล่อง.style.color = '#b91c1c'; // แดง
+                รายละเอียด.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและแนบกลับมาอีกครั้ง";
+            } else {
+                กล่อง.style.color = '#f59e0b'; // ส้ม (กรณีรอตรวจสอบ)
+                รายละเอียด.innerText = "โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ";
+            }
+        } else {
+            กล่อง.style.display = 'none';
+        }
+    }
+
     function getStatClass(stat) {
         if (!stat) return 'pending';
-        // 1. โอนสำเร็จ หรือ ชำระแล้ว -> สีเขียว
         if (stat.includes('โอนสำเร็จ') || stat.includes('ชำระแล้ว')) return 'paid';
-        // 2. โอนไม่สำเร็จ หรือ ค้างชำระ -> สีแดง
         if (stat.includes('โอนไม่สำเร็จ') || stat.includes('ค้างชำระ')) return 'unpaid';
-        // 3. รอตรวจสอบการโอน หรือ รอตรวจสอบ -> สีส้ม
         if (stat.includes('รอตรวจสอบ')) return 'pending';
-        // 4. ยังไม่ถึงกำหนด -> สีฟ้า
         if (stat.includes('ยังไม่ถึงกำหนด')) return 'not-reached';
-        
         return 'pending';
     }
 
