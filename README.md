@@ -210,12 +210,11 @@
 </div>
 
 <script>
-    // การตั้งค่า Firebase
     const firebaseConfig = { databaseURL: "https://schoolmonny-e6c5e-default-rtdb.asia-southeast1.firebasedatabase.app" };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
     
-    // Web App URL จาก Apps Script
+    // Web App URL จาก Google Apps Script ที่ Deploy ล่าสุด
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYSM7NNA5psMwEh16nAvBP66hnHdJ0ebKz0EVmyfpEyWDEgsqqmQnQ_4MEi2pRU0fM/exec";
 
     let userData = null;
@@ -252,12 +251,12 @@
         document.getElementById('resProg').innerText = prog;
         document.getElementById('resLevel').innerText = s["ระดับชั้นมัธยมศึกษาปีที่"] || "-";
 
-        // แสดงผลค่าธรรมเนียมหอพัก
+        // แสดงผลสถานะและยอดค่าหอพัก
         const fStat = s["ค่าธรรมเนียมหอพัก สถานะ"] || "ค้างชำระ";
         document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
         document.getElementById('resFeeAmt').innerText = (s["ยอดค้างค่าธรรมเนียม"] || 0).toLocaleString();
 
-        // แสดงผลยอดรายเดือน
+        // แสดงผลตารางรายเดือน
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
         months.forEach((m, i) => {
             const mStat = s[m] || "ยังไม่ถึงกำหนด";
@@ -268,27 +267,27 @@
 
         document.getElementById('resTotal').innerText = (s["ยอดรวมค้างชำระ ( รวมทั้งค่าอาหารรายเดือน )"] || 0).toLocaleString() + " บาท";
         
-        // --- ส่วนจัดการสถานะการตรวจสอบแยกตามคอลัมน์ R และ U ---
-        const dormVerify = s["สถานะการตรวจสอบหอพัก"]; // คอลัมน์ R
-        const mealVerify = s["สถานะการตรวจสอบค่าอาหาร"]; // คอลัมน์ U
+        // แยกการตรวจสอบสถานะหอพัก (R) และค่าอาหาร (U)
+        const dVerify = s["สถานะการตรวจสอบหอพัก"]; // ดึงจากคอลัมน์ R ใน Sheet
+        const mVerify = s["สถานะการตรวจสอบค่าอาหาร"]; // ดึงจากคอลัมน์ U ใน Sheet
         
         const waitDorm = document.getElementById('waitDorm');
         const waitMeal = document.getElementById('waitMeal');
 
-        // Logic ค่าหอพัก (R)
-        if (dormVerify && dormVerify !== "") {
+        // เงื่อนไขการแสดงผลสถานะหอพัก
+        if (dVerify && dVerify !== "") {
             waitDorm.style.display = 'block';
-            document.getElementById('dormWaitTitle').innerText = dormVerify;
+            document.getElementById('dormWaitTitle').innerText = dVerify;
         } else {
-            waitDorm.style.display = 'none'; // หายไปเมื่อ Admin ลบค่าออก
+            waitDorm.style.display = 'none'; // หายไปเมื่อแอดมินลบค่าใน Sheet
         }
 
-        // Logic ค่าอาหาร (U)
-        if (mealVerify && mealVerify !== "") {
+        // เงื่อนไขการแสดงผลสถานะค่าอาหาร
+        if (mVerify && mVerify !== "") {
             waitMeal.style.display = 'block';
-            document.getElementById('mealWaitTitle').innerText = mealVerify;
+            document.getElementById('mealWaitTitle').innerText = mVerify;
         } else {
-            waitMeal.style.display = 'none'; // หายไปเมื่อ Admin ลบค่าออก
+            waitMeal.style.display = 'none'; // หายไปเมื่อแอดมินลบค่าใน Sheet
         }
     }
 
@@ -300,7 +299,7 @@
     }
 
     function triggerUpload(target) {
-        uploadTarget = target; // 'dorm' หรือ 'food'
+        uploadTarget = target;
         document.getElementById('fileIn').click();
     }
 
@@ -315,21 +314,26 @@
             const payload = {
                 studentName: userData["ชื่อ-นามสกุล"] || userData["ชื่อ-สกุล"],
                 sheetName: userSheetName,
-                paymentType: uploadTarget, // ส่ง 'dorm' หรือ 'food'
+                paymentType: uploadTarget, // 'dorm' หรือ 'food'
                 fileData: e.target.result,
                 fileType: file.type,
                 fileName: `${uploadTarget}_${Date.now()}.png`
             };
             
             fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(payload) })
-            .then(() => { 
-                Swal.fire('สำเร็จ!', 'แนบสลิปเรียบร้อย ระบบจะตรวจสอบใน 7 วัน', 'success').then(() => location.reload()); 
+            .then(res => res.text())
+            .then(text => {
+                if (text.includes("Success")) {
+                    Swal.fire('สำเร็จ!', 'แนบสลิปเรียบร้อย ระบบจะตรวจสอบใน 7 วัน', 'success').then(() => location.reload());
+                } else {
+                    throw new Error(text);
+                }
             })
-            .catch(() => { 
-                Swal.fire('ผิดพลาด', 'ไม่สามารถส่งข้อมูลได้', 'error'); 
+            .catch(err => {
+                Swal.fire('ผิดพลาด', 'ไม่สามารถส่งข้อมูลได้: ' + err.message, 'error');
             });
         };
-        reader.readAsDataURL(file); // รองรับไม่จำกัดขนาดไฟล์
+        reader.readAsDataURL(file);
     }
 
     function showPaymentInfo() {
