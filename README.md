@@ -96,10 +96,12 @@
         .month-label { font-weight: 500; margin-bottom: 5px; font-size: 13px; color: #444; }
         .month-amount { font-size: 11px; color: #666; margin-top: 5px; font-weight: bold; }
         
+        /* สไตล์สีสถานะตามคำสั่ง */
         .status-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; border: 1px solid; display: inline-block; }
-        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; }
-        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; }
-        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; }
+        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; } /* สีเขียว: โอนสำเร็จ / ชำระแล้ว */
+        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; } /* สีแดง: โอนไม่สำเร็จ / ค้างชำระ */
+        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; } /* สีส้ม: รอตรวจสอบการโอน / รอตรวจสอบ */
+        .not-reached { border-color: #3b82f6; color: #1e40af; background: #eff6ff; } /* สีฟ้า: ยังไม่ถึงกำหนด */
 
         .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
 
@@ -154,7 +156,6 @@
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
 
-        <!-- ค่าธรรมเนียมหอพัก -->
         <div class="fee-card">
             <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:300; font-size:13px;">( Dormitory Fee )</span></div>
             <div style="text-align:right">
@@ -171,7 +172,6 @@
             </div>
         </div>
 
-        <!-- ค่าอาหารรายเดือน -->
         <div class="boarding-box">
             <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px; font-weight:300;">( Boarding Fee )</span></div>
             <div class="month-grid">
@@ -214,7 +214,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
     
-    // Web App URL จาก Google Apps Script ที่ Deploy ล่าสุด
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYSM7NNA5psMwEh16nAvBP66hnHdJ0ebKz0EVmyfpEyWDEgsqqmQnQ_4MEi2pRU0fM/exec";
 
     let userData = null;
@@ -251,12 +250,10 @@
         document.getElementById('resProg').innerText = prog;
         document.getElementById('resLevel').innerText = s["ระดับชั้นมัธยมศึกษาปีที่"] || "-";
 
-        // แสดงผลสถานะและยอดค่าหอพัก
         const fStat = s["ค่าธรรมเนียมหอพัก สถานะ"] || "ค้างชำระ";
         document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
         document.getElementById('resFeeAmt').innerText = (s["ยอดค้างค่าธรรมเนียม"] || 0).toLocaleString();
 
-        // แสดงผลตารางรายเดือน
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
         months.forEach((m, i) => {
             const mStat = s[m] || "ยังไม่ถึงกำหนด";
@@ -267,34 +264,43 @@
 
         document.getElementById('resTotal').innerText = (s["ยอดรวมค้างชำระ ( รวมทั้งค่าอาหารรายเดือน )"] || 0).toLocaleString() + " บาท";
         
-        // แยกการตรวจสอบสถานะหอพัก (R) และค่าอาหาร (U)
-        const dVerify = s["สถานะการตรวจสอบหอพัก"]; // ดึงจากคอลัมน์ R ใน Sheet
-        const mVerify = s["สถานะการตรวจสอบค่าอาหาร"]; // ดึงจากคอลัมน์ U ใน Sheet
+        const dVerify = s["สถานะการตรวจสอบหอพัก"]; 
+        const mVerify = s["สถานะการตรวจสอบค่าอาหาร"]; 
         
         const waitDorm = document.getElementById('waitDorm');
         const waitMeal = document.getElementById('waitMeal');
 
-        // เงื่อนไขการแสดงผลสถานะหอพัก
         if (dVerify && dVerify !== "") {
             waitDorm.style.display = 'block';
             document.getElementById('dormWaitTitle').innerText = dVerify;
-        } else {
-            waitDorm.style.display = 'none'; // หายไปเมื่อแอดมินลบค่าใน Sheet
-        }
+            const waitClass = getStatClass(dVerify);
+            if(waitClass === 'paid') waitDorm.style.color = '#15803d';
+            else if(waitClass === 'unpaid') waitDorm.style.color = '#b91c1c';
+            else waitDorm.style.color = '#f59e0b';
+        } else { waitDorm.style.display = 'none'; }
 
-        // เงื่อนไขการแสดงผลสถานะค่าอาหาร
         if (mVerify && mVerify !== "") {
             waitMeal.style.display = 'block';
             document.getElementById('mealWaitTitle').innerText = mVerify;
-        } else {
-            waitMeal.style.display = 'none'; // หายไปเมื่อแอดมินลบค่าใน Sheet
-        }
+            const waitClass = getStatClass(mVerify);
+            if(waitClass === 'paid') waitMeal.style.color = '#15803d';
+            else if(waitClass === 'unpaid') waitMeal.style.color = '#b91c1c';
+            else waitMeal.style.color = '#f59e0b';
+        } else { waitMeal.style.display = 'none'; }
     }
 
+    // ฟังก์ชันเปลี่ยนสีตัวอักษรตามคำที่คุณกำหนด
     function getStatClass(stat) {
         if (!stat) return 'pending';
-        if (stat.includes('ชำระแล้ว')) return 'paid';
-        if (stat.includes('ค้างชำระ')) return 'unpaid';
+        // 1. โอนสำเร็จ หรือ ชำระแล้ว -> สีเขียว
+        if (stat.includes('โอนสำเร็จ') || stat.includes('ชำระแล้ว')) return 'paid';
+        // 2. โอนไม่สำเร็จ หรือ ค้างชำระ -> สีแดง
+        if (stat.includes('โอนไม่สำเร็จ') || stat.includes('ค้างชำระ')) return 'unpaid';
+        // 3. รอตรวจสอบการโอน หรือ รอตรวจสอบ -> สีส้ม
+        if (stat.includes('รอตรวจสอบ')) return 'pending';
+        // 4. ยังไม่ถึงกำหนด -> สีฟ้า
+        if (stat.includes('ยังไม่ถึงกำหนด')) return 'not-reached';
+        
         return 'pending';
     }
 
@@ -306,32 +312,25 @@
     function handleUpload() {
         const file = document.getElementById('fileIn').files[0];
         if(!file) return;
-        
         Swal.fire({ title: 'กำลังส่งข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-        
         const reader = new FileReader();
         reader.onload = function(e) {
             const payload = {
                 studentName: userData["ชื่อ-นามสกุล"] || userData["ชื่อ-สกุล"],
                 sheetName: userSheetName,
-                paymentType: uploadTarget, // 'dorm' หรือ 'food'
+                paymentType: uploadTarget,
                 fileData: e.target.result,
                 fileType: file.type,
                 fileName: `${uploadTarget}_${Date.now()}.png`
             };
-            
             fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(payload) })
             .then(res => res.text())
             .then(text => {
                 if (text.includes("Success")) {
                     Swal.fire('สำเร็จ!', 'แนบสลิปเรียบร้อย ระบบจะตรวจสอบใน 7 วัน', 'success').then(() => location.reload());
-                } else {
-                    throw new Error(text);
-                }
+                } else { throw new Error(text); }
             })
-            .catch(err => {
-                Swal.fire('ผิดพลาด', 'ไม่สามารถส่งข้อมูลได้: ' + err.message, 'error');
-            });
+            .catch(err => { Swal.fire('ผิดพลาด', 'ไม่สามารถส่งข้อมูลได้: ' + err.message, 'error'); });
         };
         reader.readAsDataURL(file);
     }
