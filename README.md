@@ -37,22 +37,27 @@
             border: none !important;
         }
         
-        /* ปรับข้อความให้เด้งออกมาจากพื้นหลัง */
+        /* ปรับข้อความให้เด่นชัดสูงสุดด้วยเงาหลายชั้น (Text Outline Effect) */
         .modern-title-white {
-            color: #ffffff !important; /* เปลี่ยนเป็นสีขาวเพื่อให้ตัดกับ Backdrop ดำ */
+            color: #ffffff !important; 
             font-weight: 600 !important;
             font-size: 32px !important;
             margin-top: -10px !important;
-            text-shadow: 0 4px 15px rgba(0,0,0,1), 0 2px 4px rgba(0,0,0,1) !important; /* เงาเข้มหนาพิเศษ */
+            text-shadow: 
+                2px 2px 0px #000,
+                -2px -2px 0px #000,
+                2px -2px 0px #000,
+                -2px 2px 0px #000,
+                0px 5px 15px rgba(0,0,0,1) !important;
             letter-spacing: 1px;
         }
         
         .modern-content-white {
-            color: #e2e8f0 !important;
-            font-size: 18px !important;
+            color: #f8fafc !important;
+            font-size: 19px !important;
             margin-bottom: 25px !important;
-            text-shadow: 0 2px 8px rgba(0,0,0,1) !important; /* เงาเข้มเพื่อให้เห็นชัด */
-            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0,0,0,1) !important;
+            font-weight: 400;
         }
 
         .modern-confirm-btn {
@@ -64,8 +69,8 @@
             font-weight: 500 !important;
             color: white !important;
             transition: all 0.3s ease !important;
-            border: 2px solid rgba(255,255,255,0.3) !important;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+            border: 2px solid rgba(255,255,255,0.4) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6) !important;
             cursor: pointer;
         }
         .modern-confirm-btn:hover {
@@ -95,7 +100,7 @@
         .loading-subtext { margin-top: 20px; color: var(--main-blue); font-size: 14px; animation: blink 1.5s infinite; }
         @keyframes blink { 50% { opacity: 0.4; } }
 
-        /* --- UI COMPONENTS (KEEP ORIGINAL) --- */
+        /* --- UI COMPONENTS (ส่วนเดิมห้ามแก้) --- */
         .container { max-width: 750px; margin: auto; background: white; padding: 20px; border-radius: 10px; width: 100%; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
         .header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
         .logo-img { width: 80px; height: 80px; object-fit: contain; }
@@ -234,7 +239,7 @@
     let userSheetName = "";
     let uploadTarget = "";
 
-    // ฟังก์ชัน Popup "ไม่พบข้อมูล" แบบเน้นข้อความให้ชัดเจน (High Contrast)
+    // ฟังก์ชัน Popup "ไม่พบข้อมูล" แบบโปร่งใสและข้อความคมชัดสูงสุด
     function showErrorNotFound() {
         Swal.fire({
             html: `
@@ -253,7 +258,7 @@
             },
             buttonsStyling: false,
             background: 'transparent',
-            backdrop: `rgba(0,0,0,0.75)` // ปรับพื้นหลังหน้าเว็บให้มืดลง เพื่อให้ตัวหนังสือขาวเด่นขึ้นมาก
+            backdrop: `rgba(0,0,0,0.85)` /* ปรับพื้นหลังให้มืดลงเพื่อให้ข้อความขาวเด่นชัด */
         });
     }
 
@@ -291,7 +296,7 @@
         }
     }
 
-    // --- ฟังก์ชันเสริมอื่นๆ (คงเดิม) ---
+    // ฟังก์ชันเสริมอื่นๆ ทำงานตามโครงสร้างเดิม
     function renderReport(s, prog) {
         document.getElementById('reportArea').style.display = 'block';
         document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"];
