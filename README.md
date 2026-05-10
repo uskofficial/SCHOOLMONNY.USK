@@ -88,12 +88,11 @@
         }
         .fee-name { font-size: 17px; font-weight: 500; flex: 1; min-width: 150px; }
 
-        /* การตั้งค่าสีสถานะ (ตามที่กำหนด) */
         .status-badge { padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: 500; display: inline-block; border: 1px solid; }
-        .paid { color: #15803d; border-color: #22c55e; background: #f0fdf4; } /* ชำระแล้ว - เขียว */
-        .unpaid { color: #b91c1c; border-color: #ef4444; background: #fef2f2; } /* ค้างชำระ - แดง */
-        .pending { color: #d97706; border-color: #f59e0b; background: #fffbeb; } /* รอตรวจสอบ - ส้ม */
-        .not-reached { color: #2563eb; border-color: #60a5fa; background: #eff6ff; } /* ยังไม่ถึงกำหนด - ฟ้า */
+        .paid { color: #15803d; border-color: #22c55e; background: #f0fdf4; } 
+        .unpaid { color: #b91c1c; border-color: #ef4444; background: #fef2f2; } 
+        .pending { color: #d97706; border-color: #f59e0b; background: #fffbeb; } 
+        .not-reached { color: #2563eb; border-color: #60a5fa; background: #eff6ff; } 
 
         .boarding-box { border: 2px solid var(--border-blue); border-radius: 8px; overflow: hidden; background: #fdfdfd; }
         .boarding-header { padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 16px; font-weight: 500; background: var(--light-blue); }
@@ -104,7 +103,6 @@
         
         .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
 
-        /* ปรับส่วน Footer Action ให้เหมือนรูปที่ 2 */
         .footer-action { 
             display: flex; 
             justify-content: space-between; 
@@ -133,8 +131,8 @@
             min-width: 200px;
             display: none; 
         }
-        .wait-status b { font-size: 20px; display: block; margin-bottom: 2px; }
-        .wait-status span { font-size: 13px; color: #666; display: block; }
+        .wait-status b { font-size: 24px; display: block; margin-bottom: 2px; }
+        .wait-status span { font-size: 14px; color: #666; display: block; }
 
         .payment-btn-box { 
             background: var(--light-blue); border: 2px solid var(--border-blue); 
@@ -187,8 +185,8 @@
         <div class="footer-action">
             <button class="btn-upload" onclick="triggerUpload('dorm')">แนบสลิปจ่ายค่าธรรมเนียมหอพัก</button>
             <div class="wait-status" id="waitDorm">
-                <b id="dormWaitTitle">รอตรวจสอบสถานะ</b>
-                <span id="dormWaitDetail">โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
+                <b id="dormWaitTitle"></b>
+                <span id="dormWaitDetail"></span>
             </div>
         </div>
 
@@ -211,8 +209,8 @@
         <div class="footer-action">
             <button class="btn-upload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
             <div class="wait-status" id="waitMeal">
-                <b id="mealWaitTitle">รอตรวจสอบสถานะ</b>
-                <span id="mealWaitDetail">โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
+                <b id="mealWaitTitle"></b>
+                <span id="mealWaitDetail"></span>
             </div>
         </div>
 
@@ -253,7 +251,6 @@
             const snap = await db.ref(p).once('value');
             const data = snap.val();
             if(data) {
-                // อิงตาม Key ในรูป: "ชื่อ-นามสกุล"
                 const match = data.find(s => (s["ชื่อ-นามสกุล"] === name || s["ชื่อ-สกุล"] === name || s["ชื่อ_นามสกุล"] === name));
                 if(match) {
                     userData = match;
@@ -273,7 +270,6 @@
         document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"] || s["ชื่อ_นามสกุล"];
         document.getElementById('resProg').innerText = prog;
 
-        // ดึงสถานะค่าธรรมเนียมหอพักตาม Key ใน Firebase: "ค่าธรรมเนียมหอพัก-สถานะ"
         const fStat = s["ค่าธรรมเนียมหอพัก-สถานะ"] || s["ค่าธรรมเนียมหอพัก_สถานะ"] || "ค้างชำระ";
         const fAmt = parseFloat(String(s["ยอดค้างค่าธรรมเนียม"] || 0).replace(/,/g, '')) || 0;
         
@@ -281,7 +277,6 @@
         document.getElementById('resFeeAmt').innerText = fAmt.toLocaleString();
 
         let ยอดรวมทั้งหมด = 0;
-        // รายชื่อเดือนตาม Key ใน Firebase
         const รายการเดือน = [
             { key: "พฤษภาคม", amtKey: "ยอดที่ค้าง_พฤษภาคม_" },
             { key: "มิถุนายน", amtKey: "ยอดที่ค้าง_มิถุนายน_" },
@@ -293,7 +288,6 @@
 
         รายการเดือน.forEach((เดือน, i) => {
             const สถานะปัจจุบัน = s[เดือน.key] || "ยังไม่ถึงกำหนด";
-            // พยายามหา key ยอดเงิน (รองรับโครงสร้างที่ Firebase ล้างค่าอักขระพิเศษ)
             const keyAmt = s[เดือน.amtKey] || s[`ยอดที่ค้าง(${เดือน.key})`] || 0;
             const จำนวนเงิน = parseFloat(String(keyAmt).replace(/,/g, '')) || 0;
             
@@ -305,12 +299,12 @@
             }
         });
 
-        document.getElementById('resTotal').innerText = ยอดรวมทั้งหมด.toLocaleString() + " บาท";
+        const totalAmt = parseFloat(String(s["ยอดรวมค้างชำระ"] || 0).replace(/,/g, '')) || ยอดรวมทั้งหมด;
+        document.getElementById('resTotal').innerText = totalAmt.toLocaleString() + " บาท";
         
-        // จัดการสถานะข้อความอธิบายด้านข้างปุ่ม (เหมือนรูปที่ 2)
-        // ใช้ค่าจากสถานะตรวจสอบในชีท (ถ้ามี) หรืออ้างอิงจากสถานะหลัก
-        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบหอพัก"] || fStat, 'waitDorm', 'dormWaitTitle', 'dormWaitDetail');
-        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าอาหาร"] || "รอตรวจสอบ", 'waitMeal', 'mealWaitTitle', 'mealWaitDetail');
+        // ดึงสถานะตรวจสอบตามคีย์ใน Firebase ของคุณ (IMG_9089.jpg)
+        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าหอพัก"], 'waitDorm', 'dormWaitTitle', 'dormWaitDetail');
+        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าอาหาร"], 'waitMeal', 'mealWaitTitle', 'mealWaitDetail');
     }
 
     function จัดการข้อความอธิบาย(สถานะ, ไอดีกล่อง, ไอดีหัวข้อ, ไอดีรายละเอียด) {
@@ -318,32 +312,33 @@
         const หัวข้อ = document.getElementById(ไอดีหัวข้อ);
         const รายละเอียด = document.getElementById(ไอดีรายละเอียด);
 
-        if (สถานะ && สถานะ !== "-" && สถานะ !== "ยังไม่ถึงกำหนด") {
+        if (สถานะ === "รอตรวจสอบการโอน") {
             กล่อง.style.display = 'block';
-            หัวข้อ.innerText = สถานะ;
-            const คลาส = getStatClass(สถานะ);
-
-            if (คลาส === 'paid') {
-                กล่อง.style.color = '#15803d'; 
-                รายละเอียด.innerText = "ขอบคุณสำหรับการแนบสลิปการโอนเพื่อยืนยันหลักฐาน";
-            } else if (คลาส === 'unpaid') {
-                กล่อง.style.color = '#b91c1c'; 
-                รายละเอียด.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและแนบกลับมาอีกครั้ง";
-            } else if (คลาส === 'not-reached') {
-                กล่อง.style.color = '#2563eb';
-                รายละเอียด.innerText = "ยังไม่ถึงกำหนดชำระในรอบนี้";
-            } else {
-                กล่อง.style.color = '#d97706'; 
-                รายละเอียด.innerText = "โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ";
-            }
-        } else {
+            หัวข้อ.innerText = "รอตรวจสอบการโอน";
+            หัวข้อ.style.color = '#d97706'; // สีส้ม
+            รายละเอียด.innerText = "โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ";
+        } 
+        else if (สถานะ === "การโอนสำเร็จ") {
+            กล่อง.style.display = 'block';
+            หัวข้อ.innerText = "การโอนสำเร็จ";
+            หัวข้อ.style.color = '#15803d'; // สีเขียว
+            รายละเอียด.innerText = "ขอบคุณสำหรับการหลักฐานการโอน";
+        } 
+        else if (สถานะ === "การโอนไม่สำเร็จ") {
+            กล่อง.style.display = 'block';
+            หัวข้อ.innerText = "การโอนไม่สำเร็จ";
+            หัวข้อ.style.color = '#b91c1c'; // สีแดง
+            รายละเอียด.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและแนบกลับมาอีกครั้ง";
+        } 
+        else {
+            // หากไม่ใช่ 3 สถานะที่กำหนด ให้หายไป
             กล่อง.style.display = 'none';
         }
     }
 
     function getStatClass(stat) {
         if (!stat) return 'unpaid';
-        if (stat.includes('ชำระแล้ว') || stat.includes('โอนสำเร็จ') || stat.includes('สำเร็จ')) return 'paid';
+        if (stat.includes('ชำระแล้ว') || stat.includes('สำเร็จ')) return 'paid';
         if (stat.includes('ค้างชำระ') || stat.includes('ไม่สำเร็จ')) return 'unpaid';
         if (stat.includes('รอตรวจสอบ')) return 'pending';
         if (stat.includes('ยังไม่ถึงกำหนด')) return 'not-reached';
