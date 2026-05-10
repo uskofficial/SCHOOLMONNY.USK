@@ -15,7 +15,6 @@
             --border-blue: #1e3a8a; 
             --pink-btn: #ec4899; 
             --light-blue: #eff6ff;
-            --orange-status: #f59e0b;
         }
         * { box-sizing: border-box; }
         
@@ -89,6 +88,13 @@
         }
         .fee-name { font-size: 17px; font-weight: 500; flex: 1; min-width: 150px; }
 
+        /* การตั้งค่าสีสถานะ (ตามที่กำหนด) */
+        .status-badge { padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: 500; display: inline-block; border: 1px solid; }
+        .paid { color: #15803d; border-color: #22c55e; background: #f0fdf4; } /* ชำระแล้ว - เขียว */
+        .unpaid { color: #b91c1c; border-color: #ef4444; background: #fef2f2; } /* ค้างชำระ - แดง */
+        .pending { color: #d97706; border-color: #f59e0b; background: #fffbeb; } /* รอตรวจสอบ - ส้ม */
+        .not-reached { color: #2563eb; border-color: #60a5fa; background: #eff6ff; } /* ยังไม่ถึงกำหนด - ฟ้า */
+
         .boarding-box { border: 2px solid var(--border-blue); border-radius: 8px; overflow: hidden; background: #fdfdfd; }
         .boarding-header { padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 16px; font-weight: 500; background: var(--light-blue); }
         .month-grid { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; border-bottom: 1px solid #ddd; }
@@ -96,20 +102,39 @@
         .month-label { font-weight: 500; margin-bottom: 5px; font-size: 13px; color: #444; }
         .month-amount { font-size: 11px; color: #666; margin-top: 5px; font-weight: bold; }
         
-        .status-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; border: 1px solid; display: inline-block; }
-        .paid { border-color: #22c55e; color: #15803d; background: #f0fdf4; } 
-        .unpaid { border-color: #ef4444; color: #b91c1c; background: #fef2f2; } 
-        .pending { border-color: #f59e0b; color: #92400e; background: #fffbeb; } 
-        .not-reached { border-color: #3b82f6; color: #1e40af; background: #eff6ff; } 
-
         .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
 
-        .footer-action { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; margin-bottom: 25px; }
-        .btn-upload { border: 2px solid var(--pink-btn); color: #be185d; background: white; padding: 12px; border-radius: 6px; cursor: pointer; font-size: 15px; font-weight: 500; width: 100%; }
+        /* ปรับส่วน Footer Action ให้เหมือนรูปที่ 2 */
+        .footer-action { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 15px; 
+            margin-top: 10px; 
+            margin-bottom: 25px; 
+            flex-wrap: wrap;
+        }
+        .btn-upload { 
+            border: 2px solid var(--pink-btn); 
+            color: #be185d; 
+            background: white; 
+            padding: 12px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 500; 
+            flex: 1;
+            min-width: 250px;
+        }
         
-        .wait-status { text-align: center; color: var(--orange-status); width: 100%; display: none; }
-        .wait-status b { font-size: 16px; display: block; }
-        .wait-status span { font-size: 12px; color: #777; }
+        .wait-status { 
+            text-align: right; 
+            flex: 1;
+            min-width: 200px;
+            display: none; 
+        }
+        .wait-status b { font-size: 20px; display: block; margin-bottom: 2px; }
+        .wait-status span { font-size: 13px; color: #666; display: block; }
 
         .payment-btn-box { 
             background: var(--light-blue); border: 2px solid var(--border-blue); 
@@ -123,9 +148,6 @@
             .school-info h2 { font-size: 24px; }
             .btn-search { width: auto; }
             .month-grid { grid-template-columns: repeat(6, 1fr); }
-            .footer-action { flex-direction: row; justify-content: space-between; align-items: center; }
-            .btn-upload { width: 45%; }
-            .wait-status { width: 50%; text-align: right; }
             .info-box { padding: 25px; }
         }
     </style>
@@ -165,7 +187,7 @@
         <div class="footer-action">
             <button class="btn-upload" onclick="triggerUpload('dorm')">แนบสลิปจ่ายค่าธรรมเนียมหอพัก</button>
             <div class="wait-status" id="waitDorm">
-                <b id="dormWaitTitle">รอตรวจสอบสถานะการจ่าย</b>
+                <b id="dormWaitTitle">รอตรวจสอบสถานะ</b>
                 <span id="dormWaitDetail">โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
             </div>
         </div>
@@ -189,7 +211,7 @@
         <div class="footer-action">
             <button class="btn-upload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
             <div class="wait-status" id="waitMeal">
-                <b id="mealWaitTitle">รอตรวจสอบสถานะการจ่าย</b>
+                <b id="mealWaitTitle">รอตรวจสอบสถานะ</b>
                 <span id="mealWaitDetail">โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ</span>
             </div>
         </div>
@@ -212,7 +234,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
     
-    // เปลี่ยน URL นี้ให้เป็น Web App URL ของคุณที่ได้จากการ Deploy
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYSM7NNA5psMwEh16nAvBP66hnHdJ0ebKz0EVmyfpEyWDEgsqqmQnQ_4MEi2pRU0fM/exec";
 
     let userData = null;
@@ -222,6 +243,7 @@
     async function doSearch() {
         const name = document.getElementById('nameInput').value.trim();
         if(!name) return;
+        
         Swal.fire({ title: 'กำลังค้นหา...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
         
         const programs = ["หอพักญะมาอะห์ชาย", "หอพักญะมาอะห์หญิง", "หอพักกีฬา", "หอพักฮาฟิซอัลกุรอ่าน"];
@@ -231,8 +253,8 @@
             const snap = await db.ref(p).once('value');
             const data = snap.val();
             if(data) {
-                // ค้นหาทั้ง "ชื่อ-นามสกุล" และ "ชื่อ-สกุล"
-                const match = data.find(s => (s["ชื่อ_นามสกุล"] === name || s["ชื่อ_สกุล"] === name || s["ชื่อ-นามสกุล"] === name || s["ชื่อ-สกุล"] === name));
+                // อิงตาม Key ในรูป: "ชื่อ-นามสกุล"
+                const match = data.find(s => (s["ชื่อ-นามสกุล"] === name || s["ชื่อ-สกุล"] === name || s["ชื่อ_นามสกุล"] === name));
                 if(match) {
                     userData = match;
                     userSheetName = p;
@@ -248,32 +270,32 @@
 
     function renderReport(s, prog) {
         document.getElementById('reportArea').style.display = 'block';
-        document.getElementById('resName').innerText = s["ชื่อ_นามสกุล"] || s["ชื่อ_สกุล"] || s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"];
+        document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"] || s["ชื่อ_นามสกุล"];
         document.getElementById('resProg').innerText = prog;
 
-        // ยอดหอพัก
-        const fStat = s["ค่าธรรมเนียมหอพัก_สถานะ"] || "ค้างชำระ";
+        // ดึงสถานะค่าธรรมเนียมหอพักตาม Key ใน Firebase: "ค่าธรรมเนียมหอพัก-สถานะ"
+        const fStat = s["ค่าธรรมเนียมหอพัก-สถานะ"] || s["ค่าธรรมเนียมหอพัก_สถานะ"] || "ค้างชำระ";
         const fAmt = parseFloat(String(s["ยอดค้างค่าธรรมเนียม"] || 0).replace(/,/g, '')) || 0;
+        
         document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
         document.getElementById('resFeeAmt').innerText = fAmt.toLocaleString();
 
-        // คำนวณยอดรวมค่าอาหาร
         let ยอดรวมทั้งหมด = 0;
+        // รายชื่อเดือนตาม Key ใน Firebase
         const รายการเดือน = [
-            { สถานะ: "พฤษภาคม", ยอดเงิน: "ยอดที่ค้าง_พฤษภาคม_" },
-            { สถานะ: "มิถุนายน", ยอดเงิน: "ยอดที่ค้าง_มิถุนายน_" },
-            { สถานะ: "กรกฎาคม", ยอดเงิน: "ยอดที่ค้าง_กรกฎาคม_" },
-            { สถานะ: "สิงหาคม", ยอดเงิน: "ยอดที่ค้าง_สิงหาคม_" },
-            { สถานะ: "กันยายน", ยอดเงิน: "ยอดที่ค้าง_กันยายน_" },
-            { สถานะ: "ตุลาคม", ยอดเงิน: "ยอดที่ค้าง_ตุลาคม_" }
+            { key: "พฤษภาคม", amtKey: "ยอดที่ค้าง_พฤษภาคม_" },
+            { key: "มิถุนายน", amtKey: "ยอดที่ค้าง_มิถุนายน_" },
+            { key: "กรกฎาคม", amtKey: "ยอดที่ค้าง_กรกฎาคม_" },
+            { key: "สิงหาคม", amtKey: "ยอดที่ค้าง_สิงหาคม_" },
+            { key: "กันยายน", amtKey: "ยอดที่ค้าง_กันยายน_" },
+            { key: "ตุลาคม", amtKey: "ยอดที่ค้าง_ตุลาคม_" }
         ];
 
         รายการเดือน.forEach((เดือน, i) => {
-            const สถานะปัจจุบัน = s[เดือน.สถานะ] || "ยังไม่ถึงกำหนด";
-            // ตรวจสอบชื่อ Key ให้ตรงกับที่ Firebase Clean (เปลี่ยน ( ) เป็น _ )
-            const keyAmt = เดือน.ยอดเงิน;
-            const ค่าดิบ = s[keyAmt] !== undefined ? String(s[keyAmt]) : "0";
-            const จำนวนเงิน = parseFloat(ค่าดิบ.replace(/,/g, '')) || 0;
+            const สถานะปัจจุบัน = s[เดือน.key] || "ยังไม่ถึงกำหนด";
+            // พยายามหา key ยอดเงิน (รองรับโครงสร้างที่ Firebase ล้างค่าอักขระพิเศษ)
+            const keyAmt = s[เดือน.amtKey] || s[`ยอดที่ค้าง(${เดือน.key})`] || 0;
+            const จำนวนเงิน = parseFloat(String(keyAmt).replace(/,/g, '')) || 0;
             
             document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(สถานะปัจจุบัน)}">${สถานะปัจจุบัน}</span>`;
             document.getElementById(`a${i+1}`).innerText = จำนวนเงิน.toLocaleString() + " บาท";
@@ -285,19 +307,21 @@
 
         document.getElementById('resTotal').innerText = ยอดรวมทั้งหมด.toLocaleString() + " บาท";
         
-        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบหอพัก"], 'waitDorm', 'dormWaitTitle', 'dormWaitDetail');
-        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าอาหาร"], 'waitMeal', 'mealWaitTitle', 'mealWaitDetail');
+        // จัดการสถานะข้อความอธิบายด้านข้างปุ่ม (เหมือนรูปที่ 2)
+        // ใช้ค่าจากสถานะตรวจสอบในชีท (ถ้ามี) หรืออ้างอิงจากสถานะหลัก
+        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบหอพัก"] || fStat, 'waitDorm', 'dormWaitTitle', 'dormWaitDetail');
+        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าอาหาร"] || "รอตรวจสอบ", 'waitMeal', 'mealWaitTitle', 'mealWaitDetail');
     }
 
-    function จัดการข้อความอธิบาย(สถานะจากแผ่นงาน, ไอดีกล่อง, ไอดีหัวข้อ, ไอดีรายละเอียด) {
+    function จัดการข้อความอธิบาย(สถานะ, ไอดีกล่อง, ไอดีหัวข้อ, ไอดีรายละเอียด) {
         const กล่อง = document.getElementById(ไอดีกล่อง);
         const หัวข้อ = document.getElementById(ไอดีหัวข้อ);
         const รายละเอียด = document.getElementById(ไอดีรายละเอียด);
 
-        if (สถานะจากแผ่นงาน && สถานะจากแผ่นงาน !== "-" && สถานะจากแผ่นงาน !== "") {
+        if (สถานะ && สถานะ !== "-" && สถานะ !== "ยังไม่ถึงกำหนด") {
             กล่อง.style.display = 'block';
-            หัวข้อ.innerText = สถานะจากแผ่นงาน;
-            const คลาส = getStatClass(สถานะจากแผ่นงาน);
+            หัวข้อ.innerText = สถานะ;
+            const คลาส = getStatClass(สถานะ);
 
             if (คลาส === 'paid') {
                 กล่อง.style.color = '#15803d'; 
@@ -305,8 +329,11 @@
             } else if (คลาส === 'unpaid') {
                 กล่อง.style.color = '#b91c1c'; 
                 รายละเอียด.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและแนบกลับมาอีกครั้ง";
+            } else if (คลาส === 'not-reached') {
+                กล่อง.style.color = '#2563eb';
+                รายละเอียด.innerText = "ยังไม่ถึงกำหนดชำระในรอบนี้";
             } else {
-                กล่อง.style.color = '#f59e0b'; 
+                กล่อง.style.color = '#d97706'; 
                 รายละเอียด.innerText = "โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ";
             }
         } else {
@@ -315,12 +342,12 @@
     }
 
     function getStatClass(stat) {
-        if (!stat) return 'pending';
-        if (stat.includes('โอนสำเร็จ') || stat.includes('ชำระแล้ว')) return 'paid';
-        if (stat.includes('โอนไม่สำเร็จ') || stat.includes('ค้างชำระ')) return 'unpaid';
+        if (!stat) return 'unpaid';
+        if (stat.includes('ชำระแล้ว') || stat.includes('โอนสำเร็จ') || stat.includes('สำเร็จ')) return 'paid';
+        if (stat.includes('ค้างชำระ') || stat.includes('ไม่สำเร็จ')) return 'unpaid';
         if (stat.includes('รอตรวจสอบ')) return 'pending';
         if (stat.includes('ยังไม่ถึงกำหนด')) return 'not-reached';
-        return 'pending';
+        return 'unpaid';
     }
 
     function triggerUpload(target) {
@@ -332,35 +359,29 @@
         const file = document.getElementById('fileIn').files[0];
         if(!file) return;
         
-        Swal.fire({ 
-            title: 'กำลังส่งข้อมูล...', 
-            text: 'กรุณาอย่าปิดหน้าจอ',
-            allowOutsideClick: false, 
-            didOpen: () => Swal.showLoading() 
-        });
-
+        Swal.fire({ title: 'กำลังส่งข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        
         const reader = new FileReader();
         reader.onload = function(e) {
-            // ปรับ Payload ให้สอดคล้องกับตัวแปรใน Google Apps Script (doPost)
             const payload = {
-                studentName: userData["ชื่อ_นามสกุล"] || userData["ชื่อ_สกุล"] || userData["ชื่อ-นามสกุล"] || userData["ชื่อ-สกุล"],
-                dormType: userSheetName, // เปลี่ยนจาก sheetName เป็น dormType
-                type: uploadTarget,      // เปลี่ยนจาก paymentType เป็น type
-                base64: e.target.result, // เปลี่ยนจาก fileData เป็น base64
+                studentName: userData["ชื่อ-นามสกุล"] || userData["ชื่อ-สกุล"] || userData["ชื่อ_นามสกุล"],
+                dormType: userSheetName,
+                type: uploadTarget,
+                base64: e.target.result.split(',')[1],
                 mimeType: file.type,
                 fileName: `${uploadTarget}_${Date.now()}.png`
             };
-
+            
             fetch(SCRIPT_URL, { 
                 method: "POST", 
                 body: JSON.stringify(payload) 
             })
-            .then(res => res.json()) // รับค่าเป็น JSON
-            .then(data => {
-                if (data.result === "success") {
+            .then(res => res.json())
+            .then(res => {
+                if (res.result === "success") {
                     Swal.fire('สำเร็จ!', 'แนบสลิปเรียบร้อย ระบบจะตรวจสอบใน 7 วัน', 'success').then(() => location.reload());
                 } else { 
-                    throw new Error(data.message || "เกิดข้อผิดพลาดในการบันทึก"); 
+                    throw new Error(res.message); 
                 }
             })
             .catch(err => { 
