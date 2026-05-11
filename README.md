@@ -72,8 +72,17 @@
         .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap; }
         .label { display: inline-block; width: 130px; font-weight: 500; color: #666; }
 
-        h3.title { font-size: 17px; color: #333; margin: 30px 0 15px; font-weight: 500; }
+        h3.title { font-size: 17px; color: #333; margin: 30px 0 5px; font-weight: 500; }
         h3.title span { font-size: 13px; font-weight: 300; color: #666; display: block; }
+
+        /* ส่วนแสดงวันที่เวลา Real-time ชิดขวา */
+        .current-date-time {
+            text-align: right;
+            font-size: 14px;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
 
         .fee-card { 
             border: 2px solid var(--border-blue); 
@@ -174,6 +183,8 @@
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
 
+        <div id="realTimeClock" class="current-date-time"></div>
+
         <div class="fee-card">
             <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:300; font-size:13px;">( Dormitory Fee )</span></div>
             <div style="text-align:right">
@@ -238,6 +249,16 @@
     let userSheetName = "";
     let uploadTarget = "";
 
+    // ฟังก์ชันจัดการเวลา Real-time
+    function startClock() {
+        setInterval(() => {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
+            const timeStr = now.toLocaleTimeString('th-TH');
+            document.getElementById('realTimeClock').innerText = `ข้อมูล ณ วันที่: ${dateStr} | เวลา: ${timeStr} น.`;
+        }, 1000);
+    }
+
     async function doSearch() {
         const name = document.getElementById('nameInput').value.trim();
         if(!name) return;
@@ -267,6 +288,7 @@
 
     function renderReport(s, prog) {
         document.getElementById('reportArea').style.display = 'block';
+        startClock(); // เริ่มทำงานนาฬิกาเมื่อแสดงรายงาน
         document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"] || s["ชื่อ_นามสกุล"];
         document.getElementById('resProg').innerText = prog;
 
@@ -302,7 +324,6 @@
         const totalAmt = parseFloat(String(s["ยอดรวมค้างชำระ"] || 0).replace(/,/g, '')) || ยอดรวมทั้งหมด;
         document.getElementById('resTotal').innerText = totalAmt.toLocaleString() + " บาท";
         
-        // ดึงสถานะตรวจสอบตามคีย์ใน Firebase ของคุณ (IMG_9089.jpg)
         จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าหอพัก"], 'waitDorm', 'dormWaitTitle', 'dormWaitDetail');
         จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าอาหาร"], 'waitMeal', 'mealWaitTitle', 'mealWaitDetail');
     }
@@ -315,23 +336,22 @@
         if (สถานะ === "รอตรวจสอบการโอน") {
             กล่อง.style.display = 'block';
             หัวข้อ.innerText = "รอตรวจสอบการโอน";
-            หัวข้อ.style.color = '#d97706'; // สีส้ม
+            หัวข้อ.style.color = '#d97706'; 
             รายละเอียด.innerText = "โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ";
         } 
         else if (สถานะ === "การโอนสำเร็จ") {
             กล่อง.style.display = 'block';
             หัวข้อ.innerText = "การโอนสำเร็จ";
-            หัวข้อ.style.color = '#15803d'; // สีเขียว
+            หัวข้อ.style.color = '#15803d'; 
             รายละเอียด.innerText = "ขอบคุณสำหรับการหลักฐานการโอน";
         } 
         else if (สถานะ === "การโอนไม่สำเร็จ") {
             กล่อง.style.display = 'block';
             หัวข้อ.innerText = "การโอนไม่สำเร็จ";
-            หัวข้อ.style.color = '#b91c1c'; // สีแดง
+            หัวข้อ.style.color = '#b91c1c'; 
             รายละเอียด.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและแนบกลับมาอีกครั้ง";
         } 
         else {
-            // หากไม่ใช่ 3 สถานะที่กำหนด ให้หายไป
             กล่อง.style.display = 'none';
         }
     }
