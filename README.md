@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -229,6 +229,15 @@
             padding: 15px; text-align: center; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 10px;
         }
 
+        .payment-info-text {
+            text-align: center;
+            font-size: 11px;
+            color: #777;
+            margin-top: 8px;
+            line-height: 1.6;
+            padding: 0 15px;
+        }
+
         .bottom-info { text-align: center; margin-top: 40px; color: #666; font-size: 12px; line-height: 1.6; }
 
         @media (min-width: 600px) {
@@ -329,7 +338,12 @@
             ช่องทางการชำระเงิน
         </div>
 
-        <div style="text-align: center; margin-top: 20px;">
+        <div class="payment-info-text">
+            หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
+            <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a; font-weight: 500; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px;">
             <button onclick="location.reload()" style="background: none; border: none; color: #666; text-decoration: underline; cursor: pointer; font-size: 14px;">กลับหน้าค้นหา</button>
         </div>
     </div>
@@ -349,7 +363,6 @@
     let targetType = "";
     let clockInterval = null;
 
-    // ฟังก์ชันรันเวลา Real-time
     function startClock() {
         if (clockInterval) clearInterval(clockInterval);
         clockInterval = setInterval(() => {
@@ -443,10 +456,8 @@
         const waitTitle = document.getElementById(type === 'dorm' ? 'waitDormTitle' : 'waitFoodTitle');
         const waitSub = document.getElementById(type === 'dorm' ? 'waitDormSub' : 'waitFoodSub');
         
-        // ปุ่มแนบสลิปแสดงตลอดเวลา
         btn.style.display = 'block';
 
-        // ถ้าแอดมินไม่ได้กรอก (null หรือว่าง) ให้ซ่อนข้อความสถานะ
         if (!status || status.trim() === "") {
             wait.style.display = 'none';
             return;
@@ -467,7 +478,6 @@
             waitTitle.style.color = "#b91c1c"; // สีแดง
             waitSub.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและส่งกลับมาอีกครั้ง";
         } else {
-            // กรณีมีข้อความอื่นๆ
             waitTitle.innerText = status;
             waitTitle.style.color = "#333";
             waitSub.innerText = "";
