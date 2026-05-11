@@ -140,6 +140,14 @@
             padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; 
             width: 100%; font-weight: 500;
         }
+        .search-hint {
+            width: 100%;
+            font-size: 13px;
+            color: #ef4444;
+            margin-top: 8px;
+            font-weight: 400;
+            text-align: center; /* จัดให้อยู่ตรงกลาง */
+        }
 
         .info-box { 
             border: 2px solid var(--border-blue); 
@@ -288,6 +296,7 @@
     <div id="searchArea" class="search-area">
         <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน">
         <button class="btn-search" onclick="doSearch()">ค้นหา</button>
+        <div class="search-hint">พิมพ์ ชื่อ - นามสกุล โดยไม่ต้องมีคำนำหน้า เด็กชาย , เด็กหญิง , นาย , นางสาว</div>
     </div>
 
     <div id="reportArea" style="display:none;">
@@ -427,7 +436,6 @@
             const stat = d[m] || "ยังไม่ถึงกำหนด";
             const amt = Number(d[`ยอดที่ค้าง(${m})`] || 0);
             
-            // เงื่อนไขที่แก้ไข: จะนำมาบวกรวม "เฉพาะ" เมื่อสถานะเป็น "ค้างชำระ" เท่านั้น
             if (stat.includes("ค้างชำระ")) { 
                 totalFoodOnly += amt; 
             }
@@ -459,7 +467,6 @@
         const waitTitle = document.getElementById(type === 'dorm' ? 'waitDormTitle' : 'waitFoodTitle');
         const waitSub = document.getElementById(type === 'dorm' ? 'waitDormSub' : 'waitFoodSub');
         
-        // รีเซ็ตปุ่มให้โชว์เป็นค่าเริ่มต้น
         btn.style.display = 'block';
 
         if (!status || status.trim() === "") {
@@ -470,19 +477,17 @@
         wait.style.display = 'block';
 
         if (status.includes("รอตรวจสอบ")) {
-            // เงื่อนไข: ถ้าสถานะคือรอตรวจสอบ ให้ซ่อนปุ่มอัปโหลด (ไม่สามารถอัพเพิ่มได้)
             btn.style.display = 'none';
-            
             waitTitle.innerText = "รอตรวจสอบ";
-            waitTitle.style.color = "#d97706"; // สีส้ม
+            waitTitle.style.color = "#d97706";
             waitSub.innerText = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ";
         } else if (status.includes("การโอนสำเร็จ")) {
             waitTitle.innerText = "การโอนสำเร็จ";
-            waitTitle.style.color = "#15803d"; // สีเขียว
+            waitTitle.style.color = "#15803d";
             waitSub.innerText = "ขอบคุณสำหรับการแนบหลักฐานยืนยัน";
         } else if (status.includes("การโอนไม่สำเร็จ")) {
             waitTitle.innerText = "การโอนไม่สำเร็จ";
-            waitTitle.style.color = "#b91c1c"; // สีแดง
+            waitTitle.style.color = "#b91c1c";
             waitSub.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและส่งกลับมาอีกครั้ง";
         } else {
             waitTitle.innerText = status;
