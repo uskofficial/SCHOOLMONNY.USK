@@ -243,7 +243,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
     
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9TLqzzDDzCddSwyYEzCnpyOLU69pd6EErKgiJWYMownXOceaiIbbu0yJ6lBQJmosu/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYSM7NNA5psMwEh16nAvBP66hnHdJ0ebKz0EVmyfpEyWDEgsqqmQnQ_4MEi2pRU0fM/exec";
 
     let userData = null;
     let userSheetName = "";
