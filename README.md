@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCHOOL MONEY - ระบบแจ้งจ่ายค่าใช้จ่าย</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
 
     <style>
         :root { 
@@ -25,6 +24,86 @@
             padding: 10px; 
             color: #333; 
         }
+
+        /* --- Loading Overlay --- */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        #loadingOverlay svg { width: 100%; max-width: 600px; height: auto; }
+        .school-text {
+            fill: none;
+            stroke: #1a237e;
+            stroke-width: 1.5;
+            font-size: 65px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dash-animation { animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite; }
+        @keyframes dashArray {
+            0% { stroke-dasharray: 0 1 500 0; }
+            50% { stroke-dasharray: 0 500 1 0; }
+            100% { stroke-dasharray: 500 1 0 0; }
+        }
+        @keyframes dashOffset {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        /* --- Not Found Popup --- */
+        #notFoundOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+            text-align: center;
+        }
+        .not-found-content {
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInScale 0.4s ease-out;
+        }
+        @keyframes fadeInScale {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .not-found-content h2 { color: #ffffff; font-size: 32px; margin: 10px 0; font-weight: 600; }
+        .not-found-content p { color: #e0e0e0; font-size: 18px; margin-bottom: 25px; line-height: 1.5; }
+        .btn-close-notfound {
+            background: var(--main-blue);
+            color: #ffffff;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-family: 'Kanit';
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
         .container { 
             max-width: 750px; 
             margin: auto; 
@@ -32,6 +111,7 @@
             padding: 20px;
             border-radius: 10px;
             width: 100%;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         }
         
         .header { 
@@ -59,7 +139,7 @@
         button.btn-search { 
             background: var(--main-blue); color: white; border: none; 
             padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; 
-            width: 100%; 
+            width: 100%; font-weight: 500;
         }
 
         .info-box { 
@@ -75,7 +155,6 @@
         h3.title { font-size: 17px; color: #333; margin: 30px 0 5px; font-weight: 500; }
         h3.title span { font-size: 13px; font-weight: 300; color: #666; display: block; }
 
-        /* ส่วนแสดงวันที่เวลา Real-time ชิดขวา */
         .current-date-time {
             text-align: right;
             font-size: 14px;
@@ -132,7 +211,9 @@
             font-weight: 500; 
             flex: 1;
             min-width: 250px;
+            transition: 0.2s;
         }
+        .btn-upload:hover { background: #fff1f2; }
         
         .wait-status { 
             text-align: right; 
@@ -140,7 +221,7 @@
             min-width: 200px;
             display: none; 
         }
-        .wait-status b { font-size: 24px; display: block; margin-bottom: 2px; }
+        .wait-status b { font-size: 18px; display: block; margin-bottom: 2px; }
         .wait-status span { font-size: 14px; color: #666; display: block; }
 
         .payment-btn-box { 
@@ -156,10 +237,36 @@
             .btn-search { width: auto; }
             .month-grid { grid-template-columns: repeat(6, 1fr); }
             .info-box { padding: 25px; }
+            .school-text { font-size: 65px; }
+        }
+        @media (max-width: 599px) {
+            .school-text { font-size: 50px; }
+            dotlottie-wc { width: 280px !important; height: 280px !important; }
         }
     </style>
 </head>
 <body>
+
+<div id="loadingOverlay">
+    <svg viewBox="0 0 1000 250">
+        <text x="50%" y="50%" dy=".35em" text-anchor="middle" class="school-text dash-animation">
+            UTTAYANSUKSAKRABI
+        </text>
+        <text x="50%" y="80%" dy=".35em" text-anchor="middle" class="school-text dash-animation" style="font-size: 60px;">
+            SCHOOL
+        </text>
+    </svg>
+    <div style="margin-top: 20px; color: #1a237e; letter-spacing: 2px; font-weight: 600; font-size: 18px;">กำลังค้นหาข้อมูล...</div>
+</div>
+
+<div id="notFoundOverlay">
+    <div class="not-found-content">
+        <dotlottie-wc src="https://lottie.host/63822361-e4de-4fc5-8b6f-a78c2d586b16/CV7OyOVb3x.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+        <h2>ไม่พบข้อมูลนักเรียน</h2>
+        <p>ขออภัยครับ ไม่พบชื่อนี้ในระบบ<br>กรุณาตรวจสอบตัวสะกดใหม่อีกครั้ง</p>
+        <button class="btn-close-notfound" onclick="closeNotFound()">ลองใหม่อีกครั้ง</button>
+    </div>
+</div>
 
 <div class="container">
     <div class="header">
@@ -170,7 +277,7 @@
         </div>
     </div>
 
-    <div class="search-area">
+    <div id="searchArea" class="search-area">
         <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน">
         <button class="btn-search" onclick="doSearch()">ค้นหา</button>
     </div>
@@ -194,43 +301,40 @@
         </div>
 
         <div class="footer-action">
-            <button class="btn-upload" onclick="triggerUpload('dorm')">แนบสลิปจ่ายค่าธรรมเนียมหอพัก</button>
+            <button id="btnDorm" class="btn-upload" onclick="triggerUpload('dorm')">แนบสลิปจ่ายค่าธรรมเนียมหอพัก</button>
             <div class="wait-status" id="waitDorm">
-                <b id="dormWaitTitle"></b>
-                <span id="dormWaitDetail"></span>
+                <b id="waitDormTitle"></b>
+                <span id="waitDormSub"></span>
             </div>
         </div>
 
         <div class="boarding-box">
             <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px; font-weight:300;">( Boarding Fee )</span></div>
-            <div class="month-grid">
-                <div class="month-item"><div class="month-label">พ.ค.</div><div id="m1"></div><div class="month-amount" id="a1"></div></div>
-                <div class="month-item"><div class="month-label">มิ.ย.</div><div id="m2"></div><div class="month-amount" id="a2"></div></div>
-                <div class="month-item"><div class="month-label">ก.ค.</div><div id="m3"></div><div class="month-amount" id="a3"></div></div>
-                <div class="month-item"><div class="month-label">ส.ค.</div><div id="m4"></div><div class="month-amount" id="a4"></div></div>
-                <div class="month-item"><div class="month-label">ก.ย.</div><div id="m5"></div><div class="month-amount" id="a5"></div></div>
-                <div class="month-item"><div class="month-label">ต.ค.</div><div id="m6"></div><div class="month-amount" id="a6"></div></div>
-            </div>
+            <div id="monthGrid" class="month-grid"></div>
             <div class="total-section">
-                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:12px">( Total Outstanding Balance )</span></span>
-                <span id="resTotal" style="color: #333;">0 บาท</span>
+                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:12px">( เฉพาะยอดค้างค่าอาหารรายเดือน )</span></span>
+                <span id="resTotal" style="color: #b91c1c; font-size: 22px;">0 บาท</span>
             </div>
         </div>
 
         <div class="footer-action">
-            <button class="btn-upload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
-            <div class="wait-status" id="waitMeal">
-                <b id="mealWaitTitle"></b>
-                <span id="mealWaitDetail"></span>
+            <button id="btnFood" class="btn-upload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
+            <div class="wait-status" id="waitFood">
+                <b id="waitFoodTitle"></b>
+                <span id="waitFoodSub"></span>
             </div>
         </div>
 
         <div class="payment-btn-box" onclick="showPaymentInfo()">
             ช่องทางการชำระเงิน
         </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="location.reload()" style="background: none; border: none; color: #666; text-decoration: underline; cursor: pointer; font-size: 14px;">กลับหน้าค้นหา</button>
+        </div>
     </div>
 
-    <input type="file" id="fileIn" style="display:none" onchange="handleUpload()">
+    <input type="file" id="fileIn" style="display:none" onchange="handleFile()">
 
     <div class="bottom-info">
         พบปัญหาหรือมีข้อสงสัยโปรดติดต่อ 078 - 789 - 6789<br>
@@ -239,23 +343,21 @@
 </div>
 
 <script>
-    const firebaseConfig = { databaseURL: "https://schoolmonny-e6c5e-default-rtdb.asia-southeast1.firebasedatabase.app" };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYSM7NNA5psMwEh16nAvBP66hnHdJ0ebKz0EVmyfpEyWDEgsqqmQnQ_4MEi2pRU0fM/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz9TLqzzDDzCddSwyYEzCnpyOLU69pd6EErKgiJWYMownXOceaiIbbu0yJ6lBQJmosu/exec";
 
-    let userData = null;
-    let userSheetName = "";
-    let uploadTarget = "";
+    let currentData = null;
+    let targetType = "";
+    let clockInterval = null;
 
-    // ฟังก์ชันจัดการเวลา Real-time
+    // ฟังก์ชันรันเวลา Real-time
     function startClock() {
-        setInterval(() => {
+        if (clockInterval) clearInterval(clockInterval);
+        clockInterval = setInterval(() => {
             const now = new Date();
-            const dateStr = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
+            const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
             const timeStr = now.toLocaleTimeString('th-TH');
-            document.getElementById('realTimeClock').innerText = `ข้อมูล ณ วันที่: ${dateStr} | เวลา: ${timeStr} น.`;
+            const clockEl = document.getElementById('realTimeClock');
+            if (clockEl) clockEl.innerText = `ข้อมูล ณ วันที่: ${dateStr} | เวลา: ${timeStr} น.`;
         }, 1000);
     }
 
@@ -263,145 +365,195 @@
         const name = document.getElementById('nameInput').value.trim();
         if(!name) return;
         
-        Swal.fire({ title: 'กำลังค้นหา...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        document.getElementById('loadingOverlay').style.display = 'flex';
         
-        const programs = ["หอพักญะมาอะห์ชาย", "หอพักญะมาอะห์หญิง", "หอพักกีฬา", "หอพักฮาฟิซอัลกุรอ่าน"];
-        let found = false;
-        
-        for (let p of programs) {
-            const snap = await db.ref(p).once('value');
-            const data = snap.val();
-            if(data) {
-                const match = data.find(s => (s["ชื่อ-นามสกุล"] === name || s["ชื่อ-สกุล"] === name || s["ชื่อ_นามสกุล"] === name));
-                if(match) {
-                    userData = match;
-                    userSheetName = p;
-                    renderReport(match, p);
-                    found = true;
-                    break;
-                }
+        try {
+            const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
+            const result = await res.json();
+            
+            document.getElementById('loadingOverlay').style.display = 'none';
+
+            if (result.found) {
+                currentData = result;
+                renderReport(result.data, result.sheetName);
+                startClock();
+            } else {
+                showNotFound();
             }
+        } catch (e) {
+            document.getElementById('loadingOverlay').style.display = 'none';
+            Swal.fire('ผิดพลาด', 'ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
         }
-        Swal.close();
-        if(!found) Swal.fire('ไม่พบข้อมูล', 'โปรดตรวจสอบชื่อ-นามสกุลอีกครั้ง', 'error');
     }
 
-    function renderReport(s, prog) {
+    function showNotFound() {
+        document.getElementById('notFoundOverlay').style.display = 'flex';
+    }
+
+    function closeNotFound() {
+        document.getElementById('notFoundOverlay').style.display = 'none';
+    }
+
+    function renderReport(d, sheet) {
+        document.getElementById('searchArea').style.display = 'none';
         document.getElementById('reportArea').style.display = 'block';
-        startClock(); // เริ่มทำงานนาฬิกาเมื่อแสดงรายงาน
-        document.getElementById('resName').innerText = s["ชื่อ-นามสกุล"] || s["ชื่อ-สกุล"] || s["ชื่อ_นามสกุล"];
-        document.getElementById('resProg').innerText = prog;
-
-        const fStat = s["ค่าธรรมเนียมหอพัก-สถานะ"] || s["ค่าธรรมเนียมหอพัก_สถานะ"] || "ค้างชำระ";
-        const fAmt = parseFloat(String(s["ยอดค้างค่าธรรมเนียม"] || 0).replace(/,/g, '')) || 0;
         
-        document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getStatClass(fStat)}">${fStat}</span>`;
-        document.getElementById('resFeeAmt').innerText = fAmt.toLocaleString();
+        document.getElementById('resName').innerText = d["ชื่อ-นามสกุล"];
+        document.getElementById('resProg').innerText = sheet;
 
-        let ยอดรวมทั้งหมด = 0;
-        const รายการเดือน = [
-            { key: "พฤษภาคม", amtKey: "ยอดที่ค้าง_พฤษภาคม_" },
-            { key: "มิถุนายน", amtKey: "ยอดที่ค้าง_มิถุนายน_" },
-            { key: "กรกฎาคม", amtKey: "ยอดที่ค้าง_กรกฎาคม_" },
-            { key: "สิงหาคม", amtKey: "ยอดที่ค้าง_สิงหาคม_" },
-            { key: "กันยายน", amtKey: "ยอดที่ค้าง_กันยายน_" },
-            { key: "ตุลาคม", amtKey: "ยอดที่ค้าง_ตุลาคม_" }
-        ];
+        const dormAmt = Number(d["ยอดค้างค่าธรรมเนียม"] || 0);
+        document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getBadgeClass(d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ")}">${d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ"}</span>`;
+        document.getElementById('resFeeAmt').innerText = dormAmt.toLocaleString();
+        
+        toggleVerifyUI('dorm', d["สถานะการตรวจสอบค่าหอพัก"]);
 
-        รายการเดือน.forEach((เดือน, i) => {
-            const สถานะปัจจุบัน = s[เดือน.key] || "ยังไม่ถึงกำหนด";
-            const keyAmt = s[เดือน.amtKey] || s[`ยอดที่ค้าง(${เดือน.key})`] || 0;
-            const จำนวนเงิน = parseFloat(String(keyAmt).replace(/,/g, '')) || 0;
-            
-            document.getElementById(`m${i+1}`).innerHTML = `<span class="status-badge ${getStatClass(สถานะปัจจุบัน)}">${สถานะปัจจุบัน}</span>`;
-            document.getElementById(`a${i+1}`).innerText = จำนวนเงิน.toLocaleString() + " บาท";
-            
-            if (สถานะปัจจุบัน.includes('ค้างชำระ') || สถานะปัจจุบัน.includes('รอตรวจสอบ') || สถานะปัจจุบัน.includes('ไม่สำเร็จ')) {
-                ยอดรวมทั้งหมด += จำนวนเงิน;
-            }
+        let totalFoodOnly = 0;
+        const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
+        let gridHTML = "";
+        
+        months.forEach(m => {
+            const stat = d[m] || "ยังไม่ถึงกำหนด";
+            const amt = Number(d[`ยอดที่ค้าง(${m})`] || 0);
+            if (stat.includes("ค้างชำระ")) { totalFoodOnly += amt; }
+
+            gridHTML += `
+                <div class="month-item">
+                    <div class="month-label">${m.substring(0, 3)}</div>
+                    <span class="status-badge ${getBadgeClass(stat)}">${stat}</span>
+                    <div class="month-amount">${amt.toLocaleString()} บ.</div>
+                </div>`;
         });
-
-        const totalAmt = parseFloat(String(s["ยอดรวมค้างชำระ"] || 0).replace(/,/g, '')) || ยอดรวมทั้งหมด;
-        document.getElementById('resTotal').innerText = totalAmt.toLocaleString() + " บาท";
         
-        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าหอพัก"], 'waitDorm', 'dormWaitTitle', 'dormWaitDetail');
-        จัดการข้อความอธิบาย(s["สถานะการตรวจสอบค่าอาหาร"], 'waitMeal', 'mealWaitTitle', 'mealWaitDetail');
+        document.getElementById('monthGrid').innerHTML = gridHTML;
+        document.getElementById('resTotal').innerText = totalFoodOnly.toLocaleString() + " บาท";
+        
+        toggleVerifyUI('food', d["สถานะการตรวจสอบค่าอาหาร"]);
     }
 
-    function จัดการข้อความอธิบาย(สถานะ, ไอดีกล่อง, ไอดีหัวข้อ, ไอดีรายละเอียด) {
-        const กล่อง = document.getElementById(ไอดีกล่อง);
-        const หัวข้อ = document.getElementById(ไอดีหัวข้อ);
-        const รายละเอียด = document.getElementById(ไอดีรายละเอียด);
+    function getBadgeClass(s) {
+        if(s.includes("ชำระแล้ว") || s.includes("สำเร็จ")) return "paid";
+        if(s.includes("ค้างชำระ") || s.includes("ไม่สำเร็จ")) return "unpaid";
+        if(s.includes("รอตรวจสอบ")) return "pending";
+        return "not-reached";
+    }
 
-        if (สถานะ === "รอตรวจสอบการโอน") {
-            กล่อง.style.display = 'block';
-            หัวข้อ.innerText = "รอตรวจสอบการโอน";
-            หัวข้อ.style.color = '#d97706'; 
-            รายละเอียด.innerText = "โดยปกติแล้วรอตรวจสอบสถานะ 7 วันทำการ";
-        } 
-        else if (สถานะ === "การโอนสำเร็จ") {
-            กล่อง.style.display = 'block';
-            หัวข้อ.innerText = "การโอนสำเร็จ";
-            หัวข้อ.style.color = '#15803d'; 
-            รายละเอียด.innerText = "ขอบคุณสำหรับการหลักฐานการโอน";
-        } 
-        else if (สถานะ === "การโอนไม่สำเร็จ") {
-            กล่อง.style.display = 'block';
-            หัวข้อ.innerText = "การโอนไม่สำเร็จ";
-            หัวข้อ.style.color = '#b91c1c'; 
-            รายละเอียด.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและแนบกลับมาอีกครั้ง";
-        } 
-        else {
-            กล่อง.style.display = 'none';
+    function toggleVerifyUI(type, status) {
+        const btn = document.getElementById(type === 'dorm' ? 'btnDorm' : 'btnFood');
+        const wait = document.getElementById(type === 'dorm' ? 'waitDorm' : 'waitFood');
+        const waitTitle = document.getElementById(type === 'dorm' ? 'waitDormTitle' : 'waitFoodTitle');
+        const waitSub = document.getElementById(type === 'dorm' ? 'waitDormSub' : 'waitFoodSub');
+        
+        // ปุ่มแนบสลิปแสดงตลอดเวลา
+        btn.style.display = 'block';
+
+        // ถ้าแอดมินไม่ได้กรอก (null หรือว่าง) ให้ซ่อนข้อความสถานะ
+        if (!status || status.trim() === "") {
+            wait.style.display = 'none';
+            return;
+        }
+
+        wait.style.display = 'block';
+
+        if (status.includes("รอตรวจสอบ")) {
+            waitTitle.innerText = "รอตรวจสอบ";
+            waitTitle.style.color = "#d97706"; // สีส้ม
+            waitSub.innerText = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ";
+        } else if (status.includes("การโอนสำเร็จ")) {
+            waitTitle.innerText = "การโอนสำเร็จ";
+            waitTitle.style.color = "#15803d"; // สีเขียว
+            waitSub.innerText = "ขอบคุณสำหรับการแนบหลักฐานยืนยัน";
+        } else if (status.includes("การโอนไม่สำเร็จ")) {
+            waitTitle.innerText = "การโอนไม่สำเร็จ";
+            waitTitle.style.color = "#b91c1c"; // สีแดง
+            waitSub.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและส่งกลับมาอีกครั้ง";
+        } else {
+            // กรณีมีข้อความอื่นๆ
+            waitTitle.innerText = status;
+            waitTitle.style.color = "#333";
+            waitSub.innerText = "";
         }
     }
 
-    function getStatClass(stat) {
-        if (!stat) return 'unpaid';
-        if (stat.includes('ชำระแล้ว') || stat.includes('สำเร็จ')) return 'paid';
-        if (stat.includes('ค้างชำระ') || stat.includes('ไม่สำเร็จ')) return 'unpaid';
-        if (stat.includes('รอตรวจสอบ')) return 'pending';
-        if (stat.includes('ยังไม่ถึงกำหนด')) return 'not-reached';
-        return 'unpaid';
-    }
-
-    function triggerUpload(target) {
-        uploadTarget = target;
+    function triggerUpload(t) {
+        targetType = t;
         document.getElementById('fileIn').click();
     }
 
-    function handleUpload() {
+    function handleFile() {
         const file = document.getElementById('fileIn').files[0];
         if(!file) return;
-        
-        Swal.fire({ title: 'กำลังส่งข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-        
         const reader = new FileReader();
-        reader.onload = function(e) {
-            const payload = {
-                studentName: userData["ชื่อ-นามสกุล"] || userData["ชื่อ-สกุล"] || userData["ชื่อ_นามสกุล"],
-                dormType: userSheetName,
-                type: uploadTarget,
-                base64: e.target.result.split(',')[1],
-                mimeType: file.type,
-                fileName: `${uploadTarget}_${Date.now()}.png`
-            };
-            
-            fetch(SCRIPT_URL, { 
-                method: "POST", 
-                body: JSON.stringify(payload) 
-            })
-            .then(res => res.json())
-            .then(res => {
-                if (res.result === "success") {
-                    Swal.fire('สำเร็จ!', 'แนบสลิปเรียบร้อย ระบบจะตรวจสอบใน 7 วัน', 'success').then(() => location.reload());
-                } else { 
-                    throw new Error(res.message); 
-                }
-            })
-            .catch(err => { 
-                Swal.fire('ผิดพลาด', 'ไม่สามารถส่งข้อมูลได้: ' + err.message, 'error'); 
+        reader.onload = async (e) => {
+            Swal.fire({
+                background: 'transparent',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                html: `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
+                        <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
+                        <p style="color: #ffffff; font-size: 18px; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
+                    </div>
+                `
             });
+
+            const payload = {
+                action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
+                sheetName: currentData.sheetName,
+                rowIndex: currentData.rowIndex,
+                studentName: currentData.data["ชื่อ-นามสกุล"],
+                type: targetType,
+                image: e.target.result
+            };
+            try {
+                const res = await fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) });
+                const result = await res.json();
+                if(result.success) {
+                    Swal.fire({
+                        background: 'transparent',
+                        showConfirmButton: true,
+                        confirmButtonText: 'รับทราบ',
+                        confirmButtonColor: '#1e3a8a',
+                        allowOutsideClick: false,
+                        html: `
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
+                                <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
+                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b>โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
+                            </div>
+                        `
+                    }).then(() => location.reload());
+                } else {
+                    Swal.fire({
+                        background: 'transparent',
+                        showConfirmButton: true,
+                        confirmButtonText: 'ลองใหม่อีกครั้ง',
+                        confirmButtonColor: '#b91c1c',
+                        allowOutsideClick: false,
+                        html: `
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
+                                <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
+                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
+                            </div>
+                        `
+                    });
+                }
+            } catch (err) {
+                Swal.fire({
+                    background: 'transparent',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ตกลง',
+                    confirmButtonColor: '#b91c1c',
+                    html: `
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
+                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                            <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
+                            <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
+                        </div>
+                    `
+                });
+            }
         };
         reader.readAsDataURL(file);
     }
@@ -409,13 +561,16 @@
     function showPaymentInfo() {
         Swal.fire({
             title: 'ช่องทางการชำระเงิน',
-            html: `<div style="text-align:center;">
-                    <p>ธนาคารกสิกรไทย<br>เลขบัญชี: 123-x-xxxxx-x<br>โรงเรียนอุทยานศึกษากระบี่</p>
-                    <img src="https://i.postimg.cc/wBmf1KRW/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:250px; border-radius:10px;">
-                   </div>`,
+            html: `
+                <div style="text-align:center;">
+                    <p style="font-size:16px; margin-bottom:10px;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: 123-x-xxxxx-x<br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
+                    <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <p style="font-size:12px; color:#666; margin-top:10px;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
+                </div>`,
             showCloseButton: true, showConfirmButton: false
         });
     }
 </script>
+
 </body>
 </html>
