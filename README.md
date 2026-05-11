@@ -1,4 +1,3 @@
-
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -427,7 +426,11 @@
         months.forEach(m => {
             const stat = d[m] || "ยังไม่ถึงกำหนด";
             const amt = Number(d[`ยอดที่ค้าง(${m})`] || 0);
-            if (stat.includes("ค้างชำระ")) { totalFoodOnly += amt; }
+            
+            // เงื่อนไข: ถ้าแอดมินใส่จำนวนเงิน (amt > 0) ให้เอามาคิดรวมทั้งหมด
+            if (amt > 0) { 
+                totalFoodOnly += amt; 
+            }
 
             gridHTML += `
                 <div class="month-item">
@@ -456,6 +459,7 @@
         const waitTitle = document.getElementById(type === 'dorm' ? 'waitDormTitle' : 'waitFoodTitle');
         const waitSub = document.getElementById(type === 'dorm' ? 'waitDormSub' : 'waitFoodSub');
         
+        // รีเซ็ตปุ่มให้โชว์เป็นค่าเริ่มต้น
         btn.style.display = 'block';
 
         if (!status || status.trim() === "") {
@@ -466,6 +470,9 @@
         wait.style.display = 'block';
 
         if (status.includes("รอตรวจสอบ")) {
+            // เงื่อนไข: ถ้าสถานะคือรอตรวจสอบ ให้ซ่อนปุ่มอัปโหลด (ไม่สามารถอัพเพิ่มได้)
+            btn.style.display = 'none';
+            
             waitTitle.innerText = "รอตรวจสอบ";
             waitTitle.style.color = "#d97706"; // สีส้ม
             waitSub.innerText = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ";
