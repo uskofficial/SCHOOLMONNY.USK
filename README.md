@@ -247,7 +247,7 @@
             padding: 0 15px;
         }
 
-        /* --- Footer Design (Exact Rectangle Match) --- */
+        /* --- Master Footer (Exact Rectangle Design) --- */
         .master-footer {
             background-color: var(--footer-dark);
             color: white;
@@ -265,7 +265,11 @@
 
         .f-left { display: flex; flex-direction: column; gap: 15px; }
         .f-logo-wrap { margin-bottom: 10px; }
-        .f-logo-wrap img { width: 140px; height: auto; } 
+        .f-logo-wrap img { 
+            width: 140px; 
+            height: auto; 
+            /* ลบ mix-blend-mode ออกเนื่องจากภาพเป็น PNG Transparent แล้ว */
+        } 
         
         .f-motto { font-size: 16px; font-weight: 400; line-height: 1.6; }
         .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #e0e0e0; }
