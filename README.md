@@ -14,7 +14,7 @@
             --border-blue: #1e3a8a; 
             --pink-btn: #ec4899; 
             --light-blue: #eff6ff;
-            --footer-dark: #122863; /* สีน้ำเงินเข้มตามภาพ */
+            --footer-dark: #122863; 
         }
         * { box-sizing: border-box; }
         
@@ -263,10 +263,9 @@
             gap: 40px;
         }
 
-        /* ฝั่งซ้าย */
         .f-left { display: flex; flex-direction: column; gap: 15px; }
         .f-logo-wrap { margin-bottom: 10px; }
-        .f-logo-wrap img { width: 140px; height: auto; } /* โลโก้อย่างเดียวตามขอ */
+        .f-logo-wrap img { width: 140px; height: auto; } 
         
         .f-motto { font-size: 16px; font-weight: 400; line-height: 1.6; }
         .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #e0e0e0; }
@@ -281,7 +280,6 @@
         .f-contact-item i { margin-top: 4px; font-size: 14px; color: white; width: 20px; text-align: center; }
         .f-contact-item:hover { color: #00aaff; }
 
-        /* ฝั่งขวา */
         .f-right { display: flex; flex-direction: column; align-items: flex-end; }
         .f-follow-head { 
             font-size: 26px; font-weight: 600; margin-bottom: 15px;
@@ -300,7 +298,6 @@
         .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 400; }
         .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white; font-weight: 500; }
 
-        /* Copyright Bar */
         .f-bottom-bar {
             margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
             display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.5);
@@ -423,15 +420,15 @@
         <div class="footer-layout">
             <div class="f-left">
                 <div class="f-logo-wrap">
-                    <img src="[https://i.postimg.cc/FzPbqZ7n/IMG-7790.png](https://i.postimg.cc/fyhgPxtX/U.png)" alt="School Logo">
+                    <img src="https://i.postimg.cc/fyhgPxtX/U.png" alt="School Logo">
                 </div>
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
-                    <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ผูกสัมพันธ์ชุมชน</span>
+                    <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ถูกสัมพันธ์ชุมชน</span>
                 </p>
                 <div class="f-title-line">ติดต่อ</div>
                 <div class="f-contact-list">
-                    <a href="https://www.google.com/maps?q=114/1+Moo+2+KlongKhamas+NueaKhlong+Krabi" class="f-contact-item" target="_blank">
+                    <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" class="f-contact-item" target="_blank">
                         <i class="fas fa-home"></i> 
                         โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130
                     </a>
@@ -444,15 +441,15 @@
             <div class="f-right">
                 <div class="f-follow-head">ติดตาม</div>
                 <div class="f-social-grid">
-                    <a href="[https://facebook.com/โรงเรียนอุทยานศึกษากระบี่](https://www.facebook.com/UttayanSuksaKrabi?)" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
-                    <a href="[https://facebook.com/คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่](https://www.facebook.com/USKOfficial1?)" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
-                    <a href="[https://tiktok.com/@uskofficial_](https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IInq4w0qv)" class="f-social-link" target="_blank">uskofficial._ <i class="fab fa-tiktok"></i></a>
-                    <a href="[https://instagram.com/uskofficial_](https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==)" class="f-social-link" target="_blank">uskofficial._ <i class="fab fa-instagram"></i></a>
-                    <a href="[https://line.me/ti/p/@837fnedn](https://lin.ee/sTNh78F)" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
-                    <a href="[https://youtube.com/@uskofficial_](https://youtube.com/@uskofficial01?si=dm8hoYFYBp6Rh0N7)" class="f-social-link" target="_blank">uskofficial._ <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IJfkyKHJJ" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-instagram"></i></a>
+                    <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
+                    <a href="https://youtube.com/@uskofficial01?si=qLXB83PoYvydWuBY" class="f-social-link" target="_blank">uskofficial01 <i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="f-qr-wrap">
-                    <img src="[https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg](https://i.postimg.cc/5N778H5g/Untitled-design.png)" alt="QR Apply">
+                    <img src="https://i.postimg.cc/5N778H5g/Untitled-design.png" alt="QR Apply">
                     <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
                 </div>
             </div>
@@ -581,7 +578,7 @@
 
         if (status.includes("รอตรวจสอบ")) {
             btn.style.display = 'none';
-            waitTitle.innerText = "รอตรวจสอบการโอน";
+            waitTitle.innerText = "รอตรวจสอบ";
             waitTitle.style.color = "#d97706";
             waitSub.innerText = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ";
         } else if (status.includes("การโอนสำเร็จ")) {
