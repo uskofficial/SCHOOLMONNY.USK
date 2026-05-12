@@ -532,6 +532,7 @@
         toggleVerifyUI('dorm', d["สถานะการตรวจสอบค่าหอพัก"]);
 
         let totalFoodOnly = 0;
+        // แก้ไขให้ใช้ชื่อเดือนเต็ม
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
         let gridHTML = "";
         
@@ -543,9 +544,10 @@
                 totalFoodOnly += amt; 
             }
 
+            // แก้ไขเอา .substring ออก เพื่อแสดงชื่อเต็ม
             gridHTML += `
                 <div class="month-item">
-                    <div class="month-label">${m.substring(0, 3)}</div>
+                    <div class="month-label">${m}</div>
                     <span class="status-badge ${getBadgeClass(stat)}">${stat}</span>
                     <div class="month-amount">${amt.toLocaleString()} บ.</div>
                 </div>`;
