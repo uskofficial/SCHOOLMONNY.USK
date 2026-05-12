@@ -342,7 +342,7 @@
     <div class="not-found-content">
         <dotlottie-wc src="https://lottie.host/63822361-e4de-4fc5-8b6f-a78c2d586b16/CV7OyOVb3x.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
         <h2>ไม่พบข้อมูลนักเรียน</h2>
-        <p>ขออภัยครับ ไม่พบชื่อนี้ในระบบ<br>กรุณาตรวจสอบตัวสะกดใหม่อีกครั้ง</p>
+        <p>ขออภัยครับ ไม่พบชื่อนี้ในระบบ<br>กรุณาตรวจสอบรายชื่อให้ถูกต้อง</p>
         <button class="btn-close-notfound" onclick="closeNotFound()">ลองใหม่อีกครั้ง</button>
     </div>
 </div>
@@ -359,7 +359,7 @@
     <div id="searchArea" class="search-area">
         <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน">
         <button class="btn-search" onclick="doSearch()">ค้นหา</button>
-        <div class="search-hint">พิมพ์ ชื่อ - นามสกุล โดยไม่ต้องมีคำนำหน้า เด็กชาย , เด็กหญิง , นาย , นางสาว</div>
+        <div class="search-hint">"พิมพ์ ชื่อ - นามสกุล โดยไม่ต้องมีคำนำหน้า เด็กชาย , เด็กหญิง , นาย , นางสาว"</div>
     </div>
 
     <div id="reportArea" style="display:none;">
@@ -392,7 +392,7 @@
             <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px; font-weight:300;">( Boarding Fee )</span></div>
             <div id="monthGrid" class="month-grid"></div>
             <div class="total-section">
-                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:12px">( เฉพาะยอดค้างค่าอาหารรายเดือน )</span></span>
+                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:12px">( Aggregate Amount Payable )</span></span>
                 <span id="resTotal" style="color: #b91c1c; font-size: 22px;">0 บาท</span>
             </div>
         </div>
@@ -427,7 +427,7 @@
                 </div>
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
-                    <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ถูกสัมพันธ์ชุมชน</span>
+                    <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุณธรรม ผูกสัมพันธ์ชุมชน</span>
                 </p>
                 <div class="f-title-line">ติดต่อ</div>
                 <div class="f-contact-list">
@@ -688,7 +688,7 @@
             title: 'ช่องทางการชำระเงิน',
             html: `
                 <div style="text-align:center;">
-                    <p style="font-size:16px; margin-bottom:10px;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: 123-x-xxxxx-x<br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
+                    <p style="font-size:16px; margin-bottom:10px;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: 229-8-97447-1<br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
                     <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                     <p style="font-size:12px; color:#666; margin-top:10px;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
                 </div>`,
