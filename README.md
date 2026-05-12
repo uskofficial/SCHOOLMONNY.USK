@@ -247,7 +247,7 @@
             padding: 0 15px;
         }
 
-        /* --- Master Footer (Exact Rectangle Design) --- */
+        /* --- Master Footer (Rectangle Design) --- */
         .master-footer {
             background-color: var(--footer-dark);
             color: white;
@@ -268,7 +268,6 @@
         .f-logo-wrap img { 
             width: 140px; 
             height: auto; 
-            /* ลบ mix-blend-mode ออกเนื่องจากภาพเป็น PNG Transparent แล้ว */
         } 
         
         .f-motto { font-size: 16px; font-weight: 400; line-height: 1.6; }
@@ -424,7 +423,7 @@
         <div class="footer-layout">
             <div class="f-left">
                 <div class="f-logo-wrap">
-                    <img src="https://i.postimg.cc/fyhgPxtX/U.png" alt="School Logo">
+                    <img src="https://i.postimg.cc/G208V1G9/U.jpg" alt="School Logo">
                 </div>
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
