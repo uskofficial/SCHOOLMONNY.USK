@@ -322,6 +322,32 @@
             .month-grid { grid-template-columns: repeat(6, 1fr); }
             .info-box { padding: 25px; }
         }
+
+        /* --- Progress Bar Styles --- */
+        .progress-container {
+            width: 100%;
+            max-width: 300px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            height: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.8);
+            transition: width 0.3s ease;
+        }
+        #progressPercent {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
@@ -532,7 +558,6 @@
         toggleVerifyUI('dorm', d["สถานะการตรวจสอบค่าหอพัก"]);
 
         let totalFoodOnly = 0;
-        // แก้ไขให้ใช้ชื่อเดือนเต็ม
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
         let gridHTML = "";
         
@@ -544,7 +569,6 @@
                 totalFoodOnly += amt; 
             }
 
-            // แก้ไขเอา .substring ออก เพื่อแสดงชื่อเต็ม
             gridHTML += `
                 <div class="month-item">
                     <div class="month-label">${m}</div>
@@ -606,23 +630,46 @@
         document.getElementById('fileIn').click();
     }
 
+    // --- ฟังก์ชันหลักที่แก้ไขเพื่อแสดงเปอร์เซ็นต์ ---
     function handleFile() {
         const file = document.getElementById('fileIn').files[0];
         if(!file) return;
         const reader = new FileReader();
         reader.onload = async (e) => {
+            // แสดง Popup Loading พร้อม Progress Bar
             Swal.fire({
                 background: 'transparent',
                 allowOutsideClick: false,
                 showConfirmButton: false,
                 html: `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
-                        <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
-                        <p style="color: #ffffff; font-size: 18px; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
+                        <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 250px; height: 250px;" autoplay loop></dotlottie-wc>
+                        <div id="progressPercent">0%</div>
+                        <div class="progress-container">
+                            <div id="pb" class="progress-bar"></div>
+                        </div>
+                        <h1 style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
+                        <p style="color: #ffffff; font-size: 16px; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
                 `
             });
+
+            // จำลอง Progress เนื่องจาก Fetch ไม่รองรับ Progress stream สำหรับ upload ไปยัง GAS ตรงๆ
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                if (progress < 90) {
+                    progress += Math.random() * 15;
+                    if (progress > 90) progress = 90;
+                    updateProgressBar(Math.floor(progress));
+                }
+            }, 500);
+
+            function updateProgressBar(val) {
+                const pb = document.getElementById('pb');
+                const pt = document.getElementById('progressPercent');
+                if (pb) pb.style.width = val + '%';
+                if (pt) pt.innerText = val + '%';
+            }
 
             const payload = {
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
@@ -632,9 +679,14 @@
                 type: targetType,
                 image: e.target.result
             };
+
             try {
                 const res = await fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) });
                 const result = await res.json();
+                
+                clearInterval(progressInterval);
+                updateProgressBar(100);
+
                 if(result.success) {
                     Swal.fire({
                         background: 'transparent',
@@ -667,6 +719,7 @@
                     });
                 }
             } catch (err) {
+                clearInterval(progressInterval);
                 Swal.fire({
                     background: 'transparent',
                     showConfirmButton: true,
