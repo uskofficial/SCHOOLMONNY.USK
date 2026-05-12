@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCHOOL MONEY - ระบบแจ้งจ่ายค่าใช้จ่าย</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
 
@@ -13,6 +14,7 @@
             --border-blue: #1e3a8a; 
             --pink-btn: #ec4899; 
             --light-blue: #eff6ff;
+            --footer-dark: #122863; /* สีน้ำเงินเข้มตามภาพ */
         }
         * { box-sizing: border-box; }
         
@@ -146,7 +148,7 @@
             color: #ef4444;
             margin-top: 8px;
             font-weight: 400;
-            text-align: center; /* จัดให้อยู่ตรงกลาง */
+            text-align: center;
         }
 
         .info-box { 
@@ -245,7 +247,73 @@
             padding: 0 15px;
         }
 
-        .bottom-info { text-align: center; margin-top: 40px; color: #666; font-size: 12px; line-height: 1.6; }
+        /* --- Footer Design (Exact Rectangle Match) --- */
+        .master-footer {
+            background-color: var(--footer-dark);
+            color: white;
+            padding: 40px 30px 15px;
+            margin-top: 40px;
+            border-radius: 0 0 15px 15px;
+            position: relative;
+        }
+
+        .footer-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+        }
+
+        /* ฝั่งซ้าย */
+        .f-left { display: flex; flex-direction: column; gap: 15px; }
+        .f-logo-wrap { margin-bottom: 10px; }
+        .f-logo-wrap img { width: 140px; height: auto; } /* โลโก้อย่างเดียวตามขอ */
+        
+        .f-motto { font-size: 16px; font-weight: 400; line-height: 1.6; }
+        .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #e0e0e0; }
+
+        .f-title-line { 
+            font-size: 26px; font-weight: 600; margin-top: 15px;
+            border-bottom: 3px solid #00aaff; width: fit-content; padding-bottom: 5px;
+        }
+
+        .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: #d0d0d0; text-decoration: none; }
+        .f-contact-item i { margin-top: 4px; font-size: 14px; color: white; width: 20px; text-align: center; }
+        .f-contact-item:hover { color: #00aaff; }
+
+        /* ฝั่งขวา */
+        .f-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .f-follow-head { 
+            font-size: 26px; font-weight: 600; margin-bottom: 15px;
+            border-bottom: 3px solid #ec4899; width: fit-content; padding-bottom: 5px;
+        }
+        .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%; }
+        .f-social-link { 
+            display: flex; align-items: center; justify-content: flex-end; gap: 12px;
+            text-decoration: none; color: white; font-size: 14px; font-weight: 300; transition: 0.2s;
+        }
+        .f-social-link i { font-size: 20px; }
+        .f-social-link:hover { color: #ec4899; }
+
+        .f-qr-wrap { margin-top: 40px; text-align: right; }
+        .f-qr-wrap img { width: 110px; padding: 5px; background: white; border-radius: 4px; }
+        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 400; }
+        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white; font-weight: 500; }
+
+        /* Copyright Bar */
+        .f-bottom-bar {
+            margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
+            display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 650px) {
+            .footer-layout { grid-template-columns: 1fr; gap: 50px; }
+            .f-right { align-items: center; text-align: center; }
+            .f-social-grid { align-items: center; }
+            .f-social-link { justify-content: center; width: 100%; }
+            .f-bottom-bar { flex-direction: column; align-items: center; gap: 15px; text-align: center; }
+            .f-qr-wrap { text-align: center; }
+        }
 
         @media (min-width: 600px) {
             .logo-img { width: 100px; height: 100px; }
@@ -253,11 +321,6 @@
             .btn-search { width: auto; }
             .month-grid { grid-template-columns: repeat(6, 1fr); }
             .info-box { padding: 25px; }
-            .school-text { font-size: 65px; }
-        }
-        @media (max-width: 599px) {
-            .school-text { font-size: 50px; }
-            dotlottie-wc { width: 280px !important; height: 280px !important; }
         }
     </style>
 </head>
@@ -356,13 +419,53 @@
         </div>
     </div>
 
-    <input type="file" id="fileIn" style="display:none" onchange="handleFile()">
+    <div class="master-footer">
+        <div class="footer-layout">
+            <div class="f-left">
+                <div class="f-logo-wrap">
+                    <img src="https://i.postimg.cc/FzPbqZ7n/IMG-7790.png" alt="School Logo">
+                </div>
+                <p class="f-motto">
+                    ศิษย์เราเขาคือลูก
+                    <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ถูกสัมพันธ์ชุมชน</span>
+                </p>
+                <div class="f-title-line">ติดต่อ</div>
+                <div class="f-contact-list">
+                    <a href="https://www.google.com/maps?q=114/1+Moo+2+KlongKhamas+NueaKhlong+Krabi" class="f-contact-item" target="_blank">
+                        <i class="fas fa-home"></i> 
+                        โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130
+                    </a>
+                    <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-phone"></i> 076 - 678 - 1234</a>
+                    <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-fax"></i> 076 - 678 - 1234</a>
+                    <a href="mailto:uskofficial01@gmail.com" class="f-contact-item"><i class="fas fa-envelope"></i> uskofficial01@gmail.com</a>
+                </div>
+            </div>
 
-    <div class="bottom-info">
-        พบปัญหาหรือมีข้อสงสัยโปรดติดต่อ 078 - 789 - 6789<br>
-        “ เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ถูกสัมพันธ์ชุมชน ”
+            <div class="f-right">
+                <div class="f-follow-head">ติดตาม</div>
+                <div class="f-social-grid">
+                    <a href="[https://facebook.com/โรงเรียนอุทยานศึกษากระบี่](https://www.facebook.com/UttayanSuksaKrabi?)" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+                    <a href="[https://facebook.com/คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่](https://www.facebook.com/USKOfficial1?)" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+                    <a href="[https://tiktok.com/@uskofficial_](https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IInq4w0qv)" class="f-social-link" target="_blank">uskofficial._ <i class="fab fa-tiktok"></i></a>
+                    <a href="[https://instagram.com/uskofficial_](https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==)" class="f-social-link" target="_blank">uskofficial._ <i class="fab fa-instagram"></i></a>
+                    <a href="[https://line.me/ti/p/@837fnedn](https://lin.ee/sTNh78F)" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
+                    <a href="[https://youtube.com/@uskofficial_](https://youtube.com/@uskofficial01?si=dm8hoYFYBp6Rh0N7)" class="f-social-link" target="_blank">uskofficial._ <i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="f-qr-wrap">
+                    <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" alt="QR Apply">
+                    <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="f-bottom-bar">
+            <span>© 2026 COPYRIGHT : UTTAYANSUKSAKRABI SCHOOL . All right reserved</span>
+            <span>ผลิตสื่อโดย: โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130 จำนวน 1 ชุด ตามเวลาที่ปรากฎ ที่ส่งมาในครั้งนี้</span>
+        </div>
     </div>
 </div>
+
+<input type="file" id="fileIn" style="display:none" onchange="handleFile()">
 
 <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz9TLqzzDDzCddSwyYEzCnpyOLU69pd6EErKgiJWYMownXOceaiIbbu0yJ6lBQJmosu/exec";
@@ -478,7 +581,7 @@
 
         if (status.includes("รอตรวจสอบ")) {
             btn.style.display = 'none';
-            waitTitle.innerText = "รอตรวจสอบ";
+            waitTitle.innerText = "รอตรวจสอบการโอน";
             waitTitle.style.color = "#d97706";
             waitSub.innerText = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ";
         } else if (status.includes("การโอนสำเร็จ")) {
