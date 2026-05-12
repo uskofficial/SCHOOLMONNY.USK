@@ -423,11 +423,11 @@
         <div class="footer-layout">
             <div class="f-left">
                 <div class="f-logo-wrap">
-                    <img src="https://i.postimg.cc/FzPbqZ7n/IMG-7790.png" alt="School Logo">
+                    <img src="[https://i.postimg.cc/FzPbqZ7n/IMG-7790.png](https://i.postimg.cc/fyhgPxtX/U.png)" alt="School Logo">
                 </div>
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
-                    <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ถูกสัมพันธ์ชุมชน</span>
+                    <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุุณธรรม ผูกสัมพันธ์ชุมชน</span>
                 </p>
                 <div class="f-title-line">ติดต่อ</div>
                 <div class="f-contact-list">
@@ -452,7 +452,7 @@
                     <a href="[https://youtube.com/@uskofficial_](https://youtube.com/@uskofficial01?si=dm8hoYFYBp6Rh0N7)" class="f-social-link" target="_blank">uskofficial._ <i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="f-qr-wrap">
-                    <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" alt="QR Apply">
+                    <img src="[https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg](https://i.postimg.cc/5N778H5g/Untitled-design.png)" alt="QR Apply">
                     <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
                 </div>
             </div>
