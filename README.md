@@ -348,6 +348,101 @@
             margin-bottom: 10px;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
+
+        /* --- Food Popup Styles --- */
+        .food-popup-container {
+            background-color: #eef2fa;
+            border: 2px solid var(--main-blue);
+            padding: 20px;
+            border-radius: 0px;
+            font-family: 'Kanit', sans-serif;
+            text-align: left;
+            position: relative;
+        }
+        .fp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ec4899;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .fp-title { font-size: 20px; font-weight: 500; color: #333; }
+        .fp-date { font-size: 15px; color: #333; }
+        
+        .fp-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        .fp-col {
+            flex: 1;
+            min-width: 90px;
+            text-align: center;
+            border-right: 2px solid #ec4899;
+            padding: 0 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .fp-col:last-child { border-right: none; }
+        .fp-month-name { font-size: 15px; font-weight: 500; color: #333; }
+        
+        .fp-badge {
+            padding: 2px 10px;
+            border: 1px solid;
+            font-size: 13px;
+            font-weight: 500;
+            width: 100%;
+        }
+        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: transparent; }
+        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: transparent; }
+        .fp-badge.pending { border-color: #d97706; color: #d97706; background: transparent; }
+        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: transparent; }
+        
+        .fp-amount { font-size: 14px; color: #333; }
+        
+        .fp-btn-upload {
+            background: #fdf2f8;
+            border: 1px solid #ec4899;
+            color: #be185d;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            font-family: 'Kanit';
+            transition: 0.2s;
+        }
+        .fp-btn-upload:hover { background: #fbcfe8; }
+        .fp-file-link { font-size: 12px; color: #2563eb; font-weight: 400; margin-top: 4px; }
+        
+        .fp-note {
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            margin-top: 25px;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        .fp-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ccc;
+            font-weight: 500;
+        }
+        .fp-total-label { font-size: 18px; color: #333; }
+        .fp-total-val { font-size: 20px; color: #111; }
+        
+        /* SweetAlert custom container reset for this specific popup */
+        .swal-food-popup { padding: 0 !important; background: transparent !important; }
     </style>
 </head>
 <body>
@@ -423,13 +518,9 @@
             </div>
         </div>
 
-        <div class="footer-action">
-            <button id="btnFood" class="btn-upload" onclick="triggerUpload('food')">แนบสลิปการจ่ายค่าอาหาร</button>
-            <div class="wait-status" id="waitFood">
-                <b id="waitFoodTitle"></b>
-                <span id="waitFoodSub"></span>
+        <div class="footer-action" style="justify-content: center;">
+            <button id="btnFood" class="btn-upload" onclick="openFoodPopup()">แนบสลิปการจ่ายค่าอาหาร</button>
             </div>
-        </div>
 
         <div class="payment-btn-box" onclick="showPaymentInfo()">
             ช่องทางการชำระเงิน
@@ -494,10 +585,12 @@
 <input type="file" id="fileIn" style="display:none" onchange="handleFile()">
 
 <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz9TLqzzDDzCddSwyYEzCnpyOLU69pd6EErKgiJWYMownXOceaiIbbu0yJ6lBQJmosu/exec";
+    // อัปเดตลิงก์ Web App ใหม่ตามที่ให้มา
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx5P6zROncjUbRgHvp2K4yiUBDi8_UYVcABVOJphubhCn4Au7KFHK9rFNo3gYXft38/exec";
 
     let currentData = null;
     let targetType = "";
+    let targetMonth = ""; // ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
     let clockInterval = null;
 
     function startClock() {
@@ -579,8 +672,6 @@
         
         document.getElementById('monthGrid').innerHTML = gridHTML;
         document.getElementById('resTotal').innerText = totalFoodOnly.toLocaleString() + " บาท";
-        
-        toggleVerifyUI('food', d["สถานะการตรวจสอบค่าอาหาร"]);
     }
 
     function getBadgeClass(s) {
@@ -591,10 +682,13 @@
     }
 
     function toggleVerifyUI(type, status) {
-        const btn = document.getElementById(type === 'dorm' ? 'btnDorm' : 'btnFood');
-        const wait = document.getElementById(type === 'dorm' ? 'waitDorm' : 'waitFood');
-        const waitTitle = document.getElementById(type === 'dorm' ? 'waitDormTitle' : 'waitFoodTitle');
-        const waitSub = document.getElementById(type === 'dorm' ? 'waitDormSub' : 'waitFoodSub');
+        // จัดการเฉพาะหอพัก (ส่วนค่าอาหารลบสถานะรอตรวจสอบข้างปุ่มออกแล้ว)
+        if (type !== 'dorm') return;
+
+        const btn = document.getElementById('btnDorm');
+        const wait = document.getElementById('waitDorm');
+        const waitTitle = document.getElementById('waitDormTitle');
+        const waitSub = document.getElementById('waitDormSub');
         
         btn.style.display = 'block';
 
@@ -627,13 +721,114 @@
 
     function triggerUpload(t) {
         targetType = t;
+        targetMonth = ""; // รีเซ็ตเดือนเสมอเมื่อเป็นการอัปโหลดหอพัก
         document.getElementById('fileIn').click();
     }
 
-    // --- ฟังก์ชันหลักที่แก้ไขเพื่อแสดงเปอร์เซ็นต์ ---
+    function triggerFoodMonthUpload(month) {
+        Swal.close(); // ปิด Pop-up ก่อน
+        targetType = 'food';
+        targetMonth = month;
+        document.getElementById('fileIn').click();
+    }
+
+    function openFoodPopup() {
+        if (!currentData) return;
+
+        const d = currentData.data;
+        const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
+        let colsHtml = "";
+        let totalUnpaid = 0;
+
+        months.forEach(m => {
+            const stat = d[m] || "ยังไม่ถึงกำหนด";
+            const amt = Number(d[`ยอดที่ค้าง(${m})`] || 0);
+
+            let statClass = "";
+            let actionHtml = "";
+
+            if (stat.includes("ค้างชำระ")) {
+                totalUnpaid += amt;
+                statClass = "unpaid";
+                actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
+            } else if (stat.includes("ชำระแล้ว")) {
+                statClass = "paid";
+                actionHtml = `<div class="fp-file-link">ไฟล์แนบ</div>`;
+            } else if (stat.includes("รอตรวจสอบ")) {
+                statClass = "pending";
+                actionHtml = `<div class="fp-file-link">ไฟล์แนบ</div>`;
+            } else {
+                statClass = "not-due";
+            }
+
+            colsHtml += `
+                <div class="fp-col">
+                    <div class="fp-month-name">${m}</div>
+                    <div class="fp-badge ${statClass}">${stat}</div>
+                    <div class="fp-amount">${amt.toLocaleString()} บาท</div>
+                    ${actionHtml}
+                </div>
+            `;
+        });
+
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+        const timeStr = now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'}) + ' น.';
+
+        Swal.fire({
+            html: `
+                <div class="food-popup-container">
+                    <div class="fp-header">
+                        <div class="fp-title">ค่าอาหารรายเดือน 1/2569 <span style="font-size:15px; font-weight:300;">( Boarding Fee )</span></div>
+                        <div class="fp-date">${dateStr} เวลา ${timeStr}</div>
+                    </div>
+                    
+                    <div class="fp-grid">
+                        ${colsHtml}
+                    </div>
+
+                    <div class="fp-note">
+                        ขอความกรุณาท่านดำเนินการแนบหลักฐานการโอนเงิน สำหรับยอดค้างชำระค่าอาหารรายเดือนในแต่ละรอบเดือน เพื่อความถูกต้องในการตรวจสอบข้อมูล และปรับปรุงสถานะยอดค้างชำระของท่านให้เป็นปัจจุบัน
+                    </div>
+
+                    <div class="fp-total-row">
+                        <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:300; color:#555;">( Total Outstanding Balance )</span></div>
+                        <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
+                    </div>
+                </div>
+            `,
+            showConfirmButton: false,
+            showCloseButton: true,
+            width: '850px',
+            customClass: { popup: 'swal-food-popup' }
+        });
+    }
+
+    // ฟังก์ชันช่วยโหลดข้อมูลตารางใหม่โดยไม่เด้งไปหน้าแรก
+    async function refreshDataWithoutReload() {
+        const name = currentData.data["ชื่อ-นามสกุล"];
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        try {
+            const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
+            const result = await res.json();
+            document.getElementById('loadingOverlay').style.display = 'none';
+            if (result.found) {
+                currentData = result;
+                renderReport(result.data, result.sheetName);
+            }
+        } catch (e) {
+            document.getElementById('loadingOverlay').style.display = 'none';
+            // ถ้ารีเฟรชไม่ผ่านก็ปล่อยไว้ที่หน้าเดิม
+        }
+    }
+
     function handleFile() {
         const file = document.getElementById('fileIn').files[0];
         if(!file) return;
+        
+        // ล้างค่า input ทันทีเผื่อแนบไฟล์เดิมซ้ำจะได้ทำงานต่อได้
+        document.getElementById('fileIn').value = ""; 
+
         const reader = new FileReader();
         reader.onload = async (e) => {
             // แสดง Popup Loading พร้อม Progress Bar
@@ -654,7 +849,6 @@
                 `
             });
 
-            // จำลอง Progress เนื่องจาก Fetch ไม่รองรับ Progress stream สำหรับ upload ไปยัง GAS ตรงๆ
             let progress = 0;
             const progressInterval = setInterval(() => {
                 if (progress < 90) {
@@ -671,12 +865,14 @@
                 if (pt) pt.innerText = val + '%';
             }
 
+            // ส่งข้อมูลเดือน (targetMonth) ไปด้วย เพื่อให้ App Script อัปเดตคอลัมน์ได้ถูกต้อง
             const payload = {
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
                 sheetName: currentData.sheetName,
                 rowIndex: currentData.rowIndex,
                 studentName: currentData.data["ชื่อ-นามสกุล"],
                 type: targetType,
+                month: targetType === 'food' ? targetMonth : "", 
                 image: e.target.result
             };
 
@@ -701,7 +897,10 @@
                                 <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b>โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
                         `
-                    }).then(() => location.reload());
+                    }).then(() => {
+                        // โหลดข้อมูลมารีเฟรชตารางแทนการเด้งไปหน้าแรก
+                        refreshDataWithoutReload();
+                    });
                 } else {
                     Swal.fire({
                         background: 'transparent',
