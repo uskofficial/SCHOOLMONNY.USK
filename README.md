@@ -373,24 +373,30 @@
         .fp-date { font-size: 15px; color: #333; }
         
         .fp-grid {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: space-between;
-            overflow-x: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* แสดง 2 เดือนต่อ 1 แถว บนหน้าจอมือถือเล็ก */
+            gap: 10px;
             padding-bottom: 10px;
         }
+        @media (min-width: 500px) {
+            .fp-grid { grid-template-columns: repeat(3, 1fr); } /* แสดง 3 เดือนต่อ 1 แถว บนหน้าจอมือถือแนวนอน/แท็บเล็ต */
+        }
+        @media (min-width: 800px) {
+            .fp-grid { grid-template-columns: repeat(6, 1fr); } /* แสดง 6 เดือนเรียงยาว บนหน้าจอคอมพิวเตอร์ */
+        }
         .fp-col {
-            flex: 1;
-            min-width: 90px;
             text-align: center;
-            border-right: 2px solid #ec4899;
-            padding: 0 5px;
+            background: #ffffff;
+            border: 1px solid #ec4899;
+            border-radius: 6px;
+            padding: 10px 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: space-between;
             gap: 8px;
         }
-        .fp-col:last-child { border-right: none; }
+        
         .fp-month-name { font-size: 15px; font-weight: 500; color: #333; }
         
         .fp-badge {
