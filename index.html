@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
 
     <style>
@@ -613,7 +614,8 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx5P6zROncjUbRgHvp2K4yiUBDi8_UYVcABVOJphubhCn4Au7KFHK9rFNo3gYXft38/exec";
     let currentData = null;
     let targetType = "";
-    let targetMonth = ""; // ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
+    let targetMonth = "";
+    // ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
     let clockInterval = null;
 
     // ฟังก์ชันช่วยค้นหาลิงก์ไฟล์แนบจากข้อมูล Data
@@ -730,7 +732,6 @@
         const wait = document.getElementById('waitDorm');
         const waitTitle = document.getElementById('waitDormTitle');
         const waitSub = document.getElementById('waitDormSub');
-        
         // อ่านค่าสถานะหลัก (ป้ายกำกับ) 
         let dormStatus = d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ";
         let vStatus = (verifyStatus || "").trim();
@@ -740,8 +741,8 @@
         wait.style.display = 'none';
 
         let dormLink = d ? getAttachmentLink(d, "หอพัก") : "";
-        let linkHtml = dormLink ? `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px;">ดูสลิปที่แนบล่าสุด</a>` : "";
-
+        let linkHtml = dormLink ?
+        `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px;">ดูสลิปที่แนบล่าสุด</a>` : "";
         if (vStatus.includes("รอตรวจสอบ")) {
             // รอตรวจสอบ -> ซ่อนปุ่มแนบ, แสดงข้อความ "รอตรวจสอบการโอนอัตโนมัติ"
             btn.style.display = 'none';
@@ -765,7 +766,8 @@
             waitSub.innerHTML = "ขอบคุณสำหรับการแนบหลักฐานยืนยัน" + linkHtml;
         } else if (vStatus !== "") {
             // สถานะอื่นๆ ที่แอดมินพิมพ์เอง (แค่ดึงข้อมูลมาแสดงตามที่ระบุ)
-            btn.style.display = 'none'; // ซ่อนปุ่มไว้ก่อนเพื่อความปลอดภัย ป้องกันการแนบซ้ำ
+            btn.style.display = 'none';
+            // ซ่อนปุ่มไว้ก่อนเพื่อความปลอดภัย ป้องกันการแนบซ้ำ
             wait.style.display = 'block';
             waitTitle.innerText = vStatus;
             waitTitle.style.color = "#1e3a8a"; // ใช้สีน้ำเงินเข้มเพื่อให้ดูเป็นข้อความทั่วไป
@@ -814,7 +816,7 @@
                 totalUnpaid += amt;
                 statClass = "unpaid";
                 actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
-         
+        
             } else if (stat.includes("ชำระแล้ว")) {
                 statClass = "paid";
                 actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
@@ -830,6 +832,7 @@
                     <div class="fp-month-name">${m}</div>
                     <div class="fp-badge ${statClass}">${stat}</div>
                     <div class="fp-amount">${amt.toLocaleString()} บาท</div>
+    
                     ${actionHtml}
                 </div>
             `;
@@ -843,25 +846,33 @@
                 <div class="food-popup-container">
                     <div class="fp-header">
                         <div class="fp-title">ค่าอาหารรายเดือน 1/2569 <span style="font-size:15px; font-weight:300;">( Boarding Fee )</span></div>
+                 
                         <div class="fp-date">${dateStr} เวลา ${timeStr}</div>
                     </div>
                     
                     <div class="fp-grid">
                         ${colsHtml}
+     
                     </div>
 
                     <div class="fp-note">
                         ขอความกรุณาท่านดำเนินการแนบหลักฐานการโอนเงิน สำหรับยอดค้างชำระค่าอาหารรายเดือนในแต่ละรอบเดือน เพื่อความถูกต้องในการตรวจสอบข้อมูล และปรับปรุงสถานะยอดค้างชำระของท่านให้เป็นปัจจุบัน
                     </div>
 
+                 
                     <div class="fp-total-row">
                         <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:300; color:#555;">( Total Outstanding Balance )</span></div>
                         <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
                     </div>
+                    
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button onclick="Swal.close()" style="background-color: #1e3a8a; color: white; border: none; padding: 10px 40px; border-radius: 8px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
+                    </div>
                 </div>
+ 
             `,
             showConfirmButton: false,
-            showCloseButton: true,
+            showCloseButton: false,
             width: '850px',
             customClass: { popup: 'swal-food-popup' }
         });
@@ -898,13 +909,16 @@
                 background: 'transparent',
                 allowOutsideClick: false,
                 showConfirmButton: false,
+         
                 html: `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                         <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 250px; height: 250px;" autoplay loop></dotlottie-wc>
                         <div id="progressPercent">0%</div>
+   
                         <div class="progress-container">
                             <div id="pb" class="progress-bar"></div>
                         </div>
+                        
                         <h1 style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
                         <p style="color: #ffffff; font-size: 16px; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
@@ -913,11 +927,13 @@
 
             let progress = 0;
             const progressInterval = setInterval(() => {
+           
                 if (progress < 90) {
                     progress += Math.random() * 15;
                     if (progress > 90) progress = 90;
                     updateProgressBar(Math.floor(progress));
                 }
+     
             }, 500);
 
             function updateProgressBar(val) {
@@ -931,6 +947,7 @@
             const payload = {
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
                 sheetName: currentData.sheetName,
+          
                 rowIndex: currentData.rowIndex,
                 studentName: currentData.data["ชื่อ-นามสกุล"],
                 type: targetType,
@@ -948,15 +965,18 @@
                     Swal.fire({
                         background: 'transparent',
                         showConfirmButton: true,
+                      
                         confirmButtonText: 'รับทราบ',
                         confirmButtonColor: '#1e3a8a',
                         allowOutsideClick: false,
                         html: `
+                      
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                                 <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
                                 <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
                                 <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b>โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
+                      
                         `
                     }).then(() => {
                         // โหลดข้อมูลมารีเฟรชตารางแทนการเด้งไปหน้าแรก
@@ -967,12 +987,15 @@
                         background: 'transparent',
                         showConfirmButton: true,
                         confirmButtonText: 'ลองใหม่อีกครั้ง',
+  
                         confirmButtonColor: '#b91c1c',
                         allowOutsideClick: false,
                         html: `
+                           
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                                 <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
                                 <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
+  
                                 <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
                             </div>
                         `
@@ -985,12 +1008,15 @@
                     showConfirmButton: true,
                     confirmButtonText: 'ตกลง',
                     confirmButtonColor: '#b91c1c',
+                
                     html: `
                         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                             <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                       
                             <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
                             <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
                         </div>
+                 
                     `
                 });
             }
@@ -1004,6 +1030,7 @@
             html: `
                 <div style="text-align:center;">
                     <p style="font-size:16px; margin-bottom:10px;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: 229-8-97447-1<br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
+                  
                     <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                     <p style="font-size:12px; color:#666; margin-top:10px;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
                 </div>`,
