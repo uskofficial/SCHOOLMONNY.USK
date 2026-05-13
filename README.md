@@ -593,6 +593,26 @@
     let targetMonth = ""; // ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
     let clockInterval = null;
 
+    // ฟังก์ชันช่วยค้นหาลิงก์ไฟล์แนบจากข้อมูล Data
+    function getAttachmentLink(d, keyword) {
+        const attachWords = ["สลิป", "ไฟล์", "ลิงก์", "แนบ", "หลักฐาน", "URL"];
+        for (let key in d) {
+            // ค้นหาคอลัมน์ที่มีคีย์เวิร์ด (เช่น "พฤษภาคม" หรือ "หอพัก")
+            if (key.includes(keyword)) {
+                let isAttachCol = attachWords.some(w => key.includes(w));
+                if (isAttachCol) {
+                    let val = d[key];
+                    if (val && typeof val === 'string' && val.trim() !== "") {
+                        if (val.startsWith('http')) return val;
+                        // เผื่อกรณีคืนค่ามาเป็นรหัสไฟล์ Drive (ไม่มีช่องว่างและยาวพอสมควร)
+                        if (val.length > 20 && !val.includes(' ')) return 'https://drive.google.com/file/d/' + val + '/view'; 
+                    }
+                }
+            }
+        }
+        return "";
+    }
+
     function startClock() {
         if (clockInterval) clearInterval(clockInterval);
         clockInterval = setInterval(() => {
@@ -648,7 +668,7 @@
         document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getBadgeClass(d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ")}">${d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ"}</span>`;
         document.getElementById('resFeeAmt').innerText = dormAmt.toLocaleString();
         
-        toggleVerifyUI('dorm', d["สถานะการตรวจสอบค่าหอพัก"]);
+        toggleVerifyUI('dorm', d["สถานะการตรวจสอบค่าหอพัก"], d);
 
         let totalFoodOnly = 0;
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
@@ -681,7 +701,7 @@
         return "not-reached";
     }
 
-    function toggleVerifyUI(type, status) {
+    function toggleVerifyUI(type, status, d) {
         // จัดการเฉพาะหอพัก (ส่วนค่าอาหารลบสถานะรอตรวจสอบข้างปุ่มออกแล้ว)
         if (type !== 'dorm') return;
 
@@ -699,23 +719,27 @@
 
         wait.style.display = 'block';
 
+        // ดึงลิงก์ไฟล์แนบค่าหอพัก (ถ้ามี)
+        let dormLink = d ? getAttachmentLink(d, "หอพัก") : "";
+        let linkHtml = dormLink ? `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px;">ดูสลิปที่แนบล่าสุด</a>` : "";
+
         if (status.includes("รอตรวจสอบ")) {
             btn.style.display = 'none';
             waitTitle.innerText = "รอตรวจสอบ";
             waitTitle.style.color = "#d97706";
-            waitSub.innerText = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ";
-        } else if (status.includes("การโอนสำเร็จ")) {
+            waitSub.innerHTML = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ" + linkHtml;
+        } else if (status.includes("การโอนสำเร็จ") || status.includes("ชำระแล้ว")) {
             waitTitle.innerText = "การโอนสำเร็จ";
             waitTitle.style.color = "#15803d";
-            waitSub.innerText = "ขอบคุณสำหรับการแนบหลักฐานยืนยัน";
+            waitSub.innerHTML = "ขอบคุณสำหรับการแนบหลักฐานยืนยัน" + linkHtml;
         } else if (status.includes("การโอนไม่สำเร็จ")) {
             waitTitle.innerText = "การโอนไม่สำเร็จ";
             waitTitle.style.color = "#b91c1c";
-            waitSub.innerText = "โปรดตรวจสอบสลิปให้ถูกต้องและส่งกลับมาอีกครั้ง";
+            waitSub.innerHTML = "โปรดตรวจสอบสลิปให้ถูกต้องและส่งกลับมาอีกครั้ง" + linkHtml;
         } else {
             waitTitle.innerText = status;
             waitTitle.style.color = "#333";
-            waitSub.innerText = "";
+            waitSub.innerHTML = linkHtml;
         }
     }
 
@@ -747,16 +771,20 @@
             let statClass = "";
             let actionHtml = "";
 
+            // ค้นหาลิงก์ไฟล์แนบของเดือนนั้นๆ
+            let fileLink = getAttachmentLink(d, m);
+            let linkAction = fileLink ? `onclick="window.open('${fileLink}', '_blank')"` : `onclick="Swal.fire('ไม่พบข้อมูล', 'ไม่พบลิงก์ไฟล์แนบในระบบ', 'info')"`;
+
             if (stat.includes("ค้างชำระ")) {
                 totalUnpaid += amt;
                 statClass = "unpaid";
                 actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
             } else if (stat.includes("ชำระแล้ว")) {
                 statClass = "paid";
-                actionHtml = `<div class="fp-file-link">ไฟล์แนบ</div>`;
+                actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
             } else if (stat.includes("รอตรวจสอบ")) {
                 statClass = "pending";
-                actionHtml = `<div class="fp-file-link">ไฟล์แนบ</div>`;
+                actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
             } else {
                 statClass = "not-due";
             }
