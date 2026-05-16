@@ -28,7 +28,8 @@
             --light-blue: #eff6ff;
             --footer-dark: #122863; 
         }
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box;
+}
         
         body { 
             font-family: 'Kanit', sans-serif;
@@ -53,7 +54,8 @@
             z-index: 9999;
             padding: 20px;
         }
-        #loadingOverlay svg { width: 100%; max-width: 600px; height: auto; }
+        #loadingOverlay svg { width: 100%;
+            max-width: 600px; height: auto; }
         .school-text {
             fill: none;
             stroke: #1a237e;
@@ -62,16 +64,22 @@
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-        .dash-animation { animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite; }
+}
+        .dash-animation { animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite;
+}
         @keyframes dashArray {
-            0% { stroke-dasharray: 0 1 500 0; }
-            50% { stroke-dasharray: 0 500 1 0; }
-            100% { stroke-dasharray: 500 1 0 0; }
+            0% { stroke-dasharray: 0 1 500 0;
+}
+            50% { stroke-dasharray: 0 500 1 0;
+}
+            100% { stroke-dasharray: 500 1 0 0;
+}
         }
         @keyframes dashOffset {
-            0% { stroke-dashoffset: 1000; }
-            100% { stroke-dashoffset: 0; }
+            0% { stroke-dashoffset: 1000;
+}
+            100% { stroke-dashoffset: 0;
+}
         }
 
         /* --- Not Found Popup --- */
@@ -90,7 +98,7 @@
             z-index: 10000;
             padding: 20px;
             text-align: center;
-        }
+}
         .not-found-content {
             max-width: 500px;
             width: 100%;
@@ -98,13 +106,17 @@
             flex-direction: column;
             align-items: center;
             animation: fadeInScale 0.4s ease-out;
-        }
+}
         @keyframes fadeInScale {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from { transform: scale(0.9);
+            opacity: 0; }
+            to { transform: scale(1); opacity: 1;
+}
         }
-        .not-found-content h2 { color: #ffffff; font-size: 32px; margin: 10px 0; font-weight: 600; }
-        .not-found-content p { color: #e0e0e0; font-size: 18px; margin-bottom: 25px; line-height: 1.5; }
+        .not-found-content h2 { color: #ffffff;
+            font-size: 32px; margin: 10px 0; font-weight: 600; }
+        .not-found-content p { color: #e0e0e0;
+            font-size: 18px; margin-bottom: 25px; line-height: 1.5; }
         .btn-close-notfound {
             background: var(--main-blue);
             color: #ffffff;
@@ -125,7 +137,7 @@
             border-radius: 10px;
             width: 100%;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
+}
         
         .header { 
             display: flex;
@@ -133,9 +145,12 @@
             gap: 15px; 
             margin-bottom: 30px; 
         }
-        .logo-img { width: 80px; height: 80px; object-fit: contain; }
-        .school-info h2 { margin: 0; font-size: 20px; color: #333; }
-        .school-info p { margin: 0; font-size: 15px; color: #555; }
+        .logo-img { width: 80px; height: 80px;
+            object-fit: contain; }
+        .school-info h2 { margin: 0; font-size: 20px; color: #333;
+}
+        .school-info p { margin: 0; font-size: 15px; color: #555;
+}
 
         .search-area { 
             margin-bottom: 30px;
@@ -144,18 +159,18 @@
             gap: 10px; 
             border-bottom: 1px solid #eee; 
             padding-bottom: 25px;
-        }
+}
         input#nameInput { 
             flex: 1;
             min-width: 200px; padding: 12px; border: 1px solid #ccc; border-radius: 8px; 
             font-family: 'Kanit'; font-size: 16px; outline: none;
-        }
+}
         button.btn-search { 
             background: var(--main-blue);
             color: white; border: none; 
             padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; 
             width: 100%; font-weight: 500;
-        }
+}
         .search-hint {
             width: 100%;
             font-size: 13px;
@@ -163,7 +178,7 @@
             margin-top: 8px;
             font-weight: 400;
             text-align: center;
-        }
+}
 
         .info-box { 
             border: 2px solid var(--border-blue);
@@ -172,11 +187,15 @@
             margin-bottom: 25px; 
             background-color: #fff;
         }
-        .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap; }
-        .label { display: inline-block; width: 130px; font-weight: 500; color: #666; }
+        .info-line { font-size: 17px;
+            margin-bottom: 8px; display: flex; flex-wrap: wrap; }
+        .label { display: inline-block; width: 130px;
+            font-weight: 500; color: #666; }
 
-        h3.title { font-size: 17px; color: #333; margin: 30px 0 5px; font-weight: 500; }
-        h3.title span { font-size: 13px; font-weight: 300; color: #666; display: block; }
+        h3.title { font-size: 17px; color: #333;
+            margin: 30px 0 5px; font-weight: 500; }
+        h3.title span { font-size: 13px;
+            font-weight: 300; color: #666; display: block; }
 
         .current-date-time {
             text-align: right;
@@ -196,23 +215,37 @@
             margin-bottom: 10px; 
             flex-wrap: wrap;
             gap: 10px;
-        }
-        .fee-name { font-size: 17px; font-weight: 500; flex: 1; min-width: 150px; }
+}
+        .fee-name { font-size: 17px; font-weight: 500; flex: 1; min-width: 150px;
+}
 
-        .status-badge { padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: 500; display: inline-block; border: 1px solid; }
-        .paid { color: #15803d; border-color: #22c55e; background: #f0fdf4; } 
-        .unpaid { color: #b91c1c; border-color: #ef4444; background: #fef2f2; } 
-        .pending { color: #d97706; border-color: #f59e0b; background: #fffbeb; } 
-        .not-reached { color: #2563eb; border-color: #60a5fa; background: #eff6ff; } 
+        .status-badge { padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: 500;
+            display: inline-block; border: 1px solid; }
+        .paid { color: #15803d; border-color: #22c55e;
+            background: #f0fdf4; } 
+        .unpaid { color: #b91c1c; border-color: #ef4444; background: #fef2f2;
+} 
+        .pending { color: #d97706; border-color: #f59e0b; background: #fffbeb;
+} 
+        .not-reached { color: #2563eb; border-color: #60a5fa; background: #eff6ff;
+} 
 
-        .boarding-box { border: 2px solid var(--border-blue); border-radius: 8px; overflow: hidden; background: #fdfdfd; }
-        .boarding-header { padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 16px; font-weight: 500; background: var(--light-blue); }
-        .month-grid { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; border-bottom: 1px solid #ddd; }
-        .month-item { padding: 10px 5px; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
-        .month-label { font-weight: 500; margin-bottom: 5px; font-size: 13px; color: #444; }
-        .month-amount { font-size: 11px; color: #666; margin-top: 5px; font-weight: bold; }
+        .boarding-box { border: 2px solid var(--border-blue); border-radius: 8px; overflow: hidden;
+            background: #fdfdfd; }
+        .boarding-header { padding: 12px 15px; border-bottom: 1px solid #ddd;
+            font-size: 16px; font-weight: 500; background: var(--light-blue); }
+        .month-grid { display: grid;
+            grid-template-columns: repeat(3, 1fr); text-align: center; border-bottom: 1px solid #ddd; }
+        .month-item { padding: 10px 5px;
+            border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .month-label { font-weight: 500;
+            margin-bottom: 5px; font-size: 13px; color: #444; }
+        .month-amount { font-size: 11px; color: #666;
+            margin-top: 5px; font-weight: bold; }
         
-        .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
+        .total-section { padding: 15px;
+            display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap;
+}
 
         .footer-action { 
             display: flex;
@@ -222,7 +255,7 @@
             margin-top: 10px; 
             margin-bottom: 25px; 
             flex-wrap: wrap;
-        }
+}
         .btn-upload { 
             border: 2px solid var(--pink-btn);
             color: #be185d; 
@@ -235,8 +268,9 @@
             flex: 1;
             min-width: 250px;
             transition: 0.2s;
-        }
-        .btn-upload:hover { background: #fff1f2; }
+}
+        .btn-upload:hover { background: #fff1f2;
+}
         
         .wait-status { 
             text-align: right;
@@ -244,14 +278,16 @@
             min-width: 200px;
             display: none; 
         }
-        .wait-status b { font-size: 18px; display: block; margin-bottom: 2px; }
-        .wait-status span { font-size: 14px; color: #666; display: block; }
+        .wait-status b { font-size: 18px;
+            display: block; margin-bottom: 2px; }
+        .wait-status span { font-size: 14px; color: #666;
+            display: block; }
 
         .payment-btn-box { 
             background: var(--light-blue);
             border: 2px solid var(--border-blue); 
             padding: 15px; text-align: center; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 10px;
-        }
+}
 
         .payment-info-text {
             text-align: center;
@@ -260,7 +296,7 @@
             margin-top: 8px;
             line-height: 1.6;
             padding: 0 15px;
-        }
+}
 
         /* --- Master Footer (Rectangle Design) --- */
         .master-footer {
@@ -270,7 +306,7 @@
             margin-top: 40px;
             border-radius: 0 0 15px 15px;
             position: relative;
-        }
+}
 
         .footer-layout {
             display: grid;
@@ -278,68 +314,95 @@
             gap: 40px;
         }
 
-        .f-left { display: flex; flex-direction: column; gap: 15px; }
-        .f-logo-wrap { margin-bottom: 10px; }
+        .f-left { display: flex; flex-direction: column;
+            gap: 15px; }
+        .f-logo-wrap { margin-bottom: 10px;
+}
         .f-logo-wrap img { 
             width: 140px;
             height: auto; 
         } 
         
-        .f-motto { font-size: 16px; font-weight: 400; line-height: 1.6; }
-        .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #e0e0e0; }
+        .f-motto { font-size: 16px;
+            font-weight: 400; line-height: 1.6; }
+        .f-motto span { display: block; font-weight: 300;
+            font-size: 14px; color: #e0e0e0; }
 
         .f-title-line { 
             font-size: 26px;
             font-weight: 600; margin-top: 15px;
             border-bottom: 3px solid #00aaff; width: fit-content; padding-bottom: 5px;
-        }
+}
 
-        .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: #d0d0d0; text-decoration: none; }
-        .f-contact-item i { margin-top: 4px; font-size: 14px; color: white; width: 20px; text-align: center; }
-        .f-contact-item:hover { color: #00aaff; }
+        .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px;
+}
+        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: #d0d0d0;
+            text-decoration: none; }
+        .f-contact-item i { margin-top: 4px; font-size: 14px; color: white;
+            width: 20px; text-align: center; }
+        .f-contact-item:hover { color: #00aaff;
+}
 
-        .f-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .f-right { display: flex; flex-direction: column; align-items: flex-end;
+}
         .f-follow-head { 
             font-size: 26px;
             font-weight: 600; margin-bottom: 15px;
             border-bottom: 3px solid #ec4899; width: fit-content; padding-bottom: 5px;
-        }
-        .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%; }
+}
+        .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%;
+}
         .f-social-link { 
             display: flex;
             align-items: center; justify-content: flex-end; gap: 12px;
             text-decoration: none; color: white; font-size: 14px; font-weight: 300; transition: 0.2s;
-        }
-        .f-social-link i { font-size: 20px; }
-        .f-social-link:hover { color: #ec4899; }
+}
+        .f-social-link i { font-size: 20px;
+}
+        .f-social-link:hover { color: #ec4899;
+}
 
-        .f-qr-wrap { margin-top: 40px; text-align: right; }
-        .f-qr-wrap img { width: 110px; padding: 5px; background: white; border-radius: 4px; }
-        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 400; }
-        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white; font-weight: 500; }
+        .f-qr-wrap { margin-top: 40px; text-align: right;
+}
+        .f-qr-wrap img { width: 110px; padding: 5px; background: white; border-radius: 4px;
+}
+        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 400;
+}
+        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white;
+            font-weight: 500; }
 
         .f-bottom-bar {
             margin-top: 50px;
             border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
             display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.5);
-        }
+}
 
         @media (max-width: 650px) {
-            .footer-layout { grid-template-columns: 1fr; gap: 50px; }
-            .f-right { align-items: center; text-align: center; }
-            .f-social-grid { align-items: center; }
-            .f-social-link { justify-content: center; width: 100%; }
-            .f-bottom-bar { flex-direction: column; align-items: center; gap: 15px; text-align: center; }
-            .f-qr-wrap { text-align: center; }
+            .footer-layout { grid-template-columns: 1fr;
+            gap: 50px; }
+            .f-right { align-items: center; text-align: center;
+}
+            .f-social-grid { align-items: center;
+}
+            .f-social-link { justify-content: center; width: 100%;
+}
+            .f-bottom-bar { flex-direction: column; align-items: center; gap: 15px;
+            text-align: center; }
+            .f-qr-wrap { text-align: center;
+}
         }
 
         @media (min-width: 600px) {
-            .logo-img { width: 100px; height: 100px; }
-            .school-info h2 { font-size: 24px; }
-            .btn-search { width: auto; }
-            .month-grid { grid-template-columns: repeat(6, 1fr); }
-            .info-box { padding: 25px; }
+            .logo-img { width: 100px;
+            height: 100px; }
+            .school-info h2 { font-size: 24px;
+}
+            .btn-search { width: auto;
+}
+            .month-grid { grid-template-columns: repeat(6, 1fr);
+}
+            .info-box { padding: 25px;
+}
         }
 
         /* --- Progress Bar Styles --- */
@@ -352,21 +415,21 @@
             margin: 20px 0;
             overflow: hidden;
             position: relative;
-        }
+}
         .progress-bar {
             height: 100%;
             width: 0%;
             background: #ffffff;
             box-shadow: 0 0 15px rgba(255,255,255,0.8);
             transition: width 0.3s ease;
-        }
+}
         #progressPercent {
             color: #ffffff;
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
+}
 
         /* --- Food Popup Styles --- */
         .food-popup-container {
@@ -377,7 +440,7 @@
             font-family: 'Kanit', sans-serif;
             text-align: left;
             position: relative;
-        }
+}
         .fp-header {
             display: flex;
             justify-content: space-between;
@@ -387,9 +450,11 @@
             margin-bottom: 15px;
             flex-wrap: wrap;
             gap: 10px;
-        }
-        .fp-title { font-size: 20px; font-weight: 500; color: #333; }
-        .fp-date { font-size: 15px; color: #333; }
+}
+        .fp-title { font-size: 20px; font-weight: 500; color: #333;
+}
+        .fp-date { font-size: 15px; color: #333;
+}
         
         .fp-grid {
             display: grid;
@@ -398,10 +463,12 @@
             padding-bottom: 10px;
         }
         @media (min-width: 500px) {
-            .fp-grid { grid-template-columns: repeat(3, 1fr); } /* แสดง 3 เดือนต่อ 1 แถว บนหน้าจอมือถือแนวนอน/แท็บเล็ต */
+            .fp-grid { grid-template-columns: repeat(3, 1fr);
+} /* แสดง 3 เดือนต่อ 1 แถว บนหน้าจอมือถือแนวนอน/แท็บเล็ต */
         }
         @media (min-width: 800px) {
-            .fp-grid { grid-template-columns: repeat(6, 1fr); } /* แสดง 6 เดือนเรียงยาว บนหน้าจอคอมพิวเตอร์ */
+            .fp-grid { grid-template-columns: repeat(6, 1fr);
+} /* แสดง 6 เดือนเรียงยาว บนหน้าจอคอมพิวเตอร์ */
         }
         .fp-col {
             text-align: center;
@@ -416,7 +483,8 @@
             gap: 8px;
         }
         
-        .fp-month-name { font-size: 15px; font-weight: 500; color: #333; }
+        .fp-month-name { font-size: 15px;
+            font-weight: 500; color: #333; }
         
         .fp-badge {
             padding: 2px 10px;
@@ -425,12 +493,17 @@
             font-weight: 500;
             width: 100%;
         }
-        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: transparent; }
-        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: transparent; }
-        .fp-badge.pending { border-color: #d97706; color: #d97706; background: transparent; }
-        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: transparent; }
+        .fp-badge.unpaid { border-color: #dc2626;
+            color: #dc2626; background: transparent; }
+        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: transparent;
+}
+        .fp-badge.pending { border-color: #d97706; color: #d97706; background: transparent;
+}
+        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: transparent;
+}
         
-        .fp-amount { font-size: 14px; color: #333; }
+        .fp-amount { font-size: 14px;
+            color: #333; }
         
         .fp-btn-upload {
             background: #fdf2f8;
@@ -442,9 +515,11 @@
             width: 100%;
             font-family: 'Kanit';
             transition: 0.2s;
-        }
-        .fp-btn-upload:hover { background: #fbcfe8; }
-        .fp-file-link { font-size: 12px; color: #2563eb; font-weight: 400; margin-top: 4px; }
+}
+        .fp-btn-upload:hover { background: #fbcfe8;
+}
+        .fp-file-link { font-size: 12px; color: #2563eb; font-weight: 400; margin-top: 4px;
+}
         
         .fp-note {
             text-align: center;
@@ -453,7 +528,7 @@
             margin-top: 25px;
             line-height: 1.5;
             padding: 0 10px;
-        }
+}
         .fp-total-row {
             display: flex;
             justify-content: space-between;
@@ -462,12 +537,15 @@
             padding-top: 15px;
             border-top: 1px solid #ccc;
             font-weight: 500;
-        }
-        .fp-total-label { font-size: 18px; color: #333; }
-        .fp-total-val { font-size: 20px; color: #111; }
+}
+        .fp-total-label { font-size: 18px; color: #333;
+}
+        .fp-total-val { font-size: 20px; color: #111;
+}
         
         /* SweetAlert custom container reset for this specific popup */
-        .swal-food-popup { padding: 0 !important; background: transparent !important; }
+        .swal-food-popup { padding: 0 !important;
+            background: transparent !important; }
     </style>
 </head>
 <body>
@@ -481,12 +559,14 @@
             SCHOOL
         </text>
     </svg>
-    <div style="margin-top: 20px; color: #1a237e; letter-spacing: 2px; font-weight: 600; font-size: 18px;">กำลังค้นหาข้อมูล...</div>
+    <div style="margin-top: 20px; color: #1a237e; letter-spacing: 
+            2px; font-weight: 600; font-size: 18px;">กำลังค้นหาข้อมูล...</div>
 </div>
 
 <div id="notFoundOverlay">
     <div class="not-found-content">
-        <dotlottie-wc src="https://lottie.host/63822361-e4de-4fc5-8b6f-a78c2d586b16/CV7OyOVb3x.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+        <dotlottie-wc src="https://lottie.host/63822361-e4de-4fc5-8b6f-a78c2d586b16/CV7OyOVb3x.lottie" style="width: 300px; height: 300px;"
+            autoplay loop></dotlottie-wc>
         <h2>ไม่พบข้อมูลนักเรียน</h2>
         <p>ขออภัยครับ ไม่พบชื่อนี้ในระบบ<br>กรุณาตรวจสอบรายชื่อให้ถูกต้อง</p>
         <button class="btn-close-notfound" onclick="closeNotFound()">ลองใหม่อีกครั้ง</button>
@@ -502,7 +582,8 @@
         </div>
     </div>
 
-    <div id="searchArea" class="search-area">
+    <div 
+        id="searchArea" class="search-area">
         <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน">
         <button class="btn-search" onclick="doSearch()">ค้นหา</button>
         <div class="search-hint">"พิมพ์ ชื่อ - นามสกุล โดยไม่ต้องมีคำนำหน้า เด็กชาย , เด็กหญิง , นาย , นางสาว"</div>
@@ -512,17 +593,20 @@
         <div class="info-box">
             <div class="info-line"><span class="label">ชื่อ - สกุล :</span> <span id="resName"></span></div>
             <div class="info-line"><span class="label">โปรแกรมหอพัก :</span> <span id="resProg"></span></div>
-        </div>
+  
+      </div>
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
 
         <div id="realTimeClock" class="current-date-time"></div>
 
         <div class="fee-card">
-            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:300; font-size:13px;">( Dormitory Fee )</span></div>
+            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:300;
+                font-size:13px;">( Dormitory Fee )</span></div>
             <div style="text-align:right">
                 สถานะ <span id="resFeeStatus"></span><br>
-                จำนวนเงิน <b id="resFeeAmt" style="font-size:18px; color: #333;"></b>
+                จำนวนเงิน <b id="resFeeAmt" style="font-size:18px;
+                color: #333;"></b>
             </div>
         </div>
 
@@ -531,15 +615,19 @@
             <div class="wait-status" id="waitDorm">
                 <b id="waitDormTitle"></b>
                 <span id="waitDormSub"></span>
-            </div>
+       
+             </div>
         </div>
 
         <div class="boarding-box">
-            <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px; font-weight:300;">( Boarding Fee )</span></div>
+            <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px;
+                font-weight:300;">( Boarding Fee )</span></div>
             <div id="monthGrid" class="month-grid"></div>
             <div class="total-section">
-                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:12px">( Aggregate Amount Payable )</span></span>
-                <span id="resTotal" style="color: #b91c1c; font-size: 22px;">0 บาท</span>
+                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300;
+                color:#777; font-size:12px">( Aggregate Amount Payable )</span></span>
+                <span id="resTotal" style="color: #b91c1c;
+                font-size: 22px;">0 บาท</span>
             </div>
         </div>
 
@@ -552,12 +640,16 @@
         </div>
 
         <div class="payment-info-text">
-            หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
-            <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a; font-weight: 500; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
+ 
+           หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
+            <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a;
+                font-weight: 500; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
         </div>
 
-        <div style="text-align: center; margin-top: 25px;">
-            <button onclick="location.reload()" style="background: none; border: none; color: #666; text-decoration: underline; cursor: pointer; font-size: 14px;">กลับหน้าค้นหา</button>
+        <div style="text-align: center;
+            margin-top: 25px;">
+            <button onclick="location.reload()" style="background: none; border: none;
+                color: #666; text-decoration: underline; cursor: pointer; font-size: 14px;">กลับหน้าค้นหา</button>
         </div>
     </div>
 
@@ -566,20 +658,24 @@
             <div class="f-left">
                 <div class="f-logo-wrap">
                     <img src="https://i.postimg.cc/G208V1G9/U.jpg" alt="School Logo">
+              
                 </div>
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
                     <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุณธรรม ผูกสัมพันธ์ชุมชน</span>
                 </p>
                 <div class="f-title-line">ติดต่อ</div>
-                <div class="f-contact-list">
+    
+            <div class="f-contact-list">
                     <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" class="f-contact-item" target="_blank">
                         <i class="fas fa-home"></i> 
                         โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130
-                    </a>
+     
+                </a>
                     <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-phone"></i> 076 - 678 - 1234</a>
                     <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-fax"></i> 076 - 678 - 1234</a>
                     <a href="mailto:uskofficial01@gmail.com" class="f-contact-item"><i class="fas fa-envelope"></i> uskofficial01@gmail.com</a>
+  
                 </div>
             </div>
 
@@ -587,21 +683,25 @@
                 <div class="f-follow-head">ติดตาม</div>
                 <div class="f-social-grid">
                     <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
-                    <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+ 
+                   <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
                     <a href="https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IJfkyKHJJ" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-tiktok"></i></a>
                     <a href="https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-instagram"></i></a>
-                    <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
+                    <a href="https://lin.ee/7F62GMA" class="f-social-link" 
+                        target="_blank">@837fnedn <i class="fab fa-line"></i></a>
                     <a href="https://youtube.com/@uskofficial01?si=qLXB83PoYvydWuBY" class="f-social-link" target="_blank">uskofficial01 <i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="f-qr-wrap">
                     <img src="https://i.postimg.cc/5N778H5g/Untitled-design.png" alt="QR Apply">
+               
                     <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
                 </div>
             </div>
         </div>
 
         <div class="f-bottom-bar">
-            <span>© 2026 COPYRIGHT : UTTAYANSUKSAKRABI SCHOOL . All right reserved</span>
+            <span>© 2026 COPYRIGHT : UTTAYANSUKSAKRABI SCHOOL .
+                All right reserved</span>
             <span>ผลิตสื่อโดย: โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130 จำนวน 1 ชุด ตามเวลาที่ปรากฎ ที่ส่งมาในครั้งนี้</span>
         </div>
     </div>
@@ -614,7 +714,8 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx5P6zROncjUbRgHvp2K4yiUBDi8_UYVcABVOJphubhCn4Au7KFHK9rFNo3gYXft38/exec";
     let currentData = null;
     let targetType = "";
-    let targetMonth = ""; // ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
+    let targetMonth = "";
+    // ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
     let clockInterval = null;
 
     // ฟังก์ชันช่วยค้นหาลิงก์ไฟล์แนบจากข้อมูล Data
@@ -645,6 +746,7 @@
             const timeStr = now.toLocaleTimeString('th-TH');
             const clockEl = document.getElementById('realTimeClock');
             if (clockEl) clockEl.innerText = `ข้อมูล ณ วันที่: ${dateStr} | เวลา: ${timeStr} น.`;
+    
         }, 1000);
     }
 
@@ -705,11 +807,13 @@
                 totalFoodOnly += amt; 
             }
 
+      
             gridHTML += `
                 <div class="month-item">
                     <div class="month-label">${m}</div>
                     <span class="status-badge ${getBadgeClass(stat)}">${stat}</span>
                     <div class="month-amount">${amt.toLocaleString()} บ.</div>
+          
                 </div>`;
         });
         
@@ -731,7 +835,6 @@
         const wait = document.getElementById('waitDorm');
         const waitTitle = document.getElementById('waitDormTitle');
         const waitSub = document.getElementById('waitDormSub');
-        
         // อ่านค่าสถานะหลัก (ป้ายกำกับ) 
         let dormStatus = d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ";
         let vStatus = (verifyStatus || "").trim();
@@ -742,8 +845,7 @@
 
         let dormLink = d ? getAttachmentLink(d, "หอพัก") : "";
         let linkHtml = dormLink ?
-        `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px;">ดูสลิปที่แนบล่าสุด</a>` : "";
-
+            `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px;">ดูสลิปที่แนบล่าสุด</a>` : "";
         // ย้าย "ชำระแล้ว" หรือ "การโอนสำเร็จ" ขึ้นมาตรวจสอบเป็นอันดับแรกเสมอ
         if (dormStatus.includes("ชำระแล้ว") || vStatus.includes("การโอนสำเร็จ") || vStatus.includes("สำเร็จ") || vStatus.includes("ชำระแล้ว")) {
             // โอนสำเร็จ หรือ ชำระแล้ว -> ซ่อนปุ่ม, แสดง "การโอนสำเร็จ"
@@ -788,7 +890,8 @@
     }
 
     function triggerFoodMonthUpload(month) {
-        Swal.close(); // ปิด Pop-up ก่อน
+        Swal.close();
+        // ปิด Pop-up ก่อน
         targetType = 'food';
         targetMonth = month;
         document.getElementById('fileIn').click();
@@ -817,6 +920,7 @@
                 totalUnpaid += amt;
                 statClass = "unpaid";
                 actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
+        
             } else if (stat.includes("ชำระแล้ว")) {
                 statClass = "paid";
                 actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
@@ -832,6 +936,7 @@
                     <div class="fp-month-name">${m}</div>
                     <div class="fp-badge ${statClass}">${stat}</div>
                     <div class="fp-amount">${amt.toLocaleString()} บาท</div>
+    
                     ${actionHtml}
                 </div>
             `;
@@ -840,36 +945,43 @@
         const now = new Date();
         const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
         const timeStr = now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'}) + ' น.';
-        
         Swal.fire({
             html: `
                 <div class="food-popup-container">
                     <div class="fp-header">
                         <div class="fp-title">ค่าอาหารรายเดือน 1/2569 <span style="font-size:15px; font-weight:300;">( Boarding Fee )</span></div>
+                 
                         <div class="fp-date">${dateStr} เวลา ${timeStr}</div>
                     </div>
                     
                     <div class="fp-grid">
                         ${colsHtml}
+     
                     </div>
 
                     <div class="fp-note">
                         ขอความกรุณาท่านดำเนินการแนบหลักฐานการโอนเงิน สำหรับยอดค้างชำระค่าอาหารรายเดือนในแต่ละรอบเดือน เพื่อความถูกต้องในการตรวจสอบข้อมูล และปรับปรุงสถานะยอดค้างชำระของท่านให้เป็นปัจจุบัน
                     </div>
 
+                 
                     <div class="fp-total-row">
                         <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:300; color:#555;">( Total Outstanding Balance )</span></div>
                         <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
                     </div>
-                    
-                    <div style="text-align: center; margin-top: 25px;">
-                        <button onclick="Swal.close()" style="background-color: #1e3a8a; color: white; border: none; padding: 10px 40px; border-radius: 8px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
+                 
+    
+                    <div style="text-align: center;
+                        margin-top: 25px;">
+                        <button onclick="Swal.close()" style="background-color: #1e3a8a;
+                            color: white; border: none; padding: 10px 40px; border-radius: 8px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer;
+                            font-weight: 500;">ปิดหน้าต่าง</button>
                     </div>
                 </div>
             `,
             showConfirmButton: false,
             showCloseButton: false,
             width: '850px',
+            
             customClass: { popup: 'swal-food-popup' }
         });
     }
@@ -882,6 +994,7 @@
             const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
             const result = await res.json();
          
+ 
             document.getElementById('loadingOverlay').style.display = 'none';
             if (result.found) {
                 currentData = result;
@@ -906,46 +1019,54 @@
                 background: 'transparent',
                 allowOutsideClick: false,
                 showConfirmButton: false,
+         
                 html: `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                         <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 250px; height: 250px;" autoplay loop></dotlottie-wc>
                         <div id="progressPercent">0%</div>
+   
                         <div class="progress-container">
                             <div id="pb" class="progress-bar"></div>
                         </div>
+                        
                         <h1 style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
-                        <p style="color: #ffffff; font-size: 16px; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
+                        <p style="color: #ffffff;
+                            font-size: 16px; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
                 `
             });
 
             let progress = 0;
             const progressInterval = setInterval(() => {
+           
                 if (progress < 90) {
                     progress += Math.random() * 15;
                     if (progress > 90) progress = 90;
                     updateProgressBar(Math.floor(progress));
                 }
+     
             }, 500);
 
             function updateProgressBar(val) {
                 const pb = document.getElementById('pb');
                 const pt = document.getElementById('progressPercent');
                 if (pb) pb.style.width = val + '%';
-                if (pt) pt.innerText = val + '%';
+                if (pt) 
+                    pt.innerText = val + '%';
             }
 
             // ส่งข้อมูลเดือน (targetMonth) ไปด้วย เพื่อให้ App Script อัปเดตคอลัมน์ได้ถูกต้อง
             const payload = {
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
                 sheetName: currentData.sheetName,
+          
                 rowIndex: currentData.rowIndex,
                 studentName: currentData.data["ชื่อ-นามสกุล"],
                 type: targetType,
-                month: targetType === 'food' ? targetMonth : "", 
+                month: targetType === 'food' ?
+                    targetMonth : "", 
                 image: e.target.result
             };
-
             try {
                 const res = await fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) });
                 const result = await res.json();
@@ -957,15 +1078,19 @@
                     Swal.fire({
                         background: 'transparent',
                         showConfirmButton: true,
+                      
                         confirmButtonText: 'รับทราบ',
                         confirmButtonColor: '#1e3a8a',
                         allowOutsideClick: false,
                         html: `
+                      
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                                 <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
+                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 
+                                    3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
                                 <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b>โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
+                      
                         `
                     }).then(() => {
                         // โหลดข้อมูลมารีเฟรชตารางแทนการเด้งไปหน้าแรก
@@ -976,13 +1101,17 @@
                         background: 'transparent',
                         showConfirmButton: true,
                         confirmButtonText: 'ลองใหม่อีกครั้ง',
+ 
                         confirmButtonColor: '#b91c1c',
                         allowOutsideClick: false,
                         html: `
+                          
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                                 <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
                                 <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
-                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
+ 
+                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message ||
+                                    'เกิดข้อผิดพลาด'}</p>
                             </div>
                         `
                     });
@@ -994,12 +1123,15 @@
                     showConfirmButton: true,
                     confirmButtonText: 'ตกลง',
                     confirmButtonColor: '#b91c1c',
+                
                     html: `
                         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif;">
                             <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                       
                             <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
                             <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
                         </div>
+                 
                     `
                 });
             }
@@ -1013,10 +1145,14 @@
             html: `
                 <div style="text-align:center;">
                     <p style="font-size:16px; margin-bottom:10px;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: 229-8-97447-1<br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
+                  
                     <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                     <p style="font-size:12px; color:#666; margin-top:10px;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
                 </div>`,
-            showCloseButton: true, showConfirmButton: false
+            showCloseButton: false, 
+            showConfirmButton: true,
+            confirmButtonText: 'ปิดหน้าต่าง',
+            confirmButtonColor: '#1e3a8a'
         });
     }
 </script>
