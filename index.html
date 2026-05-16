@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -17,25 +18,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
 
     <style>
         :root { 
             --main-blue: #1e3a8a;
-            --border-blue: #1e3a8a; 
+            --border-blue: rgba(30, 58, 138, 0.3); 
             --pink-btn: #ec4899; 
-            --light-blue: #eff6ff;
-            --footer-dark: #122863; 
+            --light-blue: rgba(239, 246, 255, 0.6); 
+            --footer-dark: rgba(18, 40, 99, 0.85);
         }
         * { box-sizing: border-box; }
         
         body { 
-            font-family: sans-serif;
-            background-color: #f8fafc; 
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            background-attachment: fixed;
             margin: 0; 
             padding: 10px; 
-            color: #333; 
+            color: #111; 
         }
 
         /* --- Loading Overlay --- */
@@ -45,7 +46,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             display: none;
             flex-direction: column;
             align-items: center;
@@ -81,8 +84,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             display: none;
             flex-direction: column;
             align-items: center;
@@ -98,33 +102,49 @@
             flex-direction: column;
             align-items: center;
             animation: fadeInScale 0.4s ease-out;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
         @keyframes fadeInScale {
             from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        .not-found-content h2 { color: #ffffff; font-size: 32px; margin: 10px 0; font-weight: 600; }
-        .not-found-content p { color: #e0e0e0; font-size: 18px; margin-bottom: 25px; line-height: 1.5; }
+        .not-found-content h2 { color: #ffffff; font-size: 32px; margin: 10px 0; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .not-found-content p { color: #f0f0f0; font-size: 18px; margin-bottom: 25px; line-height: 1.5; font-weight: 400; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         .btn-close-notfound {
-            background: var(--main-blue);
+            background: rgba(255, 255, 255, 0.25);
             color: #ffffff;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 12px 40px;
             border-radius: 50px;
-            font-family: sans-serif;
+            font-family: 'Kanit', sans-serif;
             font-size: 18px;
+            font-weight: 500;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
+        .btn-close-notfound:hover { background: rgba(255, 255, 255, 0.4); }
 
+        /* --- Main Container (Glassmorphism) --- */
         .container { 
             max-width: 750px;
             margin: auto; 
-            background: white;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 25px;
             width: 100%;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
         
         .header { 
@@ -133,63 +153,60 @@
             gap: 15px; 
             margin-bottom: 30px; 
         }
-        .logo-img { width: 80px; height: 80px; object-fit: contain; }
-        .school-info h2 { margin: 0; font-size: 20px; color: #333; }
-        .school-info p { margin: 0; font-size: 15px; color: #555; }
+        .logo-img { width: 80px; height: 80px; object-fit: contain; border-radius: 20px; }
+        .school-info h2 { margin: 0; font-size: 22px; color: #111; font-weight: 600; }
+        .school-info p { margin: 0; font-size: 15px; color: #333; font-weight: 400; }
 
         .search-area { 
             margin-bottom: 30px;
             display: flex; 
             flex-wrap: wrap; 
             gap: 10px; 
-            border-bottom: 1px solid #eee; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15); 
             padding-bottom: 25px;
         }
         input#nameInput { 
             flex: 1;
-            min-width: 200px; padding: 12px; border: 1px solid #ccc; border-radius: 8px; 
-            font-family: sans-serif; font-size: 16px; outline: none;
+            min-width: 200px; padding: 12px; 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border-radius: 12px; 
+            font-family: 'Kanit', sans-serif; font-size: 16px; outline: none;
+            color: #111;
+            font-weight: 500;
         }
+        input#nameInput::placeholder { color: #555; font-weight: 400; }
         button.btn-search { 
             background: var(--main-blue);
             color: white; border: none; 
-            padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; 
+            padding: 12px 30px; border-radius: 12px; cursor: pointer; font-size: 16px; 
             width: 100%; font-weight: 500;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
         }
         .search-hint {
             width: 100%;
             font-size: 13px;
-            color: #ef4444;
+            color: #dc2626;
             margin-top: 8px;
-            font-weight: 400;
+            font-weight: 500;
             text-align: center;
         }
 
-        .info-box { 
-            border: 2px solid var(--border-blue);
-            border-radius: 8px; 
+        /* --- Inner Cards (Glassmorphism) --- */
+        .info-box, .fee-card, .boarding-box { 
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 15px; 
             padding: 15px; 
             margin-bottom: 25px; 
-            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-        .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap; }
-        .label { display: inline-block; width: 130px; font-weight: 500; color: #666; }
-
-        h3.title { font-size: 17px; color: #333; margin: 30px 0 5px; font-weight: 500; }
-        h3.title span { font-size: 13px; font-weight: 300; color: #666; display: block; }
-
-        .current-date-time {
-            text-align: right;
-            font-size: 14px;
-            color: #1e3a8a;
-            margin-bottom: 8px;
-            font-weight: 400;
-        }
-
+        
         .fee-card { 
-            border: 2px solid var(--border-blue);
-            border-radius: 8px; 
-            padding: 15px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -197,132 +214,151 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        .fee-name { font-size: 17px; font-weight: 500; flex: 1; min-width: 150px; }
 
-        .status-badge { padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: 500; display: inline-block; border: 1px solid; }
-        .paid { color: #15803d; border-color: #22c55e; background: #f0fdf4; } 
-        .unpaid { color: #b91c1c; border-color: #ef4444; background: #fef2f2; } 
-        .pending { color: #d97706; border-color: #f59e0b; background: #fffbeb; } 
-        .not-reached { color: #2563eb; border-color: #60a5fa; background: #eff6ff; } 
+        .boarding-box { padding: 0; overflow: hidden; } 
 
-        .boarding-box { border: 2px solid var(--border-blue); border-radius: 8px; overflow: hidden; background: #fdfdfd; }
-        .boarding-header { padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 16px; font-weight: 500; background: var(--light-blue); }
-        .month-grid { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; border-bottom: 1px solid #ddd; }
-        .month-item { padding: 10px 5px; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
-        .month-label { font-weight: 500; margin-bottom: 5px; font-size: 13px; color: #444; }
-        .month-amount { font-size: 11px; color: #666; margin-top: 5px; font-weight: bold; }
+        .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap; color: #111; font-weight: 500;}
+        .label { display: inline-block; width: 130px; font-weight: 600; color: #444; }
+
+        h3.title { font-size: 18px; color: #111; margin: 30px 0 5px; font-weight: 600; }
+        h3.title span { font-size: 14px; font-weight: 400; color: #444; display: block; }
+
+        .current-date-time {
+            text-align: right; font-size: 14px;
+            color: #1e3a8a; margin-bottom: 8px; font-weight: 500;
+        }
+
+        .fee-name { font-size: 17px; font-weight: 600; color: #111; flex: 1; min-width: 150px; }
+
+        .status-badge { 
+            padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 600;
+            display: inline-block; border: 1px solid; 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .paid { color: #15803d; border-color: #22c55e; } 
+        .unpaid { color: #b91c1c; border-color: #ef4444; } 
+        .pending { color: #d97706; border-color: #f59e0b; } 
+        .not-reached { color: #2563eb; border-color: #60a5fa; } 
+
+        .boarding-header { 
+            padding: 12px 15px; border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 16px; font-weight: 600; color: #111;
+            background: rgba(255, 255, 255, 0.4); 
+        }
+        .month-grid { 
+            display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+        }
+        .month-item { 
+            padding: 10px 5px;
+            border-right: 1px solid rgba(0, 0, 0, 0.05); 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+        }
+        .month-label { font-weight: 600; margin-bottom: 5px; font-size: 14px; color: #222; }
+        .month-amount { font-size: 12px; color: #444; margin-top: 5px; font-weight: bold; }
         
-        .total-section { padding: 15px; display: flex; justify-content: space-between; font-weight: 600; font-size: 17px; background: #fff; flex-wrap: wrap; }
-
-        .footer-action { 
-            display: flex;
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 15px; 
-            margin-top: 10px; 
-            margin-bottom: 25px; 
+        .total-section { 
+            padding: 15px; display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; font-size: 17px; color: #111;
+            background: rgba(255, 255, 255, 0.3); 
             flex-wrap: wrap;
         }
-        .btn-upload { 
-            border: 2px solid var(--pink-btn);
-            color: #be185d; 
-            background: white; 
-            padding: 12px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 16px; 
-            font-weight: 500; 
-            flex: 1;
-            min-width: 250px;
-            transition: 0.2s;
+
+        .footer-action { 
+            display: flex; justify-content: space-between; align-items: center; 
+            gap: 15px; margin-top: 10px; margin-bottom: 25px; flex-wrap: wrap;
         }
-        .btn-upload:hover { background: #fff1f2; }
         
-        .wait-status { 
-            text-align: right;
-            flex: 1;
-            min-width: 200px;
-            display: none; 
+        /* Glassy Upload Buttons */
+        .btn-upload { 
+            border: 1px solid rgba(236, 72, 153, 0.6);
+            color: #be185d; 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 12px; border-radius: 12px; cursor: pointer; 
+            font-size: 16px; font-weight: 600; flex: 1; min-width: 250px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.15);
         }
-        .wait-status b { font-size: 18px; display: block; margin-bottom: 2px; }
-        .wait-status span { font-size: 14px; color: #666; display: block; }
+        .btn-upload:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(236, 72, 153, 0.25); }
+        
+        .wait-status { text-align: right; flex: 1; min-width: 200px; display: none; }
+        .wait-status b { font-size: 18px; display: block; margin-bottom: 2px; font-weight: 600;}
+        .wait-status span { font-size: 14px; color: #444; display: block; }
 
         .payment-btn-box { 
-            background: var(--light-blue);
-            border: 2px solid var(--border-blue); 
-            padding: 15px; text-align: center; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid var(--main-blue); 
+            color: var(--main-blue);
+            padding: 15px; text-align: center; border-radius: 15px; 
+            font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.15);
+            transition: 0.3s;
         }
+        .payment-btn-box:hover { background: var(--main-blue); color: white; }
 
         .payment-info-text {
-            text-align: center;
-            font-size: 11px;
-            color: #777;
-            margin-top: 8px;
-            line-height: 1.6;
-            padding: 0 15px;
+            text-align: center; font-size: 12px; color: #333; font-weight: 500;
+            margin-top: 10px; line-height: 1.6; padding: 0 15px;
         }
 
-        /* --- Master Footer (Rectangle Design) --- */
+        /* --- Master Footer (Glassmorphism) --- */
         .master-footer {
             background-color: var(--footer-dark);
-            color: white;
-            padding: 40px 30px 15px;
-            margin-top: 40px;
-            border-radius: 0 0 15px 15px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            color: white; padding: 40px 30px 15px; margin-top: 40px;
+            border-radius: 25px; 
             position: relative;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .footer-layout {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
-        }
+        .footer-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; }
 
         .f-left { display: flex; flex-direction: column; gap: 15px; }
         .f-logo-wrap { margin-bottom: 10px; }
-        .f-logo-wrap img { 
-            width: 140px;
-            height: auto; 
-        } 
+        .f-logo-wrap img { width: 140px; height: auto; border-radius: 15px; background: white; padding: 5px; } 
         
-        .f-motto { font-size: 16px; font-weight: 400; line-height: 1.6; }
-        .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #e0e0e0; }
+        .f-motto { font-size: 16px; font-weight: 500; line-height: 1.6; }
+        .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #f0f0f0; margin-top: 5px;}
 
         .f-title-line { 
-            font-size: 26px;
-            font-weight: 600; margin-top: 15px;
-            border-bottom: 3px solid #00aaff; width: fit-content; padding-bottom: 5px;
+            font-size: 26px; font-weight: 600; margin-top: 15px;
+            border-bottom: 3px solid rgba(0, 170, 255, 0.8); width: fit-content; padding-bottom: 5px;
         }
 
         .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: #d0d0d0; text-decoration: none; }
-        .f-contact-item i { margin-top: 4px; font-size: 14px; color: white; width: 20px; text-align: center; }
+        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #e0e0e0; text-decoration: none; font-weight: 400;}
+        .f-contact-item i { margin-top: 4px; font-size: 16px; color: white; width: 20px; text-align: center; }
         .f-contact-item:hover { color: #00aaff; }
 
         .f-right { display: flex; flex-direction: column; align-items: flex-end; }
         .f-follow-head { 
-            font-size: 26px;
-            font-weight: 600; margin-bottom: 15px;
-            border-bottom: 3px solid #ec4899; width: fit-content; padding-bottom: 5px;
+            font-size: 26px; font-weight: 600; margin-bottom: 15px;
+            border-bottom: 3px solid rgba(236, 72, 153, 0.8); width: fit-content; padding-bottom: 5px;
         }
         .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%; }
         .f-social-link { 
-            display: flex;
-            align-items: center; justify-content: flex-end; gap: 12px;
-            text-decoration: none; color: white; font-size: 14px; font-weight: 300; transition: 0.2s;
+            display: flex; align-items: center; justify-content: flex-end; gap: 12px;
+            text-decoration: none; color: white; font-size: 15px; font-weight: 400; transition: 0.2s;
         }
-        .f-social-link i { font-size: 20px; }
+        .f-social-link i { font-size: 22px; }
         .f-social-link:hover { color: #ec4899; }
 
         .f-qr-wrap { margin-top: 40px; text-align: right; }
-        .f-qr-wrap img { width: 110px; padding: 5px; background: white; border-radius: 4px; }
-        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 400; }
-        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white; font-weight: 500; }
+        .f-qr-wrap img { width: 110px; padding: 5px; background: rgba(255,255,255,0.95); border-radius: 12px; }
+        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 500; }
+        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white; font-weight: 600; }
 
         .f-bottom-bar {
-            margin-top: 50px;
-            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
-            display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.5);
+            margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;
+            display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.7);
         }
 
         @media (max-width: 650px) {
@@ -344,130 +380,104 @@
 
         /* --- Progress Bar Styles --- */
         .progress-container {
-            width: 100%;
-            max-width: 300px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-            height: 12px;
-            margin: 20px 0;
-            overflow: hidden;
-            position: relative;
+            width: 100%; max-width: 300px; background: rgba(255,255,255,0.3);
+            border-radius: 20px; height: 12px; margin: 20px 0; overflow: hidden; position: relative;
         }
         .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: #ffffff;
-            box-shadow: 0 0 15px rgba(255,255,255,0.8);
-            transition: width 0.3s ease;
+            height: 100%; width: 0%; background: #ffffff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.9); transition: width 0.3s ease;
         }
         #progressPercent {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            color: #ffffff; font-size: 24px; font-weight: bold; margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
         }
 
-        /* --- Food Popup Styles --- */
+        /* --- Food Popup Styles (Glassmorphism) --- */
         .food-popup-container {
-            background-color: #eef2fa;
-            border: 2px solid var(--main-blue);
-            padding: 20px;
-            border-radius: 0px;
-            font-family: sans-serif;
-            text-align: left;
-            position: relative;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            padding: 25px; border-radius: 25px;
+            font-family: 'Kanit', sans-serif; text-align: left; position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            color: #111;
         }
         .fp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #ec4899;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid rgba(236, 72, 153, 0.8);
+            padding-bottom: 15px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;
         }
-        .fp-title { font-size: 20px; font-weight: 500; color: #333; }
-        .fp-date { font-size: 15px; color: #333; }
+        .fp-title { font-size: 20px; font-weight: 600; color: #111; }
+        .fp-date { font-size: 15px; color: #333; font-weight: 500; }
         
         .fp-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* แสดง 2 เดือนต่อ 1 แถว บนหน้าจอมือถือเล็ก */
-            gap: 10px;
-            padding-bottom: 10px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 10px;
         }
-        @media (min-width: 500px) {
-            .fp-grid { grid-template-columns: repeat(3, 1fr); } /* แสดง 3 เดือนต่อ 1 แถว บนหน้าจอมือถือแนวนอน/แท็บเล็ต */
-        }
-        @media (min-width: 800px) {
-            .fp-grid { grid-template-columns: repeat(6, 1fr); } /* แสดง 6 เดือนเรียงยาว บนหน้าจอคอมพิวเตอร์ */
-        }
+        @media (min-width: 500px) { .fp-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 800px) { .fp-grid { grid-template-columns: repeat(6, 1fr); } }
+        
         .fp-col {
-            text-align: center;
-            background: #ffffff;
-            border: 1px solid #ec4899;
-            border-radius: 6px;
-            padding: 10px 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
+            text-align: center; 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(236, 72, 153, 0.5);
+            border-radius: 12px; padding: 12px 5px;
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 8px;
         }
         
-        .fp-month-name { font-size: 15px; font-weight: 500; color: #333; }
+        .fp-month-name { font-size: 15px; font-weight: 600; color: #111; }
         
         .fp-badge {
-            padding: 2px 10px;
-            border: 1px solid;
-            font-size: 13px;
-            font-weight: 500;
-            width: 100%;
+            padding: 4px 10px; border: 1px solid; font-size: 13px; font-weight: 600; width: 100%; border-radius: 6px;
         }
-        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: transparent; }
-        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: transparent; }
-        .fp-badge.pending { border-color: #d97706; color: #d97706; background: transparent; }
-        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: transparent; }
+        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: rgba(220, 38, 38, 0.15); }
+        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: rgba(22, 163, 74, 0.15); }
+        .fp-badge.pending { border-color: #d97706; color: #d97706; background: rgba(217, 119, 6, 0.15); }
+        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: rgba(37, 99, 235, 0.15); }
         
-        .fp-amount { font-size: 14px; color: #333; }
+        .fp-amount { font-size: 14px; color: #222; font-weight: 500; }
         
         .fp-btn-upload {
-            background: #fdf2f8;
-            border: 1px solid #ec4899;
-            color: #be185d;
-            padding: 4px 8px;
-            font-size: 12px;
-            cursor: pointer;
-            width: 100%;
-            font-family: sans-serif;
-            transition: 0.2s;
+            background: rgba(253, 242, 248, 0.9);
+            border: 1px solid rgba(236, 72, 153, 0.6);
+            color: #be185d; padding: 6px 8px; font-size: 13px; cursor: pointer; width: 100%;
+            border-radius: 8px; font-family: 'Kanit', sans-serif; font-weight: 600; transition: 0.2s;
         }
-        .fp-btn-upload:hover { background: #fbcfe8; }
-        .fp-file-link { font-size: 12px; color: #2563eb; font-weight: 400; margin-top: 4px; }
+        .fp-btn-upload:hover { background: rgba(236, 72, 153, 0.15); }
+        .fp-file-link { font-size: 13px; color: #2563eb; font-weight: 500; margin-top: 4px; }
         
         .fp-note {
-            text-align: center;
-            font-size: 13px;
-            color: #555;
-            margin-top: 25px;
-            line-height: 1.5;
-            padding: 0 10px;
+            text-align: center; font-size: 14px; color: #444; font-weight: 500; margin-top: 25px; line-height: 1.5; padding: 0 10px;
         }
         .fp-total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid #ccc;
-            font-weight: 500;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(0, 0, 0, 0.2); font-weight: 600;
         }
-        .fp-total-label { font-size: 18px; color: #333; }
-        .fp-total-val { font-size: 20px; color: #111; }
+        .fp-total-label { font-size: 18px; color: #111; }
+        .fp-total-val { font-size: 22px; color: #b91c1c; }
         
-        /* SweetAlert custom container reset for this specific popup */
         .swal-food-popup { padding: 0 !important; background: transparent !important; }
+
+        /* --- คลาสพิเศษสำหรับ Popup SweetAlert ทั่วไปให้เป็นกระจกสว่างตัวอักษรชัดเจน --- */
+        .glass-swal-popup {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-radius: 25px !important;
+            border: 1px solid rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25) !important;
+        }
+        .glass-swal-popup .swal2-title {
+            color: #111 !important;
+            font-family: 'Kanit', sans-serif !important;
+            font-weight: 600 !important;
+        }
+        .glass-swal-popup .swal2-html-container {
+            color: #222 !important;
+            font-family: 'Kanit', sans-serif !important;
+        }
     </style>
 </head>
 <body>
@@ -512,18 +522,17 @@
         <div class="info-box">
             <div class="info-line"><span class="label">ชื่อ - สกุล :</span> <span id="resName"></span></div>
             <div class="info-line"><span class="label">โปรแกรมหอพัก :</span> <span id="resProg"></span></div>
-  
-      </div>
+        </div>
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
 
         <div id="realTimeClock" class="current-date-time"></div>
 
         <div class="fee-card">
-            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:300; font-size:13px;">( Dormitory Fee )</span></div>
+            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:400; font-size:13px; color: #555;">( Dormitory Fee )</span></div>
             <div style="text-align:right">
-                สถานะ <span id="resFeeStatus"></span><br>
-                จำนวนเงิน <b id="resFeeAmt" style="font-size:18px; color: #333;"></b>
+                <span style="color:#444; font-weight:600; font-size:14px;">สถานะ</span> <span id="resFeeStatus"></span><br>
+                <span style="color:#444; font-weight:600; font-size:14px;">จำนวนเงิน</span> <b id="resFeeAmt" style="font-size:18px; color: #111;"></b>
             </div>
         </div>
 
@@ -532,16 +541,15 @@
             <div class="wait-status" id="waitDorm">
                 <b id="waitDormTitle"></b>
                 <span id="waitDormSub"></span>
-       
-      </div>
+            </div>
         </div>
 
         <div class="boarding-box">
-            <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px; font-weight:300;">( Boarding Fee )</span></div>
+            <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px; font-weight:400; color: #444;">( Boarding Fee )</span></div>
             <div id="monthGrid" class="month-grid"></div>
             <div class="total-section">
-                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:300; color:#777; font-size:12px">( Aggregate Amount Payable )</span></span>
-                <span id="resTotal" style="color: #b91c1c; font-size: 22px;">0 บาท</span>
+                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:400; color:#555; font-size:12px">( Aggregate Amount Payable )</span></span>
+                <span id="resTotal" style="color: #b91c1c; font-size: 24px;">0 บาท</span>
             </div>
         </div>
 
@@ -554,13 +562,12 @@
         </div>
 
         <div class="payment-info-text">
-     
-      หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
-            <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a; font-weight: 500; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
+            หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
+            <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a; font-weight: 600; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
         </div>
 
         <div style="text-align: center; margin-top: 25px;">
-            <button onclick="location.reload()" style="background: var(--main-blue); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-family: sans-serif; font-weight: 500;">กลับหน้าค้นหา</button>
+            <button onclick="location.reload()" style="background: var(--main-blue); color: white; border: none; padding: 12px 30px; border-radius: 12px; cursor: pointer; font-size: 16px; font-family: 'Kanit', sans-serif; font-weight: 500; box-shadow: 0 4px 15px rgba(30,58,138,0.3);">กลับหน้าค้นหา</button>
         </div>
     </div>
 
@@ -570,33 +577,27 @@
                 <div class="f-logo-wrap">
                     <img src="https://i.postimg.cc/G208V1G9/U.jpg" alt="School Logo">
                 </div>
-    
-            <p class="f-motto">
+                <p class="f-motto">
                     ศิษย์เราเขาคือลูก
                     <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุณธรรม ผูกสัมพันธ์ชุมชน</span>
                 </p>
                 <div class="f-title-line">ติดต่อ</div>
-    
-      
-          <div class="f-contact-list">
+                <div class="f-contact-list">
                     <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" class="f-contact-item" target="_blank">
                         <i class="fas fa-home"></i> 
                         โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130
-       
-             </a>
+                    </a>
                     <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-phone"></i> 076 - 678 - 1234</a>
                     <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-fax"></i> 076 - 678 - 1234</a>
                     <a href="mailto:uskofficial01@gmail.com" class="f-contact-item"><i class="fas fa-envelope"></i> uskofficial01@gmail.com</a>
-    
-            </div>
+                </div>
             </div>
 
             <div class="f-right">
                 <div class="f-follow-head">ติดตาม</div>
                 <div class="f-social-grid">
                     <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
-   
-                 <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
                     <a href="https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IJfkyKHJJ" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-tiktok"></i></a>
                     <a href="https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-instagram"></i></a>
                     <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
@@ -604,8 +605,7 @@
                 </div>
                 <div class="f-qr-wrap">
                     <img src="https://i.postimg.cc/5N778H5g/Untitled-design.png" alt="QR Apply">
-                 
-    <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
+                    <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
                 </div>
             </div>
         </div>
@@ -622,94 +622,93 @@
 <script>
     // อัปเดตลิงก์ Web App ใหม่ตามที่ให้มา
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx5P6zROncjUbRgHvp2K4yiUBDi8_UYVcABVOJphubhCn4Au7KFHK9rFNo3gYXft38/exec";
-let currentData = null;
+    let currentData = null;
     let targetType = "";
     let targetMonth = "";
-// ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
+    // ตัวแปรสำหรับเก็บเดือนที่จะแนบสลิป
     let clockInterval = null;
 
     // ฟังก์ชันช่วยค้นหาลิงก์ไฟล์แนบจากข้อมูล Data
     function getAttachmentLink(d, keyword) {
         const attachWords = ["สลิป", "ไฟล์", "ลิงก์", "แนบ", "หลักฐาน", "URL"];
-for (let key in d) {
+        for (let key in d) {
             // ค้นหาคอลัมน์ที่มีคีย์เวิร์ด (เช่น "พฤษภาคม" หรือ "หอพัก")
             if (key.includes(keyword)) {
                 let isAttachCol = attachWords.some(w => key.includes(w));
-if (isAttachCol) {
+                if (isAttachCol) {
                     let val = d[key];
-if (val && typeof val === 'string' && val.trim() !== "") {
+                    if (val && typeof val === 'string' && val.trim() !== "") {
                         if (val.startsWith('http')) return val;
-// เผื่อกรณีคืนค่ามาเป็นรหัสไฟล์ Drive (ไม่มีช่องว่างและยาวพอสมควร)
+                        // เผื่อกรณีคืนค่ามาเป็นรหัสไฟล์ Drive (ไม่มีช่องว่างและยาวพอสมควร)
                         if (val.length > 20 && !val.includes(' ')) return 'https://drive.google.com/file/d/' + val + '/view';
-}
+                    }
                 }
             }
         }
         return "";
-}
+    }
 
     function startClock() {
         if (clockInterval) clearInterval(clockInterval);
-clockInterval = setInterval(() => {
+        clockInterval = setInterval(() => {
             const now = new Date();
             const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
             const timeStr = now.toLocaleTimeString('th-TH');
             const clockEl = document.getElementById('realTimeClock');
             if (clockEl) clockEl.innerText = `ข้อมูล ณ วันที่: ${dateStr} | เวลา: ${timeStr} น.`;
-    
-    }, 1000);
+        }, 1000);
     }
 
     async function doSearch() {
         const name = document.getElementById('nameInput').value.trim();
-if(!name) return;
+        if(!name) return;
         
         document.getElementById('loadingOverlay').style.display = 'flex';
         
         try {
             const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
-const result = await res.json();
+            const result = await res.json();
             
             document.getElementById('loadingOverlay').style.display = 'none';
 
             if (result.found) {
                 currentData = result;
-renderReport(result.data, result.sheetName);
+                renderReport(result.data, result.sheetName);
                 startClock();
             } else {
                 showNotFound();
-}
+            }
         } catch (e) {
             document.getElementById('loadingOverlay').style.display = 'none';
-Swal.fire('ผิดพลาด', 'ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
+            Swal.fire({title: 'ผิดพลาด', text:'ไม่สามารถเชื่อมต่อฐานข้อมูลได้', icon:'error', customClass: {popup: 'glass-swal-popup'}});
         }
     }
 
     function showNotFound() {
         document.getElementById('notFoundOverlay').style.display = 'flex';
-}
+    }
 
     function closeNotFound() {
         document.getElementById('notFoundOverlay').style.display = 'none';
-}
+    }
 
     function renderReport(d, sheet) {
         document.getElementById('searchArea').style.display = 'none';
-document.getElementById('reportArea').style.display = 'block';
+        document.getElementById('reportArea').style.display = 'block';
         
         document.getElementById('resName').innerText = d["ชื่อ-นามสกุล"];
         document.getElementById('resProg').innerText = sheet;
 
         const dormAmt = Number(d["ยอดค้างค่าธรรมเนียม"] || 0);
-document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getBadgeClass(d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ")}">${d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ"}</span>`;
+        document.getElementById('resFeeStatus').innerHTML = `<span class="status-badge ${getBadgeClass(d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ")}">${d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ"}</span>`;
         document.getElementById('resFeeAmt').innerText = dormAmt.toLocaleString();
         
         toggleVerifyUI('dorm', d["สถานะการตรวจสอบค่าหอพัก"], d);
 
         let totalFoodOnly = 0;
-const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
+        const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
         let gridHTML = "";
-months.forEach(m => {
+        months.forEach(m => {
             const stat = d[m] || "ยังไม่ถึงกำหนด";
             const amt = Number(d[`ยอดที่ค้าง(${m})`] || 0);
             
@@ -717,101 +716,93 @@ months.forEach(m => {
                 totalFoodOnly += amt; 
             }
 
-      
-      gridHTML += `
+            gridHTML += `
                 <div class="month-item">
                     <div class="month-label">${m}</div>
                     <span class="status-badge ${getBadgeClass(stat)}">${stat}</span>
                     <div class="month-amount">${amt.toLocaleString()} บ.</div>
-          
-      </div>`;
+                </div>`;
         });
         document.getElementById('monthGrid').innerHTML = gridHTML;
-document.getElementById('resTotal').innerText = totalFoodOnly.toLocaleString() + " บาท";
+        document.getElementById('resTotal').innerText = totalFoodOnly.toLocaleString() + " บาท";
     }
 
     function getBadgeClass(s) {
         if(s.includes("ชำระแล้ว") || s.includes("สำเร็จ")) return "paid";
-if(s.includes("ค้างชำระ") || s.includes("ไม่สำเร็จ")) return "unpaid";
+        if(s.includes("ค้างชำระ") || s.includes("ไม่สำเร็จ")) return "unpaid";
         if(s.includes("รอตรวจสอบ")) return "pending";
         return "not-reached";
-}
+    }
 
     function toggleVerifyUI(type, verifyStatus, d) {
         // จัดการเฉพาะหอพัก 
         if (type !== 'dorm') return;
-const btn = document.getElementById('btnDorm');
+        const btn = document.getElementById('btnDorm');
         const wait = document.getElementById('waitDorm');
         const waitTitle = document.getElementById('waitDormTitle');
         const waitSub = document.getElementById('waitDormSub');
-// อ่านค่าสถานะหลัก (ป้ายกำกับ) 
+        // อ่านค่าสถานะหลัก (ป้ายกำกับ) 
         let dormStatus = d["ค่าธรรมเนียมหอพัก-สถานะ"] || "ค้างชำระ";
-let vStatus = (verifyStatus || "").trim();
+        let vStatus = (verifyStatus || "").trim();
 
         // ค่าเริ่มต้น
         btn.style.display = 'block';
-wait.style.display = 'none';
+        wait.style.display = 'none';
 
         let dormLink = d ? getAttachmentLink(d, "หอพัก") : "";
         let linkHtml = dormLink ?
-`<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px;">ดูสลิปที่แนบล่าสุด</a>` : "";
-// ย้าย "ชำระแล้ว" หรือ "การโอนสำเร็จ" ขึ้นมาตรวจสอบเป็นอันดับแรกเสมอ
+        `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px; font-weight:600;">ดูสลิปที่แนบล่าสุด</a>` : "";
+        
+        // ย้าย "ชำระแล้ว" หรือ "การโอนสำเร็จ" ขึ้นมาตรวจสอบเป็นอันดับแรกเสมอ
         if (dormStatus.includes("ชำระแล้ว") || vStatus.includes("การโอนสำเร็จ") || vStatus.includes("สำเร็จ") || vStatus.includes("ชำระแล้ว")) {
-            // โอนสำเร็จ หรือ ชำระแล้ว -> ซ่อนปุ่ม, แสดง "การโอนสำเร็จ"
             btn.style.display = 'none';
-wait.style.display = 'block';
+            wait.style.display = 'block';
             waitTitle.innerText = "การโอนสำเร็จ"; 
             waitTitle.style.color = "#15803d";
             waitSub.innerHTML = "ขอบคุณสำหรับการแนบหลักฐานยืนยัน" + linkHtml;
-} else if (vStatus.includes("รอตรวจสอบ")) {
-            // รอตรวจสอบ -> ซ่อนปุ่มแนบ, แสดงข้อความ "รอตรวจสอบการโอนอัตโนมัติ"
+        } else if (vStatus.includes("รอตรวจสอบ")) {
             btn.style.display = 'none';
-wait.style.display = 'block';
+            wait.style.display = 'block';
             waitTitle.innerText = "รอตรวจสอบการโอนอัตโนมัติ";
             waitTitle.style.color = "#d97706";
             waitSub.innerHTML = "โดยปกติแล้วจะตรวจสอบภายใน 7 วันทำการ" + linkHtml;
-} else if (vStatus.includes("การโอนไม่สำเร็จ") || vStatus.includes("ไม่สำเร็จ")) {
-            // โอนไม่สำเร็จ -> แสดงปุ่ม, แสดงข้อความที่แอดมินกรอก
+        } else if (vStatus.includes("การโอนไม่สำเร็จ") || vStatus.includes("ไม่สำเร็จ")) {
             btn.style.display = 'block';
-wait.style.display = 'block';
+            wait.style.display = 'block';
             waitTitle.innerText = vStatus || "การโอนไม่สำเร็จ"; 
             waitTitle.style.color = "#b91c1c";
             waitSub.innerHTML = "โปรดตรวจสอบสลิปให้ถูกต้องและส่งกลับมาอีกครั้ง" + linkHtml;
-} else if (vStatus !== "") {
-            // สถานะอื่นๆ ที่แอดมินพิมพ์เอง (แค่ดึงข้อมูลมาแสดงตามที่ระบุ)
+        } else if (vStatus !== "") {
             btn.style.display = 'none';
-// ซ่อนปุ่มไว้ก่อนเพื่อความปลอดภัย ป้องกันการแนบซ้ำ
             wait.style.display = 'block';
             waitTitle.innerText = vStatus;
-waitTitle.style.color = "#1e3a8a"; // ใช้สีน้ำเงินเข้มเพื่อให้ดูเป็นข้อความทั่วไป
+            waitTitle.style.color = "#1e3a8a"; 
             waitSub.innerHTML = linkHtml;
-} else if (dormStatus.includes("ค้างชำระ")) {
-            // ค้างชำระ -> แสดงปุ่ม
+        } else if (dormStatus.includes("ค้างชำระ")) {
             btn.style.display = 'block';
-wait.style.display = 'none';
+            wait.style.display = 'none';
         }
     }
 
     function triggerUpload(t) {
         targetType = t;
-targetMonth = ""; // รีเซ็ตเดือนเสมอเมื่อเป็นการอัปโหลดหอพัก
+        targetMonth = ""; // รีเซ็ตเดือนเสมอเมื่อเป็นการอัปโหลดหอพัก
         document.getElementById('fileIn').click();
-}
+    }
 
     function triggerFoodMonthUpload(month) {
         Swal.close();
-// ปิด Pop-up ก่อน
         targetType = 'food';
         targetMonth = month;
         document.getElementById('fileIn').click();
-}
+    }
 
     function openFoodPopup() {
         if (!currentData) return;
-const d = currentData.data;
+        const d = currentData.data;
         const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
         let colsHtml = "";
-let totalUnpaid = 0;
+        let totalUnpaid = 0;
 
         months.forEach(m => {
             const stat = d[m] || "ยังไม่ถึงกำหนด";
@@ -820,84 +811,69 @@ let totalUnpaid = 0;
             let statClass = "";
             let actionHtml = "";
 
-            // ค้นหาลิงก์ไฟล์แนบของเดือนนั้นๆ
             let fileLink = getAttachmentLink(d, m);
- 
-            let linkAction = fileLink ? `onclick="window.open('${fileLink}', '_blank')"` : `onclick="Swal.fire('ไม่พบข้อมูล', 'ไม่พบลิงก์ไฟล์แนบในระบบ', 'info')"`;
+            let linkAction = fileLink ? `onclick="window.open('${fileLink}', '_blank')"` : `onclick="Swal.fire({title:'ไม่พบข้อมูล', text:'ไม่พบลิงก์ไฟล์แนบในระบบ', icon:'info', customClass: {popup: 'glass-swal-popup'}})"`;
 
             if (stat.includes("ค้างชำระ")) {
                 totalUnpaid += amt;
                 statClass = "unpaid";
                 actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
-        
             } else if (stat.includes("ชำระแล้ว")) {
                 statClass = "paid";
                 actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
             } else if (stat.includes("รอตรวจสอบ")) {
                 statClass = "pending";
-actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
+                actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
             } else {
                 statClass = "not-due";
-}
+            }
 
             colsHtml += `
                 <div class="fp-col">
                     <div class="fp-month-name">${m}</div>
                     <div class="fp-badge ${statClass}">${stat}</div>
                     <div class="fp-amount">${amt.toLocaleString()} บาท</div>
-    
                     ${actionHtml}
                 </div>
             `;
-});
+        });
 
         const now = new Date();
         const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
-const timeStr = now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'}) + ' น.';
-Swal.fire({
+        const timeStr = now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'}) + ' น.';
+        Swal.fire({
             html: `
                 <div class="food-popup-container">
                     <div class="fp-header">
-                        <div class="fp-title">ค่าอาหารรายเดือน 1/2569 <span style="font-size:15px; font-weight:300;">( Boarding Fee )</span></div>
-                 
+                        <div class="fp-title">ค่าอาหารรายเดือน 1/2569 <span style="font-size:15px; font-weight:400; color: #444;">( Boarding Fee )</span></div>
                         <div class="fp-date">${dateStr} เวลา ${timeStr}</div>
                     </div>
                     
                     <div class="fp-grid">
-            
                         ${colsHtml}
-     
                     </div>
 
                     <div class="fp-note">
                         ขอความกรุณาท่านดำเนินการแนบหลักฐานการโอนเงิน สำหรับยอดค้างชำระค่าอาหารรายเดือนในแต่ละรอบเดือน เพื่อความถูกต้องในการตรวจสอบข้อมูล และปรับปรุงสถานะยอดค้างชำระของท่านให้เป็นปัจจุบัน
-   
-            
                     </div>
 
-                 
                     <div class="fp-total-row">
-                        <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:300; color:#555;">( Total Outstanding Balance )</span></div>
-                        
+                        <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:400; color:#555;">( Total Outstanding Balance )</span></div>
                         <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
                     </div>
                  
-    
-     
-               <div style="text-align: center; margin-top: 25px;">
-                        <button onclick="Swal.close()" style="background-color: #1e3a8a; color: white; border: none; padding: 10px 40px; border-radius: 8px; font-size: 16px; font-family: sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
                     </div>
                 </div>
             `,
             showConfirmButton: false,
             showCloseButton: false,
             width: '850px',
-            
             customClass: { popup: 'swal-food-popup' }
         });
     }
 
-    // ฟังก์ชันช่วยโหลดข้อมูลตารางใหม่โดยไม่เด้งไปหน้าแรก
     async function refreshDataWithoutReload() {
         const name = currentData.data["ชื่อ-นามสกุล"];
         document.getElementById('loadingOverlay').style.display = 'flex';
@@ -905,90 +881,68 @@ Swal.fire({
             const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
             const result = await res.json();
          
- 
             document.getElementById('loadingOverlay').style.display = 'none';
             if (result.found) {
                 currentData = result;
                 renderReport(result.data, result.sheetName);
             }
         } catch (e) {
-  
             document.getElementById('loadingOverlay').style.display = 'none';
-// ถ้ารีเฟรชไม่ผ่านก็ปล่อยไว้ที่หน้าเดิม
         }
     }
 
     function handleFile() {
         const file = document.getElementById('fileIn').files[0];
-if(!file) return;
+        if(!file) return;
         
-        // ล้างค่า input ทันทีเผื่อแนบไฟล์เดิมซ้ำจะได้ทำงานต่อได้
         document.getElementById('fileIn').value = "";
-const reader = new FileReader();
+        const reader = new FileReader();
         reader.onload = async (e) => {
-            // แสดง Popup Loading พร้อม Progress Bar
             Swal.fire({
                 background: 'transparent',
                 allowOutsideClick: false,
                 showConfirmButton: false,
-         
                 html: `
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: sans-serif;">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
                         <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 250px; height: 250px;" autoplay loop></dotlottie-wc>
-                   
                         <div id="progressPercent">0%</div>
-   
                         <div class="progress-container">
                             <div id="pb" class="progress-bar"></div>
-                 
-       </div>
-            
+                        </div>
                         <h1 style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
-                        <p style="color: #ffffff; font-size: 16px; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
+                        <p style="color: #ffffff; font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
                 `
             });
 
             let progress = 0;
             const progressInterval = setInterval(() => {
-           
                 if (progress < 90) {
                     progress += Math.random() * 15;
                     if (progress > 90) progress = 90;
                     updateProgressBar(Math.floor(progress));
-          
                 }
-     
             }, 500);
 
             function updateProgressBar(val) {
                 const pb = document.getElementById('pb');
                 const pt = document.getElementById('progressPercent');
-              
-  if (pb) pb.style.width = val + '%';
-  
-                if (pt) 
-                    pt.innerText = val + '%';
+                if (pb) pb.style.width = val + '%';
+                if (pt) pt.innerText = val + '%';
             }
 
-            // ส่งข้อมูลเดือน (targetMonth) ไปด้วย เพื่อให้ App Script อัปเดตคอลัมน์ได้ถูกต้อง
             const payload = {
-  
-            
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
                 sheetName: currentData.sheetName,
-          
                 rowIndex: currentData.rowIndex,
                 studentName: currentData.data["ชื่อ-นามสกุล"],
                 type: targetType,
-             
-       
-         month: targetType === 'food' ? targetMonth : "", 
+                month: targetType === 'food' ? targetMonth : "", 
                 image: e.target.result
             };
-try {
+            try {
                 const res = await fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) });
-const result = await res.json();
+                const result = await res.json();
                 
                 clearInterval(progressInterval);
                 updateProgressBar(100);
@@ -997,84 +951,52 @@ const result = await res.json();
                     Swal.fire({
                         background: 'transparent',
                         showConfirmButton: true,
-                      
                         confirmButtonText: 'รับทราบ',
                         confirmButtonColor: '#1e3a8a',
                         allowOutsideClick: false,
                         html: 
                         `
-                      
-                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: sans-serif;">
-             
-                   <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 
-                                
-    3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
-                 
-                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b>โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
+                                <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
+                                <p style="color: #ffffff; font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
-                      
                         `
-              
-  
                     }).then(() => {
-                        // โหลดข้อมูลมารีเฟรชตารางแทนการเด้งไปหน้าแรก
                         refreshDataWithoutReload();
                     });
-       
-         } else {
-       
+                } else {
                     Swal.fire({
                         background: 'transparent',
                         showConfirmButton: true,
-            
-            confirmButtonText: 'ลองใหม่อีกครั้ง',
- 
-          
+                        confirmButtonText: 'ลองใหม่อีกครั้ง',
                         confirmButtonColor: '#b91c1c',
                         allowOutsideClick: false,
                         html: `
- 
-                         
-         
-                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: sans-serif;">
-                         
-        <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
+                                <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
                                 <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
- 
-                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message ||
-                                    'เกิดข้อผิดพลาด'}</p>
+                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
                             </div>
                         `
- 
                     });
                 }
             } catch (err) {
                 clearInterval(progressInterval);
                 Swal.fire({
-                 
-  
                     background: 'transparent',
                     showConfirmButton: true,
                     confirmButtonText: 'ตกลง',
                     confirmButtonColor: '#b91c1c',
-               
-  
-                  
                     html: `
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: sans-serif;">
-                       
-     <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                       
-  
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
+                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
                             <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
                             <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
                         </div>
-                 
                     `
                 });
             }
- 
         };
         reader.readAsDataURL(file);
     }
@@ -1084,19 +1006,17 @@ const result = await res.json();
             title: 'ช่องทางการชำระเงิน',
             html: `
                 <div style="text-align:center;">
-                    <p style="font-size:16px; margin-bottom:10px;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: 229-8-97447-1<br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
-                  
-                    <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                    <p style="font-size:12px; color:#666; margin-top:10px;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
+                    <p style="font-size:16px; margin-bottom:10px; color:#111; font-weight:500;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: <span style="font-weight:600; color:#1e3a8a;">229-8-97447-1</span><br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
+                    <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+                    <p style="font-size:13px; color:#d97706; margin-top:12px; font-weight:600;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
                 </div>`,
-           
-  
             showCloseButton: false, 
             showConfirmButton: true,
             confirmButtonText: 'ปิดหน้าต่าง',
-            confirmButtonColor: '#1e3a8a'
+            confirmButtonColor: '#1e3a8a',
+            customClass: { popup: 'glass-swal-popup' } 
         });
-}
+    }
 </script>
 
 </body>
