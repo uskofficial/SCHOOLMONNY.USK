@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
 
     <style>
@@ -28,7 +29,8 @@
             --light-blue: rgba(239, 246, 255, 0.6); 
             --footer-dark: rgba(18, 40, 99, 0.85);
         }
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box;
+        }
         
         body { 
             font-family: 'Kanit', sans-serif;
@@ -36,7 +38,7 @@
             background-attachment: fixed;
             margin: 0; 
             padding: 10px; 
-            color: #111; 
+            color: #111;
         }
 
         /* --- Loading Overlay --- */
@@ -56,7 +58,8 @@
             z-index: 9999;
             padding: 20px;
         }
-        #loadingOverlay svg { width: 100%; max-width: 600px; height: auto; }
+        #loadingOverlay svg { width: 100%; max-width: 600px; height: auto;
+        }
         .school-text {
             fill: none;
             stroke: #1a237e;
@@ -66,15 +69,21 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .dash-animation { animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite; }
+        .dash-animation { animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite;
+        }
         @keyframes dashArray {
-            0% { stroke-dasharray: 0 1 500 0; }
-            50% { stroke-dasharray: 0 500 1 0; }
-            100% { stroke-dasharray: 500 1 0 0; }
+            0% { stroke-dasharray: 0 1 500 0;
+            }
+            50% { stroke-dasharray: 0 500 1 0;
+            }
+            100% { stroke-dasharray: 500 1 0 0;
+            }
         }
         @keyframes dashOffset {
-            0% { stroke-dashoffset: 1000; }
-            100% { stroke-dashoffset: 0; }
+            0% { stroke-dashoffset: 1000;
+            }
+            100% { stroke-dashoffset: 0;
+            }
         }
 
         /* --- Not Found Popup --- */
@@ -111,11 +120,16 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
         @keyframes fadeInScale {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from { transform: scale(0.9);
+            opacity: 0; }
+            to { transform: scale(1); opacity: 1;
+            }
         }
-        .not-found-content h2 { color: #ffffff; font-size: 32px; margin: 10px 0; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-        .not-found-content p { color: #f0f0f0; font-size: 18px; margin-bottom: 25px; line-height: 1.5; font-weight: 400; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        .not-found-content h2 { color: #ffffff;
+            font-size: 32px; margin: 10px 0; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        .not-found-content p { color: #f0f0f0; font-size: 18px; margin-bottom: 25px; line-height: 1.5;
+            font-weight: 400; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         .btn-close-notfound {
             background: rgba(255, 255, 255, 0.25);
             color: #ffffff;
@@ -131,20 +145,32 @@
             -webkit-backdrop-filter: blur(10px);
             transition: 0.3s;
         }
-        .btn-close-notfound:hover { background: rgba(255, 255, 255, 0.4); }
+        .btn-close-notfound:hover { background: rgba(255, 255, 255, 0.4);
+        }
 
         /* --- Main Container (Glassmorphism) --- */
         .container { 
-            max-width: 750px;
-            margin: auto; 
+            max-width: 1400px;
+            margin: 20px auto; 
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            padding: 20px;
+            padding: 30px;
             border-radius: 25px;
-            width: 100%;
+            width: 95%;
+            min-height: 95vh;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                padding: 15px;
+                min-height: 100vh;
+            }
         }
         
         .header { 
@@ -153,9 +179,12 @@
             gap: 15px; 
             margin-bottom: 30px; 
         }
-        .logo-img { width: 80px; height: 80px; object-fit: contain; border-radius: 20px; }
-        .school-info h2 { margin: 0; font-size: 22px; color: #111; font-weight: 600; }
-        .school-info p { margin: 0; font-size: 15px; color: #333; font-weight: 400; }
+        .logo-img { width: 80px; height: 80px;
+            object-fit: contain; border-radius: 20px; }
+        .school-info h2 { margin: 0; font-size: 22px;
+            color: #111; font-weight: 600; }
+        .school-info p { margin: 0; font-size: 15px;
+            color: #333; font-weight: 400; }
 
         .search-area { 
             margin-bottom: 30px;
@@ -171,13 +200,14 @@
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border: 1px solid rgba(255, 255, 255, 0.9);
             border-radius: 12px; 
             font-family: 'Kanit', sans-serif; font-size: 16px; outline: none;
             color: #111;
             font-weight: 500;
         }
-        input#nameInput::placeholder { color: #555; font-weight: 400; }
+        input#nameInput::placeholder { color: #555; font-weight: 400;
+        }
         button.btn-search { 
             background: var(--main-blue);
             color: white; border: none; 
@@ -202,12 +232,12 @@
             border: 1px solid rgba(255, 255, 255, 0.9);
             border-radius: 15px; 
             padding: 15px; 
-            margin-bottom: 25px; 
+            margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         
         .fee-card { 
-            display: flex; 
+            display: flex;
             justify-content: space-between; 
             align-items: center; 
             margin-bottom: 10px; 
@@ -215,59 +245,77 @@
             gap: 10px;
         }
 
-        .boarding-box { padding: 0; overflow: hidden; } 
+        .boarding-box { padding: 0; overflow: hidden;
+        } 
 
-        .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap; color: #111; font-weight: 500;}
-        .label { display: inline-block; width: 130px; font-weight: 600; color: #444; }
+        .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap;
+            color: #111; font-weight: 500;}
+        .label { display: inline-block; width: 130px; font-weight: 600;
+            color: #444; }
 
-        h3.title { font-size: 18px; color: #111; margin: 30px 0 5px; font-weight: 600; }
-        h3.title span { font-size: 14px; font-weight: 400; color: #444; display: block; }
+        h3.title { font-size: 18px; color: #111; margin: 30px 0 5px;
+            font-weight: 600; }
+        h3.title span { font-size: 14px; font-weight: 400; color: #444;
+            display: block; }
 
         .current-date-time {
-            text-align: right; font-size: 14px;
+            text-align: right;
+            font-size: 14px;
             color: #1e3a8a; margin-bottom: 8px; font-weight: 500;
         }
 
-        .fee-name { font-size: 17px; font-weight: 600; color: #111; flex: 1; min-width: 150px; }
+        .fee-name { font-size: 17px;
+            font-weight: 600; color: #111; flex: 1; min-width: 150px; }
 
         .status-badge { 
-            padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 6px; font-size: 13px; font-weight: 600;
             display: inline-block; border: 1px solid; 
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
-        .paid { color: #15803d; border-color: #22c55e; } 
-        .unpaid { color: #b91c1c; border-color: #ef4444; } 
-        .pending { color: #d97706; border-color: #f59e0b; } 
-        .not-reached { color: #2563eb; border-color: #60a5fa; } 
+        .paid { color: #15803d; border-color: #22c55e;
+        } 
+        .unpaid { color: #b91c1c; border-color: #ef4444;
+        } 
+        .pending { color: #d97706; border-color: #f59e0b;
+        } 
+        .not-reached { color: #2563eb; border-color: #60a5fa;
+        } 
 
         .boarding-header { 
-            padding: 12px 15px; border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             font-size: 16px; font-weight: 600; color: #111;
-            background: rgba(255, 255, 255, 0.4); 
+            background: rgba(255, 255, 255, 0.4);
         }
         .month-grid { 
-            display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; 
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); text-align: center; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
         .month-item { 
             padding: 10px 5px;
             border-right: 1px solid rgba(0, 0, 0, 0.05); 
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .month-label { font-weight: 600; margin-bottom: 5px; font-size: 14px; color: #222; }
-        .month-amount { font-size: 12px; color: #444; margin-top: 5px; font-weight: bold; }
+        .month-label { font-weight: 600; margin-bottom: 5px; font-size: 14px; color: #222;
+        }
+        .month-amount { font-size: 12px; color: #444; margin-top: 5px; font-weight: bold;
+        }
         
         .total-section { 
-            padding: 15px; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px;
+            display: flex; justify-content: space-between; align-items: center;
             font-weight: 600; font-size: 17px; color: #111;
             background: rgba(255, 255, 255, 0.3); 
             flex-wrap: wrap;
         }
 
         .footer-action { 
-            display: flex; justify-content: space-between; align-items: center; 
+            display: flex;
+            justify-content: space-between; align-items: center; 
             gap: 15px; margin-top: 10px; margin-bottom: 25px; flex-wrap: wrap;
         }
         
@@ -279,15 +327,20 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 12px; border-radius: 12px; cursor: pointer; 
-            font-size: 16px; font-weight: 600; flex: 1; min-width: 250px;
+            font-size: 16px;
+            font-weight: 600; flex: 1; min-width: 250px;
             transition: 0.3s;
             box-shadow: 0 4px 10px rgba(236, 72, 153, 0.15);
         }
-        .btn-upload:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(236, 72, 153, 0.25); }
+        .btn-upload:hover { background: #fff; transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(236, 72, 153, 0.25); }
         
-        .wait-status { text-align: right; flex: 1; min-width: 200px; display: none; }
-        .wait-status b { font-size: 18px; display: block; margin-bottom: 2px; font-weight: 600;}
-        .wait-status span { font-size: 14px; color: #444; display: block; }
+        .wait-status { text-align: right;
+            flex: 1; min-width: 200px; display: none; }
+        .wait-status b { font-size: 18px;
+            display: block; margin-bottom: 2px; font-weight: 600;}
+        .wait-status span { font-size: 14px; color: #444;
+            display: block; }
 
         .payment-btn-box { 
             background: rgba(255, 255, 255, 0.8);
@@ -296,14 +349,17 @@
             border: 2px solid var(--main-blue); 
             color: var(--main-blue);
             padding: 15px; text-align: center; border-radius: 15px; 
-            font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 10px;
+            font-size: 18px; font-weight: 600;
+            cursor: pointer; margin-top: 10px;
             box-shadow: 0 4px 15px rgba(30, 58, 138, 0.15);
             transition: 0.3s;
         }
-        .payment-btn-box:hover { background: var(--main-blue); color: white; }
+        .payment-btn-box:hover { background: var(--main-blue); color: white;
+        }
 
         .payment-info-text {
-            text-align: center; font-size: 12px; color: #333; font-weight: 500;
+            text-align: center;
+            font-size: 12px; color: #333; font-weight: 500;
             margin-top: 10px; line-height: 1.6; padding: 0 15px;
         }
 
@@ -319,76 +375,112 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .footer-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; }
+        .footer-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+        }
 
-        .f-left { display: flex; flex-direction: column; gap: 15px; }
-        .f-logo-wrap { margin-bottom: 10px; }
-        .f-logo-wrap img { width: 140px; height: auto; border-radius: 15px; background: white; padding: 5px; } 
+        .f-left { display: flex; flex-direction: column; gap: 15px;
+        }
+        .f-logo-wrap { margin-bottom: 10px;
+        }
+        .f-logo-wrap img { width: 140px; height: auto; border-radius: 15px; background: white;
+        padding: 5px; } 
         
-        .f-motto { font-size: 16px; font-weight: 500; line-height: 1.6; }
-        .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #f0f0f0; margin-top: 5px;}
+        .f-motto { font-size: 16px;
+            font-weight: 500; line-height: 1.6; }
+        .f-motto span { display: block; font-weight: 300;
+            font-size: 14px; color: #f0f0f0; margin-top: 5px;}
 
         .f-title-line { 
-            font-size: 26px; font-weight: 600; margin-top: 15px;
+            font-size: 26px;
+            font-weight: 600; margin-top: 15px;
             border-bottom: 3px solid rgba(0, 170, 255, 0.8); width: fit-content; padding-bottom: 5px;
         }
 
-        .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #e0e0e0; text-decoration: none; font-weight: 400;}
-        .f-contact-item i { margin-top: 4px; font-size: 16px; color: white; width: 20px; text-align: center; }
-        .f-contact-item:hover { color: #00aaff; }
+        .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px;
+        }
+        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #e0e0e0;
+        text-decoration: none; font-weight: 400;}
+        .f-contact-item i { margin-top: 4px; font-size: 16px; color: white;
+        width: 20px; text-align: center; }
+        .f-contact-item:hover { color: #00aaff;
+        }
 
-        .f-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .f-right { display: flex; flex-direction: column; align-items: flex-end;
+        }
         .f-follow-head { 
-            font-size: 26px; font-weight: 600; margin-bottom: 15px;
+            font-size: 26px;
+            font-weight: 600; margin-bottom: 15px;
             border-bottom: 3px solid rgba(236, 72, 153, 0.8); width: fit-content; padding-bottom: 5px;
         }
-        .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%; }
+        .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%;
+        }
         .f-social-link { 
-            display: flex; align-items: center; justify-content: flex-end; gap: 12px;
+            display: flex;
+            align-items: center; justify-content: flex-end; gap: 12px;
             text-decoration: none; color: white; font-size: 15px; font-weight: 400; transition: 0.2s;
         }
-        .f-social-link i { font-size: 22px; }
-        .f-social-link:hover { color: #ec4899; }
+        .f-social-link i { font-size: 22px;
+        }
+        .f-social-link:hover { color: #ec4899;
+        }
 
-        .f-qr-wrap { margin-top: 40px; text-align: right; }
-        .f-qr-wrap img { width: 110px; padding: 5px; background: rgba(255,255,255,0.95); border-radius: 12px; }
-        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 500; }
-        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white; font-weight: 600; }
+        .f-qr-wrap { margin-top: 40px; text-align: right;
+        }
+        .f-qr-wrap img { width: 110px; padding: 5px; background: rgba(255,255,255,0.95); border-radius: 12px;
+        }
+        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 500;
+        }
+        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white;
+        font-weight: 600; }
 
         .f-bottom-bar {
-            margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;
             display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.7);
         }
 
         @media (max-width: 650px) {
-            .footer-layout { grid-template-columns: 1fr; gap: 50px; }
-            .f-right { align-items: center; text-align: center; }
-            .f-social-grid { align-items: center; }
-            .f-social-link { justify-content: center; width: 100%; }
-            .f-bottom-bar { flex-direction: column; align-items: center; gap: 15px; text-align: center; }
-            .f-qr-wrap { text-align: center; }
+            .footer-layout { grid-template-columns: 1fr;
+            gap: 50px; }
+            .f-right { align-items: center; text-align: center;
+            }
+            .f-social-grid { align-items: center;
+            }
+            .f-social-link { justify-content: center; width: 100%;
+            }
+            .f-bottom-bar { flex-direction: column; align-items: center; gap: 15px;
+            text-align: center; }
+            .f-qr-wrap { text-align: center;
+            }
         }
 
         @media (min-width: 600px) {
-            .logo-img { width: 100px; height: 100px; }
-            .school-info h2 { font-size: 24px; }
-            .btn-search { width: auto; }
-            .month-grid { grid-template-columns: repeat(6, 1fr); }
-            .info-box { padding: 25px; }
+            .logo-img { width: 100px;
+            height: 100px; }
+            .school-info h2 { font-size: 24px;
+            }
+            .btn-search { width: auto;
+            }
+            .month-grid { grid-template-columns: repeat(6, 1fr);
+            }
+            .info-box { padding: 25px;
+            }
         }
 
         /* --- Progress Bar Styles --- */
         .progress-container {
-            width: 100%; max-width: 300px; background: rgba(255,255,255,0.3);
+            width: 100%;
+            max-width: 300px; background: rgba(255,255,255,0.3);
             border-radius: 20px; height: 12px; margin: 20px 0; overflow: hidden; position: relative;
         }
         .progress-bar {
-            height: 100%; width: 0%; background: #ffffff;
+            height: 100%;
+            width: 0%; background: #ffffff;
             box-shadow: 0 0 15px rgba(255,255,255,0.9); transition: width 0.3s ease;
         }
         #progressPercent {
-            color: #ffffff; font-size: 24px; font-weight: bold; margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 24px; font-weight: bold; margin-bottom: 10px;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
         }
 
@@ -399,66 +491,89 @@
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 1);
             padding: 25px; border-radius: 25px;
-            font-family: 'Kanit', sans-serif; text-align: left; position: relative;
+            font-family: 'Kanit', sans-serif; text-align: left;
+            position: relative;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             color: #111;
         }
         .fp-header {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: space-between; align-items: center;
             border-bottom: 2px solid rgba(236, 72, 153, 0.8);
             padding-bottom: 15px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;
         }
-        .fp-title { font-size: 20px; font-weight: 600; color: #111; }
-        .fp-date { font-size: 15px; color: #333; font-weight: 500; }
+        .fp-title { font-size: 20px; font-weight: 600; color: #111;
+        }
+        .fp-date { font-size: 15px; color: #333; font-weight: 500;
+        }
         
         .fp-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 10px;
         }
-        @media (min-width: 500px) { .fp-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 800px) { .fp-grid { grid-template-columns: repeat(6, 1fr); } }
+        @media (min-width: 500px) { .fp-grid { grid-template-columns: repeat(3, 1fr);
+        } }
+        @media (min-width: 800px) { .fp-grid { grid-template-columns: repeat(6, 1fr);
+        } }
         
         .fp-col {
-            text-align: center; 
+            text-align: center;
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(236, 72, 153, 0.5);
-            border-radius: 12px; padding: 12px 5px;
+            border-radius: 12px;
+            padding: 12px 5px;
             display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 8px;
         }
         
-        .fp-month-name { font-size: 15px; font-weight: 600; color: #111; }
+        .fp-month-name { font-size: 15px;
+            font-weight: 600; color: #111; }
         
         .fp-badge {
-            padding: 4px 10px; border: 1px solid; font-size: 13px; font-weight: 600; width: 100%; border-radius: 6px;
+            padding: 4px 10px;
+            border: 1px solid; font-size: 13px; font-weight: 600; width: 100%; border-radius: 6px;
         }
-        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: rgba(220, 38, 38, 0.15); }
-        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: rgba(22, 163, 74, 0.15); }
-        .fp-badge.pending { border-color: #d97706; color: #d97706; background: rgba(217, 119, 6, 0.15); }
-        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: rgba(37, 99, 235, 0.15); }
+        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: rgba(220, 38, 38, 0.15);
+        }
+        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: rgba(22, 163, 74, 0.15);
+        }
+        .fp-badge.pending { border-color: #d97706; color: #d97706; background: rgba(217, 119, 6, 0.15);
+        }
+        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: rgba(37, 99, 235, 0.15);
+        }
         
-        .fp-amount { font-size: 14px; color: #222; font-weight: 500; }
+        .fp-amount { font-size: 14px;
+            color: #222; font-weight: 500; }
         
         .fp-btn-upload {
             background: rgba(253, 242, 248, 0.9);
             border: 1px solid rgba(236, 72, 153, 0.6);
             color: #be185d; padding: 6px 8px; font-size: 13px; cursor: pointer; width: 100%;
-            border-radius: 8px; font-family: 'Kanit', sans-serif; font-weight: 600; transition: 0.2s;
+            border-radius: 8px;
+            font-family: 'Kanit', sans-serif; font-weight: 600; transition: 0.2s;
         }
-        .fp-btn-upload:hover { background: rgba(236, 72, 153, 0.15); }
-        .fp-file-link { font-size: 13px; color: #2563eb; font-weight: 500; margin-top: 4px; }
+        .fp-btn-upload:hover { background: rgba(236, 72, 153, 0.15);
+        }
+        .fp-file-link { font-size: 13px; color: #2563eb; font-weight: 500; margin-top: 4px;
+        }
         
         .fp-note {
-            text-align: center; font-size: 14px; color: #444; font-weight: 500; margin-top: 25px; line-height: 1.5; padding: 0 10px;
+            text-align: center;
+            font-size: 14px; color: #444; font-weight: 500; margin-top: 25px; line-height: 1.5; padding: 0 10px;
         }
         .fp-total-row {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: space-between; align-items: center;
             margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(0, 0, 0, 0.2); font-weight: 600;
         }
-        .fp-total-label { font-size: 18px; color: #111; }
-        .fp-total-val { font-size: 22px; color: #b91c1c; }
+        .fp-total-label { font-size: 18px; color: #111;
+        }
+        .fp-total-val { font-size: 22px; color: #b91c1c;
+        }
         
-        .swal-food-popup { padding: 0 !important; background: transparent !important; }
+        .swal-food-popup { padding: 0 !important;
+            background: transparent !important; }
 
         /* --- คลาสพิเศษสำหรับ Popup SweetAlert ทั่วไปให้เป็นกระจกสว่างตัวอักษรชัดเจน --- */
         .glass-swal-popup {
@@ -491,12 +606,14 @@
             SCHOOL
         </text>
     </svg>
-    <div style="margin-top: 20px; color: #1a237e; letter-spacing: 2px; font-weight: 600; font-size: 18px;">กำลังค้นหาข้อมูล...</div>
+    <div style="margin-top: 20px; color: #1a237e; 
+        letter-spacing: 2px; font-weight: 600; font-size: 18px;">กำลังค้นหาข้อมูล...</div>
 </div>
 
 <div id="notFoundOverlay">
     <div class="not-found-content">
-        <dotlottie-wc src="https://lottie.host/63822361-e4de-4fc5-8b6f-a78c2d586b16/CV7OyOVb3x.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+        <dotlottie-wc src="https://lottie.host/63822361-e4de-4fc5-8b6f-a78c2d586b16/CV7OyOVb3x.lottie" style="width: 300px; height: 300px;"
+        autoplay loop></dotlottie-wc>
         <h2>ไม่พบข้อมูลนักเรียน</h2>
         <p>ขออภัยครับ ไม่พบชื่อนี้ในระบบ<br>กรุณาตรวจสอบรายชื่อให้ถูกต้อง</p>
         <button class="btn-close-notfound" onclick="closeNotFound()">ลองใหม่อีกครั้ง</button>
@@ -512,7 +629,8 @@
         </div>
     </div>
 
-    <div id="searchArea" class="search-area">
+    <div 
+        id="searchArea" class="search-area">
         <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน">
         <button class="btn-search" onclick="doSearch()">ค้นหา</button>
         <div class="search-hint">"พิมพ์ ชื่อ - นามสกุล โดยไม่ต้องมีคำนำหน้า เด็กชาย , เด็กหญิง , นาย , นางสาว"</div>
@@ -522,6 +640,7 @@
         <div class="info-box">
             <div class="info-line"><span class="label">ชื่อ - สกุล :</span> <span id="resName"></span></div>
             <div class="info-line"><span class="label">โปรแกรมหอพัก :</span> <span id="resProg"></span></div>
+  
         </div>
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
@@ -529,10 +648,13 @@
         <div id="realTimeClock" class="current-date-time"></div>
 
         <div class="fee-card">
-            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:400; font-size:13px; color: #555;">( Dormitory Fee )</span></div>
+            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:400;
+                font-size:13px; color: #555;">( Dormitory Fee )</span></div>
             <div style="text-align:right">
-                <span style="color:#444; font-weight:600; font-size:14px;">สถานะ</span> <span id="resFeeStatus"></span><br>
-                <span style="color:#444; font-weight:600; font-size:14px;">จำนวนเงิน</span> <b id="resFeeAmt" style="font-size:18px; color: #111;"></b>
+                <span style="color:#444;
+                font-weight:600; font-size:14px;">สถานะ</span> <span id="resFeeStatus"></span><br>
+                <span style="color:#444;
+                font-weight:600; font-size:18px;">จำนวนเงิน</span> <b id="resFeeAmt" style="font-size:18px; color: #111;"></b>
             </div>
         </div>
 
@@ -541,15 +663,19 @@
             <div class="wait-status" id="waitDorm">
                 <b id="waitDormTitle"></b>
                 <span id="waitDormSub"></span>
+  
             </div>
         </div>
 
         <div class="boarding-box">
-            <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px; font-weight:400; color: #444;">( Boarding Fee )</span></div>
+            <div class="boarding-header">ค่าอาหารรายเดือน 1/2569 <span style="font-size:13px;
+                font-weight:400; color: #444;">( Boarding Fee )</span></div>
             <div id="monthGrid" class="month-grid"></div>
             <div class="total-section">
-                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:400; color:#555; font-size:12px">( Aggregate Amount Payable )</span></span>
-                <span id="resTotal" style="color: #b91c1c; font-size: 24px;">0 บาท</span>
+                <span style="font-size:15px;">ยอดที่ต้องชำระทั้งหมด <br><span style="font-weight:400;
+                color:#555; font-size:12px">( Aggregate Amount Payable )</span></span>
+                <span id="resTotal" style="color: #b91c1c;
+                font-size: 24px;">0 บาท</span>
             </div>
         </div>
 
@@ -562,12 +688,17 @@
         </div>
 
         <div class="payment-info-text">
+     
             หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
-            <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a; font-weight: 600; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
+            <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a;
+            font-weight: 600; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
         </div>
 
-        <div style="text-align: center; margin-top: 25px;">
-            <button onclick="location.reload()" style="background: var(--main-blue); color: white; border: none; padding: 12px 30px; border-radius: 12px; cursor: pointer; font-size: 16px; font-family: 'Kanit', sans-serif; font-weight: 500; box-shadow: 0 4px 15px rgba(30,58,138,0.3);">กลับหน้าค้นหา</button>
+        <div style="text-align: center;
+            margin-top: 25px;">
+            <button onclick="location.reload()" style="background: var(--main-blue); color: white;
+            border: none; padding: 12px 30px; border-radius: 12px; cursor: pointer; font-size: 16px; font-family: 'Kanit', sans-serif; font-weight: 500;
+            box-shadow: 0 4px 15px rgba(30,58,138,0.3);">กลับหน้าค้นหา</button>
         </div>
     </div>
 
@@ -577,19 +708,23 @@
                 <div class="f-logo-wrap">
                     <img src="https://i.postimg.cc/G208V1G9/U.jpg" alt="School Logo">
                 </div>
+ 
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
                     <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุณธรรม ผูกสัมพันธ์ชุมชน</span>
                 </p>
                 <div class="f-title-line">ติดต่อ</div>
-                <div class="f-contact-list">
+       
+                 <div class="f-contact-list">
                     <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" class="f-contact-item" target="_blank">
                         <i class="fas fa-home"></i> 
                         โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130
+        
                     </a>
                     <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-phone"></i> 076 - 678 - 1234</a>
                     <a href="tel:0766781234" class="f-contact-item"><i class="fas fa-fax"></i> 076 - 678 - 1234</a>
                     <a href="mailto:uskofficial01@gmail.com" class="f-contact-item"><i class="fas fa-envelope"></i> uskofficial01@gmail.com</a>
+     
                 </div>
             </div>
 
@@ -597,21 +732,25 @@
                 <div class="f-follow-head">ติดตาม</div>
                 <div class="f-social-grid">
                     <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+    
                     <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
                     <a href="https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IJfkyKHJJ" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-tiktok"></i></a>
                     <a href="https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-instagram"></i></a>
-                    <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
+                    <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab 
+                        fa-line"></i></a>
                     <a href="https://youtube.com/@uskofficial01?si=qLXB83PoYvydWuBY" class="f-social-link" target="_blank">uskofficial01 <i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="f-qr-wrap">
                     <img src="https://i.postimg.cc/5N778H5g/Untitled-design.png" alt="QR Apply">
+                  
                     <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
                 </div>
             </div>
         </div>
 
         <div class="f-bottom-bar">
-            <span>© 2026 COPYRIGHT : UTTAYANSUKSAKRABI SCHOOL . All right reserved</span>
+            <span>© 2026 COPYRIGHT : UTTAYANSUKSAKRABI SCHOOL .
+                All right reserved</span>
             <span>ผลิตสื่อโดย: โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130 จำนวน 1 ชุด ตามเวลาที่ปรากฎ ที่ส่งมาในครั้งนี้</span>
         </div>
     </div>
@@ -656,6 +795,7 @@
             const timeStr = now.toLocaleTimeString('th-TH');
             const clockEl = document.getElementById('realTimeClock');
             if (clockEl) clockEl.innerText = `ข้อมูล ณ วันที่: ${dateStr} | เวลา: ${timeStr} น.`;
+    
         }, 1000);
     }
 
@@ -716,11 +856,13 @@
                 totalFoodOnly += amt; 
             }
 
+      
             gridHTML += `
                 <div class="month-item">
                     <div class="month-label">${m}</div>
                     <span class="status-badge ${getBadgeClass(stat)}">${stat}</span>
                     <div class="month-amount">${amt.toLocaleString()} บ.</div>
+          
                 </div>`;
         });
         document.getElementById('monthGrid').innerHTML = gridHTML;
@@ -752,7 +894,6 @@
         let dormLink = d ? getAttachmentLink(d, "หอพัก") : "";
         let linkHtml = dormLink ?
         `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px; font-weight:600;">ดูสลิปที่แนบล่าสุด</a>` : "";
-        
         // ย้าย "ชำระแล้ว" หรือ "การโอนสำเร็จ" ขึ้นมาตรวจสอบเป็นอันดับแรกเสมอ
         if (dormStatus.includes("ชำระแล้ว") || vStatus.includes("การโอนสำเร็จ") || vStatus.includes("สำเร็จ") || vStatus.includes("ชำระแล้ว")) {
             btn.style.display = 'none';
@@ -812,13 +953,15 @@
             let actionHtml = "";
 
             let fileLink = getAttachmentLink(d, m);
-            let linkAction = fileLink ? `onclick="window.open('${fileLink}', '_blank')"` : `onclick="Swal.fire({title:'ไม่พบข้อมูล', text:'ไม่พบลิงก์ไฟล์แนบในระบบ', icon:'info', customClass: {popup: 'glass-swal-popup'}})"`;
+            let linkAction 
+            = fileLink ? `onclick="window.open('${fileLink}', '_blank')"` : `onclick="Swal.fire({title:'ไม่พบข้อมูล', text:'ไม่พบลิงก์ไฟล์แนบในระบบ', icon:'info', customClass: {popup: 'glass-swal-popup'}})"`;
 
             if (stat.includes("ค้างชำระ")) {
                 totalUnpaid += amt;
                 statClass = "unpaid";
                 actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
             } else if (stat.includes("ชำระแล้ว")) {
+   
                 statClass = "paid";
                 actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
             } else if (stat.includes("รอตรวจสอบ")) {
@@ -833,6 +976,7 @@
                     <div class="fp-month-name">${m}</div>
                     <div class="fp-badge ${statClass}">${stat}</div>
                     <div class="fp-amount">${amt.toLocaleString()} บาท</div>
+    
                     ${actionHtml}
                 </div>
             `;
@@ -846,30 +990,38 @@
                 <div class="food-popup-container">
                     <div class="fp-header">
                         <div class="fp-title">ค่าอาหารรายเดือน 1/2569 <span style="font-size:15px; font-weight:400; color: #444;">( Boarding Fee )</span></div>
+               
                         <div class="fp-date">${dateStr} เวลา ${timeStr}</div>
                     </div>
                     
                     <div class="fp-grid">
                         ${colsHtml}
+   
                     </div>
 
                     <div class="fp-note">
                         ขอความกรุณาท่านดำเนินการแนบหลักฐานการโอนเงิน สำหรับยอดค้างชำระค่าอาหารรายเดือนในแต่ละรอบเดือน เพื่อความถูกต้องในการตรวจสอบข้อมูล และปรับปรุงสถานะยอดค้างชำระของท่านให้เป็นปัจจุบัน
                     </div>
 
+               
                     <div class="fp-total-row">
                         <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:400; color:#555;">( Total Outstanding Balance )</span></div>
                         <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
                     </div>
-                 
-                    <div style="text-align: center; margin-top: 25px;">
-                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
+               
+  
+                    <div style="text-align: center;
+                        margin-top: 25px;">
+                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85);
+                        backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif;
+                        cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
                     </div>
                 </div>
             `,
             showConfirmButton: false,
             showCloseButton: false,
             width: '850px',
+          
             customClass: { popup: 'swal-food-popup' }
         });
     }
@@ -881,6 +1033,7 @@
             const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
             const result = await res.json();
          
+    
             document.getElementById('loadingOverlay').style.display = 'none';
             if (result.found) {
                 currentData = result;
@@ -888,6 +1041,7 @@
             }
         } catch (e) {
             document.getElementById('loadingOverlay').style.display = 'none';
+    
         }
     }
 
@@ -903,41 +1057,50 @@
                 allowOutsideClick: false,
                 showConfirmButton: false,
                 html: `
+               
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
                         <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 250px; height: 250px;" autoplay loop></dotlottie-wc>
                         <div id="progressPercent">0%</div>
+            
                         <div class="progress-container">
                             <div id="pb" class="progress-bar"></div>
                         </div>
-                        <h1 style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
-                        <p style="color: #ffffff; font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
+                        <h1 style="color: #ffffff;
+                        font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
+                        <p style="color: #ffffff;
+                        font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
                 `
             });
 
             let progress = 0;
             const progressInterval = setInterval(() => {
+          
                 if (progress < 90) {
                     progress += Math.random() * 15;
                     if (progress > 90) progress = 90;
                     updateProgressBar(Math.floor(progress));
                 }
+    
             }, 500);
 
             function updateProgressBar(val) {
                 const pb = document.getElementById('pb');
                 const pt = document.getElementById('progressPercent');
                 if (pb) pb.style.width = val + '%';
-                if (pt) pt.innerText = val + '%';
+                if 
+                (pt) pt.innerText = val + '%';
             }
 
             const payload = {
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
                 sheetName: currentData.sheetName,
                 rowIndex: currentData.rowIndex,
+           
                 studentName: currentData.data["ชื่อ-นามสกุล"],
                 type: targetType,
-                month: targetType === 'food' ? targetMonth : "", 
+                month: targetType === 'food' ?
+                targetMonth : "", 
                 image: e.target.result
             };
             try {
@@ -951,54 +1114,73 @@
                     Swal.fire({
                         background: 'transparent',
                         showConfirmButton: true,
+                      
                         confirmButtonText: 'รับทราบ',
                         confirmButtonColor: '#1e3a8a',
                         allowOutsideClick: false,
                         html: 
+                      
                         `
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
                                 <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
-                                <p style="color: #ffffff; font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
+    
+                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600;
+                                margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
+                                <p style="color: #ffffff;
+                                font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
                         `
                     }).then(() => {
+           
                         refreshDataWithoutReload();
                     });
                 } else {
                     Swal.fire({
                         background: 'transparent',
+    
                         showConfirmButton: true,
                         confirmButtonText: 'ลองใหม่อีกครั้ง',
                         confirmButtonColor: '#b91c1c',
                         allowOutsideClick: false,
+    
                         html: `
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
-                                <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
-                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
+                        
+                                <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
+                                height: 300px;" autoplay loop></dotlottie-wc>
+                                <h1 style="color: #ffffff;
+                                font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
+                                <p style="color: #ffffff;
+                                font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
                             </div>
                         `
                     });
+                
                 }
             } catch (err) {
                 clearInterval(progressInterval);
                 Swal.fire({
                     background: 'transparent',
                     showConfirmButton: true,
+           
                     confirmButtonText: 'ตกลง',
                     confirmButtonColor: '#b91c1c',
                     html: `
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
-                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                            <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
-                            <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; 
+                        border: 1px solid rgba(255,255,255,0.3);">
+                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
+                            height: 300px;" autoplay loop></dotlottie-wc>
+                            <h1 style="color: #ffffff;
+                            font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
+                            <p style="color: #ffffff;
+                            font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
                         </div>
                     `
                 });
             }
         };
         reader.readAsDataURL(file);
+  
     }
 
     function showPaymentInfo() {
@@ -1007,16 +1189,18 @@
             html: `
                 <div style="text-align:center;">
                     <p style="font-size:16px; margin-bottom:10px; color:#111; font-weight:500;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: <span style="font-weight:600; color:#1e3a8a;">229-8-97447-1</span><br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
+            
                     <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
                     <p style="font-size:13px; color:#d97706; margin-top:12px; font-weight:600;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
                 </div>`,
             showCloseButton: false, 
             showConfirmButton: true,
             confirmButtonText: 'ปิดหน้าต่าง',
+  
             confirmButtonColor: '#1e3a8a',
             customClass: { popup: 'glass-swal-popup' } 
         });
-    }
+}
 </script>
 
 </body>
