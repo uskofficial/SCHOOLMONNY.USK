@@ -161,17 +161,18 @@
             min-height: 95vh;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            position: relative; /* เพิ่ม position relative สำหรับจัดวางป้ายเวอร์ชัน */
+            position: relative;
         }
 
         /* --- Version Tag --- */
         .version-tag {
-            position: absolute;
-            top: 25px;
-            right: 30px;
             font-size: 14px;
-            color: #666;
-            font-weight: 500;
+            color: #444;
+            font-weight: 600;
+            text-align: left;
+            padding-left: 15px;
+            margin-bottom: -25px; /* ดึงให้ชิดขอบกล่องสีน้ำเงินด้านล่าง */
+            position: relative;
             z-index: 10;
         }
 
@@ -184,9 +185,9 @@
                 min-height: 100vh;
             }
             .version-tag {
-                top: 15px;
-                right: 15px;
                 font-size: 12px;
+                padding-left: 5px;
+                margin-bottom: -25px;
             }
         }
         
@@ -638,8 +639,6 @@
 </div>
 
 <div class="container">
-    <div class="version-tag">Version 2026.1.10</div>
-
     <div class="header">
         <img src="https://i.postimg.cc/FzPbqZ7n/IMG-7790.png" alt="Logo" class="logo-img">
         <div class="school-info">
@@ -720,6 +719,8 @@
             box-shadow: 0 4px 15px rgba(30,58,138,0.3);">กลับหน้าค้นหา</button>
         </div>
     </div>
+
+    <div class="version-tag">Version 2026.1.10</div>
 
     <div class="master-footer">
         <div class="footer-layout">
