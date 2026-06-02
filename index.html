@@ -1987,21 +1987,21 @@
             // ตั้งเวลาปิดอัตโนมัติและนับถอยหลังหากมีการตั้งค่าไว้ (>0 วินาที)
             if (data.duration && parseInt(data.duration) > 0) {
                 let timeLeft = parseInt(data.duration);
-                closeBtn.innerHTML = `เข้าเว็บ (${timeLeft})`;
+                closeBtn.innerHTML = `เข้าสู่ระบบ (${timeLeft})`;
                 
                 if (window.popupInterval) clearInterval(window.popupInterval);
                 
                 window.popupInterval = setInterval(() => {
                     timeLeft--;
                     if (timeLeft > 0) {
-                        closeBtn.innerHTML = `เข้าเว็บ (${timeLeft})`;
+                        closeBtn.innerHTML = `เข้าสู่ระบบ (${timeLeft})`;
                     } else {
                         clearInterval(window.popupInterval);
                         window.closeStartupPopup();
                     }
                 }, 1000);
             } else {
-                closeBtn.innerHTML = `เข้าเว็บ`;
+                closeBtn.innerHTML = `เข้าสู่ระบบ`;
             }
         }
     }, { onlyOnce: true }); // ดึงแค่ครั้งเดียวตอนโหลดหน้าเว็บ
