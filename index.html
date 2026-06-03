@@ -2026,7 +2026,7 @@ const app = initializeApp(firebaseConfig);
 
     // 0. ดึงข้อมูลประกาศหน้าแรก (Startup Popup)
     const announcementRef = ref(db, 'announcement');
-    onValue(announcementRef, (snapshot) => {
+onValue(announcementRef, (snapshot) => {
         const data = snapshot.val();
         if (data && data.isActive && data.mediaUrl) {
             const overlay = document.getElementById('startupPopupOverlay');
@@ -2034,20 +2034,17 @@ const app = initializeApp(firebaseConfig);
             const closeBtn = document.getElementById('btnStartupClose');
             
             if (data.mediaType === 'video') {
-                // ใส่ ID ให้วิดีโอเพื่อให้ JavaScript หาเจอได้ง่ายขึ้น
-                mediaContainer.innerHTML = `<video id="startupVideo" class="startup-popup-media" src="${data.mediaUrl}" autoplay loop muted playsinline controls></video>`;
+                // เล่นวีดิโออัตโนมัติแบบไร้รอยต่อ ซ่อนปุ่มควบคุม และไม่ให้กดหยุดได้
+                mediaContainer.innerHTML = `<video id="startupVideo" class="startup-popup-media" src="${data.mediaUrl}" autoplay loop muted playsinline preload="auto" style="pointer-events: none;"></video>`;
                 
-                // ใช้ JavaScript สั่งบังคับเล่นทันที เพื่อแก้ปัญหาเบราว์เซอร์ (โดยเฉพาะ Safari/iOS) บล็อกการเล่นอัตโนมัติ
+                // ใช้ JavaScript สั่งบังคับเล่นซ้ำเพื่อทะลวงการบล็อก Autoplay ของ Safari/iOS
                 setTimeout(() => {
                     const videoEl = document.getElementById('startupVideo');
                     if (videoEl) {
-                        videoEl.muted = true; // ย้ำการตั้งค่าปิดเสียงอีกครั้ง
-                        videoEl.play().catch(e => {
-                            console.log("เบราว์เซอร์บล็อกการเล่นอัตโนมัติ: ", e);
-                        });
+                        videoEl.muted = true;
+                        videoEl.play().catch(e => console.log(e));
                     }
-                }, 100); // หน่วงเวลาเล็กน้อยให้หน้าเว็บสร้าง Element เสร็จก่อน
-
+                }, 100);
             } else {
                 mediaContainer.innerHTML = `<img class="startup-popup-media" src="${data.mediaUrl}" alt="Announcement">`;
             }
@@ -2058,7 +2055,7 @@ const app = initializeApp(firebaseConfig);
             // ตั้งเวลาปิดอัตโนมัติและนับถอยหลังหากมีการตั้งค่าไว้ (>0 วินาที)
             if (data.duration && parseInt(data.duration) > 0) {
                 let timeLeft = parseInt(data.duration);
-                closeBtn.innerHTML = `เข้าสู่ระบบ (${timeLeft})`;
+closeBtn.innerHTML = `เข้าสู่ระบบ (${timeLeft})`;
                 
                 if (window.popupInterval) clearInterval(window.popupInterval);
                 
