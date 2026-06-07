@@ -370,14 +370,14 @@
         } 
 
         .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap;
-            color: #111; font-weight: 500;}
+        color: #111; font-weight: 500;}
         .label { display: inline-block; width: 130px; font-weight: 600;
-            color: #444; }
+        color: #444; }
 
         h3.title { font-size: 18px; color: #111; margin: 30px 0 5px;
-            font-weight: 600; }
+        font-weight: 600; }
         h3.title span { font-size: 14px; font-weight: 400; color: #444;
-            display: block; }
+        display: block; }
 
         .current-date-time {
             text-align: right;
@@ -386,7 +386,7 @@
         }
 
         .fee-name { font-size: 17px;
-            font-weight: 600; color: #111; flex: 1; min-width: 150px; }
+        font-weight: 600; color: #111; flex: 1; min-width: 150px; }
 
         .status-badge { 
             padding: 2px 10px;
@@ -454,14 +454,14 @@
             box-shadow: 0 4px 10px rgba(236, 72, 153, 0.15);
         }
         .btn-upload:hover { background: #fff; transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(236, 72, 153, 0.25); }
+        box-shadow: 0 6px 15px rgba(236, 72, 153, 0.25); }
         
         .wait-status { text-align: right;
-            flex: 1; min-width: 200px; display: none; }
+        flex: 1; min-width: 200px; display: none; }
         .wait-status b { font-size: 18px;
-            display: block; margin-bottom: 2px; font-weight: 600;}
+        display: block; margin-bottom: 2px; font-weight: 600;}
         .wait-status span { font-size: 14px; color: #444;
-            display: block; }
+        display: block; }
 
         .payment-btn-box { 
             background: rgba(255, 255, 255, 0.8);
@@ -504,12 +504,12 @@
         .f-logo-wrap { margin-bottom: 10px;
         }
         .f-logo-wrap img { width: 140px; height: auto; border-radius: 15px; background: white;
-            padding: 5px; } 
+        padding: 5px; } 
         
         .f-motto { font-size: 16px;
-            font-weight: 500; line-height: 1.6; }
+        font-weight: 500; line-height: 1.6; }
         .f-motto span { display: block; font-weight: 300;
-            font-size: 14px; color: #f0f0f0; margin-top: 5px;}
+        font-size: 14px; color: #f0f0f0; margin-top: 5px;}
 
         .f-title-line { 
             font-size: 26px;
@@ -520,9 +520,9 @@
         .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px;
         }
         .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #e0e0e0;
-            text-decoration: none; font-weight: 400;}
+        text-decoration: none; font-weight: 400;}
         .f-contact-item i { margin-top: 4px; font-size: 16px; color: white;
-            width: 20px; text-align: center; }
+        width: 20px; text-align: center; }
         .f-contact-item:hover { color: #00aaff;
         }
 
@@ -552,7 +552,7 @@
         .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 500;
         }
         .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white;
-            font-weight: 600; }
+        font-weight: 600; }
 
         .f-bottom-bar {
             margin-top: 50px;
@@ -629,7 +629,7 @@
         }
         
         .fp-grid { display: grid;
-            grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 10px; }
+        grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 10px; }
         @media (min-width: 500px) { .fp-grid { grid-template-columns: repeat(3, 1fr);
         } }
         @media (min-width: 800px) { .fp-grid { grid-template-columns: repeat(6, 1fr);
@@ -647,7 +647,7 @@
         }
         
         .fp-month-name { font-size: 15px;
-            font-weight: 600; color: #111; }
+        font-weight: 600; color: #111; }
         
         .fp-badge {
             padding: 4px 10px;
@@ -663,7 +663,7 @@
         }
         
         .fp-amount { font-size: 14px;
-            color: #222; font-weight: 500; }
+        color: #222; font-weight: 500; }
         
         .fp-btn-upload {
             background: rgba(253, 242, 248, 0.9);
@@ -678,7 +678,7 @@
         }
         
         .fp-note { text-align: center;
-            font-size: 14px; color: #444; font-weight: 500; margin-top: 25px; line-height: 1.5; padding: 0 10px;
+        font-size: 14px; color: #444; font-weight: 500; margin-top: 25px; line-height: 1.5; padding: 0 10px;
         }
         .fp-total-row {
             display: flex;
@@ -691,7 +691,50 @@
         }
         
         .swal-food-popup { padding: 0 !important;
-            background: transparent !important; }
+        background: transparent !important; }
+
+        /* ปุ่มเลือกราคาสำหรับหน้าต่างชำระเงิน */
+        .btn-amount-select {
+            background: rgba(30, 58, 138, 0.05);
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
+            padding: 12px;
+            border-radius: 12px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .btn-amount-select:hover {
+            background: #1e3a8a;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ปุ่มดาวน์โหลดคิวอาร์โค้ด */
+        .btn-download-qr {
+            display: inline-block;
+            background: #10b981;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+            font-family: 'Kanit', sans-serif;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-download-qr:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            color: #fff;
+        }
 
         /* =========================================
            STYLE สำหรับ SweetAlert2 (Popup ทั่วไป)
@@ -723,9 +766,7 @@
             font-size: 24px !important; 
             position: absolute !important;
             top: 15px !important;
-            /* อยู่ในกรอบ */
             right: 15px !important;
-            /* อยู่ในกรอบ */
             border: none !important;
             box-shadow: none !important;
             opacity: 1 !important;
@@ -1086,7 +1127,7 @@
 <div id="notFoundOverlay">
     <div class="not-found-content">
         <dotlottie-wc src="https://lottie.host/63822361-e4de-4fc5-8b6f-a78c2d586b16/CV7OyOVb3x.lottie" style="width: 300px;
-        height: 300px;" autoplay loop></dotlottie-wc>
+            height: 300px;" autoplay loop></dotlottie-wc>
         <h2>ไม่พบข้อมูลนักเรียน</h2>
         <p>ขออภัยครับ ไม่พบชื่อนี้ในระบบ<br>กรุณาตรวจสอบรายชื่อให้ถูกต้อง</p>
         <button class="btn-close-notfound" onclick="closeNotFound()">ลองใหม่อีกครั้ง</button>
@@ -1122,7 +1163,7 @@
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
 
-        <div id="realTimeClock" class="current-date-time"></div>
+         <div id="realTimeClock" class="current-date-time"></div>
 
     
         <div class="fee-card">
@@ -1141,7 +1182,6 @@
             <div class="wait-status" id="waitDorm">
                 <b id="waitDormTitle"></b>
                 <span id="waitDormSub"></span>
-  
             </div>
         </div>
 
@@ -1166,14 +1206,13 @@
         </div>
 
         <div class="payment-info-text">
-     
              หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
             <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a;
             font-weight: 600; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
         </div>
 
         <div style="text-align: center;
-        margin-top: 25px;">
+            margin-top: 25px;">
             <button onclick="location.reload()" style="background: var(--main-blue); color: white;
             border: none; padding: 12px 30px; border-radius: 12px; cursor: pointer; font-size: 16px; font-family: 'Kanit', sans-serif; font-weight: 500;
             box-shadow: 0 4px 15px rgba(30,58,138,0.3);">กลับหน้าค้นหา</button>
@@ -1197,16 +1236,16 @@
                 </div>
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
-  
                     <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุณธรรม ผูกสัมพันธ์ชุมชน</span>
                 </p>
                 <div class="f-title-line">ติดต่อ</div>
                  <div class="f-contact-list">
+                 
                     <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" class="f-contact-item" target="_blank">
-    
-                    <i class="fas fa-home"></i> 
+                        <i class="fas fa-home"></i> 
                         โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130
                     </a>
+               
                     <a href="tel:0935377270" class="f-contact-item"><i class="fas fa-phone"></i> 093-537-7270</a>
     
                     <a href="tel:0935377270" class="f-contact-item"><i class="fas fa-fax"></i> 093-537-7270</a>
@@ -1219,11 +1258,13 @@
                 <div class="f-follow-head">ติดตาม</div>
                 <div class="f-social-grid">
                     <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
-                    <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/USKOfficial1" 
+                    class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
                     <a href="https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IJfkyKHJJ" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-tiktok"></i></a>
  
                     <a href="https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-instagram"></i></a>
                     <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
+                 
                     <a href="https://youtube.com/@uskofficial01?si=qLXB83PoYvydWuBY" class="f-social-link" target="_blank">uskofficial01 <i class="fab fa-youtube"></i></a>
                 </div>
        
@@ -1271,56 +1312,45 @@
             <h3 style="color: #ec4899; margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 24px; padding-right: 30px;"><i class="fas fa-shield-alt" style="margin-right:8px;"></i> แบบฟอร์มรายงานปัญหา</h3>
             <form id="problemReportForm">
                 <div class="custom-form-group">
-                    <label>1.
-                    ชื่อ-นามสกุล นักเรียน</label>
+                    <label>1. ชื่อ-นามสกุล นักเรียน</label>
                     <input type="text" id="repName" required placeholder="ดึงจากระบบ หรือ พิมพ์ใหม่">
                     <div style="font-size: 13px; color: #ef4444; margin-top: 8px; font-weight: 400; line-height: 1.4;">
                         * หากไม่เข้าสู่ระบบชื่อนักเรียนก่อนระบบจะไม่สามารถตอบกลับผ่านระบบนี้ได้ แต่ยังตอบกลับทางช่องทางที่ท่านได้ให้ติดต่อกลับไปได้ เพื่อความสะดวกกรุณาค้นหาชื่อนักเรียนในหน้าหลักก่อน
-                
                     </div>
                 </div>
                 <div class="custom-form-group">
-                    <label>2.
-                    วันและเวลาที่พบปัญหา</label>
+                    <label>2. วันและเวลาที่พบปัญหา</label>
                     <input type="datetime-local" id="repTime" required>
                 </div>
                 <div class="custom-form-group">
-                    <label>3.
-                    ประเภทของปัญหา</label>
+                    <label>3. ประเภทของปัญหา</label>
                     <select id="repType" required>
                         <option value="">-- เลือกประเภทปัญหา --</option>
                         <option value="ปัญหาการค้นหาชื่อนักเรียนไม่พบ">ปัญหาการค้นหาชื่อนักเรียนไม่พบ</option>
                         <option value="ปัญหาการแสดงผลยอดค้างชำระไม่ถูกต้อง">ปัญหาการแสดงผลยอดค้างชำระไม่ถูกต้อง</option>
- 
                         <option value="ปัญหาการอัปโหลดสลิปหลักฐานการโอนเงิน">ปัญหาการอัปโหลดสลิปหลักฐานการโอนเงิน</option>
                         <option value="ปัญหาหน้าเว็บไซต์แสดงผลผิดพลาด">ปัญหาหน้าเว็บไซต์แสดงผลผิดพลาด</option>
                         <option value="อื่นๆ">อื่นๆ</option>
                     </select>
-      
                 </div>
                 <div class="custom-form-group">
-                    <label>4.
-                    คำอธิบายปัญหาอย่างละเอียด</label>
+                    <label>4. คำอธิบายปัญหาอย่างละเอียด</label>
                     <textarea id="repDesc" rows="4" required placeholder="อธิบายสิ่งที่เกิดขึ้นจริง เช่น ระบบแจ้งยอดผิดปกติ..."></textarea>
                 </div>
                 <div class="custom-form-group">
-                    <label>5.
-                    วันที่อัปโหลดสลิปครั้งล่าสุด (ถ้ามี)</label>
+                    <label>5. วันที่อัปโหลดสลิปครั้งล่าสุด (ถ้ามี)</label>
                     <input type="date" id="repLastUpload">
                 </div>
                 <div class="custom-form-group">
-                    <label>6.
-                    อุปกรณ์ที่ใช้งาน</label>
+                    <label>6. อุปกรณ์ที่ใช้งาน</label>
                     <input type="text" id="repDevice" required placeholder="เช่น iPhone Safari, คอมพิวเตอร์ Chrome">
                 </div>
                 <div class="custom-form-group">
-                    <label>7.
-                    เบอร์โทรศัพท์หรืออีเมล (ติดต่อกลับ)</label>
+                    <label>7. เบอร์โทรศัพท์หรืออีเมล (ติดต่อกลับ)</label>
                     <input type="text" id="repContact" required placeholder="เบอร์โทร หรือ อีเมล">
                 </div>
                 <div class="custom-form-group">
-                    <label>8.
-                    รูปภาพประกอบ (Screenshots)</label>
+                    <label>8. รูปภาพประกอบ (Screenshots)</label>
                     <input type="file" id="repImage" accept="image/*" style="padding: 11px 15px;">
                 </div>
                 <button type="submit" class="custom-btn-submit" id="btnSubmitReport">ส่งรายงานปัญหา</button>
@@ -1389,7 +1419,7 @@
     // --- ระบบ Notification กดกระดิ่ง ---
     window.openNotiMenu = function() {
         if (!currentData ||
-            !currentData.data["ชื่อ-นามสกุล"]) {
+        !currentData.data["ชื่อ-นามสกุล"]) {
             Swal.fire({
                 icon: 'warning', 
                 title: 'กรุณาค้นหาชื่อก่อน',
@@ -1415,6 +1445,7 @@
                         <i class="fas fa-tasks"></i> ตรวจสอบสถานะการรายงาน ${repBadgeHtml}
                     </button>
                     <button onclick="Swal.close(); openLiveChat();" style="background:#ec4899; color:white; border:none; padding:15px; border-radius:12px; font-size:16px; font-family:'Kanit'; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
+                  
                         <i class="fas fa-comments"></i> พิมพ์ข้อความสด (Live Chat) ${chatBadgeHtml}
      
                     </button>
@@ -1422,6 +1453,7 @@
             `,
             showConfirmButton: false, showCloseButton: true,
             customClass: { popup: 'glass-swal-popup' }
+    
         });
     }
 
@@ -1525,13 +1557,11 @@
                 totalFoodOnly += amt; 
             }
 
-      
             gridHTML += `
                 <div class="month-item">
                     <div class="month-label">${m}</div>
                     <span class="status-badge ${getBadgeClass(stat)}">${stat}</span>
                     <div class="month-amount">${amt.toLocaleString()} บ.</div>
-          
                 </div>`;
         });
         document.getElementById('monthGrid').innerHTML = gridHTML;
@@ -1558,7 +1588,7 @@
         wait.style.display = 'none';
         let dormLink = d ? getAttachmentLink(d, "หอพัก") : "";
         let linkHtml = dormLink ?
-        `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px; font-weight:600;">ดูสลิปที่แนบล่าสุด</a>` : "";
+            `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px; font-weight:600;">ดูสลิปที่แนบล่าสุด</a>` : "";
         if (dormStatus.includes("ชำระแล้ว") || vStatus.includes("การโอนสำเร็จ") || vStatus.includes("สำเร็จ") || vStatus.includes("ชำระแล้ว")) {
             btn.style.display = 'none';
             wait.style.display = 'block';
@@ -1623,7 +1653,8 @@
                 totalUnpaid += amt;
                 statClass = "unpaid";
                 actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
-            } else if (stat.includes("ชำระแล้ว")) {
+       
+             } else if (stat.includes("ชำระแล้ว")) {
    
                 statClass = "paid";
                 actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
@@ -1658,21 +1689,21 @@
                     </div>
                     <div class="fp-grid">
                         ${colsHtml}
+        
                     </div>
    
                     <div class="fp-note">
                         ขอความกรุณาท่านดำเนินการแนบหลักฐานการโอนเงิน สำหรับยอดค้างชำระค่าอาหารรายเดือนในแต่ละรอบเดือน เพื่อความถูกต้องในการตรวจสอบข้อมูล และปรับปรุงสถานะยอดค้างชำระของท่านให้เป็นปัจจุบัน
                     </div>
+                 
                     <div class="fp-total-row">
               
                         <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:400; color:#555;">( Total Outstanding Balance )</span></div>
                         <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
                     </div>
-                    <div style="text-align: center;
-                    margin-top: 25px;">
-                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85);
-                        backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif;
-                        cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
+   
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
                     </div>
                 </div>
             `,
@@ -1690,6 +1721,7 @@
         try {
             const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
             const result = await res.json();
+   
             document.getElementById('loadingOverlay').style.display 
             = 'none';
             if (result.found) {
@@ -1697,6 +1729,7 @@
                 renderReport(result.data, result.sheetName);
             }
         } catch (e) {
+     
             document.getElementById('loadingOverlay').style.display = 'none';
         }
     }
@@ -1721,8 +1754,9 @@
                         <div class="progress-container">
                             <div id="pb" class="progress-bar"></div>
                         </div>
-                        <h1 
-                        style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
+                      
+                        <h1 style="color: #ffffff;
+                        font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
                         <p style="color: #ffffff;
                         font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
@@ -1744,12 +1778,13 @@
                 const pb = document.getElementById('pb');
                 const pt = document.getElementById('progressPercent');
                 if (pb) pb.style.width = val + '%';
-                if 
-                (pt) pt.innerText = val + '%';
+   
+                if (pt) pt.innerText = val + '%';
             }
 
             const payload = {
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
+               
                 sheetName: currentData.sheetName,
                 rowIndex: currentData.rowIndex,
            
@@ -1774,12 +1809,15 @@
                         confirmButtonText: 'รับทราบ',
                         confirmButtonColor: '#1e3a8a',
                         allowOutsideClick: false,
-                        html: `
+                        html: 
+                        `
                       
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
+                       
                                 <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
                             
-                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
+                                <h1 style="color: #ffffff;
+                                font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
                                 <p style="color: #ffffff;
                                 font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
@@ -1790,15 +1828,18 @@
                     });
                 } else {
                     Swal.fire({
+                  
                         background: 'transparent',
     
                         showConfirmButton: true,
                         confirmButtonText: 'ลองใหม่อีกครั้ง',
                         confirmButtonColor: '#b91c1c',
+              
                         allowOutsideClick: false,
     
                         html: `
-                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px;
+                            border: 1px solid rgba(255,255,255,0.3);">
                         
                                 <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
                                 height: 300px;" autoplay loop></dotlottie-wc>
@@ -1815,11 +1856,13 @@
                 clearInterval(progressInterval);
                 Swal.fire({
                     background: 'transparent',
+                
                     showConfirmButton: true,
            
                     confirmButtonText: 'ตกลง',
                     confirmButtonColor: '#b91c1c',
                     html: `
+                     
                         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; 
                         border: 1px solid rgba(255,255,255,0.3);">
                             <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
@@ -1837,22 +1880,99 @@
   
     }
 
+    // แก้ไขฟังก์ชัน showPaymentInfo เพื่อเพิ่มปุ่มตัวเลือกจำนวนเงินและข้อความแจ้งเตือน
     function showPaymentInfo() {
         Swal.fire({
             title: 'ช่องทางการชำระเงิน',
             html: `
                 <div style="text-align:center;">
-                    <p style="font-size:16px; margin-bottom:10px; color:#111; font-weight:500;">ธนาคารกสิกรไทย (K-Bank)<br>เลขบัญชี: <span style="font-weight:600; color:#1e3a8a;">229-8-97447-1</span><br>ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่</p>
-            
-                    <img src="https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
-                    <p style="font-size:13px; color:#d97706; margin-top:12px; font-weight:600;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
+                    <p style="font-size:16px; margin-bottom:15px; color:#111; font-weight:500;">
+                        ธนาคารกสิกรไทย (K-Bank)<br>
+                        เลขบัญชี: <span style="font-weight:600; color:#1e3a8a;">229-8-97447-1</span><br>
+                        ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่
+                    </p>
+                    
+                    <p style="font-size:14px; color:#444; margin-bottom:5px; font-weight:600;">กรุณาเลือกจำนวนเงินที่ต้องการชำระ:</p>
+
+                    <div style="font-size:13px; color:#b91c1c; margin-bottom:15px; font-weight:400; line-height:1.6; text-align:left; background: rgba(220,38,38,0.05); padding:12px; border-radius:10px; border-left: 4px solid #ef4444;">
+                        ขอความกรุณาทุกท่านชำระค่าอาหารกลางวันเป็นรายเดือนตามรอบบิล โดยแยกการโอนเงินเป็น 1 เดือนต่อ 1 สลิป (รบกวนไม่โอนรวมยอดหลายเดือนในสลิปเดียวกัน)<br><br>
+                        นอกจากนี้ สำหรับค่าธรรมเนียมหอพัก ขอความกรุณาโอนเงินและส่งสลิปแยกต่างหากจากค่าอาหารกลางวัน<br><br>
+                        ทั้งนี้ เพื่อความสะดวกรวดเร็วในการตรวจสอบ ป้องกันความผิดพลาดของข้อมูล และเพื่อให้ทางเราสามารถอัปเดตสถานะการชำระเงินของท่านได้อย่างถูกต้องแม่นยำ ขอขอบพระคุณในความร่วมมือเป็นอย่างยิ่งครับ/ค่ะ
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; padding: 0 10px;">
+                        <button class="btn-amount-select" onclick="showQRAmount('1,000')">1,000 บาท</button>
+                        <button class="btn-amount-select" onclick="showQRAmount('1,050')">1,050 บาท</button>
+                        <button class="btn-amount-select" onclick="showQRAmount('1,500')">1,500 บาท</button>
+                        <button class="btn-amount-select" onclick="showQRAmount('2,000')">2,000 บาท</button>
+                        <button class="btn-amount-select" onclick="showQRAmount('2,100')">2,100 บาท</button>
+                        <button class="btn-amount-select" onclick="showQRAmount('3,000')">3,000 บาท</button>
+                    </div>
                 </div>`,
             showCloseButton: false, 
             showConfirmButton: true,
             confirmButtonText: 'ปิดหน้าต่าง',
-  
             confirmButtonColor: '#1e3a8a',
             customClass: { popup: 'glass-swal-popup payment-popup' } 
+        });
+    }
+
+    // ฟังก์ชันสำหรับดาวน์โหลดคิวอาร์โค้ด
+    window.downloadQR = function(imageUrl, amount) {
+        fetch(imageUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'QR_Payment_' + amount + '.jpg';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            })
+            .catch(() => {
+                // เผื่อในกรณีที่เบราว์เซอร์บล็อกการโหลดข้ามโดเมน (CORS) จะเปิดเป็นแท็บใหม่แทน
+                window.open(imageUrl, '_blank');
+            });
+    }
+
+    // ฟังก์ชันใหม่สำหรับเปิด QR Code ตามจำนวนเงินที่เลือก
+    window.showQRAmount = function(amount) {
+        // คุณสามารถเปลี่ยน URL ตรงนี้ให้เป็นรูป QR Code ของแต่ละราคาได้ตามต้องการ
+        const qrImages = {
+            "1,000": "https://i.postimg.cc/qRr048sM/att-j-XV6az-M8aqgo2xukl-Ui-MY9k4GGUp-C7CJYXIii9JIOgc.jpg",
+            "1,050": "https://i.postimg.cc/ZRLmRCHg/att-crjk-0mua-Wdnmps-YZE0r-Kjywo3-1vj-Xdf-H2IWQt-Mg18.jpg",
+            "1,500": "https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg",
+            "2,000": "https://i.postimg.cc/zD05YHVf/att-i-Pcz-I78Yj0Dw-ED-umt-PKn-Xnes-BPQc-Jh43j38ol-TNf0.jpg",
+            "2,100": "https://i.postimg.cc/15dQfx0P/att-P2Cbp-Zh6Bctf-An-i-Wzgha-Bw1d0e-BKSVMttg-Ef-Knaum-U.jpg",
+            "3,000": "https://i.postimg.cc/DwbKGC5s/att-FWJ-NDYOTy-KO4ZDWEpx-Ngemauqx-EZ7z-K7q-R4hk-E0Cv-Q.jpg"
+        };
+
+        const selectedImage = qrImages[amount];
+
+        Swal.fire({
+            title: 'สแกนเพื่อชำระเงิน',
+            html: `
+                <div style="text-align:center;">
+                    <p style="font-size:18px; margin-bottom:10px; color:#1e3a8a; font-weight:600;">ยอดชำระ: ${amount} บาท</p>
+                    <img src="${selectedImage}" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+                    <p style="font-size:13px; color:#d97706; margin-top:12px; font-weight:600;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
+                    <button class="btn-download-qr" onclick="downloadQR('${selectedImage}', '${amount}')"><i class="fas fa-download"></i> ดาวน์โหลดคิวอาร์โค้ด</button>
+                </div>
+            `,
+            showCloseButton: false,
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: '<i class="fas fa-arrow-left"></i> ย้อนกลับ',
+            cancelButtonColor: '#64748b',
+            customClass: { popup: 'glass-swal-popup payment-popup' }
+        }).then((result) => {
+            // เมื่อผู้ใช้กดย้อนกลับ หรือคลิกพื้นที่ด้านนอก จะกลับไปยังหน้าต่างให้เลือกราคาอีกครั้ง
+            if (result.dismiss === Swal.DismissReason.cancel || result.dismiss === Swal.DismissReason.backdrop) {
+                showPaymentInfo();
+            }
         });
     }
 
@@ -1869,14 +1989,13 @@
                     <div style="text-align:center; margin-bottom: 25px;">
                         <i class="fas fa-shield" style="font-size: 60px; color: #1e3a8a; background: #eff6ff; padding: 30px; border-radius: 50%;"></i>
                     </div>
-        
+    
                     <h2>ประกาศนโยบายคุ้มครองข้อมูลส่วนบุคคล<br><span style="font-size: 18px; color: #555; font-weight: 500;">(Privacy Policy)</span></h2>
                     <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 14px;"><strong>โรงเรียนอุทยานศึกษากระบี่</strong><br>ประกาศ ณ วันที่ 30 พฤษภาคม พ.ศ. 2569</p>
                     <p>โรงเรียนอุทยานศึกษากระบี่ ("โรงเรียน") ในฐานะผู้ควบคุมข้อมูลส่วนบุคคล ตระหนักถึงความสำคัญในการคุ้มครองข้อมูลส่วนบุคคลของนักเรียน ผู้ปกครอง ครู และบุคลากรที่เกี่ยวข้อง ซึ่งถือเป็นส่วนหนึ่งของการดำเนินงานที่มีประสิทธิภาพตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ.
                     2562 (PDPA) ทางโรงเรียนจึงจัดทำนโยบายฉบับนี้ขึ้นเพื่อชี้แจงกระบวนการจัดการข้อมูลผ่านระบบ School Money (<a href="https://uskofficial.github.io/SCHOOLMONNY.USK/" target="_blank">https://uskofficial.github.io/SCHOOLMONNY.USK/</a>)</p>
 
-                    <h3>1.
-                    วัตถุประสงค์แห่งการจัดเก็บข้อมูลส่วนบุคคล</h3>
+                    <h3>1. วัตถุประสงค์แห่งการจัดเก็บข้อมูลส่วนบุคคล</h3>
                     <p>โรงเรียนมีความจำเป็นต้องเก็บรวบรวมข้อมูลส่วนบุคคลของท่าน เพื่อวัตถุประสงค์อันชอบด้วยกฎหมาย ดังนี้:</p>
                     <ul>
                         <li><b>1.1 เพื่อการบริหารจัดการสถานะการชำระเงิน:</b> เพื่อใช้ในการระบุตัวตนของนักเรียนสำหรับการสืบค้นสถานะค่าธรรมเนียมหอพักและค่าอาหารรายเดือน</li>
@@ -1886,8 +2005,7 @@
                         <li><b>1.4 เพื่อความปลอดภัยของระบบ:</b> เพื่อบันทึกข้อมูลทางเทคนิค (Log File) ในการเฝ้าระวัง ป้องกัน และแก้ไขปัญหาการบุกรุกระบบโดยมิชอบ</li>
                     </ul>
 
-                    <h3>2.
-                    ประเภทของข้อมูลที่จัดเก็บ</h3>
+                    <h3>2. ประเภทของข้อมูลที่จัดเก็บ</h3>
                     <p>โรงเรียนจัดเก็บข้อมูลส่วนบุคคลเท่าที่จำเป็นตามภารกิจของสถานศึกษา ดังนี้:</p>
                     <ul>
                         <li><b>ข้อมูลระบุตัวตน:</b> ชื่อ-นามสกุล ของนักเรียน</li>
@@ -1896,8 +2014,7 @@
                         <li><b>ข้อมูลทางเทคนิค (Technical Data):</b> ที่อยู่ไอพี (IP Address), คุกกี้ (Cookies) เพื่ออำนวยความสะดวกในการเข้าใช้งานระบบ</li>
                     </ul>
 
-                    <h3>3.
-                    หลักเกณฑ์และมาตรการในการคุ้มครองข้อมูล</h3>
+                    <h3>3. หลักเกณฑ์และมาตรการในการคุ้มครองข้อมูล</h3>
                     <p>โรงเรียนถือปฏิบัติโดยยึดมั่นในมาตรการรักษาความปลอดภัยที่เข้มงวด ดังนี้:</p>
                     <ul>
                         <li><b>3.1 การจำกัดสิทธิ์การเข้าถึง (Access Control):</b> ข้อมูลจะถูกเข้าถึงได้โดยบุคลากรผู้ได้รับมอบหมายจากโรงเรียนเท่านั้น เพื่อการปฏิบัติหน้าที่ที่เกี่ยวข้องกับระบบการเงินของโรงเรียน</li>
@@ -1906,8 +2023,7 @@
                         <li><b>3.3 การรักษาความลับ:</b> บุคลากรทุกคนที่เกี่ยวข้องกับการประมวลผลข้อมูลส่วนบุคคลมีหน้าที่ตามกฎหมายในการรักษาความลับของข้อมูลที่ได้รับทราบ</li>
                     </ul>
 
-                    <h3>4.
-                    การเปิดเผยข้อมูลส่วนบุคคล</h3>
+                    <h3>4. การเปิดเผยข้อมูลส่วนบุคคล</h3>
                     <p>โรงเรียนจะไม่เปิดเผยหรือส่งต่อข้อมูลส่วนบุคคลของท่านไปยังบุคคลภายนอก เว้นแต่กรณีดังต่อไปนี้:</p>
                     <ul>
                         <li>เป็นการปฏิบัติตามกฎหมาย หรือคำสั่งของศาลหรือพนักงานเจ้าหน้าที่ตามอำนาจหน้าที่</li>
@@ -1916,12 +2032,10 @@
                         <li>ท่านได้ให้ความยินยอมโดยชัดแจ้งในการดำเนินการดังกล่าว</li>
                     </ul>
 
-                    <h3>5.
-                    ระยะเวลาในการจัดเก็บข้อมูล</h3>
+                    <h3>5. ระยะเวลาในการจัดเก็บข้อมูล</h3>
                     <p>โรงเรียนจะจัดเก็บข้อมูลส่วนบุคคลของท่านไว้ตามระยะเวลาที่จำเป็น เพื่อให้บรรลุวัตถุประสงค์ในการดำเนินการทางการเงินและการศึกษาระหว่างปีการศึกษา เมื่อสิ้นสุดวัตถุประสงค์ หรือตามระยะเวลาที่กฎหมายบัญญัติไว้ โรงเรียนจะดำเนินการทำลายหรือทำให้ข้อมูลนั้นไม่สามารถระบุตัวบุคคลได้อีกต่อไป</p>
 
-                    <h3>6.
-                    สิทธิของเจ้าของข้อมูลส่วนบุคคล</h3>
+                    <h3>6. สิทธิของเจ้าของข้อมูลส่วนบุคคล</h3>
                     <p>ภายใต้บทบัญญัติแห่งกฎหมาย เจ้าของข้อมูลมีสิทธิดำเนินการดังนี้:</p>
                     <ul>
                         <li><b>สิทธิในการเข้าถึง:</b> ขอตรวจสอบและรับสำเนาข้อมูลส่วนบุคคลที่โรงเรียนจัดเก็บ</li>
@@ -1931,12 +2045,10 @@
                         <li><b>สิทธิในการคัดค้าน:</b> คัดค้านการประมวลผลข้อมูลในบางกรณีตามที่กฎหมายกำหนด</li>
                     </ul>
 
-                    <h3>7.
-                    การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h3>
+                    <h3>7. การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h3>
                     <p>โรงเรียนขอสงวนสิทธิ์ในการแก้ไขปรับปรุงนโยบายฉบับนี้ตามความเหมาะสมเพื่อให้สอดคล้องกับระเบียบราชการและการปฏิบัติงานจริง โดยท่านสามารถตรวจสอบการปรับปรุงล่าสุดได้ที่หน้าเว็บไซต์นี้</p>
 
-                    <h3>8.
-                    ข้อมูลติดต่อ</h3>
+                    <h3>8. ข้อมูลติดต่อ</h3>
                     <p>หากท่านมีคำถาม ข้อเสนอแนะ หรือความประสงค์ที่จะใช้สิทธิในฐานะเจ้าของข้อมูลส่วนบุคคล ท่านสามารถติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของโรงเรียนได้ที่:</p>
                     <p style="background: #f8fafc; padding: 15px; border-radius: 12px; border-left: 5px solid #1e3a8a;">
                         <b>ฝ่ายงานสารสนเทศ โรงเรียนอุทยานศึกษากระบี่</b><br>
@@ -1944,6 +2056,7 @@
                         สถานที่: 114/1 หมู่ 2 ต.คลองเขม้า อ.เหนือคลอง จ.กระบี่ 81130<br>
                         อีเมล: <a href="mailto:uskofficial01@gmail.com">uskofficial01@gmail.com</a><br>
                         โทรศัพท์: <a href="tel:0935377270">093-537-7270</a>
+                 
                     </p>
                </div>
     
@@ -1964,54 +2077,47 @@
                     <div style="text-align:center; margin-bottom: 25px;">
                         <i class="fas fa-file-contract" style="font-size: 60px; color: #1e3a8a; background: #eff6ff; padding: 30px; border-radius: 50%;"></i>
                     </div>
-        
+    
                     <h2>เงื่อนไขและข้อตกลงการใช้งาน<br><span style="font-size: 18px; color: #555; font-weight: 500;">(Terms and Conditions)</span></h2>
                     <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 14px;"><strong>ระบบ School Money – โรงเรียนอุทยานศึกษากระบี่</strong><br>มีผลบังคับใช้ตั้งแต่วันที่ 30 พฤษภาคม พ.ศ. 2569 เป็นต้นไป</p>
                     <p>การที่ท่านเข้าใช้งานระบบ School Money (<a href="https://uskofficial.github.io/SCHOOLMONNY.USK/" target="_blank">https://uskofficial.github.io/SCHOOLMONNY.USK/</a>) ถือว่าท่านได้อ่าน ทำความเข้าใจ และตกลงที่จะปฏิบัติตามข้อกำหนดและเงื่อนไขดังต่อไปนี้:</p>
 
-               
+   
                     <h3>1. การยอมรับเงื่อนไข</h3>
                     <p>ผู้ใช้งานตกลงที่จะใช้บริการระบบนี้เพื่อวัตถุประสงค์ในการตรวจสอบสถานะการชำระเงินและจัดการค่าใช้จ่ายทางการศึกษาของนักเรียนในสังกัดโรงเรียนอุทยานศึกษากระบี่เท่านั้น ห้ามนำข้อมูลไปใช้ในทางที่ผิดกฎหมายหรือก่อให้เกิดความเสียหายแก่ทางโรงเรียน</p>
 
-                    <h3>2.
-                    ความถูกต้องของข้อมูล</h3>
+                    <h3>2. ความถูกต้องของข้อมูล</h3>
                     <ul>
                         <li>ผู้ใช้งานมีหน้าที่รับผิดชอบในการระบุ "ชื่อ-นามสกุล" ของนักเรียนให้ถูกต้องตามที่ลงทะเบียนไว้กับทางโรงเรียน โดยไม่มีคำนำหน้าชื่อ เพื่อการค้นหาที่ถูกต้อง</li>
                         <li>ท่านยืนยันว่าข้อมูลหลักฐานการโอนเงิน (สลิป) ที่อัปโหลดเข้าสู่ระบบ เป็นเอกสารที่ถูกต้องและเป็นจริง หากตรวจพบว่ามีการปลอมแปลงเอกสาร โรงเรียนขอสงวนสิทธิ์ในการดำเนินคดีตามกฎหมาย</li>
                     </ul>
 
    
-                    <h3>3.
-                    การทำธุรกรรมและการตรวจสอบ</h3>
+                    <h3>3. การทำธุรกรรมและการตรวจสอบ</h3>
                     <ul>
                         <li>การชำระเงินผ่านช่องทางที่โรงเรียนกำหนดถือเป็นความรับผิดชอบของผู้ใช้งาน</li>
                         <li>ระบบแสดงสถานะ "ชำระแล้ว" เป็นข้อมูลเบื้องต้น ทางโรงเรียนขอสงวนสิทธิ์ในการตรวจสอบความถูกต้องของยอดเงินกับบัญชีธนาคารจริงอีกครั้งภายใน 7 วันทำการ</li>
-                        <li>หากเกิดข้อผิดพลาดในการทำรายการ ผู้ใช้งานมีหน้าที่ติดต่อเจ้าหน้าที่ของโรงเรียนโดยตรงตามช่องทางที่ระบุไว้ภายใน 7 
-                        วัน</li>
+                        <li>หากเกิดข้อผิดพลาดในการทำรายการ ผู้ใช้งานมีหน้าที่ติดต่อเจ้าหน้าที่ของโรงเรียนโดยตรงตามช่องทางที่ระบุไว้ภายใน 7 วัน</li>
                     </ul>
 
-                    <h3>4.
-                    ความรับผิดชอบของผู้ใช้งาน</h3>
+                    <h3>4. ความรับผิดชอบของผู้ใช้งาน</h3>
                     <ul>
                         <li>ผู้ใช้งานต้องรักษาข้อมูลส่วนตัวของนักเรียนในการเข้าถึงระบบ และไม่เปิดเผยข้อมูลดังกล่าวให้ผู้อื่นนำไปใช้ในทางที่มิชอบ</li>
                         <li>โรงเรียนไม่รับผิดชอบต่อความเสียหายใดๆ ที่เกิดจากการที่ผู้ใช้งานกรอกข้อมูลไม่ถูกต้อง หรือการกระทำที่เกิดจากความประมาทเลินเล่อของผู้ใช้งานเอง</li>
                     </ul>
 
          
-                    <h3>5.
-                    สิทธิและการเปลี่ยนแปลงระบบ</h3>
+                    <h3>5. สิทธิและการเปลี่ยนแปลงระบบ</h3>
                     <ul>
                         <li>โรงเรียนมีสิทธิ์ในการปรับปรุง พัฒนา หรือระงับการให้บริการระบบนี้ชั่วคราวหรือถาวร เพื่อการบำรุงรักษาหรือแก้ไขปัญหาทางเทคนิค โดยไม่ต้องแจ้งให้ทราบล่วงหน้า</li>
                         <li>โรงเรียนขอสงวนสิทธิ์ในการแก้ไขเปลี่ยนแปลงเงื่อนไขการใช้งานนี้ตามความเหมาะสม โดยจะมีผลทันทีเมื่อประกาศผ่านทางหน้าเว็บไซต์</li>
                     </ul>
 
        
-                    <h3>6.
-                    ทรัพย์สินทางปัญญา</h3>
+                    <h3>6. ทรัพย์สินทางปัญญา</h3>
                     <p>เนื้อหา รูปภาพ สัญลักษณ์ และส่วนประกอบทั้งหมดในเว็บไซต์นี้ เป็นลิขสิทธิ์ของโรงเรียนอุทยานศึกษากระบี่ ห้ามมิให้ผู้ใดคัดลอก ทำซ้ำ หรือดัดแปลงเพื่อนำไปใช้โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษร</p>
 
-                    <h3>7.
-                    กฎหมายที่ใช้บังคับ</h3>
+                    <h3>7. กฎหมายที่ใช้บังคับ</h3>
                     <p>เงื่อนไขการใช้งานฉบับนี้อยู่ภายใต้บังคับของกฎหมายแห่งราชอาณาจักรไทย และข้อพิพาทใดๆ ที่เกิดขึ้นจากการใช้งานเว็บไซต์นี้ จะต้องอยู่ภายใต้อำนาจการตัดสินของศาลในเขตพื้นที่จังหวัดกระบี่</p>
                 </div>
             `
@@ -2051,35 +2157,26 @@
   
                         <div style="width: 45px; height: 45px; min-width: 45px; background: #1e3a8a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-phone-alt"></i></div>
                         <div>
-                            <div style="font-size: 13px; color: 
-                            #555; font-weight: 500;">เบอร์โทรศัพท์</div>
+                            <div style="font-size: 13px; color: #555; font-weight: 500;">เบอร์โทรศัพท์</div>
                             <div style="font-size: 18px; font-weight: 600; color: #111;">093-537-7270</div>
                         </div>
                     </a>
                     
                     <a href="mailto:uskofficial01@gmail.com" style="display:flex; align-items:center; gap:15px; background: rgba(236, 72, 153, 0.05); padding: 15px; border-radius: 15px;
                     border: 1px solid rgba(236, 72, 153, 0.1); text-decoration: none; color: inherit;">
-                        <div style="width: 45px;
-                        height: 45px; min-width: 45px; background: #ec4899; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                        <div style="width: 45px; height: 45px; min-width: 45px; background: #ec4899; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
                         font-size: 20px;"><i class="fas fa-envelope"></i></div>
                         <div>
-                            <div style="font-size: 13px;
-                            color: #555; font-weight: 500;">อีเมล</div>
-                            <div style="font-size: 15px;
-                            font-weight: 600; color: #111; word-break: break-all;">uskofficial01@gmail.com</div>
+                            <div style="font-size: 13px; color: #555; font-weight: 500;">อีเมล</div>
+                            <div style="font-size: 15px; font-weight: 600; color: #111; word-break: break-all;">uskofficial01@gmail.com</div>
                         </div>
                     </a>
-                    <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" target="_blank" style="display:flex;
-                    align-items:center; gap:15px; background: rgba(22, 163, 74, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(22, 163, 74, 0.1); text-decoration: none;
-                    color: inherit;">
-                        <div style="width: 45px;
-                        height: 45px; min-width: 45px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                    <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" target="_blank" style="display:flex; align-items:center; gap:15px; background: rgba(22, 163, 74, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(22, 163, 74, 0.1); text-decoration: none; color: inherit;">
+                        <div style="width: 45px; height: 45px; min-width: 45px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
                         font-size: 20px;"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
-                            <div style="font-size: 13px;
-                            color: #555; font-weight: 500;">สถานที่</div>
-                            <div style="font-size: 14px;
-                            font-weight: 500; color: #111;">โรงเรียนอุทยานศึกษากระบี่ อ.เหนือคลอง จ.กระบี่</div>
+                            <div style="font-size: 13px; color: #555; font-weight: 500;">สถานที่</div>
+                            <div style="font-size: 14px; font-weight: 500; color: #111;">โรงเรียนอุทยานศึกษากระบี่ อ.เหนือคลอง จ.กระบี่</div>
                         </div>
                     </a>
                 </div>
@@ -2097,7 +2194,6 @@
         if(answer.style.display === 'block') {
             answer.style.display = 'none';
         } else {
-          
             answer.style.display = 'block';
         }
     }
@@ -2131,7 +2227,6 @@
 
     let userReports = [];
     let chatMessages = {};
-
     // เพิ่มฟังก์ชันจับสถานะ "กำลังใช้งาน" ของฝั่งนักเรียนหน้าบ้าน โดยอ้างอิงจากชื่อจริงตามฐานข้อมูล (Google Sheet)
     let myPresenceRef = null;
     window.trackUserPresence = function(userName) {
@@ -2148,14 +2243,12 @@
             status: 'online',
             timestamp: new Date().toISOString()
         });
-
         // ดักจับการปิดหน้าต่าง หรือ เน็ตหลุด ให้อัปเดตเป็นสถานะ offline
         onDisconnect(myPresenceRef).set({
             name: userName,
             status: 'offline',
             timestamp: new Date().toISOString()
         });
-
         // ดักจับการเชื่อมต่อกลับมาใหม่
         onValue(connectedRef, (snap) => {
             if (snap.val() === true) {
@@ -2181,13 +2274,11 @@
             snapshot.forEach(child => {
                 const r = child.val();
                 r.key = child.key;
-                if(r.name 
-                === userName) {
+                if(r.name === userName) {
                     userReports.push(r);
                     if(r.replies) {
                         Object.values(r.replies).forEach(reply => {
-                            if(reply.sender === 'admin' 
-                            && !reply.userRead) unreadReports++;
+                            if(reply.sender === 'admin' && !reply.userRead) unreadReports++;
                         });
                     }
                 }
@@ -2196,7 +2287,6 @@
             
             updateBellUI();
         });
-
         const chatRef = ref(db, `chats/${userName}/messages`);
         onValue(chatRef, (snapshot) => {
             chatMessages = snapshot.val() || {};
@@ -2245,13 +2335,12 @@
                 Object.keys(r.replies).forEach(key => {
                     const reply = r.replies[key];
                     const color = reply.sender === 'admin' ? '#1e3a8a' : '#ec4899';
-                    
+           
                     const name = reply.sender === 'admin' ? 'ผู้ดูแลระบบ' : 'คุณ';
                     repliesThread += `<div class="reply-msg"><b style="color:${color}">${name}:</b> ${reply.message}</div>`;
                     
                     // Mark as read
-                    if(reply.sender === 'admin' 
-                    && !reply.userRead) {
+                    if(reply.sender === 'admin' && !reply.userRead) {
                         update(ref(db, `reports/${r.key}/replies/${key}`), { userRead: true });
                     }
                 });
@@ -2267,6 +2356,7 @@
                     </div>
                     <div style="font-size:13px; color:#555;">วันที่แจ้ง: ${new Date(r.timestamp).toLocaleString('th-TH')}</div>
                     <div style="font-size:14px; margin-top:5px; color:#111;">รายละเอียด: ${r.description}</div>
+        
                     ${repliesHtml}
    
                 </div>
@@ -2291,24 +2381,20 @@
                 const msgClass = msg.sender === 'user' ? 'user' : 'admin';
                 const timeStr = new Date(msg.timestamp).toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
                 
- 
                 // เพิ่มส่วนแสดงสถานะว่า ส่งแล้ว หรือ อ่านแล้ว (สำหรับข้อความที่ผู้ใช้เป็นคนส่ง)
                 let readStatusHtml = '';
                 if(msg.sender === 'user') {
                     if(msg.adminRead) {
-                     
                         readStatusHtml = '<span style="margin-left:5px; color:#a5b4fc;"><i class="fas fa-check-double"></i> อ่านแล้ว</span>';
                     } else {
                         readStatusHtml = '<span style="margin-left:5px; color:#e2e8f0;"><i class="fas fa-check"></i> ส่งแล้ว</span>';
                     }
                 }
 
- 
                 box.innerHTML += `
                     <div class="chat-msg ${msgClass}">
                         ${msg.message}
                         <div class="chat-time">${timeStr} ${readStatusHtml}</div>
-           
                     </div>
                 `;
                 // Mark admin messages as read if opened
@@ -2347,13 +2433,11 @@
             const mediaContainer = document.getElementById('startupPopupMediaContainer');
             const closeBtn = document.getElementById('btnStartupClose');
             
-            if (data.mediaType === 
-            'video') {
+            if (data.mediaType === 'video') {
                 // เล่นวีดิโออัตโนมัติแบบไร้รอยต่อ ซ่อนปุ่มควบคุม และไม่ให้กดหยุดได้
                 mediaContainer.innerHTML = `<video id="startupVideo" class="startup-popup-media" src="${data.mediaUrl}" autoplay loop muted playsinline preload="auto" style="pointer-events: none;"></video>`;
                 
                 // ใช้ JavaScript สั่งบังคับเล่นซ้ำเพื่อทะลวงการบล็อก Autoplay ของ Safari/iOS
-              
                 setTimeout(() => {
                     const videoEl = document.getElementById('startupVideo');
                     if (videoEl) {
@@ -2377,7 +2461,6 @@
                     timeLeft--;
                     if (timeLeft > 0) {
                         closeBtn.innerHTML = `เข้าสู่ระบบ (${timeLeft})`;
-                  
                     } else {
                         clearInterval(window.popupInterval);
                         window.closeStartupPopup();
@@ -2387,8 +2470,7 @@
                 closeBtn.innerHTML = `เข้าสู่ระบบ`;
             }
         }
-    }, { onlyOnce: true });
-    // ดึงแค่ครั้งเดียวตอนโหลดหน้าเว็บ
+    }, { onlyOnce: true }); // ดึงแค่ครั้งเดียวตอนโหลดหน้าเว็บ
 
     // 1. ดึงข้อมูล FAQ มาแสดง
     const faqsRef = ref(db, 'faqs');
@@ -2400,16 +2482,14 @@
             Object.keys(data).forEach(key => {
                 const item = data[key];
                 container.innerHTML += `
-    
                     <div class="faq-item">
                         <div class="faq-q" onclick="toggleFAQ(this)">
                             ${item.question} <i class="fas fa-chevron-down" style="font-size:12px; margin-top:5px;"></i>
-                        
                         </div>
                         <div class="faq-a">${item.answer}</div>
                     </div>
                 `;
-            });
+             });
         } else {
             container.innerHTML = '<p style="text-align:center; color:#666;">ยังไม่มีข้อมูลคำถามที่พบบ่อย</p>';
  
@@ -2426,8 +2506,7 @@
         const name = document.getElementById('repName').value;
         const time = document.getElementById('repTime').value;
         const type = document.getElementById('repType').value;
-        const desc 
-        = document.getElementById('repDesc').value;
+        const desc = document.getElementById('repDesc').value;
         const lastUpload = document.getElementById('repLastUpload').value;
         const device = document.getElementById('repDevice').value;
         const contact = document.getElementById('repContact').value;
@@ -2437,7 +2516,6 @@
         
         // ฟังก์ชันแปลงภาพเป็น Base64
         const getBase64 = (file) => new Promise((resolve, reject) => {
-         
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result);
@@ -2454,7 +2532,6 @@
             description: desc,
             lastUpload: lastUpload,
             device: device,
-           
             contact: contact,
             image: base64Image,
             status: "pending", // สถานะยังไม่ได้ตอบกลับ
