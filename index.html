@@ -29,7 +29,8 @@
             --light-blue: rgba(239, 246, 255, 0.6); 
             --footer-dark: rgba(18, 40, 99, 0.85);
         }
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box;
+        }
         
         /* ป้องกันการปัดหน้าจอซ้าย-ขวาอย่างเด็ดขาด */
         html, body {
@@ -63,7 +64,8 @@
             z-index: 9999;
             padding: 20px;
         }
-        #loadingOverlay svg { width: 100%; max-width: 600px; height: auto; }
+        #loadingOverlay svg { width: 100%; max-width: 600px; height: auto;
+        }
         .school-text {
             fill: none;
             stroke: #1a237e;
@@ -73,15 +75,21 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .dash-animation { animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite; }
+        .dash-animation { animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite;
+        }
         @keyframes dashArray {
-            0% { stroke-dasharray: 0 1 500 0; }
-            50% { stroke-dasharray: 0 500 1 0; }
-            100% { stroke-dasharray: 500 1 0 0; }
+            0% { stroke-dasharray: 0 1 500 0;
+            }
+            50% { stroke-dasharray: 0 500 1 0;
+            }
+            100% { stroke-dasharray: 500 1 0 0;
+            }
         }
         @keyframes dashOffset {
-            0% { stroke-dashoffset: 1000; }
-            100% { stroke-dashoffset: 0; }
+            0% { stroke-dashoffset: 1000;
+            }
+            100% { stroke-dashoffset: 0;
+            }
         }
 
         /* --- Not Found Popup --- */
@@ -118,11 +126,16 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
         @keyframes fadeInScale {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from { transform: scale(0.9);
+            opacity: 0; }
+            to { transform: scale(1); opacity: 1;
+            }
         }
-        .not-found-content h2 { color: #ffffff; font-size: 32px; margin: 10px 0; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-        .not-found-content p { color: #f0f0f0; font-size: 18px; margin-bottom: 25px; line-height: 1.5; font-weight: 400; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        .not-found-content h2 { color: #ffffff;
+            font-size: 32px; margin: 10px 0; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        .not-found-content p { color: #f0f0f0; font-size: 18px; margin-bottom: 25px; line-height: 1.5;
+            font-weight: 400; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         .btn-close-notfound {
             background: rgba(255, 255, 255, 0.25);
             color: #ffffff;
@@ -138,7 +151,8 @@
             -webkit-backdrop-filter: blur(10px);
             transition: 0.3s;
         }
-        .btn-close-notfound:hover { background: rgba(255, 255, 255, 0.4); }
+        .btn-close-notfound:hover { background: rgba(255, 255, 255, 0.4);
+        }
 
         /* --- Main Container (Glassmorphism) --- */
         .container { 
@@ -165,9 +179,12 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;
             transition: 0.3s;
         }
-        .front-bell-wrapper:hover { transform: scale(1.05); background: #fff; }
-        .front-bell-icon { font-size: 24px; color: #94a3b8; transition: 0.3s; }
-        .front-bell-icon.has-noti { color: #ef4444; animation: shake 1s infinite; }
+        .front-bell-wrapper:hover { transform: scale(1.05); background: #fff;
+        }
+        .front-bell-icon { font-size: 24px; color: #94a3b8; transition: 0.3s;
+        }
+        .front-bell-icon.has-noti { color: #ef4444; animation: shake 1s infinite;
+        }
         .front-bell-badge {
             position: absolute;
             top: -5px; right: -5px; background: #ef4444; color: white;
@@ -223,16 +240,26 @@
             padding-right: 15px;
         }
         /* Custom Scrollbar for Policy */
-        .policy-container::-webkit-scrollbar { width: 6px; }
-        .policy-container::-webkit-scrollbar-track { background: transparent; border-radius: 4px; }
-        .policy-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .policy-container::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .policy-container::-webkit-scrollbar { width: 6px;
+        }
+        .policy-container::-webkit-scrollbar-track { background: transparent; border-radius: 4px;
+        }
+        .policy-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px;
+        }
+        .policy-container::-webkit-scrollbar-thumb:hover { background: #94a3b8;
+        }
 
-        .policy-container h2 { font-size: 24px; color: #111; text-align: center; margin: 0 0 10px 0; font-weight: 600; }
-        .policy-container h3 { font-size: 18px; color: #1e3a8a; margin: 25px 0 10px 0; border-bottom: 2px solid #eff6ff; padding-bottom: 5px; font-weight: 600;}
-        .policy-container p { font-size: 15px; margin-bottom: 12px; }
-        .policy-container ul { font-size: 15px; padding-left: 20px; margin-bottom: 15px; }
-        .policy-container li { margin-bottom: 8px; }
+        .policy-container h2 { font-size: 24px; color: #111; text-align: center;
+            margin: 0 0 10px 0; font-weight: 600; }
+        .policy-container h3 { font-size: 18px;
+            color: #1e3a8a; margin: 25px 0 10px 0; border-bottom: 2px solid #eff6ff; padding-bottom: 5px;
+            font-weight: 600;}
+        .policy-container p { font-size: 15px; margin-bottom: 12px;
+        }
+        .policy-container ul { font-size: 15px; padding-left: 20px; margin-bottom: 15px;
+        }
+        .policy-container li { margin-bottom: 8px;
+        }
 
         @media (max-width: 768px) {
             .container {
@@ -242,11 +269,16 @@
                 padding: 15px;
                 min-height: 100vh;
             }
-            .bottom-links-row { padding: 0 5px; }
-            .version-tag { font-size: 12px; }
-            .legal-links span { font-size: 12px; }
-            .front-bell-wrapper { top: -5px; right: 0; padding: 10px; }
-            .front-bell-icon { font-size: 20px; }
+            .bottom-links-row { padding: 0 5px;
+            }
+            .version-tag { font-size: 12px;
+            }
+            .legal-links span { font-size: 12px;
+            }
+            .front-bell-wrapper { top: -5px; right: 0; padding: 10px;
+            }
+            .front-bell-icon { font-size: 20px;
+            }
         }
         @media (max-width: 480px) {
             .bottom-links-row {
@@ -265,8 +297,10 @@
             position: relative;
             padding-right: 50px;
         }
-        .school-info h2 { margin: 0; font-size: 22px; color: #111; font-weight: 600; }
-        .school-info p { margin: 0; font-size: 15px; color: #333; font-weight: 400; }
+        .school-info h2 { margin: 0; font-size: 22px; color: #111; font-weight: 600;
+        }
+        .school-info p { margin: 0; font-size: 15px; color: #333; font-weight: 400;
+        }
 
         .search-area { 
             margin-bottom: 30px;
@@ -288,7 +322,8 @@
             color: #111;
             font-weight: 500;
         }
-        input#nameInput::placeholder { color: #555; font-weight: 400; }
+        input#nameInput::placeholder { color: #555; font-weight: 400;
+        }
         button.btn-search { 
             background: var(--main-blue);
             color: white; border: none; 
@@ -326,13 +361,18 @@
             gap: 10px;
         }
 
-        .boarding-box { padding: 0; overflow: hidden; } 
+        .boarding-box { padding: 0; overflow: hidden;
+        } 
 
-        .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap; color: #111; font-weight: 500;}
-        .label { display: inline-block; width: 130px; font-weight: 600; color: #444; }
+        .info-line { font-size: 17px; margin-bottom: 8px; display: flex; flex-wrap: wrap;
+            color: #111; font-weight: 500;}
+        .label { display: inline-block; width: 130px; font-weight: 600;
+            color: #444; }
 
-        h3.title { font-size: 18px; color: #111; margin: 30px 0 5px; font-weight: 600; }
-        h3.title span { font-size: 14px; font-weight: 400; color: #444; display: block; }
+        h3.title { font-size: 18px; color: #111; margin: 30px 0 5px;
+            font-weight: 600; }
+        h3.title span { font-size: 14px; font-weight: 400; color: #444;
+            display: block; }
 
         .current-date-time {
             text-align: right;
@@ -340,7 +380,8 @@
             color: #1e3a8a; margin-bottom: 8px; font-weight: 500;
         }
 
-        .fee-name { font-size: 17px; font-weight: 600; color: #111; flex: 1; min-width: 150px; }
+        .fee-name { font-size: 17px;
+            font-weight: 600; color: #111; flex: 1; min-width: 150px; }
 
         .status-badge { 
             padding: 2px 10px;
@@ -350,10 +391,14 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
-        .paid { color: #15803d; border-color: #22c55e; } 
-        .unpaid { color: #b91c1c; border-color: #ef4444; } 
-        .pending { color: #d97706; border-color: #f59e0b; } 
-        .not-reached { color: #2563eb; border-color: #60a5fa; } 
+        .paid { color: #15803d; border-color: #22c55e;
+        } 
+        .unpaid { color: #b91c1c; border-color: #ef4444;
+        } 
+        .pending { color: #d97706; border-color: #f59e0b;
+        } 
+        .not-reached { color: #2563eb; border-color: #60a5fa;
+        } 
 
         .boarding-header { 
             padding: 12px 15px;
@@ -371,8 +416,10 @@
             border-right: 1px solid rgba(0, 0, 0, 0.05); 
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .month-label { font-weight: 600; margin-bottom: 5px; font-size: 14px; color: #222; }
-        .month-amount { font-size: 12px; color: #444; margin-top: 5px; font-weight: bold; }
+        .month-label { font-weight: 600; margin-bottom: 5px; font-size: 14px; color: #222;
+        }
+        .month-amount { font-size: 12px; color: #444; margin-top: 5px; font-weight: bold;
+        }
         
         .total-section { 
             padding: 15px;
@@ -401,11 +448,15 @@
             transition: 0.3s;
             box-shadow: 0 4px 10px rgba(236, 72, 153, 0.15);
         }
-        .btn-upload:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(236, 72, 153, 0.25); }
+        .btn-upload:hover { background: #fff; transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(236, 72, 153, 0.25); }
         
-        .wait-status { text-align: right; flex: 1; min-width: 200px; display: none; }
-        .wait-status b { font-size: 18px; display: block; margin-bottom: 2px; font-weight: 600;}
-        .wait-status span { font-size: 14px; color: #444; display: block; }
+        .wait-status { text-align: right;
+            flex: 1; min-width: 200px; display: none; }
+        .wait-status b { font-size: 18px;
+            display: block; margin-bottom: 2px; font-weight: 600;}
+        .wait-status span { font-size: 14px; color: #444;
+            display: block; }
 
         .payment-btn-box { 
             background: rgba(255, 255, 255, 0.8);
@@ -419,7 +470,8 @@
             box-shadow: 0 4px 15px rgba(30, 58, 138, 0.15);
             transition: 0.3s;
         }
-        .payment-btn-box:hover { background: var(--main-blue); color: white; }
+        .payment-btn-box:hover { background: var(--main-blue); color: white;
+        }
 
         .payment-info-text {
             text-align: center;
@@ -439,14 +491,20 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .footer-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; }
+        .footer-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+        }
 
-        .f-left { display: flex; flex-direction: column; gap: 15px; }
-        .f-logo-wrap { margin-bottom: 10px; }
-        .f-logo-wrap img { width: 140px; height: auto; border-radius: 15px; background: white; padding: 5px; } 
+        .f-left { display: flex; flex-direction: column; gap: 15px;
+        }
+        .f-logo-wrap { margin-bottom: 10px;
+        }
+        .f-logo-wrap img { width: 140px; height: auto; border-radius: 15px; background: white;
+            padding: 5px; } 
         
-        .f-motto { font-size: 16px; font-weight: 500; line-height: 1.6; }
-        .f-motto span { display: block; font-weight: 300; font-size: 14px; color: #f0f0f0; margin-top: 5px;}
+        .f-motto { font-size: 16px;
+            font-weight: 500; line-height: 1.6; }
+        .f-motto span { display: block; font-weight: 300;
+            font-size: 14px; color: #f0f0f0; margin-top: 5px;}
 
         .f-title-line { 
             font-size: 26px;
@@ -454,30 +512,42 @@
             border-bottom: 3px solid rgba(0, 170, 255, 0.8); width: fit-content; padding-bottom: 5px;
         }
 
-        .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #e0e0e0; text-decoration: none; font-weight: 400;}
-        .f-contact-item i { margin-top: 4px; font-size: 16px; color: white; width: 20px; text-align: center; }
-        .f-contact-item:hover { color: #00aaff; }
+        .f-contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px;
+        }
+        .f-contact-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #e0e0e0;
+            text-decoration: none; font-weight: 400;}
+        .f-contact-item i { margin-top: 4px; font-size: 16px; color: white;
+            width: 20px; text-align: center; }
+        .f-contact-item:hover { color: #00aaff;
+        }
 
-        .f-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .f-right { display: flex; flex-direction: column; align-items: flex-end;
+        }
         .f-follow-head { 
             font-size: 26px;
             font-weight: 600; margin-bottom: 15px;
             border-bottom: 3px solid rgba(236, 72, 153, 0.8); width: fit-content; padding-bottom: 5px;
         }
-        .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%; }
+        .f-social-grid { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: 100%;
+        }
         .f-social-link { 
             display: flex;
             align-items: center; justify-content: flex-end; gap: 12px;
             text-decoration: none; color: white; font-size: 15px; font-weight: 400; transition: 0.2s;
         }
-        .f-social-link i { font-size: 22px; }
-        .f-social-link:hover { color: #ec4899; }
+        .f-social-link i { font-size: 22px;
+        }
+        .f-social-link:hover { color: #ec4899;
+        }
 
-        .f-qr-wrap { margin-top: 40px; text-align: right; }
-        .f-qr-wrap img { width: 110px; padding: 5px; background: rgba(255,255,255,0.95); border-radius: 12px; }
-        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 500; }
-        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white; font-weight: 600; }
+        .f-qr-wrap { margin-top: 40px; text-align: right;
+        }
+        .f-qr-wrap img { width: 110px; padding: 5px; background: rgba(255,255,255,0.95); border-radius: 12px;
+        }
+        .f-qr-wrap p { margin: 10px 0 0; font-size: 16px; font-weight: 500;
+        }
+        .f-qr-wrap a { color: white; text-decoration: none; border-bottom: 1px solid white;
+            font-weight: 600; }
 
         .f-bottom-bar {
             margin-top: 50px;
@@ -486,20 +556,31 @@
         }
 
         @media (max-width: 650px) {
-            .footer-layout { grid-template-columns: 1fr; gap: 50px; }
-            .f-right { align-items: center; text-align: center; }
-            .f-social-grid { align-items: center; }
-            .f-social-link { justify-content: center; width: 100%; }
-            .f-bottom-bar { flex-direction: column; align-items: center; gap: 15px; text-align: center; }
-            .f-qr-wrap { text-align: center; }
+            .footer-layout { grid-template-columns: 1fr;
+            gap: 50px; }
+            .f-right { align-items: center; text-align: center;
+            }
+            .f-social-grid { align-items: center;
+            }
+            .f-social-link { justify-content: center; width: 100%;
+            }
+            .f-bottom-bar { flex-direction: column; align-items: center; gap: 15px;
+            text-align: center; }
+            .f-qr-wrap { text-align: center;
+            }
         }
 
         @media (min-width: 600px) {
-            .logo-img { width: 100px; height: 100px; }
-            .school-info h2 { font-size: 24px; }
-            .btn-search { width: auto; }
-            .month-grid { grid-template-columns: repeat(6, 1fr); }
-            .info-box { padding: 25px; }
+            .logo-img { width: 100px;
+            height: 100px; }
+            .school-info h2 { font-size: 24px;
+            }
+            .btn-search { width: auto;
+            }
+            .month-grid { grid-template-columns: repeat(6, 1fr);
+            }
+            .info-box { padding: 25px;
+            }
         }
 
         /* --- Progress Bar Styles --- */
@@ -537,12 +618,17 @@
             border-bottom: 2px solid rgba(236, 72, 153, 0.8);
             padding-bottom: 15px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;
         }
-        .fp-title { font-size: 20px; font-weight: 600; color: #111; }
-        .fp-date { font-size: 15px; color: #333; font-weight: 500; }
+        .fp-title { font-size: 20px; font-weight: 600; color: #111;
+        }
+        .fp-date { font-size: 15px; color: #333; font-weight: 500;
+        }
         
-        .fp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 10px; }
-        @media (min-width: 500px) { .fp-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 800px) { .fp-grid { grid-template-columns: repeat(6, 1fr); } }
+        .fp-grid { display: grid;
+            grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 10px; }
+        @media (min-width: 500px) { .fp-grid { grid-template-columns: repeat(3, 1fr);
+        } }
+        @media (min-width: 800px) { .fp-grid { grid-template-columns: repeat(6, 1fr);
+        } }
         
         .fp-col {
             text-align: center;
@@ -555,18 +641,24 @@
             display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 8px;
         }
         
-        .fp-month-name { font-size: 15px; font-weight: 600; color: #111; }
+        .fp-month-name { font-size: 15px;
+            font-weight: 600; color: #111; }
         
         .fp-badge {
             padding: 4px 10px;
             border: 1px solid; font-size: 13px; font-weight: 600; width: 100%; border-radius: 6px;
         }
-        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: rgba(220, 38, 38, 0.15); }
-        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: rgba(22, 163, 74, 0.15); }
-        .fp-badge.pending { border-color: #d97706; color: #d97706; background: rgba(217, 119, 6, 0.15); }
-        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: rgba(37, 99, 235, 0.15); }
+        .fp-badge.unpaid { border-color: #dc2626; color: #dc2626; background: rgba(220, 38, 38, 0.15);
+        }
+        .fp-badge.paid { border-color: #16a34a; color: #16a34a; background: rgba(22, 163, 74, 0.15);
+        }
+        .fp-badge.pending { border-color: #d97706; color: #d97706; background: rgba(217, 119, 6, 0.15);
+        }
+        .fp-badge.not-due { border-color: #2563eb; color: #2563eb; background: rgba(37, 99, 235, 0.15);
+        }
         
-        .fp-amount { font-size: 14px; color: #222; font-weight: 500; }
+        .fp-amount { font-size: 14px;
+            color: #222; font-weight: 500; }
         
         .fp-btn-upload {
             background: rgba(253, 242, 248, 0.9);
@@ -575,19 +667,26 @@
             border-radius: 8px;
             font-family: 'Kanit', sans-serif; font-weight: 600; transition: 0.2s;
         }
-        .fp-btn-upload:hover { background: rgba(236, 72, 153, 0.15); }
-        .fp-file-link { font-size: 13px; color: #2563eb; font-weight: 500; margin-top: 4px; }
+        .fp-btn-upload:hover { background: rgba(236, 72, 153, 0.15);
+        }
+        .fp-file-link { font-size: 13px; color: #2563eb; font-weight: 500; margin-top: 4px;
+        }
         
-        .fp-note { text-align: center; font-size: 14px; color: #444; font-weight: 500; margin-top: 25px; line-height: 1.5; padding: 0 10px; }
+        .fp-note { text-align: center;
+            font-size: 14px; color: #444; font-weight: 500; margin-top: 25px; line-height: 1.5; padding: 0 10px;
+        }
         .fp-total-row {
             display: flex;
             justify-content: space-between; align-items: center;
             margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(0, 0, 0, 0.2); font-weight: 600;
         }
-        .fp-total-label { font-size: 18px; color: #111; }
-        .fp-total-val { font-size: 22px; color: #b91c1c; }
+        .fp-total-label { font-size: 18px; color: #111;
+        }
+        .fp-total-val { font-size: 22px; color: #b91c1c;
+        }
         
-        .swal-food-popup { padding: 0 !important; background: transparent !important; }
+        .swal-food-popup { padding: 0 !important;
+            background: transparent !important; }
 
         /* ปุ่มเลือกราคาสำหรับหน้าต่างชำระเงิน */
         .btn-amount-select {
@@ -644,8 +743,10 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.25) !important;
             overflow: visible !important; 
         }
-        .glass-swal-popup .swal2-title { color: #111 !important; font-family: 'Kanit', sans-serif !important; font-weight: 600 !important; }
-        .glass-swal-popup .swal2-html-container { color: #222 !important; font-family: 'Kanit', sans-serif !important; }
+        .glass-swal-popup .swal2-title { color: #111 !important;
+            font-family: 'Kanit', sans-serif !important; font-weight: 600 !important; }
+        .glass-swal-popup .swal2-html-container { color: #222 !important;
+            font-family: 'Kanit', sans-serif !important; }
         
         /* สไตล์ปุ่มปิด (Close) ของ SweetAlert ให้อยู่ข้างในกรอบ */
         .glass-swal-popup .swal2-close {
@@ -672,7 +773,8 @@
             color: #fff !important;
             transform: rotate(90deg) !important;
         }
-        .glass-swal-popup .swal2-close:focus { outline: none !important; }
+        .glass-swal-popup .swal2-close:focus { outline: none !important;
+        }
 
         /* ซ่อนปุ่ม X ออก สำหรับ popup ช่องทางการชำระเงินโดยเฉพาะ */
         .glass-swal-popup.payment-popup .swal2-close {
@@ -718,7 +820,8 @@
             overflow: hidden;
             border: 2px solid #fff;
         }
-        .fab-blue img { width: 100%; height: 100%; object-fit: cover; }
+        .fab-blue img { width: 100%;
+            height: 100%; object-fit: cover; }
 
         .fab-pink-container {
             position: relative;
@@ -768,12 +871,17 @@
             left: -19px; 
         }
 
-        .fab-sub-btn:hover { background: #be185d; }
+        .fab-sub-btn:hover { background: #be185d;
+        }
 
-        .fab-sub-menu.active { pointer-events: auto; }
-        .fab-sub-menu.active .fab-sub-btn:nth-child(1) { opacity: 1; transform: scale(1) translate(-20px, -125px); }
-        .fab-sub-menu.active .fab-sub-btn:nth-child(2) { opacity: 1; transform: scale(1) translate(-75px, -70px); }
-        .fab-sub-menu.active .fab-sub-btn:nth-child(3) { opacity: 1; transform: scale(1) translate(-75px, -10px); }
+        .fab-sub-menu.active { pointer-events: auto;
+        }
+        .fab-sub-menu.active .fab-sub-btn:nth-child(1) { opacity: 1; transform: scale(1) translate(-20px, -125px);
+        }
+        .fab-sub-menu.active .fab-sub-btn:nth-child(2) { opacity: 1; transform: scale(1) translate(-75px, -70px);
+        }
+        .fab-sub-menu.active .fab-sub-btn:nth-child(3) { opacity: 1; transform: scale(1) translate(-75px, -10px);
+        }
 
         .fab-sub-btn::after {
             content: attr(data-title);
@@ -836,9 +944,12 @@
         }
 
         /* Custom Scrollbar for Modal Content */
-        .custom-modal-content::-webkit-scrollbar { width: 6px; }
-        .custom-modal-content::-webkit-scrollbar-track { background: transparent; }
-        .custom-modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-modal-content::-webkit-scrollbar { width: 6px;
+        }
+        .custom-modal-content::-webkit-scrollbar-track { background: transparent;
+        }
+        .custom-modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px;
+        }
 
         /* ปุ่มปิดหน้าต่าง (Close) อยู่ด้านในมุมขวาบนของกล่อง ไม่เลื่อนตามเนื้อหา */
         .custom-modal-close {
@@ -854,7 +965,8 @@
         }
         
         /* ปรับปรุงฟอร์มรายงานปัญหาให้ Modern ขึ้น */
-        .custom-form-group { margin-bottom: 25px; text-align: left; position: relative; }
+        .custom-form-group { margin-bottom: 25px;
+            text-align: left; position: relative; }
         .custom-form-group label { 
             display: inline-block;
             font-weight: 600; margin-bottom: 8px; font-size: 14px; 
@@ -895,7 +1007,8 @@
             border-radius: 12px; margin-bottom: 15px; padding: 15px; transition: 0.3s;
             text-align: left;
         }
-        .faq-item:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .faq-item:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
         .faq-q { 
             font-weight: bold;
             color: #1e3a8a; font-size: 16px; cursor: pointer;
@@ -908,23 +1021,40 @@
         }
 
         /* สไตล์สำหรับกล่องแชทและสถานะ */
-        .chat-box { flex: 1; overflow-y: auto; background: #f8fafc; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; gap: 10px; min-height: 300px; max-height: 400px;}
-        .chat-msg { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.4; word-wrap: break-word;}
-        .chat-msg.user { align-self: flex-end; background: #1e3a8a; color: white; border-bottom-right-radius: 2px;}
-        .chat-msg.admin { align-self: flex-start; background: #e2e8f0; color: #111; border-bottom-left-radius: 2px;}
-        .chat-time { font-size: 10px; opacity: 0.7; margin-top: 4px; text-align: right;}
-        .chat-input-row { display: flex; gap: 10px; margin-top: 15px; }
-        .chat-input-row input { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #cbd5e1; font-family: 'Kanit', sans-serif; outline: none;}
-        .chat-input-row button { background: #ec4899; color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; font-family: 'Kanit', sans-serif; font-weight: 600; transition: 0.2s;}
+        .chat-box { flex: 1;
+            overflow-y: auto; background: #f8fafc; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; gap: 10px; min-height: 300px;
+            max-height: 400px;}
+        .chat-msg { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px;
+            line-height: 1.4; word-wrap: break-word;}
+        .chat-msg.user { align-self: flex-end; background: #1e3a8a; color: white;
+            border-bottom-right-radius: 2px;}
+        .chat-msg.admin { align-self: flex-start; background: #e2e8f0; color: #111;
+            border-bottom-left-radius: 2px;}
+        .chat-time { font-size: 10px; opacity: 0.7; margin-top: 4px;
+            text-align: right;}
+        .chat-input-row { display: flex; gap: 10px; margin-top: 15px;
+        }
+        .chat-input-row input { flex: 1; padding: 12px; border-radius: 10px;
+            border: 1px solid #cbd5e1; font-family: 'Kanit', sans-serif; outline: none;}
+        .chat-input-row button { background: #ec4899;
+            color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; font-family: 'Kanit', sans-serif; font-weight: 600;
+            transition: 0.2s;}
         .chat-input-row button:hover { background: #be185d;}
 
-        .status-report-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 15px;}
-        .status-badge-inline { font-size: 12px; padding: 3px 8px; border-radius: 5px; font-weight: bold; }
-        .status-badge-inline.pending { background: #fef3c7; color: #d97706; }
-        .status-badge-inline.replied { background: #dcfce3; color: #16a34a; }
-        .reply-thread { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #cbd5e1; background: #f8fafc; padding: 10px; border-radius: 8px;}
-        .reply-msg { font-size: 14px; margin-bottom: 8px;}
-        .reply-msg b { color: #1e3a8a; }
+        .status-report-item { background: #fff;
+            border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 15px;}
+        .status-badge-inline { font-size: 12px;
+            padding: 3px 8px; border-radius: 5px; font-weight: bold; }
+        .status-badge-inline.pending { background: #fef3c7;
+            color: #d97706; }
+        .status-badge-inline.replied { background: #dcfce3; color: #16a34a;
+        }
+        .reply-thread { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #cbd5e1; background: #f8fafc;
+            padding: 10px; border-radius: 8px;}
+        .reply-msg { font-size: 14px;
+            margin-bottom: 8px;}
+        .reply-msg b { color: #1e3a8a;
+        }
 
         /* --- Startup Popup Styles (ประกาศหน้าแรก) --- */
         #startupPopupOverlay {
@@ -942,8 +1072,10 @@
             gap: 15px;
         }
         @keyframes zoomInPopup {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from { transform: scale(0.8);
+            opacity: 0; }
+            to { transform: scale(1); opacity: 1;
+            }
         }
         .startup-popup-close {
             background: rgba(255, 255, 255, 0.15);
@@ -955,7 +1087,8 @@
             font-family: 'Kanit', sans-serif; font-weight: 500;
             letter-spacing: 0.5px;
         }
-        .startup-popup-close:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+        .startup-popup-close:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px);
+        }
         .startup-popup-media {
             width: 100%;
             max-height: 80vh; object-fit: contain; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.5);
@@ -986,7 +1119,8 @@
             margin-bottom: 20px;
         }
         .logo-img { 
-            width: 80px; height: 80px;
+            width: 80px;
+            height: 80px;
             object-fit: cover; border-radius: 20px;
             transition: 0.3s;
             z-index: 2;
@@ -1015,8 +1149,10 @@
             animation: live-blink 1s infinite alternate;
         }
         @keyframes live-blink {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0.75; transform: scale(0.95); }
+            0% { opacity: 1;
+            transform: scale(1); }
+            100% { opacity: 0.75; transform: scale(0.95);
+            }
         }
         .live-platform-text {
             position: absolute;
@@ -1049,8 +1185,10 @@
             transform: scale(1.05);
         }
         @keyframes live-pulse-bg {
-            0% { opacity: 1; }
-            100% { opacity: 0.75; }
+            0% { opacity: 1;
+            }
+            100% { opacity: 0.75;
+            }
         }
     </style>
 </head>
@@ -1109,13 +1247,12 @@
         <input type="text" id="nameInput" placeholder="กรอกชื่อ-นามสกุล นักเรียน">
         <button class="btn-search" onclick="doSearch()">ค้นหา</button>
         <div class="search-hint">" พิมพ์ ชื่อ - นามสกุล โดยไม่ต้องมีคำนำหน้า เด็กชาย , เด็กหญิง , นาย , นางสาว "</div>
-  
     </div>
 
     <div id="reportArea" style="display:none;">
         <div class="info-box">
              <div class="info-line"><span class="label">ชื่อ - สกุล :</span> <span id="resName"></span></div>
-            <div class="info-line"><span class="label">โปรแกรมหอพัก :</span> <span id="resProg"></span></div>
+             <div class="info-line"><span class="label">โปรแกรมหอพัก :</span> <span id="resProg"></span></div>
         </div>
 
         <h3 class="title">รายงานประวัติและยอดค้างชำระ <span>( Payment History & Outstanding Balance )</span></h3>
@@ -1123,8 +1260,8 @@
         <div id="realTimeClock" class="current-date-time"></div>
 
         <div class="fee-card">
-   
-            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:400; font-size:13px;
+            <div class="fee-name">ค่าธรรมเนียมหอพัก 1/2569 <br><span style="font-weight:400;
+                font-size:13px;
                 color: #555;">( Dormitory Fee )</span></div>
             <div style="text-align:right">
                 <span style="color:#444;
@@ -1139,7 +1276,6 @@
             <div class="wait-status" id="waitDorm">
                 <b id="waitDormTitle"></b>
                 <span id="waitDormSub"></span>
-  
             </div>
         </div>
 
@@ -1164,7 +1300,6 @@
         </div>
 
         <div class="payment-info-text">
-     
             หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
             <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a;
                 font-weight: 600; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
@@ -1189,8 +1324,11 @@
     <div style="background: rgba(255, 255, 255, 0.75);
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 15px; padding: 20px; margin-top: 30px; margin-bottom: 10px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
-            <h3 style="font-size: 18px; color: #111; margin: 0; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <div style="display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+            <h3 style="font-size: 18px;
+                color: #111; margin: 0; font-weight: 600; display: flex; align-items: center;
+                gap: 8px;">
                 <i class="fas fa-bullhorn" style="color: #1e3a8a;"></i> บอร์ดประชาสัมพันธ์
             </h3>
             <button id="prLiveBtn" class="live-btn-blink" style="display:none;">
@@ -1199,7 +1337,8 @@
         </div>
         <div id="prNewsContainer" class="pr-news-scroll">
             <p style="color: #666;
-                text-align: center; font-size: 14px; padding: 20px 0; width: 100%;">กำลังโหลดข้อมูลประชาสัมพันธ์...</p>
+                text-align: center; font-size: 14px; padding: 20px 0;
+                width: 100%;">กำลังโหลดข้อมูลประชาสัมพันธ์...</p>
         </div>
     </div>
 
@@ -1209,7 +1348,6 @@
             <div class="f-left">
                 <div class="f-logo-wrap">
                     <img src="https://i.postimg.cc/G208V1G9/U.jpg" alt="School Logo">
-     
                 </div>
                 <p class="f-motto">
                     ศิษย์เราเขาคือลูก
@@ -1233,27 +1371,23 @@
             <div class="f-right">
                 <div class="f-follow-head">ติดตาม</div>
                 <div class="f-social-grid">
-                    <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i 
-                        class="fab fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
                     <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
                     <a href="https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IJfkyKHJJ" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-tiktok"></i></a>
                     <a href="https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-instagram"></i></a>
-                    <a 
-                        href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
+                    <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
                     <a href="https://youtube.com/@uskofficial01?si=qLXB83PoYvydWuBY" class="f-social-link" target="_blank">uskofficial01 <i class="fab fa-youtube"></i></a>
                 </div>
        
                 <div class="f-qr-wrap">
                     <img src="https://i.postimg.cc/5N778H5g/Untitled-design.png" alt="QR Apply">
-      
                     <p>สมัครเรียน <a href="https://usk.ac.th" target="_blank">https://usk.ac.th/</a></p>
                 </div>
             </div>
         </div>
 
         <div class="f-bottom-bar">
-            <span>© 2026 COPYRIGHT : UTTAYANSUKSAKRABI SCHOOL .
-                All right reserved</span>
+            <span>© 2026 COPYRIGHT : UTTAYANSUKSAKRABI SCHOOL . All right reserved</span>
             <span>ผลิตสื่อโดย: โรงเรียนอุทยานศึกษากระบี่ เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130 จำนวน 1 ชุด ตามเวลาที่ปรากฎ ที่ส่งมาในครั้งนี้</span>
         </div>
     </div>
@@ -1270,7 +1404,6 @@
         <div class="fab-btn fab-pink" id="fabMenuBtn">!</div>
 
         <div class="fab-sub-menu" id="fabSubMenu">
-     
             <div class="fab-sub-btn" onclick="openReportModal()" data-title="รายงานปัญหา"><i class="fas fa-shield-alt"></i></div>
             <div class="fab-sub-btn" onclick="openFAQModal()" data-title="คำถามที่พบบ่อย"><i class="fas fa-comments"></i></div>
             <div class="fab-sub-btn" onclick="showContactPopup()" data-title="ติดต่อสอบถาม"><i class="fas fa-headset"></i></div>
@@ -1283,61 +1416,48 @@
         <div class="custom-modal-close" onclick="closeReportModal()"><i class="fas fa-times"></i></div>
         
         <div class="custom-modal-content">
-      
-            <h3 style="color: #ec4899; margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 24px;
-                padding-right: 30px;"><i class="fas fa-shield-alt" style="margin-right:8px;"></i> แบบฟอร์มรายงานปัญหา</h3>
+            <h3 style="color: #ec4899; margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 24px; padding-right: 30px;"><i class="fas fa-shield-alt" style="margin-right:8px;"></i> แบบฟอร์มรายงานปัญหา</h3>
             <form id="problemReportForm">
                 <div class="custom-form-group">
                     <label>1. ชื่อ-นามสกุล นักเรียน</label>
                     <input type="text" id="repName" required placeholder="ดึงจากระบบ หรือ พิมพ์ใหม่">
-                 
-                    <div style="font-size: 13px; color: #ef4444; margin-top: 8px; font-weight: 400;
-                        line-height: 1.4;">
+                    <div style="font-size: 13px; color: #ef4444; margin-top: 8px; font-weight: 400; line-height: 1.4;">
                         * หากไม่เข้าสู่ระบบชื่อนักเรียนก่อนระบบจะไม่สามารถตอบกลับผ่านระบบนี้ได้ แต่ยังตอบกลับทางช่องทางที่ท่านได้ให้ติดต่อกลับไปได้ เพื่อความสะดวกกรุณาค้นหาชื่อนักเรียนในหน้าหลักก่อน
                     </div>
                 </div>
                 <div class="custom-form-group">
-                   
                     <label>2. วันและเวลาที่พบปัญหา</label>
                     <input type="datetime-local" id="repTime" required>
                 </div>
                 <div class="custom-form-group">
                     <label>3. ประเภทของปัญหา</label>
-                    <select 
-                        id="repType" required>
+                    <select id="repType" required>
                         <option value="">-- เลือกประเภทปัญหา --</option>
                         <option value="ปัญหาการค้นหาชื่อนักเรียนไม่พบ">ปัญหาการค้นหาชื่อนักเรียนไม่พบ</option>
                         <option value="ปัญหาการแสดงผลยอดค้างชำระไม่ถูกต้อง">ปัญหาการแสดงผลยอดค้างชำระไม่ถูกต้อง</option>
-                      
                         <option value="ปัญหาการอัปโหลดสลิปหลักฐานการโอนเงิน">ปัญหาการอัปโหลดสลิปหลักฐานการโอนเงิน</option>
                         <option value="ปัญหาหน้าเว็บไซต์แสดงผลผิดพลาด">ปัญหาหน้าเว็บไซต์แสดงผลผิดพลาด</option>
                         <option value="อื่นๆ">อื่นๆ</option>
                     </select>
                 </div>
-           
                 <div class="custom-form-group">
-                    <label>4.
-                        คำอธิบายปัญหาอย่างละเอียด</label>
+                    <label>4. คำอธิบายปัญหาอย่างละเอียด</label>
                     <textarea id="repDesc" rows="4" required placeholder="อธิบายสิ่งที่เกิดขึ้นจริง เช่น ระบบแจ้งยอดผิดปกติ..."></textarea>
                 </div>
                 <div class="custom-form-group">
-                    <label>5.
-                        วันที่อัปโหลดสลิปครั้งล่าสุด (ถ้ามี)</label>
+                    <label>5. วันที่อัปโหลดสลิปครั้งล่าสุด (ถ้ามี)</label>
                     <input type="date" id="repLastUpload">
                 </div>
                 <div class="custom-form-group">
-                    <label>6.
-                        อุปกรณ์ที่ใช้งาน</label>
+                    <label>6. อุปกรณ์ที่ใช้งาน</label>
                     <input type="text" id="repDevice" required placeholder="เช่น iPhone Safari, คอมพิวเตอร์ Chrome">
                 </div>
                 <div class="custom-form-group">
-                    <label>7.
-                        เบอร์โทรศัพท์หรืออีเมล (ติดต่อกลับ)</label>
+                    <label>7. เบอร์โทรศัพท์หรืออีเมล (ติดต่อกลับ)</label>
                     <input type="text" id="repContact" required placeholder="เบอร์โทร หรือ อีเมล">
                 </div>
                 <div class="custom-form-group">
-                    <label>8.
-                        รูปภาพประกอบ (Screenshots)</label>
+                    <label>8. รูปภาพประกอบ (Screenshots)</label>
                     <input type="file" id="repImage" accept="image/*" style="padding: 11px 15px;">
                 </div>
                 <button type="submit" class="custom-btn-submit" id="btnSubmitReport">ส่งรายงานปัญหา</button>
@@ -1348,7 +1468,6 @@
 
 <div class="custom-modal-overlay" id="faqModal">
     <div class="custom-modal-box">
-       
         <div class="custom-modal-close" onclick="closeFAQModal()"><i class="fas fa-times"></i></div>
         <div class="custom-modal-content">
             <h3 style="color: #1e3a8a; margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 24px; padding-right: 30px;"><i class="fas fa-comments" style="margin-right:8px;"></i> คำถามที่พบบ่อย (FAQ)</h3>
@@ -1356,7 +1475,6 @@
                 <p style="text-align: center; color: #666;">กำลังโหลดข้อมูล...</p>
             </div>
         </div>
-    
     </div>
 </div>
 
@@ -1364,11 +1482,9 @@
     <div class="custom-modal-box">
          <div class="custom-modal-close" onclick="document.getElementById('statusModal').style.display='none'"><i class="fas fa-times"></i></div>
         <div class="custom-modal-content">
-            <h3 style="color: #1e3a8a;
-                margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 22px;"><i class="fas fa-tasks" style="margin-right:8px;"></i> สถานะการรายงานปัญหา</h3>
+            <h3 style="color: #1e3a8a; margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 22px;"><i class="fas fa-tasks" style="margin-right:8px;"></i> สถานะการรายงานปัญหา</h3>
             <div id="statusListContainer">
-                <p style="text-align: center;
-                    color: #666;">กำลังตรวจสอบข้อมูล...</p>
+                <p style="text-align: center; color: #666;">กำลังตรวจสอบข้อมูล...</p>
             </div>
         </div>
     </div>
@@ -1378,37 +1494,27 @@
     <div class="custom-modal-box">
          <div class="custom-modal-close" onclick="document.getElementById('liveChatModal').style.display='none'"><i class="fas fa-times"></i></div>
         <div class="custom-modal-content" style="padding: 25px;">
-            <h3 style="color: #ec4899;
-                margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 22px;"><i class="fas fa-comments" style="margin-right:8px;"></i> พิมพ์ข้อความสด (Live Chat)</h3>
+            <h3 style="color: #ec4899; margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 22px;"><i class="fas fa-comments" style="margin-right:8px;"></i> พิมพ์ข้อความสด (Live Chat)</h3>
             <div class="chat-box" id="frontChatBox"></div>
             <div class="chat-input-row">
                 <input type="text" id="frontChatInput" placeholder="พิมพ์ข้อความที่นี่..." onkeypress="if(event.key==='Enter') sendLiveChat()">
                 <button onclick="sendLiveChat()">ส่ง</button>
             </div>
         </div>
-  
     </div>
 </div>
 
 <div class="custom-modal-overlay" id="newsModal" style="z-index: 100006;">
     <div class="custom-modal-box" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;
         max-height: 90vh; background: #fff; width: 95%; max-width: 500px;">
-        <div class="custom-modal-close" onclick="document.getElementById('newsModal').style.display='none'" style="background: rgba(0,0,0,0.5);
-            color: white; top: 15px; left: 15px; right: auto; z-index: 100;"><i class="fas fa-arrow-left"></i></div>
-        <div style="position: relative;
-            width: 100%; background: #f8fafc;">
-            <img id="newsModalImg" src="" style="width: 100%;
-                height: auto; max-height: 45vh; object-fit: contain; display: block; margin: 0 auto;">
+        <div class="custom-modal-close" onclick="document.getElementById('newsModal').style.display='none'" style="background: rgba(0,0,0,0.5); color: white; top: 15px; left: 15px; right: auto; z-index: 100;"><i class="fas fa-arrow-left"></i></div>
+        <div style="position: relative; width: 100%; background: #f8fafc;">
+            <img id="newsModalImg" src="" style="width: 100%; height: auto; max-height: 45vh; object-fit: contain; display: block; margin: 0 auto;">
         </div>
-        <div class="custom-modal-content" style="padding: 20px;
-            flex: 1; border-radius: 0;">
-            <div style="background: #002e6d; color: white;
-                padding: 4px 15px; border-radius: 15px; font-size: 13px; font-weight: bold; display: inline-block;
-                margin-bottom: 15px;">News</div>
-            <h2 id="newsModalTitle" style="font-size: 22px; font-weight: 600;
-                color: #111; margin: 0 0 15px 0; line-height: 1.4;"></h2>
-            <div id="newsModalContent" style="font-size: 15px;
-                color: #444; white-space: pre-line; line-height: 1.7; padding-bottom: 20px;"></div>
+        <div class="custom-modal-content" style="padding: 20px; flex: 1; border-radius: 0;">
+            <div style="background: #002e6d; color: white; padding: 4px 15px; border-radius: 15px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 15px;">News</div>
+            <h2 id="newsModalTitle" style="font-size: 22px; font-weight: 600; color: #111; margin: 0 0 15px 0; line-height: 1.4;"></h2>
+            <div id="newsModalContent" style="font-size: 15px; color: #444; white-space: pre-line; line-height: 1.7; padding-bottom: 20px;"></div>
         </div>
     </div>
 </div>
@@ -1427,7 +1533,6 @@
     window.currentUnreadChat = 0;
 
     // --- ระบบ Notification กดกระดิ่ง ---
-    
     window.openNotiMenu = function() {
         if (!currentData || !currentData.data["ชื่อ-นามสกุล"]) {
             Swal.fire({
@@ -1435,29 +1540,25 @@
                 title: 'กรุณาค้นหาชื่อก่อน',
                 text: 'คุณต้องกรอกชื่อเพื่อตรวจสอบสถานะค่าคงค้างและเข้าสู่ระบบก่อนใช้งานเมนูนี้',
                 confirmButtonColor: '#1e3a8a'
-    
             });
             return;
         }
 
         // สร้าง Badge ตัวเลขเฉพาะแต่ละปุ่ม
         let repBadgeHtml = window.currentUnreadRep > 0 
-            ?
-            `<span style="background:#ef4444; color:white; border-radius:50%; width: 22px; height: 22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; margin-left:8px; font-weight:bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">${window.currentUnreadRep}</span>` : '';
+            ? `<span style="background:#ef4444; color:white; border-radius:50%; width: 22px; height: 22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; margin-left:8px; font-weight:bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">${window.currentUnreadRep}</span>` : '';
         let chatBadgeHtml = window.currentUnreadChat > 0 
-            ?
-            `<span style="background:#ef4444; color:white; border-radius:50%; width: 22px; height: 22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; margin-left:8px; font-weight:bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">${window.currentUnreadChat}</span>` : '';
+            ? `<span style="background:#ef4444; color:white; border-radius:50%; width: 22px; height: 22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; margin-left:8px; font-weight:bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">${window.currentUnreadChat}</span>` : '';
+        
         Swal.fire({
             title: 'เมนูแจ้งเตือน / ติดต่อ',
             html: `
                 <div style="display:flex; flex-direction:column; gap:10px; margin-top: 15px;">
                     <button onclick="Swal.close(); openReportStatus();" style="background:#1e3a8a; color:white; border:none; padding:15px; border-radius:12px; font-size:16px; font-family:'Kanit'; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
-                 
                         <i class="fas fa-tasks"></i> ตรวจสอบสถานะการรายงาน ${repBadgeHtml}
                     </button>
                     <button onclick="Swal.close(); openLiveChat();" style="background:#ec4899; color:white; border:none; padding:15px; border-radius:12px; font-size:16px; font-family:'Kanit'; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
                         <i class="fas fa-comments"></i> พิมพ์ข้อความสด (Live Chat) ${chatBadgeHtml}
-     
                     </button>
                 </div>
             `,
@@ -1491,7 +1592,6 @@
             const timeStr = now.toLocaleTimeString('th-TH');
             const clockEl = document.getElementById('realTimeClock');
             if (clockEl) clockEl.innerText = `ข้อมูล ณ วันที่: ${dateStr} | เวลา: ${timeStr} น.`;
-    
         }, 1000);
     }
 
@@ -1566,13 +1666,11 @@
                 totalFoodOnly += amt; 
             }
 
-      
             gridHTML += `
                 <div class="month-item">
                     <div class="month-label">${m}</div>
                     <span class="status-badge ${getBadgeClass(stat)}">${stat}</span>
                     <div class="month-amount">${amt.toLocaleString()} บ.</div>
-          
                 </div>`;
         });
         document.getElementById('monthGrid').innerHTML = gridHTML;
@@ -1598,8 +1696,8 @@
         btn.style.display = 'block';
         wait.style.display = 'none';
         let dormLink = d ? getAttachmentLink(d, "หอพัก") : "";
-        let linkHtml = dormLink ?
-            `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px; font-weight:600;">ดูสลิปที่แนบล่าสุด</a>` : "";
+        let linkHtml = dormLink ? `<br><a href="${dormLink}" target="_blank" style="font-size:14px; color:#2563eb; text-decoration:underline; display:inline-block; margin-top:4px; font-weight:600;">ดูสลิปที่แนบล่าสุด</a>` : "";
+        
         if (dormStatus.includes("ชำระแล้ว") || vStatus.includes("การโอนสำเร็จ") || vStatus.includes("สำเร็จ") || vStatus.includes("ชำระแล้ว")) {
             btn.style.display = 'none';
             wait.style.display = 'block';
@@ -1657,15 +1755,13 @@
             let statClass = "";
             let actionHtml = "";
             let fileLink = getAttachmentLink(d, m);
-            let linkAction 
-                = fileLink ? `onclick="window.open('${fileLink}', '_blank')"` : `onclick="Swal.fire({title:'ไม่พบข้อมูล', text:'ไม่พบลิงก์ไฟล์แนบในระบบ', icon:'info', customClass: {popup: 'glass-swal-popup'}})"`;
+            let linkAction = fileLink ? `onclick="window.open('${fileLink}', '_blank')"` : `onclick="Swal.fire({title:'ไม่พบข้อมูล', text:'ไม่พบลิงก์ไฟล์แนบในระบบ', icon:'info', customClass: {popup: 'glass-swal-popup'}})"`;
 
             if (stat.includes("ค้างชำระ")) {
                 totalUnpaid += amt;
                 statClass = "unpaid";
                 actionHtml = `<button class="fp-btn-upload" onclick="triggerFoodMonthUpload('${m}')">แนบสลิป</button>`;
-             } else if (stat.includes("ชำระแล้ว")) {
-  
+            } else if (stat.includes("ชำระแล้ว")) {
                 statClass = "paid";
                 actionHtml = `<div class="fp-file-link" style="cursor:pointer; text-decoration:underline;" ${linkAction}>ดูไฟล์แนบ</div>`;
             } else if (stat.includes("รอตรวจสอบ")) {
@@ -1680,7 +1776,6 @@
                     <div class="fp-month-name">${m}</div>
                     <div class="fp-badge ${statClass}">${stat}</div>
                     <div class="fp-amount">${amt.toLocaleString()} บาท</div>
-    
                     ${actionHtml}
                 </div>
             `;
@@ -1689,12 +1784,12 @@
         const now = new Date();
         const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
         const timeStr = now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'}) + ' น.';
+        
         Swal.fire({
             html: `
                 <div class="food-popup-container">
                     <div class="fp-header">
                         <div class="fp-title">ค่าอาหารรายเดือน 1/2569 <span style="font-size:15px; font-weight:400; color: #444;">( Boarding Fee )</span></div>
-               
                         <div class="fp-date">${dateStr} เวลา ${timeStr}</div>
                     </div>
                     <div class="fp-grid">
@@ -1704,23 +1799,20 @@
                     <div class="fp-note">
                         ขอความกรุณาท่านดำเนินการแนบหลักฐานการโอนเงิน สำหรับยอดค้างชำระค่าอาหารรายเดือนในแต่ละรอบเดือน เพื่อความถูกต้องในการตรวจสอบข้อมูล และปรับปรุงสถานะยอดค้างชำระของท่านให้เป็นปัจจุบัน
                     </div>
+                 
                     <div class="fp-total-row">
-              
                         <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:400; color:#555;">( Total Outstanding Balance )</span></div>
                         <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
                     </div>
-                    <div style="text-align: center;
-                        margin-top: 25px;">
-                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85);
-                            backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif;
-                            cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
+   
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
                     </div>
                 </div>
             `,
             showConfirmButton: false,
             showCloseButton: false,
             width: '850px',
-          
             customClass: { popup: 'swal-food-popup' }
         });
     }
@@ -1731,8 +1823,8 @@
         try {
             const res = await fetch(`${WEB_APP_URL}?action=search&name=${encodeURIComponent(name)}`);
             const result = await res.json();
-            document.getElementById('loadingOverlay').style.display 
-                = 'none';
+   
+            document.getElementById('loadingOverlay').style.display = 'none';
             if (result.found) {
                 currentData = result;
                 renderReport(result.data, result.sheetName);
@@ -1742,64 +1834,56 @@
         }
     }
 
- 
     function handleFile() {
         const file = document.getElementById('fileIn').files[0];
         if(!file) return;
         document.getElementById('fileIn').value = "";
         const reader = new FileReader();
+        
         reader.onload = async (e) => {
             Swal.fire({
                 background: 'transparent',
                 allowOutsideClick: false,
                 showConfirmButton: false,
                 html: `
-       
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
                         <dotlottie-wc src="https://lottie.host/f8ece05c-73c6-418c-8667-fb0e71af5f00/AIqGPZ1ivr.lottie" style="width: 250px; height: 250px;" autoplay loop></dotlottie-wc>
                         <div id="progressPercent">0%</div>
-    
                         <div class="progress-container">
                             <div id="pb" class="progress-bar"></div>
                         </div>
-                        <h1 
-                            style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
-                        <p style="color: #ffffff;
-                            font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
+                        <h1 style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
+                        <p style="color: #ffffff; font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
                 `
             });
 
             let progress = 0;
             const progressInterval = setInterval(() => {
-          
                 if (progress < 90) {
                     progress += Math.random() * 15;
                     if (progress > 90) progress = 90;
                     updateProgressBar(Math.floor(progress));
                 }
-    
             }, 500);
 
             function updateProgressBar(val) {
                 const pb = document.getElementById('pb');
                 const pt = document.getElementById('progressPercent');
                 if (pb) pb.style.width = val + '%';
-                if 
-                    (pt) pt.innerText = val + '%';
+                if (pt) pt.innerText = val + '%';
             }
 
             const payload = {
                 action: targetType === 'dorm' ? 'uploadDormSlip' : 'uploadFoodSlip',
                 sheetName: currentData.sheetName,
                 rowIndex: currentData.rowIndex,
-           
                 studentName: currentData.data["ชื่อ-นามสกุล"],
                 type: targetType,
-                month: targetType === 'food' ?
-                    targetMonth : "", 
+                month: targetType === 'food' ? targetMonth : "", 
                 image: e.target.result
             };
+            
             try {
                 const res = await fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) });
                 const result = await res.json();
@@ -1811,71 +1895,54 @@
                     Swal.fire({
                         background: 'transparent',
                         showConfirmButton: true,
-                      
                         confirmButtonText: 'รับทราบ',
                         confirmButtonColor: '#1e3a8a',
                         allowOutsideClick: false,
                         html: `
-                      
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
                                 <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                            
                                 <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
-                                <p style="color: #ffffff;
-                                    font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
+                                <p style="color: #ffffff; font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
                         `
                     }).then(() => {
-           
                         refreshDataWithoutReload();
                     });
                 } else {
                     Swal.fire({
                         background: 'transparent',
-    
                         showConfirmButton: true,
                         confirmButtonText: 'ลองใหม่อีกครั้ง',
                         confirmButtonColor: '#b91c1c',
                         allowOutsideClick: false,
-    
                         html: `
                              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
-                       
-                                <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
-                                    height: 300px;" autoplay loop></dotlottie-wc>
-                                <h1 style="color: #ffffff;
-                                    font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
-                                <p style="color: #ffffff;
-                                    font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
+                                <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
+                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
                             </div>
                         `
                     });
-                
                 }
             } catch (err) {
                 clearInterval(progressInterval);
                 Swal.fire({
                     background: 'transparent',
                     showConfirmButton: true,
-           
                     confirmButtonText: 'ตกลง',
                     confirmButtonColor: '#b91c1c',
                     html: `
                         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; 
                             border: 1px solid rgba(255,255,255,0.3);">
-                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
-                                height: 300px;" autoplay loop></dotlottie-wc>
-                            <h1 style="color: #ffffff;
-                                font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
-                            <p style="color: #ffffff;
-                                font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
+                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
+                            <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
+                            <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
                         </div>
                     `
                 });
             }
         };
         reader.readAsDataURL(file);
-  
     }
 
     function showPaymentInfo() {
@@ -1884,7 +1951,6 @@
             html: `
                 <div style="text-align:center;">
                     <p style="font-size:16px; margin-bottom:15px; color:#111; font-weight:500;">
-                 
                         ธนาคารกสิกรไทย (K-Bank)<br>
                         เลขบัญชี: <span style="font-weight:600; color:#1e3a8a;">229-8-97447-1</span><br>
                         ชื่อบัญชี: โรงเรียนอุทยานศึกษากระบี่
@@ -1897,15 +1963,12 @@
                         ขอความกรุณาทุกท่านชำระค่าอาหารกลางวันเป็นรายเดือนตามรอบบิล โดยแยกการโอนเงินเป็น 1 เดือนต่อ 1 สลิป (รบกวนไม่โอนรวมยอดหลายเดือนในสลิปเดียวกัน)<br><br>
                         นอกจากนี้ สำหรับค่าธรรมเนียมหอพัก ขอความกรุณาโอนเงินและส่งสลิปแยกต่างหากจากค่าอาหารกลางวัน<br><br>
                         ทั้งนี้ เพื่อความสะดวกรวดเร็วในการตรวจสอบ ป้องกันความผิดพลาดของข้อมูล และเพื่อให้ทางเราสามารถอัปเดตสถานะการชำระเงินของท่านได้อย่างถูกต้องแม่นยำ ขอขอบพระคุณในความร่วมมือเป็นอย่างยิ่งครับ/ค่ะ
-           
                     </div>
                     
-                    <div style="display: grid;
-                        grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; padding: 0 10px;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; padding: 0 10px;">
                         <button class="btn-amount-select" onclick="showQRAmount('1,000')">1,000 บาท</button>
                         <button class="btn-amount-select" onclick="showQRAmount('1,050')">1,050 บาท</button>
                         <button class="btn-amount-select" onclick="showQRAmount('1,500')">1,500 บาท</button>
-          
                         <button class="btn-amount-select" onclick="showQRAmount('2,000')">2,000 บาท</button>
                         <button class="btn-amount-select" onclick="showQRAmount('2,100')">2,100 บาท</button>
                         <button class="btn-amount-select" onclick="showQRAmount('3,000')">3,000 บาท</button>
@@ -1921,8 +1984,7 @@
     }
 
     // ฟังก์ชันสำหรับดาวน์โหลดคิวอาร์โค้ด
-    window.downloadQR 
-        = function(imageUrl, amount) {
+    window.downloadQR = function(imageUrl, amount) {
         fetch(imageUrl)
             .then(response => response.blob())
             .then(blob => {
@@ -1950,7 +2012,6 @@
             "1,050": "https://i.postimg.cc/ZRLmRCHg/att-crjk-0mua-Wdnmps-YZE0r-Kjywo3-1vj-Xdf-H2IWQt-Mg18.jpg",
             "1,500": "https://i.postimg.cc/kGQgnL8J/att-AB9D1Bakym-D8jp-GMVkk-V5n-39QJO5MFVpd7DBp27Jc0.jpg",
             "2,000": "https://i.postimg.cc/zD05YHVf/att-i-Pcz-I78Yj0Dw-ED-umt-PKn-Xnes-BPQc-Jh43j38ol-TNf0.jpg",
-        
             "2,100": "https://i.postimg.cc/15dQfx0P/att-P2Cbp-Zh6Bctf-An-i-Wzgha-Bw1d0e-BKSVMttg-Ef-Knaum-U.jpg",
             "3,000": "https://i.postimg.cc/DwbKGC5s/att-FWJ-NDYOTy-KO4ZDWEpx-Ngemauqx-EZ7z-K7q-R4hk-E0Cv-Q.jpg"
         };
@@ -1961,14 +2022,12 @@
             html: `
                 <div style="text-align:center;">
                     <p style="font-size:18px; margin-bottom:10px; color:#1e3a8a; font-weight:600;">ยอดชำระ: ${amount} บาท</p>
-                    <img src="${selectedImage}" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 
-                        6px 20px rgba(0,0,0,0.2);">
+                    <img src="${selectedImage}" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
                     <p style="font-size:13px; color:#d97706; margin-top:12px; font-weight:600;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
                     <button class="btn-download-qr" onclick="downloadQR('${selectedImage}', '${amount}')"><i class="fas fa-download"></i> ดาวน์โหลดคิวอาร์โค้ด</button>
                 </div>
             `,
             showCloseButton: false,
-      
             showCancelButton: true,
             showConfirmButton: false,
             cancelButtonText: '<i class="fas fa-arrow-left"></i> ย้อนกลับ',
@@ -1976,7 +2035,6 @@
             customClass: { popup: 'glass-swal-popup payment-popup' }
         }).then((result) => {
             // เมื่อผู้ใช้กดย้อนกลับ หรือคลิกพื้นที่ด้านนอก จะกลับไปยังหน้าต่างให้เลือกราคาอีกครั้ง
-         
             if (result.dismiss === Swal.DismissReason.cancel || result.dismiss === Swal.DismissReason.backdrop) {
                 showPaymentInfo();
             }
@@ -1990,90 +2048,72 @@
             showCloseButton: true,
             confirmButtonText: 'รับทราบ',
             confirmButtonColor: '#1e3a8a',
-        
             html: `
                 <div class="policy-container">
                     <div style="text-align:center; margin-bottom: 25px;">
                         <i class="fas fa-shield" style="font-size: 60px; color: #1e3a8a; background: #eff6ff; padding: 30px; border-radius: 50%;"></i>
-                   
                     </div>
                     <h2>ประกาศนโยบายคุ้มครองข้อมูลส่วนบุคคล<br><span style="font-size: 18px; color: #555; font-weight: 500;">(Privacy Policy)</span></h2>
                     <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 14px;"><strong>โรงเรียนอุทยานศึกษากระบี่</strong><br>ประกาศ ณ วันที่ 30 พฤษภาคม พ.ศ. 2569</p>
-                    <p>โรงเรียนอุทยานศึกษากระบี่ ("โรงเรียน") ในฐานะผู้ควบคุมข้อมูลส่วนบุคคล ตระหนักถึงความสำคัญในการคุ้มครองข้อมูลส่วนบุคคลของนักเรียน ผู้ปกครอง ครู และบุคลากรที่เกี่ยวข้อง ซึ่งถือเป็นส่วนหนึ่งของการดำเนินงานที่มีประสิทธิภาพตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ.
-                        2562 (PDPA) ทางโรงเรียนจึงจัดทำนโยบายฉบับนี้ขึ้นเพื่อชี้แจงกระบวนการจัดการข้อมูลผ่านระบบ School Money (<a href="https://uskofficial.github.io/SCHOOLMONNY.USK/" target="_blank">https://uskofficial.github.io/SCHOOLMONNY.USK/</a>)</p>
+                    <p>โรงเรียนอุทยานศึกษากระบี่ ("โรงเรียน") ในฐานะผู้ควบคุมข้อมูลส่วนบุคคล ตระหนักถึงความสำคัญในการคุ้มครองข้อมูลส่วนบุคคลของนักเรียน ผู้ปกครอง ครู และบุคลากรที่เกี่ยวข้อง ซึ่งถือเป็นส่วนหนึ่งของการดำเนินงานที่มีประสิทธิภาพตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) ทางโรงเรียนจึงจัดทำนโยบายฉบับนี้ขึ้นเพื่อชี้แจงกระบวนการจัดการข้อมูลผ่านระบบ School Money (<a href="https://uskofficial.github.io/SCHOOLMONNY.USK/" target="_blank">https://uskofficial.github.io/SCHOOLMONNY.USK/</a>)</p>
 
-                    <h3>1.
-                        วัตถุประสงค์แห่งการจัดเก็บข้อมูลส่วนบุคคล</h3>
+                    <h3>1. วัตถุประสงค์แห่งการจัดเก็บข้อมูลส่วนบุคคล</h3>
                     <p>โรงเรียนมีความจำเป็นต้องเก็บรวบรวมข้อมูลส่วนบุคคลของท่าน เพื่อวัตถุประสงค์อันชอบด้วยกฎหมาย ดังนี้:</p>
                     <ul>
                         <li><b>1.1 เพื่อการบริหารจัดการสถานะการชำระเงิน:</b> เพื่อใช้ในการระบุตัวตนของนักเรียนสำหรับการสืบค้นสถานะค่าธรรมเนียมหอพักและค่าอาหารรายเดือน</li>
                         <li><b>1.2 เพื่อการยืนยันและตรวจสอบหลักฐาน:</b> เพื่อตรวจสอบความถูกต้องของสลิปการโอนเงินและบันทึกรายการในระบบบัญชีของโรงเรียนให้เป็นปัจจุบัน</li>
-      
                         <li><b>1.3 เพื่อการสื่อสารและประสานงาน:</b> เพื่อใช้เป็นข้อมูลติดต่อในกรณีที่มีความผิดพลาดของการชำระเงินหรือการขออนุมัติรายการเพิ่มเติม</li>
                         <li><b>1.4 เพื่อความปลอดภัยของระบบ:</b> เพื่อบันทึกข้อมูลทางเทคนิค (Log File) ในการเฝ้าระวัง ป้องกัน และแก้ไขปัญหาการบุกรุกระบบโดยมิชอบ</li>
                     </ul>
 
-                    <h3>2.
-                        ประเภทของข้อมูลที่จัดเก็บ</h3>
+                    <h3>2. ประเภทของข้อมูลที่จัดเก็บ</h3>
                     <p>โรงเรียนจัดเก็บข้อมูลส่วนบุคคลเท่าที่จำเป็นตามภารกิจของสถานศึกษา ดังนี้:</p>
                     <ul>
                         <li><b>ข้อมูลระบุตัวตน:</b> ชื่อ-นามสกุล ของนักเรียน</li>
                         <li><b>ข้อมูลธุรกรรมทางการเงิน:</b> รายละเอียดการโอนเงิน วันเวลาที่ชำระ และข้อมูลในเอกสารหลักฐานการโอนเงิน (สลิป) ที่ท่านอัปโหลดผ่านระบบ</li>
-    
                         <li><b>ข้อมูลทางเทคนิค (Technical Data):</b> ที่อยู่ไอพี (IP Address), คุกกี้ (Cookies) เพื่ออำนวยความสะดวกในการเข้าใช้งานระบบ</li>
                     </ul>
 
-                    <h3>3.
-                        หลักเกณฑ์และมาตรการในการคุ้มครองข้อมูล</h3>
+                    <h3>3. หลักเกณฑ์และมาตรการในการคุ้มครองข้อมูล</h3>
                     <p>โรงเรียนถือปฏิบัติโดยยึดมั่นในมาตรการรักษาความปลอดภัยที่เข้มงวด ดังนี้:</p>
                     <ul>
                         <li><b>3.1 การจำกัดสิทธิ์การเข้าถึง (Access Control):</b> ข้อมูลจะถูกเข้าถึงได้โดยบุคลากรผู้ได้รับมอบหมายจากโรงเรียนเท่านั้น เพื่อการปฏิบัติหน้าที่ที่เกี่ยวข้องกับระบบการเงินของโรงเรียน</li>
                         <li><b>3.2 มาตรการทางเทคนิค:</b> โรงเรียนใช้ระบบรักษาความปลอดภัยในเครือข่าย เพื่อป้องกันการเข้าถึงข้อมูลโดยมิชอบ หรือการรั่วไหลของข้อมูลสู่สาธารณะ</li>
-  
                         <li><b>3.3 การรักษาความลับ:</b> บุคลากรทุกคนที่เกี่ยวข้องกับการประมวลผลข้อมูลส่วนบุคคลมีหน้าที่ตามกฎหมายในการรักษาความลับของข้อมูลที่ได้รับทราบ</li>
                     </ul>
 
-                    <h3>4.
-                        การเปิดเผยข้อมูลส่วนบุคคล</h3>
+                    <h3>4. การเปิดเผยข้อมูลส่วนบุคคล</h3>
                     <p>โรงเรียนจะไม่เปิดเผยหรือส่งต่อข้อมูลส่วนบุคคลของท่านไปยังบุคคลภายนอก เว้นแต่กรณีดังต่อไปนี้:</p>
                     <ul>
                         <li>เป็นการปฏิบัติตามกฎหมาย หรือคำสั่งของศาลหรือพนักงานเจ้าหน้าที่ตามอำนาจหน้าที่</li>
                         <li>เป็นการเปิดเผยแก่หน่วยงานรัฐเพื่อตรวจสอบงบประมาณหรือภารกิจตามที่กฎหมายกำหนด</li>
-          
                         <li>ท่านได้ให้ความยินยอมโดยชัดแจ้งในการดำเนินการดังกล่าว</li>
                     </ul>
 
-                    <h3>5.
-                        ระยะเวลาในการจัดเก็บข้อมูล</h3>
+                    <h3>5. ระยะเวลาในการจัดเก็บข้อมูล</h3>
                     <p>โรงเรียนจะจัดเก็บข้อมูลส่วนบุคคลของท่านไว้ตามระยะเวลาที่จำเป็น เพื่อให้บรรลุวัตถุประสงค์ในการดำเนินการทางการเงินและการศึกษาระหว่างปีการศึกษา เมื่อสิ้นสุดวัตถุประสงค์ หรือตามระยะเวลาที่กฎหมายบัญญัติไว้ โรงเรียนจะดำเนินการทำลายหรือทำให้ข้อมูลนั้นไม่สามารถระบุตัวบุคคลได้อีกต่อไป</p>
 
-                    <h3>6.
-                        สิทธิของเจ้าของข้อมูลส่วนบุคคล</h3>
+                    <h3>6. สิทธิของเจ้าของข้อมูลส่วนบุคคล</h3>
                     <p>ภายใต้บทบัญญัติแห่งกฎหมาย เจ้าของข้อมูลมีสิทธิดำเนินการดังนี้:</p>
                     <ul>
                         <li><b>สิทธิในการเข้าถึง:</b> ขอตรวจสอบและรับสำเนาข้อมูลส่วนบุคคลที่โรงเรียนจัดเก็บ</li>
                         <li><b>สิทธิในการแก้ไข:</b> ขอปรับปรุงข้อมูลให้ถูกต้อง เป็นปัจจุบัน และครบถ้วน</li>
-       
                         <li><b>สิทธิในการลบ:</b> ขอให้โรงเรียนดำเนินการลบข้อมูลในกรณีที่หมดความจำเป็นหรือถอนความยินยอม</li>
                         <li><b>สิทธิในการคัดค้าน:</b> คัดค้านการประมวลผลข้อมูลในบางกรณีตามที่กฎหมายกำหนด</li>
                     </ul>
 
-                    <h3>7.
-                        การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h3>
+                    <h3>7. การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h3>
                     <p>โรงเรียนขอสงวนสิทธิ์ในการแก้ไขปรับปรุงนโยบายฉบับนี้ตามความเหมาะสมเพื่อให้สอดคล้องกับระเบียบราชการและการปฏิบัติงานจริง โดยท่านสามารถตรวจสอบการปรับปรุงล่าสุดได้ที่หน้าเว็บไซต์นี้</p>
 
-                    <h3>8.
-                        ข้อมูลติดต่อ</h3>
+                    <h3>8. ข้อมูลติดต่อ</h3>
                     <p>หากท่านมีคำถาม ข้อเสนอแนะ หรือความประสงค์ที่จะใช้สิทธิในฐานะเจ้าของข้อมูลส่วนบุคคล ท่านสามารถติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของโรงเรียนได้ที่:</p>
                     <p style="background: #f8fafc; padding: 15px; border-radius: 12px; border-left: 5px solid #1e3a8a;">
                         <b>ฝ่ายงานสารสนเทศ โรงเรียนอุทยานศึกษากระบี่</b><br>
-                      
                         สถานที่: 114/1 หมู่ 2 ต.คลองเขม้า อ.เหนือคลอง จ.กระบี่ 81130<br>
                         อีเมล: <a href="mailto:uskofficial01@gmail.com">uskofficial01@gmail.com</a><br>
                         โทรศัพท์: <a href="tel:0935377270">093-537-7270</a>
                     </p>
                </div>
-    
             `
         });
     }
@@ -2086,59 +2126,46 @@
             confirmButtonText: 'รับทราบ',
             confirmButtonColor: '#1e3a8a',
             html: `
-    
                 <div class="policy-container">
                     <div style="text-align:center; margin-bottom: 25px;">
                         <i class="fas fa-file-contract" style="font-size: 60px; color: #1e3a8a; background: #eff6ff; padding: 30px; border-radius: 50%;"></i>
                     </div>
-        
                     <h2>เงื่อนไขและข้อตกลงการใช้งาน<br><span style="font-size: 18px; color: #555; font-weight: 500;">(Terms and Conditions)</span></h2>
                     <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 14px;"><strong>ระบบ School Money – โรงเรียนอุทยานศึกษากระบี่</strong><br>มีผลบังคับใช้ตั้งแต่วันที่ 30 พฤษภาคม พ.ศ. 2569 เป็นต้นไป</p>
                     <p>การที่ท่านเข้าใช้งานระบบ School Money (<a href="https://uskofficial.github.io/SCHOOLMONNY.USK/" target="_blank">https://uskofficial.github.io/SCHOOLMONNY.USK/</a>) ถือว่าท่านได้อ่าน ทำความเข้าใจ และตกลงที่จะปฏิบัติตามข้อกำหนดและเงื่อนไขดังต่อไปนี้:</p>
 
-               
                     <h3>1. การยอมรับเงื่อนไข</h3>
                     <p>ผู้ใช้งานตกลงที่จะใช้บริการระบบนี้เพื่อวัตถุประสงค์ในการตรวจสอบสถานะการชำระเงินและจัดการค่าใช้จ่ายทางการศึกษาของนักเรียนในสังกัดโรงเรียนอุทยานศึกษากระบี่เท่านั้น ห้ามนำข้อมูลไปใช้ในทางที่ผิดกฎหมายหรือก่อให้เกิดความเสียหายแก่ทางโรงเรียน</p>
 
-                    <h3>2.
-                        ความถูกต้องของข้อมูล</h3>
+                    <h3>2. ความถูกต้องของข้อมูล</h3>
                     <ul>
                         <li>ผู้ใช้งานมีหน้าที่รับผิดชอบในการระบุ "ชื่อ-นามสกุล" ของนักเรียนให้ถูกต้องตามที่ลงทะเบียนไว้กับทางโรงเรียน โดยไม่มีคำนำหน้าชื่อ เพื่อการค้นหาที่ถูกต้อง</li>
                         <li>ท่านยืนยันว่าข้อมูลหลักฐานการโอนเงิน (สลิป) ที่อัปโหลดเข้าสู่ระบบ เป็นเอกสารที่ถูกต้องและเป็นจริง หากตรวจพบว่ามีการปลอมแปลงเอกสาร โรงเรียนขอสงวนสิทธิ์ในการดำเนินคดีตามกฎหมาย</li>
                     </ul>
 
-   
-                    <h3>3.
-                        การทำธุรกรรมและการตรวจสอบ</h3>
+                    <h3>3. การทำธุรกรรมและการตรวจสอบ</h3>
                     <ul>
                         <li>การชำระเงินผ่านช่องทางที่โรงเรียนกำหนดถือเป็นความรับผิดชอบของผู้ใช้งาน</li>
                         <li>ระบบแสดงสถานะ "ชำระแล้ว" เป็นข้อมูลเบื้องต้น ทางโรงเรียนขอสงวนสิทธิ์ในการตรวจสอบความถูกต้องของยอดเงินกับบัญชีธนาคารจริงอีกครั้งภายใน 7 วันทำการ</li>
-                        <li>หากเกิดข้อผิดพลาดในการทำรายการ ผู้ใช้งานมีหน้าที่ติดต่อเจ้าหน้าที่ของโรงเรียนโดยตรงตามช่องทางที่ระบุไว้ภายใน 7 
-                            วัน</li>
+                        <li>หากเกิดข้อผิดพลาดในการทำรายการ ผู้ใช้งานมีหน้าที่ติดต่อเจ้าหน้าที่ของโรงเรียนโดยตรงตามช่องทางที่ระบุไว้ภายใน 7 วัน</li>
                     </ul>
 
-                    <h3>4.
-                        ความรับผิดชอบของผู้ใช้งาน</h3>
+                    <h3>4. ความรับผิดชอบของผู้ใช้งาน</h3>
                     <ul>
                         <li>ผู้ใช้งานต้องรักษาข้อมูลส่วนตัวของนักเรียนในการเข้าถึงระบบ และไม่เปิดเผยข้อมูลดังกล่าวให้ผู้อื่นนำไปใช้ในทางที่มิชอบ</li>
                         <li>โรงเรียนไม่รับผิดชอบต่อความเสียหายใดๆ ที่เกิดจากการที่ผู้ใช้งานกรอกข้อมูลไม่ถูกต้อง หรือการกระทำที่เกิดจากความประมาทเลินเล่อของผู้ใช้งานเอง</li>
                     </ul>
 
-         
-                    <h3>5.
-                        สิทธิและการเปลี่ยนแปลงระบบ</h3>
+                    <h3>5. สิทธิและการเปลี่ยนแปลงระบบ</h3>
                     <ul>
                         <li>โรงเรียนมีสิทธิ์ในการปรับปรุง พัฒนา หรือระงับการให้บริการระบบนี้ชั่วคราวหรือถาวร เพื่อการบำรุงรักษาหรือแก้ไขปัญหาทางเทคนิค โดยไม่ต้องแจ้งให้ทราบล่วงหน้า</li>
                         <li>โรงเรียนขอสงวนสิทธิ์ในการแก้ไขเปลี่ยนแปลงเงื่อนไขการใช้งานนี้ตามความเหมาะสม โดยจะมีผลทันทีเมื่อประกาศผ่านทางหน้าเว็บไซต์</li>
                     </ul>
 
-       
-                    <h3>6.
-                        ทรัพย์สินทางปัญญา</h3>
+                    <h3>6. ทรัพย์สินทางปัญญา</h3>
                     <p>เนื้อหา รูปภาพ สัญลักษณ์ และส่วนประกอบทั้งหมดในเว็บไซต์นี้ เป็นลิขสิทธิ์ของโรงเรียนอุทยานศึกษากระบี่ ห้ามมิให้ผู้ใดคัดลอก ทำซ้ำ หรือดัดแปลงเพื่อนำไปใช้โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษร</p>
 
-                    <h3>7.
-                        กฎหมายที่ใช้บังคับ</h3>
+                    <h3>7. กฎหมายที่ใช้บังคับ</h3>
                     <p>เงื่อนไขการใช้งานฉบับนี้อยู่ภายใต้บังคับของกฎหมายแห่งราชอาณาจักรไทย และข้อพิพาทใดๆ ที่เกิดขึ้นจากการใช้งานเว็บไซต์นี้ จะต้องอยู่ภายใต้อำนาจการตัดสินของศาลในเขตพื้นที่จังหวัดกระบี่</p>
                 </div>
             `
@@ -2157,14 +2184,12 @@
             fabMenuBtn.style.transform = 'rotate(0deg)';
         }
     });
+    
     function openReportModal() { document.getElementById('reportModal').style.display = 'flex'; fabSubMenu.classList.remove('active'); fabMenuBtn.style.transform = 'rotate(0deg)'; }
-    function closeReportModal() { document.getElementById('reportModal').style.display = 'none';
-    }
+    function closeReportModal() { document.getElementById('reportModal').style.display = 'none'; }
 
-    function openFAQModal() { document.getElementById('faqModal').style.display = 'flex'; fabSubMenu.classList.remove('active'); fabMenuBtn.style.transform = 'rotate(0deg)';
-    }
-    function closeFAQModal() { document.getElementById('faqModal').style.display = 'none';
-    }
+    function openFAQModal() { document.getElementById('faqModal').style.display = 'flex'; fabSubMenu.classList.remove('active'); fabMenuBtn.style.transform = 'rotate(0deg)'; }
+    function closeFAQModal() { document.getElementById('faqModal').style.display = 'none'; }
     
     // ฟังก์ชันใหม่: แสดง Popup ติดต่อสอบถาม เป็นแบบลิงก์กดได้ทั้งกล่อง
     function showContactPopup() {
@@ -2175,44 +2200,30 @@
             html: `
                 <div style="display:flex; flex-direction:column; gap:15px; font-family: 'Kanit', sans-serif; text-align:left; margin-top: 15px;">
                     <a href="tel:0935377270" style="display:flex; align-items:center; gap:15px; background: rgba(30, 58, 138, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(30, 58, 138, 0.1); text-decoration: none; color: inherit;">
-  
                         <div style="width: 45px; height: 45px; min-width: 45px; background: #1e3a8a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-phone-alt"></i></div>
                         <div>
-                            <div style="font-size: 13px; color: 
-                                #555; font-weight: 500;">เบอร์โทรศัพท์</div>
+                            <div style="font-size: 13px; color: #555; font-weight: 500;">เบอร์โทรศัพท์</div>
                             <div style="font-size: 18px; font-weight: 600; color: #111;">093-537-7270</div>
                         </div>
                     </a>
                     
-                    <a href="mailto:uskofficial01@gmail.com" style="display:flex; align-items:center; gap:15px; background: rgba(236, 72, 153, 0.05); padding: 15px; border-radius: 15px;
-                        border: 1px solid rgba(236, 72, 153, 0.1); text-decoration: none; color: inherit;">
-                        <div style="width: 45px;
-                            height: 45px; min-width: 45px; background: #ec4899; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-                            font-size: 20px;"><i class="fas fa-envelope"></i></div>
+                    <a href="mailto:uskofficial01@gmail.com" style="display:flex; align-items:center; gap:15px; background: rgba(236, 72, 153, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(236, 72, 153, 0.1); text-decoration: none; color: inherit;">
+                        <div style="width: 45px; height: 45px; min-width: 45px; background: #ec4899; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-envelope"></i></div>
                         <div>
-                            <div style="font-size: 13px;
-                                color: #555; font-weight: 500;">อีเมล</div>
-                            <div style="font-size: 15px;
-                                font-weight: 600; color: #111; word-break: break-all;">uskofficial01@gmail.com</div>
+                            <div style="font-size: 13px; color: #555; font-weight: 500;">อีเมล</div>
+                            <div style="font-size: 15px; font-weight: 600; color: #111; word-break: break-all;">uskofficial01@gmail.com</div>
                         </div>
                     </a>
-                    <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" target="_blank" style="display:flex;
-                        align-items:center; gap:15px; background: rgba(22, 163, 74, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(22, 163, 74, 0.1); text-decoration: none;
-                        color: inherit;">
-                        <div style="width: 45px;
-                            height: 45px; min-width: 45px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-                            font-size: 20px;"><i class="fas fa-map-marker-alt"></i></div>
+                    <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" target="_blank" style="display:flex; align-items:center; gap:15px; background: rgba(22, 163, 74, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(22, 163, 74, 0.1); text-decoration: none; color: inherit;">
+                        <div style="width: 45px; height: 45px; min-width: 45px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
-                            <div style="font-size: 13px;
-                                color: #555; font-weight: 500;">สถานที่</div>
-                            <div style="font-size: 14px;
-                                font-weight: 500; color: #111;">โรงเรียนอุทยานศึกษากระบี่ อ.เหนือคลอง จ.กระบี่</div>
+                            <div style="font-size: 13px; color: #555; font-weight: 500;">สถานที่</div>
+                            <div style="font-size: 14px; font-weight: 500; color: #111;">โรงเรียนอุทยานศึกษากระบี่ อ.เหนือคลอง จ.กระบี่</div>
                         </div>
                     </a>
                 </div>
             `,
             showCloseButton: true,
-          
             showConfirmButton: false,
             customClass: { popup: 'glass-swal-popup' }
         });
@@ -2224,7 +2235,6 @@
         if(answer.style.display === 'block') {
             answer.style.display = 'none';
         } else {
-          
             answer.style.display = 'block';
         }
     }
@@ -2242,7 +2252,9 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getDatabase, ref, push, set, onValue, update, onDisconnect } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    // *** เพิ่ม increment ในส่วนการ import จาก Firebase Database ***
+    import { getDatabase, ref, push, set, onValue, update, onDisconnect, increment } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyDYDkE1s6vykteDMvUpJmDxQfK_Ft-Q0lM",
       authDomain: "support-schoolmoney.firebaseapp.com",
@@ -2253,13 +2265,56 @@
       appId: "1:876403473371:web:d3c4021983f8f45fc405fe",
       measurementId: "G-D1JZG6ECL2"
     };
+
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
+    // =========================================================================
+    // --- ระบบนับจำนวนผู้เข้าชมหน้าบ้าน (Visitor Stats) ที่เพิ่มเข้ามาใหม่ ---
+    // =========================================================================
+    function getWeekYear(date) {
+        const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        const dayNum = d.getUTCDay() || 7;
+        d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+        const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+        const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1)/7);
+        return `${d.getUTCFullYear()}-W${weekNo.toString().padStart(2, '0')}`;
+    }
+
+    window.trackFrontendVisitor = function() {
+        const lastVisit = localStorage.getItem('last_visit_time_frontend');
+        const now = Date.now();
+        
+        // หากเข้าครั้งแรก หรือ ครั้งล่าสุดเกิน 3 นาทีที่แล้ว (180,000 มิลลิวินาที) จึงจะบวกเพิ่ม 1 วิว
+        if (!lastVisit || now - parseInt(lastVisit) > 180000) {
+            localStorage.setItem('last_visit_time_frontend', now.toString());
+            
+            const d = new Date();
+            const todayKey = `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`;
+            const monthKey = `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}`;
+            const thisWeekKey = getWeekYear(d);
+            
+            const updates = {};
+            // สั่งเพิ่มค่าขึ้นทีละ 1 แบบปลอดภัยในฐานข้อมูล (ทำงานคู่กับตัว increment ที่ import มา)
+            updates[`visitor_stats/daily/${todayKey}`] = increment(1);
+            updates[`visitor_stats/weekly/${thisWeekKey}`] = increment(1);
+            updates[`visitor_stats/monthly/${monthKey}`] = increment(1);
+            updates[`visitor_stats/total`] = increment(1);
+            
+            update(ref(db), updates).catch(err => console.warn("Visitor Tracking Error:", err));
+        }
+    }
+    
+    // เรียกใช้งานฟังก์ชันเก็บสถิติทันทีเมื่อโหลดหน้าเว็บ
+    trackFrontendVisitor();
+    // =========================================================================
+
     let userReports = [];
     let chatMessages = {};
+    
     // เพิ่มฟังก์ชันจับสถานะ "กำลังใช้งาน" ของฝั่งนักเรียนหน้าบ้าน โดยอ้างอิงจากชื่อจริงตามฐานข้อมูล (Google Sheet)
     let myPresenceRef = null;
+    
     window.trackUserPresence = function(userName) {
         const connectedRef = ref(db, ".info/connected");
         const presenceListRef = ref(db, "presence");
@@ -2274,25 +2329,25 @@
             status: 'online',
             timestamp: new Date().toISOString()
         });
+        
         // ดักจับการปิดหน้าต่าง หรือ เน็ตหลุด ให้อัปเดตเป็นสถานะ offline
         onDisconnect(myPresenceRef).set({
             name: userName,
             status: 'offline',
             timestamp: new Date().toISOString()
         });
+        
         // ดักจับการเชื่อมต่อกลับมาใหม่
         onValue(connectedRef, (snap) => {
             if (snap.val() === true) {
                 set(myPresenceRef, {
                     name: userName,
                     status: 'online',
-             
                     timestamp: new Date().toISOString()
                 });
                 onDisconnect(myPresenceRef).set({
                     name: userName,
                     status: 'offline',
-                 
                     timestamp: new Date().toISOString()
                 });
             }
@@ -2307,13 +2362,11 @@
             snapshot.forEach(child => {
                 const r = child.val();
                 r.key = child.key;
-                if(r.name 
-                    === userName) {
+                if(r.name === userName) {
                     userReports.push(r);
                     if(r.replies) {
                         Object.values(r.replies).forEach(reply => {
-                            if(reply.sender === 'admin' 
-                                && !reply.userRead) unreadReports++;
+                            if(reply.sender === 'admin' && !reply.userRead) unreadReports++;
                         });
                     }
                 }
@@ -2322,6 +2375,7 @@
             
             updateBellUI();
         });
+        
         const chatRef = ref(db, `chats/${userName}/messages`);
         onValue(chatRef, (snapshot) => {
             chatMessages = snapshot.val() || {};
@@ -2329,8 +2383,7 @@
             Object.values(chatMessages).forEach(msg => {
                 if(msg.sender === 'admin' && !msg.userRead) count++;
             });
-            window.currentUnreadChat = 
-                count;
+            window.currentUnreadChat = count;
      
             updateBellUI();
             renderLiveChat();
@@ -2366,18 +2419,15 @@
             let repliesHtml = '';
             
             if(r.replies) {
-         
                 let repliesThread = '';
                 Object.keys(r.replies).forEach(key => {
                     const reply = r.replies[key];
                     const color = reply.sender === 'admin' ? '#1e3a8a' : '#ec4899';
-                    
                     const name = reply.sender === 'admin' ? 'ผู้ดูแลระบบ' : 'คุณ';
                     repliesThread += `<div class="reply-msg"><b style="color:${color}">${name}:</b> ${reply.message}</div>`;
                     
                     // Mark as read
-                    if(reply.sender === 'admin' 
-                        && !reply.userRead) {
+                    if(reply.sender === 'admin' && !reply.userRead) {
                         update(ref(db, `reports/${r.key}/replies/${key}`), { userRead: true });
                     }
                 });
@@ -2388,13 +2438,11 @@
                 <div class="status-report-item">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                         <b style="font-size:16px;">ปัญหา: ${r.type}</b>
-               
                         ${badge}
                     </div>
                     <div style="font-size:13px; color:#555;">วันที่แจ้ง: ${new Date(r.timestamp).toLocaleString('th-TH')}</div>
                     <div style="font-size:14px; margin-top:5px; color:#111;">รายละเอียด: ${r.description}</div>
                     ${repliesHtml}
-   
                 </div>
             `;
         });
@@ -2417,26 +2465,23 @@
                 const msgClass = msg.sender === 'user' ? 'user' : 'admin';
                 const timeStr = new Date(msg.timestamp).toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
                 
- 
                 // เพิ่มส่วนแสดงสถานะว่า ส่งแล้ว หรือ อ่านแล้ว (สำหรับข้อความที่ผู้ใช้เป็นคนส่ง)
                 let readStatusHtml = '';
                 if(msg.sender === 'user') {
                     if(msg.adminRead) {
-                     
                         readStatusHtml = '<span style="margin-left:5px; color:#a5b4fc;"><i class="fas fa-check-double"></i> อ่านแล้ว</span>';
                     } else {
                         readStatusHtml = '<span style="margin-left:5px; color:#e2e8f0;"><i class="fas fa-check"></i> ส่งแล้ว</span>';
                     }
                 }
 
- 
                 box.innerHTML += `
                     <div class="chat-msg ${msgClass}">
                         ${msg.message}
                         <div class="chat-time">${timeStr} ${readStatusHtml}</div>
-           
                     </div>
                 `;
+                
                 // Mark admin messages as read if opened
                 if(msg.sender === 'admin' && !msg.userRead && document.getElementById('liveChatModal').style.display === 'flex') {
                     update(ref(db, `chats/${currentData.data["ชื่อ-นามสกุล"]}/messages/${key}`), { userRead: true });
@@ -2453,14 +2498,17 @@
         
         const userName = currentData.data["ชื่อ-นามสกุล"];
         const messagesRef = ref(db, `chats/${userName}/messages`);
+        
         push(messagesRef, {
             sender: 'user',
             message: text,
             timestamp: new Date().toISOString(),
             adminRead: false
         });
+        
         // Update last timestamp for sorting in admin
         update(ref(db, `chats/${userName}`), { lastUpdated: new Date().toISOString() });
+        
         input.value = '';
     }
 
@@ -2473,13 +2521,11 @@
             const mediaContainer = document.getElementById('startupPopupMediaContainer');
             const closeBtn = document.getElementById('btnStartupClose');
             
-            if (data.mediaType === 
-                'video') {
+            if (data.mediaType === 'video') {
                 // เล่นวีดิโออัตโนมัติแบบไร้รอยต่อ ซ่อนปุ่มควบคุม และไม่ให้กดหยุดได้
                 mediaContainer.innerHTML = `<video id="startupVideo" class="startup-popup-media" src="${data.mediaUrl}" autoplay loop muted playsinline preload="auto" style="pointer-events: none;"></video>`;
                 
                 // ใช้ JavaScript สั่งบังคับเล่นซ้ำเพื่อทะลวงการบล็อก Autoplay ของ Safari/iOS
-              
                 setTimeout(() => {
                     const videoEl = document.getElementById('startupVideo');
                     if (videoEl) {
@@ -2492,6 +2538,7 @@
             }
          
             overlay.style.display = 'flex';
+            
             // ตั้งเวลาปิดอัตโนมัติและนับถอยหลังหากมีการตั้งค่าไว้ (>0 วินาที)
             if (data.duration && parseInt(data.duration) > 0) {
                 let timeLeft = parseInt(data.duration);
@@ -2503,7 +2550,6 @@
                     timeLeft--;
                     if (timeLeft > 0) {
                         closeBtn.innerHTML = `เข้าสู่ระบบ (${timeLeft})`;
-                  
                     } else {
                         clearInterval(window.popupInterval);
                         window.closeStartupPopup();
@@ -2526,21 +2572,19 @@
             Object.keys(data).forEach(key => {
                 const item = data[key];
                 container.innerHTML += `
-    
                     <div class="faq-item">
                         <div class="faq-q" onclick="toggleFAQ(this)">
                             ${item.question} <i class="fas fa-chevron-down" style="font-size:12px; margin-top:5px;"></i>
-                        
                         </div>
                         <div class="faq-a">${item.answer}</div>
                     </div>
                 `;
-             });
+            });
         } else {
             container.innerHTML = '<p style="text-align:center; color:#666;">ยังไม่มีข้อมูลคำถามที่พบบ่อย</p>';
- 
         }
     });
+    
     // 2. จัดการส่งฟอร์มรายงานปัญหา
     document.getElementById('problemReportForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -2562,12 +2606,12 @@
         
         // ฟังก์ชันแปลงภาพเป็น Base64
         const getBase64 = (file) => new Promise((resolve, reject) => {
-         
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
         });
+        
         if (imageFile) {
             base64Image = await getBase64(imageFile);
         }
@@ -2579,12 +2623,12 @@
             description: desc,
             lastUpload: lastUpload,
             device: device,
-           
             contact: contact,
             image: base64Image,
             status: "pending", // สถานะยังไม่ได้ตอบกลับ
             submittedAt: new Date().toISOString()
         };
+        
         try {
             const reportsRef = ref(db, 'reports');
             const newReportRef = push(reportsRef);
@@ -2596,6 +2640,7 @@
                 text: 'เจ้าหน้าที่จะตรวจสอบและติดต่อกลับโดยเร็วที่สุด',
                 confirmButtonColor: '#1e3a8a'
             });
+            
             document.getElementById('problemReportForm').reset();
             closeReportModal();
         } catch (error) {
@@ -2622,14 +2667,12 @@
         if (snapshot.exists()) {
             const data = snapshot.val();
             let hasNews = false;
-    
         
             // วนลูปเรียงคีย์จากใหม่ล่าสุดไปเก่าสุด
             Object.keys(data).reverse().forEach(key => {
                 const item = data[key];
                 hasNews = true;
                 
-            
                 const imgDiv = document.createElement('div');
                 imgDiv.style.flex = '0 0 auto';
                 imgDiv.style.width = '240px'; // ขนาดความกว้างของการ์ดเล็กๆตามภาพ
@@ -2643,13 +2686,13 @@
                 imgDiv.style.backgroundColor = '#fff';
                 imgDiv.style.boxShadow = '0 4px 10px rgba(0,0,0,0.05)';
                 
-                const imgSrc = item.imageUrl ||
-                    item.image || item.prImageUrl || 'https://via.placeholder.com/297x210?text=No+Image';
+                const imgSrc = item.imageUrl || item.image || item.prImageUrl || 'https://via.placeholder.com/297x210?text=No+Image';
                 const title = item.title || item.prTitle || 'ข่าวประชาสัมพันธ์';
                 const content = item.content || item.prContent || '';
 
                 // ตัดแท็ก HTML ออกจากหัวข้อเพื่อแสดงบนการ์ดเล็กอย่างสวยงาม
                 const cleanTitle = title.replace(/<\/?[^>]+(>|$)/g, "");
+                
                 // สร้างหน้าตาของการ์ดข่าวขนาดเล็ก
                 imgDiv.innerHTML = `
                     <div style="position: relative; width: 100%; padding-top: 60%; background-color: #f8fafc;">
@@ -2661,7 +2704,7 @@
                         </p>
                     </div>
                 `;
-
+                
                 // เมื่อทำการคลิกที่รูปภาพ ให้แสดงหน้าต่างเต็มจอที่สร้างไว้ด้านบน
                 imgDiv.addEventListener('click', () => {
                     document.getElementById('newsModalImg').src = imgSrc;
