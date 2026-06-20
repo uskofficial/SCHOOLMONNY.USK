@@ -16,6 +16,9 @@
     <link rel="apple-touch-icon" href="https://i.postimg.cc/q78qNmgy/d-sin-th-y-ngmi-di-t-ngch-x.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
@@ -472,6 +475,71 @@
         }
         .payment-btn-box:hover { background: var(--main-blue); color: white;
         }
+        
+        /* ปุ่มใบเสร็จรับเงินที่เพิ่มเข้ามาใหม่ */
+        .receipt-btn-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid #10b981;
+            color: #10b981;
+            padding: 15px; text-align: center; border-radius: 15px;
+            font-size: 18px; font-weight: 600;
+            cursor: pointer; margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+            transition: 0.3s;
+        }
+        .receipt-btn-box:hover { background: #10b981; color: white; }
+
+        /* --- Receipt Styles (Scoped to .receipt-wrapper) แก้ปัญหาหน้าจอมือถือ และขนาดโลโก้ --- */
+        .receipt-wrapper { font-family: 'Sarabun', sans-serif; background-color: #f0f2f5; color: #333; display: block; padding: 10px; text-align: left; overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+        .receipt-container { width: 800px; min-width: 800px; background-color: #ffffff; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; overflow: hidden; margin: 0 auto; }
+        .receipt-container .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+        .receipt-container .logos { display: flex; gap: 15px; }
+        .receipt-container .logos img { height: 70px; width: 70px; object-fit: contain; } /* แก้ไขรูปโลโก้ให้เท่ากันเป๊ะ */
+        .receipt-container .receipt-title { text-align: right; }
+        .receipt-container .receipt-title h1 { font-size: 32px; font-weight: 700; color: #000; line-height: 1.2; margin:0; }
+        .receipt-container .receipt-title h2 { font-size: 24px; font-weight: 700; color: #2b7bb9; line-height: 1.2; margin:0;}
+        .receipt-container .info-box { background-color: #f5f5f5; border-radius: 10px; padding: 20px; display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 15px; }
+        .receipt-container .info-left { flex: 1; }
+        .receipt-container .info-right { text-align: right; min-width: 200px; }
+        .receipt-container .info-row { display: flex; margin-bottom: 8px; }
+        .receipt-container .info-row:last-child { margin-bottom: 0; }
+        .receipt-container .info-label { font-weight: 600; width: 90px; flex-shrink: 0; text-align: left; }
+        .receipt-container .dynamic-data { color: #000000; font-weight: 500; text-align: left; }
+        .receipt-container .table-container { position: relative; margin-bottom: 20px; min-height: 200px; }
+        .receipt-container .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.04; width: 400px; z-index: 0; pointer-events: none; }
+        .receipt-container table { width: 100%; border-collapse: collapse; position: relative; z-index: 1; text-align: center; }
+        .receipt-container th { background-color: #5b92d6; color: white; padding: 12px; font-weight: 600; font-size: 16px; border-left: 1px solid #7baae0; border-right: 1px solid #7baae0; }
+        .receipt-container th:first-child { border-top-left-radius: 10px; border-left: none; width: 10%; }
+        .receipt-container th:last-child { border-top-right-radius: 10px; border-right: none; width: 20%; }
+        .receipt-container th:nth-child(2) { width: 45%; text-align: left; padding-left: 20px; }
+        .receipt-container td { padding: 12px; border-left: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; font-size: 15px; }
+        .receipt-container td:first-child { border-left: none; }
+        .receipt-container td:last-child { border-right: none; }
+        .receipt-container td:nth-child(2) { text-align: left; padding-left: 20px; }
+        .receipt-container .table-wrapper { border: 1px solid #e0e0e0; border-radius: 10px; border-top: none; }
+        .receipt-container .summary-container { display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 30px; padding-right: 10px; }
+        .receipt-container .summary-row { display: flex; align-items: center; justify-content: flex-end; width: 350px; margin-bottom: 10px; font-size: 16px; }
+        .receipt-container .summary-label { margin-right: 20px; }
+        .receipt-container .summary-label.bold { font-weight: 700; font-size: 18px; }
+        .receipt-container .summary-value { width: 120px; text-align: center; }
+        .receipt-container .pill-box { border: 1px solid #2b7bb9; border-radius: 20px; padding: 5px 15px; background-color: #f8fbff; font-weight: 700; }
+        .receipt-container .signature-container { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; padding: 0 20px; }
+        .receipt-container .stamp-area { text-align: center; position: relative; }
+        .receipt-container .stamp-img { width: 120px; opacity: 0.8; transform: rotate(-5deg); margin-bottom: -15px; position: relative; z-index: 0; }
+        .receipt-container .stamp-text { font-size: 14px; font-weight: 600; position: relative; z-index: 1; }
+        .receipt-container .qr-area { text-align: right; }
+        .receipt-container .qr-area img { width: 100px; height: 100px; object-fit: contain; border: 1px solid #eee; padding: 5px; border-radius: 5px; }
+        .receipt-container .footer-notes { background-color: #5b92d6; color: #ffffff; border-radius: 12px; padding: 20px 25px; font-size: 12px; line-height: 1.6; position: relative; overflow: hidden; text-align: left; }
+        .receipt-container .footer-notes h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; margin-top: 0; }
+        .receipt-container .footer-notes ol { padding-left: 20px; margin: 0; }
+        .receipt-container .footer-notes li { margin-bottom: 4px; }
+        .receipt-container .footer-pattern { position: absolute; bottom: 0; left: 0; width: 100%; height: 40px; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%); pointer-events: none; }
+
+        /* จัดการกรอบ Popup ให้ครอบคลุมสำหรับใบเสร็จ */
+        .receipt-swal-popup { max-width: 95vw !important; width: 850px !important; padding: 0 !important; overflow: hidden !important; }
+        .receipt-swal-popup .swal2-html-container { margin: 0 !important; padding: 10px !important; }
 
         .payment-info-text {
             text-align: center;
@@ -1207,7 +1275,7 @@
             UTTAYANSUKSAKRABI
         </text>
         <text 
-            x="50%" y="80%" dy=".35em" text-anchor="middle" class="school-text dash-animation" style="font-size: 60px;">
+          x="50%" y="80%" dy=".35em" text-anchor="middle" class="school-text dash-animation" style="font-size: 60px;">
             SCHOOL
         </text>
     </svg>
@@ -1299,8 +1367,12 @@
             ช่องทางการชำระเงิน
         </div>
 
+        <div class="receipt-btn-box" onclick="showReceiptMenu()">
+            <i class="fas fa-file-invoice-dollar"></i> ใบเสร็จการเงิน
+        </div>
+
         <div class="payment-info-text">
-            หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
+             หลังจากที่ท่านดำเนินการแนบหลักฐานการโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการชำระเงินอีกครั้งภายใน 7 วันทำการ เพื่อรักษาสิทธิประโยชน์ของท่าน จากช่องทางการตรวจสอบสถานะ <br>
             <a href="https://uskofficial.github.io/SCHOOLMoney.USK/" target="_blank" style="color: #1e3a8a;
                 font-weight: 600; text-decoration: underline;">https://uskofficial.github.io/SCHOOLMoney.USK/</a>
         </div>
@@ -1354,7 +1426,7 @@
                     <span>เรียนดี ประพฤติเด่น เน้นคุณภาพ ซึมซาบคุณธรรม ผูกสัมพันธ์ชุมชน</span>
                 </p>
             
-                 <div class="f-title-line">ติดต่อ</div>
+                <div class="f-title-line">ติดต่อ</div>
                  <div class="f-contact-list">
                     <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" class="f-contact-item" target="_blank">
                         <i class="fas fa-home"></i> 
@@ -1373,11 +1445,13 @@
                 <div class="f-follow-head">ติดตาม</div>
                 <div class="f-social-grid">
                     <a href="https://www.facebook.com/UttayanSuksaKrabi" class="f-social-link" target="_blank">โรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
-                    <a href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
+                    <a 
+                        href="https://www.facebook.com/USKOfficial1" class="f-social-link" target="_blank">คณะกรรมการสภานักเรียนโรงเรียนอุทยานศึกษากระบี่ <i class="fab fa-facebook"></i></a>
                     
                     <a href="https://www.tiktok.com/@uskofficial_?_r=1&_t=ZS-96IJfkyKHJJ" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-tiktok"></i></a>
                     <a href="https://www.instagram.com/uskofficial_?igsh=MTM2amx5bmpiNGdjdA==" class="f-social-link" target="_blank">uskofficial_ <i class="fab fa-instagram"></i></a>
-                    <a href="https://lin.ee/7F62GMA" class="f-social-link" target="_blank">@837fnedn <i class="fab fa-line"></i></a>
+                    <a href="https://lin.ee/7F62GMA" class="f-social-link" 
+                        target="_blank">@837fnedn <i class="fab fa-line"></i></a>
                     <a href="https://youtube.com/@uskofficial01?si=qLXB83PoYvydWuBY" class="f-social-link" target="_blank">uskofficial01 <i class="fab fa-youtube"></i></a>
                 </div>
        
@@ -1407,7 +1481,7 @@
         <div class="fab-btn fab-pink" id="fabMenuBtn">!</div>
 
         <div class="fab-sub-menu" id="fabSubMenu">
-            <div class="fab-sub-btn" onclick="openReportModal()" data-title="รายงานปัญหา"><i class="fas fa-shield-alt"></i></div>
+             <div class="fab-sub-btn" onclick="openReportModal()" data-title="รายงานปัญหา"><i class="fas fa-shield-alt"></i></div>
             <div class="fab-sub-btn" onclick="openFAQModal()" data-title="คำถามที่พบบ่อย"><i class="fas fa-comments"></i></div>
             <div class="fab-sub-btn" onclick="showContactPopup()" data-title="ติดต่อสอบถาม"><i class="fas fa-headset"></i></div>
         </div>
@@ -1446,28 +1520,23 @@
                     </select>
                 </div>
                 <div class="custom-form-group">
-                    <label>4.
-                        คำอธิบายปัญหาอย่างละเอียด</label>
+                    <label>4. คำอธิบายปัญหาอย่างละเอียด</label>
                     <textarea id="repDesc" rows="4" required placeholder="อธิบายสิ่งที่เกิดขึ้นจริง เช่น ระบบแจ้งยอดผิดปกติ..."></textarea>
                 </div>
                 <div class="custom-form-group">
-                    <label>5.
-                        วันที่อัปโหลดสลิปครั้งล่าสุด (ถ้ามี)</label>
+                    <label>5. วันที่อัปโหลดสลิปครั้งล่าสุด (ถ้ามี)</label>
                     <input type="date" id="repLastUpload">
                 </div>
                 <div class="custom-form-group">
-                    <label>6.
-                        อุปกรณ์ที่ใช้งาน</label>
+                    <label>6. อุปกรณ์ที่ใช้งาน</label>
                     <input type="text" id="repDevice" required placeholder="เช่น iPhone Safari, คอมพิวเตอร์ Chrome">
                 </div>
                 <div class="custom-form-group">
-                    <label>7.
-                        เบอร์โทรศัพท์หรืออีเมล (ติดต่อกลับ)</label>
+                    <label>7. เบอร์โทรศัพท์หรืออีเมล (ติดต่อกลับ)</label>
                     <input type="text" id="repContact" required placeholder="เบอร์โทร หรือ อีเมล">
                 </div>
                 <div class="custom-form-group">
-                    <label>8.
-                        รูปภาพประกอบ (Screenshots)</label>
+                    <label>8. รูปภาพประกอบ (Screenshots)</label>
                     <input type="file" id="repImage" accept="image/*" style="padding: 11px 15px;">
                 </div>
                 <button type="submit" class="custom-btn-submit" id="btnSubmitReport">ส่งรายงานปัญหา</button>
@@ -1496,7 +1565,7 @@
                 margin-top:0; border-bottom: 2px dashed #e2e8f0; padding-bottom:15px; font-size: 22px;"><i class="fas fa-tasks" style="margin-right:8px;"></i> สถานะการรายงานปัญหา</h3>
             <div id="statusListContainer">
                 <p style="text-align: center;
-                    color: #666;">กำลังตรวจสอบข้อมูล...</p>
+                color: #666;">กำลังตรวจสอบข้อมูล...</p>
             </div>
         </div>
     </div>
@@ -1602,6 +1671,25 @@
             }
         }
         return "";
+    }
+
+    function getPaymentDate(d, keyword) {
+        const dateWords = ["วันที่", "เวลา", "date", "time", "วัน"];
+        for (let key in d) {
+            if (key.includes(keyword)) {
+                let isDateCol = dateWords.some(w => key.toLowerCase().includes(w));
+                if (isDateCol) {
+                    let val = d[key];
+                    if (val && typeof val === 'string' && val.trim() !== "") {
+                        return val.replace(/'/g, "\\'");
+                    }
+                    if (val instanceof Date) {
+                        return val.toLocaleDateString('th-TH').replace(/'/g, "\\'");
+                    }
+                }
+            }
+        }
+        return "อ้างอิงตามสลิปโอนเงิน";
     }
 
     function startClock() {
@@ -1821,8 +1909,11 @@
                         <div class="fp-total-label">ยอดที่ต้องชำระทั้งหมด <span style="font-size:14px; font-weight:400; color:#555;">( Total Outstanding Balance )</span></div>
                         <div class="fp-total-val">${totalUnpaid.toLocaleString()} บาท</div>
                     </div>
-                    <div style="text-align: center; margin-top: 25px;">
-                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif; cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
+                    <div style="text-align: center;
+                        margin-top: 25px;">
+                        <button onclick="Swal.close()" style="background: rgba(30, 58, 138, 0.85);
+                        backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 10px 40px; border-radius: 12px; font-size: 16px; font-family: 'Kanit', sans-serif;
+                        cursor: pointer; font-weight: 500;">ปิดหน้าต่าง</button>
                     </div>
                 </div>
             `,
@@ -1867,7 +1958,8 @@
                             <div id="pb" class="progress-bar"></div>
                         </div>
                         <h1 style="color: #ffffff; font-size: 28px; font-weight: 600; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">กำลังอัปโหลดสลิป...</h1>
-                        <p style="color: #ffffff; font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
+                        <p style="color: #ffffff;
+                            font-size: 16px; margin-top: 5px; font-weight:400; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</p>
                     </div>
                 `
             });
@@ -1915,7 +2007,8 @@
                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
                                 <dotlottie-wc src="https://lottie.host/463d8a69-81c7-4850-881c-fd73eb6b3904/3SjgwFnZ11.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
                                 <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">แนบสลิปสำเร็จ!</h1>
-                                <p style="color: #ffffff; font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
+                                <p style="color: #ffffff;
+                                    font-size: 20px; font-weight: 400; margin-top: 10px; line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ระบบได้รับข้อมูลเรียบร้อยแล้ว<br><b style="font-weight:600;">โปรดรอตรวจสอบสถานะ 7 วันทำการ</b></p>
                             </div>
                         `
                     }).then(() => {
@@ -1930,9 +2023,12 @@
                         allowOutsideClick: false,
                         html: `
                              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);">
-                                <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                                <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
-                                <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
+                                 <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
+                                    height: 300px;" autoplay loop></dotlottie-wc>
+                                <h1 style="color: #ffffff;
+                                    font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">อัปโหลดไม่สำเร็จ</h1>
+                                <p style="color: #ffffff;
+                                    font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">${result.message || 'เกิดข้อผิดพลาด'}</p>
                             </div>
                         `
                     });
@@ -1947,9 +2043,12 @@
                     html: `
                         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Kanit', sans-serif; background: rgba(0,0,0,0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; 
                             border: 1px solid rgba(255,255,255,0.3);">
-                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px; height: 300px;" autoplay loop></dotlottie-wc>
-                            <h1 style="color: #ffffff; font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
-                            <p style="color: #ffffff; font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
+                            <dotlottie-wc src="https://lottie.host/d5c3641f-2d14-4a40-96bd-576c3e85e166/E64C7QsOzk.lottie" style="width: 300px;
+                                height: 300px;" autoplay loop></dotlottie-wc>
+                            <h1 style="color: #ffffff;
+                                font-size: 38px; font-weight: 600; margin: 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">เกิดข้อผิดพลาด</h1>
+                            <p style="color: #ffffff;
+                                font-size: 22px; font-weight: 400; margin-top: 10px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้</p>
                         </div>
                     `
                 });
@@ -1971,14 +2070,16 @@
                     
                     <p style="font-size:14px; color:#444; margin-bottom:5px; font-weight:600;">กรุณาเลือกจำนวนเงินที่ต้องการชำระ:</p>
 
-                    <div style="font-size:13px; color:#b91c1c; margin-bottom:15px; font-weight:400; line-height:1.6; text-align:left; background: rgba(220,38,38,0.05);
+                    <div style="font-size:13px; color:#b91c1c; margin-bottom:15px; font-weight:400; line-height:1.6; text-align:left;
+                        background: rgba(220,38,38,0.05);
                         padding:12px; border-radius:10px; border-left: 4px solid #ef4444;">
                         ขอความกรุณาทุกท่านชำระค่าอาหารกลางวันเป็นรายเดือนตามรอบบิล โดยแยกการโอนเงินเป็น 1 เดือนต่อ 1 สลิป (รบกวนไม่โอนรวมยอดหลายเดือนในสลิปเดียวกัน)<br><br>
                         นอกจากนี้ สำหรับค่าธรรมเนียมหอพัก ขอความกรุณาโอนเงินและส่งสลิปแยกต่างหากจากค่าอาหารกลางวัน<br><br>
                         ทั้งนี้ เพื่อความสะดวกรวดเร็วในการตรวจสอบ ป้องกันความผิดพลาดของข้อมูล และเพื่อให้ทางเราสามารถอัปเดตสถานะการชำระเงินของท่านได้อย่างถูกต้องแม่นยำ ขอขอบพระคุณในความร่วมมือเป็นอย่างยิ่งครับ/ค่ะ
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; padding: 0 10px;">
+                    <div style="display: grid;
+                        grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; padding: 0 10px;">
                         <button class="btn-amount-select" onclick="showQRAmount('1,000')">1,000 บาท</button>
                         <button class="btn-amount-select" onclick="showQRAmount('1,050')">1,050 บาท</button>
                         <button class="btn-amount-select" onclick="showQRAmount('1,500')">1,500 บาท</button>
@@ -2034,7 +2135,8 @@
             html: `
                 <div style="text-align:center;">
                     <p style="font-size:18px; margin-bottom:10px; color:#1e3a8a; font-weight:600;">ยอดชำระ: ${amount} บาท</p>
-                    <img src="${selectedImage}" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+                    <img src="${selectedImage}" style="width:100%; max-width:280px; border-radius:15px; box-shadow: 0 
+                        6px 20px rgba(0,0,0,0.2);">
                     <p style="font-size:13px; color:#d97706; margin-top:12px; font-weight:600;">* โปรดเก็บสลิปเพื่อนำมาแนบแจ้งในระบบ</p>
                     <button class="btn-download-qr" onclick="downloadQR('${selectedImage}', '${amount}')"><i class="fas fa-download"></i> ดาวน์โหลดคิวอาร์โค้ด</button>
                 </div>
@@ -2053,6 +2155,224 @@
         });
     }
 
+    // --- ฟังก์ชันใบเสร็จรับเงินที่เพิ่มเข้ามาใหม่ ---
+    window.showReceiptMenu = function() {
+        if (!currentData || !currentData.data) return;
+        const d = currentData.data;
+        let paidItems = [];
+
+        // 1. ตรวจสอบสถานะค่าธรรมเนียมหอพัก
+        let dormStatus = d["ค่าธรรมเนียมหอพัก-สถานะ"] || "";
+        let dormVerify = d["สถานะการตรวจสอบค่าหอพัก"] || "";
+        if (dormStatus.includes("ชำระแล้ว") || dormVerify.includes("สำเร็จ") || dormVerify.includes("ชำระแล้ว") || dormVerify.includes("การโอนสำเร็จ")) {
+            let slipUrl = getAttachmentLink(d, "หอพัก");
+            let payDate = getPaymentDate(d, "หอพัก");
+            paidItems.push({
+                name: "ค่าธรรมเนียมหอพัก 1/2569",
+                amount: d["ยอดค้างค่าธรรมเนียม"] || "ตรวจสอบในสลิป",
+                slipUrl: slipUrl,
+                payDate: payDate
+            });
+        }
+
+        // 2. ตรวจสอบสถานะค่าอาหารในแต่ละเดือน
+        const months = ["พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม"];
+        months.forEach(m => {
+            let stat = d[m] || "";
+            if (stat.includes("ชำระแล้ว")) {
+                let slipUrl = getAttachmentLink(d, m);
+                let payDate = getPaymentDate(d, m);
+                let amt = Number(d[`ยอดที่ค้าง(${m})`] || 0);
+                paidItems.push({
+                    name: `ค่าอาหารรายเดือน ${m}`,
+                    amount: amt > 0 ? amt : "ตรวจสอบในสลิป",
+                    slipUrl: slipUrl,
+                    payDate: payDate
+                });
+            }
+        });
+
+        if (paidItems.length === 0) {
+            Swal.fire({
+                icon: 'info',
+                title: 'ไม่พบประวัติใบเสร็จ',
+                text: 'ยังไม่มีประวัติการชำระเงินที่ได้รับการตรวจสอบแล้ว',
+                confirmButtonColor: '#10b981',
+                customClass: { popup: 'glass-swal-popup' }
+            });
+            return;
+        }
+
+        let buttonsHtml = '';
+        paidItems.forEach((item, index) => {
+            buttonsHtml += `<button onclick="showReceiptDetail('${item.name}', '${item.amount}', '${item.slipUrl}', '${item.payDate}')" style="background:#f8fafc; border:1px solid #cbd5e1; width:100%; padding:15px; border-radius:10px; margin-bottom:10px; text-align:left; font-family:'Kanit'; font-size:16px; cursor:pointer; color:#1e3a8a; display:flex; justify-content:space-between; align-items:center; transition:0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='#f8fafc'">
+                <span style="font-weight:600;"><i class="fas fa-file-invoice" style="margin-right:8px; color:#10b981;"></i> ${item.name}</span>
+                <span style="font-size:14px; color:#64748b;">ดูใบเสร็จ <i class="fas fa-chevron-right" style="margin-left:5px;"></i></span>
+            </button>`;
+        });
+
+        Swal.fire({
+            title: 'ประวัติใบเสร็จการเงิน',
+            html: `<div style="margin-top:15px; max-height: 300px; overflow-y: auto;">${buttonsHtml}</div>`,
+            showCloseButton: true,
+            showConfirmButton: false,
+            customClass: { popup: 'glass-swal-popup' }
+        });
+    }
+
+    window.showReceiptDetail = function(itemName, amountStr, slipUrl, payDateStr) {
+        // วันที่ปัจจุบัน (เปิดดูใบเสร็จ)
+        const dateStr = new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+        
+        // ข้อมูลนักเรียนจากระบบ
+        const studentName = currentData.data["ชื่อ-นามสกุล"] || "-";
+        
+        // ข้อมูลของโรงเรียน (ตามที่ต้องการให้ล็อกเอาไว้)
+        const phone = "093-537-7270";
+        const address = "เลขที่ 114/1 หมู่ 2 ตำบลคลองเขม้า อำเภอเหนือคลอง จังหวัดกระบี่ 81130";
+        
+        // สร้างเลขที่ใบแจ้งหนี้แบบสุ่มแต่อิงตามชื่อและรายการ (เปิดกี่ครั้งเลขก็เหมือนเดิม)
+        let hashStr = studentName + itemName;
+        let hash = 0;
+        for (let i = 0; i < hashStr.length; i++) {
+            hash = ((hash << 5) - hash) + hashStr.charCodeAt(i);
+            hash |= 0;
+        }
+        const invoiceNo = "INV-" + Math.abs(hash).toString().substring(0, 6).padStart(6, '0');
+        
+        // จัดรูปแบบจำนวนเงินให้มี .- ลงท้ายเสมอ
+        let parsedAmt = parseFloat(amountStr);
+        let displayAmt = !isNaN(parsedAmt) ? parsedAmt.toLocaleString() + '.-' : amountStr + '.-';
+        // ในกรณีที่เป็นข้อความ "ตรวจสอบในสลิป" จะเปลี่ยนให้ดูเหมาะสมขึ้น
+        if(displayAmt === "ตรวจสอบในสลิป.-") displayAmt = "ตามสลิป.-";
+        
+        // วันที่โอนเงิน (หากไม่มีให้โชว์อ้างอิงจากหลักฐาน)
+        const paymentDate = (payDateStr && payDateStr !== "undefined" && payDateStr.trim() !== "") ? payDateStr : "อ้างอิงตามสลิปโอนเงิน";
+
+        // ใช้ URL สลิปสร้าง QR Code ที่สแกนแล้วเปิดดูสลิป
+        const qrData = slipUrl ? slipUrl : "https://usk.ac.th";
+
+        const receiptHtml = `
+        <div class="receipt-wrapper">
+            <div class="receipt-container">
+                <div class="header">
+                    <div class="logos">
+                        <img src="https://i.postimg.cc/g2TMtSVd/IMG-7790.png" alt="School Logo">
+                        <img src="https://i.postimg.cc/SQ6vQGhW/Untitled-design.png" alt="JSK Logo">
+                    </div>
+                    <div class="receipt-title">
+                        <h1>ใบเสร็จรับเงิน</h1>
+                        <h2>RECEIPT</h2>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-left">
+                        <div class="info-row">
+                            <span class="info-label">วันที่ :</span>
+                            <span class="dynamic-data">${paymentDate}</span> 
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">ชื่อนักเรียน :</span>
+                            <span class="dynamic-data">${studentName}</span> 
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">โทรศัพท์ :</span>
+                            <span class="dynamic-data">${phone}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">ที่อยู่ :</span>
+                            <span class="dynamic-data">${address}</span>
+                        </div>
+                    </div>
+                    <div class="info-right">
+                        <div class="info-row" style="justify-content: flex-end;">
+                            <span class="info-label" style="width: auto; margin-right: 5px;">เลขที่ใบแจ้งหนี้ :</span>
+                            <span class="dynamic-data">${invoiceNo}</span> 
+                        </div>
+                        <div class="info-row" style="justify-content: flex-end;">
+                            <span class="info-label" style="width: auto; margin-right: 5px;">วันที่ :</span>
+                            <span class="dynamic-data">${dateStr}</span> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <img src="https://i.postimg.cc/5NmTgSK0/n-ange-n-laea-khaw-re-ybng-ay-bi-ser-c-xeksar-2.png" alt="Watermark" class="watermark">
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>รายการ</th>
+                                    <th>จำนวนเงิน</th>
+                                    <th>ยอดรวม</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="dynamic-data">1.</td>
+                                    <td class="dynamic-data">${itemName}</td>
+                                    <td class="dynamic-data">${displayAmt}</td>
+                                    <td class="dynamic-data">${displayAmt}</td>
+                                </tr>
+                                <tr><td><br></td><td></td><td></td><td></td></tr>
+                                <tr><td><br></td><td></td><td></td><td></td></tr>
+                                <tr><td><br></td><td></td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="summary-container">
+                    <div class="summary-row">
+                        <span class="summary-label">ภาษี ณ ที่จ่าย 0%</span>
+                        <span class="summary-value dynamic-data">0.-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label bold">ยอดที่จ่ายทั้งหมด</span>
+                        <span class="summary-value pill-box dynamic-data">${displayAmt}</span>
+                    </div>
+                </div>
+
+                <div class="signature-container">
+                    <div class="stamp-area">
+                        <img src="https://i.postimg.cc/5NmTgSK0/n-ange-n-laea-khaw-re-ybng-ay-bi-ser-c-xeksar-2.png" alt="Stamp" class="stamp-img">
+                        <div class="stamp-text">โรงเรียนอุทยานศึกษากระบี่</div>
+                    </div>
+                    <div class="qr-area">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}" alt="QR Code"> 
+                    </div>
+                </div>
+
+                <div class="footer-notes">
+                    <h4>หมายเหตุ</h4>
+                    <ol>
+                        <li>ใบเสร็จรับเงินฉบับนี้จะสมบูรณ์ถูกต้องต่อเมื่อมีตราประทับของทางโรงเรียน พร้อมลายมือชื่อของผู้รับเงินหรือเจ้าหน้าที่ผู้มีอำนาจครบถ้วน</li>
+                        <li>เงินค่าธรรมเนียมหอพักและค่าอาหารที่ชำระเรียบร้อยแล้ว ทางโรงเรียนขอสงวนสิทธิ์ในการคืนเงินหรือโอนสิทธิ์ให้ผู้อื่นในทุกกรณี</li>
+                        <li>ขอความกรุณาผู้ปกครองโปรดเก็บรักษาเอกสารฉบับนี้ไว้เป็นหลักฐานสำคัญ เพื่อใช้ในการตรวจสอบหรือยื่นเบิกสวัสดิการทางการศึกษา</li>
+                        <li>กรุณาชำระเงินภายในห้วงเวลาที่โรงเรียนกำหนด หากพ้นกำหนดแล้ว ใคร่ขอความร่วมมือติดต่อฝ่ายการเงินเพื่อดำเนินการตามระเบียบต่อไป</li>
+                    </ol>
+                    <div class="footer-pattern"></div>
+                </div>
+            </div>
+        </div>
+        `;
+
+        Swal.fire({
+            html: receiptHtml,
+            showCloseButton: true,
+            showConfirmButton: false,
+            width: 'auto',
+            customClass: { popup: 'glass-swal-popup receipt-swal-popup' }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.close || result.dismiss === Swal.DismissReason.backdrop) {
+                showReceiptMenu(); // ย้อนกลับไปหน้าประวัติเมื่อกดปิด
+            }
+        });
+    }
+
     function showPrivacyPolicy() {
         Swal.fire({
             grow: 'fullscreen',
@@ -2067,9 +2387,11 @@
                     </div>
                     <h2>ประกาศนโยบายคุ้มครองข้อมูลส่วนบุคคล<br><span style="font-size: 18px; color: #555; font-weight: 500;">(Privacy Policy)</span></h2>
                     <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 14px;"><strong>โรงเรียนอุทยานศึกษากระบี่</strong><br>ประกาศ ณ วันที่ 30 พฤษภาคม พ.ศ. 2569</p>
-                    <p>โรงเรียนอุทยานศึกษากระบี่ ("โรงเรียน") ในฐานะผู้ควบคุมข้อมูลส่วนบุคคล ตระหนักถึงความสำคัญในการคุ้มครองข้อมูลส่วนบุคคลของนักเรียน ผู้ปกครอง ครู และบุคลากรที่เกี่ยวข้อง ซึ่งถือเป็นส่วนหนึ่งของการดำเนินงานที่มีประสิทธิภาพตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) ทางโรงเรียนจึงจัดทำนโยบายฉบับนี้ขึ้นเพื่อชี้แจงกระบวนการจัดการข้อมูลผ่านระบบ School Money (<a href="https://uskofficial.github.io/SCHOOLMONNY.USK/" target="_blank">https://uskofficial.github.io/SCHOOLMONNY.USK/</a>)</p>
+                    <p>โรงเรียนอุทยานศึกษากระบี่ ("โรงเรียน") ในฐานะผู้ควบคุมข้อมูลส่วนบุคคล ตระหนักถึงความสำคัญในการคุ้มครองข้อมูลส่วนบุคคลของนักเรียน ผู้ปกครอง ครู และบุคลากรที่เกี่ยวข้อง ซึ่งถือเป็นส่วนหนึ่งของการดำเนินงานที่มีประสิทธิภาพตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ.
+2562 (PDPA) ทางโรงเรียนจึงจัดทำนโยบายฉบับนี้ขึ้นเพื่อชี้แจงกระบวนการจัดการข้อมูลผ่านระบบ School Money (<a href="https://uskofficial.github.io/SCHOOLMONNY.USK/" target="_blank">https://uskofficial.github.io/SCHOOLMONNY.USK/</a>)</p>
 
-                    <h3>1. วัตถุประสงค์แห่งการจัดเก็บข้อมูลส่วนบุคคล</h3>
+                    <h3>1.
+วัตถุประสงค์แห่งการจัดเก็บข้อมูลส่วนบุคคล</h3>
                     <p>โรงเรียนมีความจำเป็นต้องเก็บรวบรวมข้อมูลส่วนบุคคลของท่าน เพื่อวัตถุประสงค์อันชอบด้วยกฎหมาย ดังนี้:</p>
                     <ul>
                         <li><b>1.1 เพื่อการบริหารจัดการสถานะการชำระเงิน:</b> เพื่อใช้ในการระบุตัวตนของนักเรียนสำหรับการสืบค้นสถานะค่าธรรมเนียมหอพักและค่าอาหารรายเดือน</li>
@@ -2078,7 +2400,8 @@
                         <li><b>1.4 เพื่อความปลอดภัยของระบบ:</b> เพื่อบันทึกข้อมูลทางเทคนิค (Log File) ในการเฝ้าระวัง ป้องกัน และแก้ไขปัญหาการบุกรุกระบบโดยมิชอบ</li>
                     </ul>
 
-                    <h3>2. ประเภทของข้อมูลที่จัดเก็บ</h3>
+                    <h3>2.
+ประเภทของข้อมูลที่จัดเก็บ</h3>
                     <p>โรงเรียนจัดเก็บข้อมูลส่วนบุคคลเท่าที่จำเป็นตามภารกิจของสถานศึกษา ดังนี้:</p>
                     <ul>
                         <li><b>ข้อมูลระบุตัวตน:</b> ชื่อ-นามสกุล ของนักเรียน</li>
@@ -2086,7 +2409,8 @@
                         <li><b>ข้อมูลทางเทคนิค (Technical Data):</b> ที่อยู่ไอพี (IP Address), คุกกี้ (Cookies) เพื่ออำนวยความสะดวกในการเข้าใช้งานระบบ</li>
                     </ul>
 
-                    <h3>3. หลักเกณฑ์และมาตรการในการคุ้มครองข้อมูล</h3>
+                    <h3>3.
+หลักเกณฑ์และมาตรการในการคุ้มครองข้อมูล</h3>
                     <p>โรงเรียนถือปฏิบัติโดยยึดมั่นในมาตรการรักษาความปลอดภัยที่เข้มงวด ดังนี้:</p>
                     <ul>
                         <li><b>3.1 การจำกัดสิทธิ์การเข้าถึง (Access Control):</b> ข้อมูลจะถูกเข้าถึงได้โดยบุคลากรผู้ได้รับมอบหมายจากโรงเรียนเท่านั้น เพื่อการปฏิบัติหน้าที่ที่เกี่ยวข้องกับระบบการเงินของโรงเรียน</li>
@@ -2094,7 +2418,8 @@
                         <li><b>3.3 การรักษาความลับ:</b> บุคลากรทุกคนที่เกี่ยวข้องกับการประมวลผลข้อมูลส่วนบุคคลมีหน้าที่ตามกฎหมายในการรักษาความลับของข้อมูลที่ได้รับทราบ</li>
                     </ul>
 
-                    <h3>4. การเปิดเผยข้อมูลส่วนบุคคล</h3>
+                    <h3>4.
+การเปิดเผยข้อมูลส่วนบุคคล</h3>
                     <p>โรงเรียนจะไม่เปิดเผยหรือส่งต่อข้อมูลส่วนบุคคลของท่านไปยังบุคคลภายนอก เว้นแต่กรณีดังต่อไปนี้:</p>
                     <ul>
                         <li>เป็นการปฏิบัติตามกฎหมาย หรือคำสั่งของศาลหรือพนักงานเจ้าหน้าที่ตามอำนาจหน้าที่</li>
@@ -2102,10 +2427,12 @@
                         <li>ท่านได้ให้ความยินยอมโดยชัดแจ้งในการดำเนินการดังกล่าว</li>
                     </ul>
 
-                    <h3>5. ระยะเวลาในการจัดเก็บข้อมูล</h3>
+                    <h3>5.
+ระยะเวลาในการจัดเก็บข้อมูล</h3>
                     <p>โรงเรียนจะจัดเก็บข้อมูลส่วนบุคคลของท่านไว้ตามระยะเวลาที่จำเป็น เพื่อให้บรรลุวัตถุประสงค์ในการดำเนินการทางการเงินและการศึกษาระหว่างปีการศึกษา เมื่อสิ้นสุดวัตถุประสงค์ หรือตามระยะเวลาที่กฎหมายบัญญัติไว้ โรงเรียนจะดำเนินการทำลายหรือทำให้ข้อมูลนั้นไม่สามารถระบุตัวบุคคลได้อีกต่อไป</p>
 
-                    <h3>6. สิทธิของเจ้าของข้อมูลส่วนบุคคล</h3>
+                    <h3>6.
+สิทธิของเจ้าของข้อมูลส่วนบุคคล</h3>
                     <p>ภายใต้บทบัญญัติแห่งกฎหมาย เจ้าของข้อมูลมีสิทธิดำเนินการดังนี้:</p>
                     <ul>
                         <li><b>สิทธิในการเข้าถึง:</b> ขอตรวจสอบและรับสำเนาข้อมูลส่วนบุคคลที่โรงเรียนจัดเก็บ</li>
@@ -2114,10 +2441,12 @@
                         <li><b>สิทธิในการคัดค้าน:</b> คัดค้านการประมวลผลข้อมูลในบางกรณีตามที่กฎหมายกำหนด</li>
                     </ul>
 
-                    <h3>7. การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h3>
+                    <h3>7.
+การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h3>
                     <p>โรงเรียนขอสงวนสิทธิ์ในการแก้ไขปรับปรุงนโยบายฉบับนี้ตามความเหมาะสมเพื่อให้สอดคล้องกับระเบียบราชการและการปฏิบัติงานจริง โดยท่านสามารถตรวจสอบการปรับปรุงล่าสุดได้ที่หน้าเว็บไซต์นี้</p>
 
-                    <h3>8. ข้อมูลติดต่อ</h3>
+                    <h3>8.
+ข้อมูลติดต่อ</h3>
                     <p>หากท่านมีคำถาม ข้อเสนอแนะ หรือความประสงค์ที่จะใช้สิทธิในฐานะเจ้าของข้อมูลส่วนบุคคล ท่านสามารถติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของโรงเรียนได้ที่:</p>
                     <p style="background: #f8fafc; padding: 15px; border-radius: 12px; border-left: 5px solid #1e3a8a;">
                         <b>ฝ่ายงานสารสนเทศ โรงเรียนอุทยานศึกษากระบี่</b><br>
@@ -2149,35 +2478,42 @@
                     <h3>1. การยอมรับเงื่อนไข</h3>
                     <p>ผู้ใช้งานตกลงที่จะใช้บริการระบบนี้เพื่อวัตถุประสงค์ในการตรวจสอบสถานะการชำระเงินและจัดการค่าใช้จ่ายทางการศึกษาของนักเรียนในสังกัดโรงเรียนอุทยานศึกษากระบี่เท่านั้น ห้ามนำข้อมูลไปใช้ในทางที่ผิดกฎหมายหรือก่อให้เกิดความเสียหายแก่ทางโรงเรียน</p>
 
-                    <h3>2. ความถูกต้องของข้อมูล</h3>
+                    <h3>2.
+ความถูกต้องของข้อมูล</h3>
                     <ul>
                         <li>ผู้ใช้งานมีหน้าที่รับผิดชอบในการระบุ "ชื่อ-นามสกุล" ของนักเรียนให้ถูกต้องตามที่ลงทะเบียนไว้กับทางโรงเรียน โดยไม่มีคำนำหน้าชื่อ เพื่อการค้นหาที่ถูกต้อง</li>
                         <li>ท่านยืนยันว่าข้อมูลหลักฐานการโอนเงิน (สลิป) ที่อัปโหลดเข้าสู่ระบบ เป็นเอกสารที่ถูกต้องและเป็นจริง หากตรวจพบว่ามีการปลอมแปลงเอกสาร โรงเรียนขอสงวนสิทธิ์ในการดำเนินคดีตามกฎหมาย</li>
                     </ul>
 
-                    <h3>3. การทำธุรกรรมและการตรวจสอบ</h3>
+                    <h3>3.
+การทำธุรกรรมและการตรวจสอบ</h3>
                     <ul>
                         <li>การชำระเงินผ่านช่องทางที่โรงเรียนกำหนดถือเป็นความรับผิดชอบของผู้ใช้งาน</li>
                         <li>ระบบแสดงสถานะ "ชำระแล้ว" เป็นข้อมูลเบื้องต้น ทางโรงเรียนขอสงวนสิทธิ์ในการตรวจสอบความถูกต้องของยอดเงินกับบัญชีธนาคารจริงอีกครั้งภายใน 7 วันทำการ</li>
-                        <li>หากเกิดข้อผิดพลาดในการทำรายการ ผู้ใช้งานมีหน้าที่ติดต่อเจ้าหน้าที่ของโรงเรียนโดยตรงตามช่องทางที่ระบุไว้ภายใน 7 วัน</li>
+                        <li>หากเกิดข้อผิดพลาดในการทำรายการ ผู้ใช้งานมีหน้าที่ติดต่อเจ้าหน้าที่ของโรงเรียนโดยตรงตามช่องทางที่ระบุไว้ภายใน 7 
+วัน</li>
                     </ul>
 
-                    <h3>4. ความรับผิดชอบของผู้ใช้งาน</h3>
+                    <h3>4.
+ความรับผิดชอบของผู้ใช้งาน</h3>
                     <ul>
                         <li>ผู้ใช้งานต้องรักษาข้อมูลส่วนตัวของนักเรียนในการเข้าถึงระบบ และไม่เปิดเผยข้อมูลดังกล่าวให้ผู้อื่นนำไปใช้ในทางที่มิชอบ</li>
                         <li>โรงเรียนไม่รับผิดชอบต่อความเสียหายใดๆ ที่เกิดจากการที่ผู้ใช้งานกรอกข้อมูลไม่ถูกต้อง หรือการกระทำที่เกิดจากความประมาทเลินเล่อของผู้ใช้งานเอง</li>
                     </ul>
 
-                    <h3>5. สิทธิและการเปลี่ยนแปลงระบบ</h3>
+                    <h3>5.
+สิทธิและการเปลี่ยนแปลงระบบ</h3>
                     <ul>
                         <li>โรงเรียนมีสิทธิ์ในการปรับปรุง พัฒนา หรือระงับการให้บริการระบบนี้ชั่วคราวหรือถาวร เพื่อการบำรุงรักษาหรือแก้ไขปัญหาทางเทคนิค โดยไม่ต้องแจ้งให้ทราบล่วงหน้า</li>
                         <li>โรงเรียนขอสงวนสิทธิ์ในการแก้ไขเปลี่ยนแปลงเงื่อนไขการใช้งานนี้ตามความเหมาะสม โดยจะมีผลทันทีเมื่อประกาศผ่านทางหน้าเว็บไซต์</li>
                     </ul>
 
-                    <h3>6. ทรัพย์สินทางปัญญา</h3>
+                    <h3>6.
+ทรัพย์สินทางปัญญา</h3>
                     <p>เนื้อหา รูปภาพ สัญลักษณ์ และส่วนประกอบทั้งหมดในเว็บไซต์นี้ เป็นลิขสิทธิ์ของโรงเรียนอุทยานศึกษากระบี่ ห้ามมิให้ผู้ใดคัดลอก ทำซ้ำ หรือดัดแปลงเพื่อนำไปใช้โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษร</p>
 
-                    <h3>7. กฎหมายที่ใช้บังคับ</h3>
+                    <h3>7.
+กฎหมายที่ใช้บังคับ</h3>
                     <p>เงื่อนไขการใช้งานฉบับนี้อยู่ภายใต้บังคับของกฎหมายแห่งราชอาณาจักรไทย และข้อพิพาทใดๆ ที่เกิดขึ้นจากการใช้งานเว็บไซต์นี้ จะต้องอยู่ภายใต้อำนาจการตัดสินของศาลในเขตพื้นที่จังหวัดกระบี่</p>
                 </div>
             `
@@ -2216,23 +2552,36 @@
                     <a href="tel:0935377270" style="display:flex; align-items:center; gap:15px; background: rgba(30, 58, 138, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(30, 58, 138, 0.1); text-decoration: none; color: inherit;">
                         <div style="width: 45px; height: 45px; min-width: 45px; background: #1e3a8a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-phone-alt"></i></div>
                         <div>
-                            <div style="font-size: 13px; color: #555; font-weight: 500;">เบอร์โทรศัพท์</div>
+                            <div style="font-size: 13px; color: 
+#555; font-weight: 500;">เบอร์โทรศัพท์</div>
                             <div style="font-size: 18px; font-weight: 600; color: #111;">093-537-7270</div>
                         </div>
                     </a>
                     
-                    <a href="mailto:uskofficial01@gmail.com" style="display:flex; align-items:center; gap:15px; background: rgba(236, 72, 153, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(236, 72, 153, 0.1); text-decoration: none; color: inherit;">
-                        <div style="width: 45px; height: 45px; min-width: 45px; background: #ec4899; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-envelope"></i></div>
+                    <a href="mailto:uskofficial01@gmail.com" style="display:flex;
+align-items:center; gap:15px; background: rgba(236, 72, 153, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(236, 72, 153, 0.1); text-decoration: none;
+color: inherit;">
+                        <div style="width: 45px;
+height: 45px; min-width: 45px; background: #ec4899; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+font-size: 20px;"><i class="fas fa-envelope"></i></div>
                         <div>
-                            <div style="font-size: 13px; color: #555; font-weight: 500;">อีเมล</div>
-                            <div style="font-size: 15px; font-weight: 600; color: #111; word-break: break-all;">uskofficial01@gmail.com</div>
+                            <div style="font-size: 13px;
+color: #555; font-weight: 500;">อีเมล</div>
+                            <div style="font-size: 15px;
+font-weight: 600; color: #111; word-break: break-all;">uskofficial01@gmail.com</div>
                         </div>
                     </a>
-                    <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" target="_blank" style="display:flex; align-items:center; gap:15px; background: rgba(22, 163, 74, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(22, 163, 74, 0.1); text-decoration: none; color: inherit;">
-                        <div style="width: 45px; height: 45px; min-width: 45px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-map-marker-alt"></i></div>
+                    <a href="https://maps.app.goo.gl/Gv2vPXCYMfkeSFVU6" target="_blank" style="display:flex;
+align-items:center; gap:15px; background: rgba(22, 163, 74, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(22, 163, 74, 0.1); text-decoration: none;
+color: inherit;">
+                        <div style="width: 45px;
+height: 45px; min-width: 45px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+font-size: 20px;"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
-                            <div style="font-size: 13px; color: #555; font-weight: 500;">สถานที่</div>
-                            <div style="font-size: 14px; font-weight: 500; color: #111;">โรงเรียนอุทยานศึกษากระบี่ อ.เหนือคลอง จ.กระบี่</div>
+                            <div style="font-size: 13px;
+color: #555; font-weight: 500;">สถานที่</div>
+                            <div style="font-size: 14px;
+font-weight: 500; color: #111;">โรงเรียนอุทยานศึกษากระบี่ อ.เหนือคลอง จ.กระบี่</div>
                         </div>
                     </a>
                 </div>
@@ -2266,7 +2615,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    // *** เพิ่ม increment และ serverTimestamp ในส่วนการ import จาก Firebase Database ***
+// *** เพิ่ม increment และ serverTimestamp ในส่วนการ import จาก Firebase Database ***
     import { getDatabase, ref, push, set, onValue, update, onDisconnect, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
     const firebaseConfig = {
       apiKey: "AIzaSyDYDkE1s6vykteDMvUpJmDxQfK_Ft-Q0lM",
@@ -2317,17 +2666,16 @@
     
     // เรียกใช้งานฟังก์ชันเก็บสถิติทันทีเมื่อโหลดหน้าเว็บ
     trackFrontendVisitor();
-    // =========================================================================
+// =========================================================================
 
     let userReports = [];
     let chatMessages = {};
-    // เพิ่มฟังก์ชันจับสถานะ "กำลังใช้งาน" ของฝั่งนักเรียนหน้าบ้าน โดยอ้างอิงจากชื่อจริงตามฐานข้อมูล (Google Sheet)
+// เพิ่มฟังก์ชันจับสถานะ "กำลังใช้งาน" ของฝั่งนักเรียนหน้าบ้าน โดยอ้างอิงจากชื่อจริงตามฐานข้อมูล (Google Sheet)
     let myPresenceRef = null;
     window.trackUserPresence = function(userName) {
         const connectedRef = ref(db, ".info/connected");
-        
-        // ใช้ชื่อนักเรียนเป็น Key โดยตรงเพื่อไม่ให้สร้างข้อมูลขยะสะสม และทำงานสอดคล้องกับระบบหลังบ้าน
-        const safeUserName = userName.replace(/[\.\#\$\[\]]/g, '_'); 
+// ใช้ชื่อนักเรียนเป็น Key โดยตรงเพื่อไม่ให้สร้างข้อมูลขยะสะสม และทำงานสอดคล้องกับระบบหลังบ้าน
+        const safeUserName = userName.replace(/[\.\#\$\[\]]/g, '_');
         myPresenceRef = ref(db, `presence/${safeUserName}`);
 
         // ดักจับสถานะการเชื่อมต่ออินเทอร์เน็ตกับระบบฐานข้อมูล
@@ -2414,12 +2762,10 @@
             let repliesHtml = '';
             
             if(r.replies) {
-         
                 let repliesThread = '';
                 Object.keys(r.replies).forEach(key => {
                     const reply = r.replies[key];
                     const color = reply.sender === 'admin' ? '#1e3a8a' : '#ec4899';
-                    
                     const name = reply.sender === 'admin' ? 'ผู้ดูแลระบบ' : 'คุณ';
                     repliesThread += `<div class="reply-msg"><b style="color:${color}">${name}:</b> ${reply.message}</div>`;
                     
@@ -2462,7 +2808,6 @@
                 const msgClass = msg.sender === 'user' ? 'user' : 'admin';
                 const timeStr = new Date(msg.timestamp).toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
                 
- 
                 // เพิ่มส่วนแสดงสถานะว่า ส่งแล้ว หรือ อ่านแล้ว (สำหรับข้อความที่ผู้ใช้เป็นคนส่ง)
                 let readStatusHtml = '';
                 if(msg.sender === 'user') {
@@ -2656,6 +3001,7 @@
         if (snapshot.exists()) {
             const data = snapshot.val();
             let hasNews = false;
+    
             // วนลูปเรียงคีย์จากใหม่ล่าสุดไปเก่าสุด
             Object.keys(data).reverse().forEach(key => {
                 const item = data[key];
@@ -2674,8 +3020,7 @@
                 imgDiv.style.backgroundColor = '#fff';
                 imgDiv.style.boxShadow = '0 4px 10px rgba(0,0,0,0.05)';
                 
-                const imgSrc = item.imageUrl ||
-item.image || item.prImageUrl || 'https://via.placeholder.com/297x210?text=No+Image';
+                const imgSrc = item.imageUrl || item.image || item.prImageUrl || 'https://via.placeholder.com/297x210?text=No+Image';
                 const title = item.title || item.prTitle || 'ข่าวประชาสัมพันธ์';
                 const content = item.content || item.prContent || '';
 
