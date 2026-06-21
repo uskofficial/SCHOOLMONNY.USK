@@ -3029,20 +3029,40 @@
         
         if (paidReceipts.length === 0) return;
 
+        let syncedCount = 0;
+        let errorMsg = "";
+
         for (const receipt of paidReceipts) {
             try {
-                const { data: existingReceipt } = await supabaseClient
+                // แก้ไขจาก .single() เป็น .maybeSingle() เพื่อแก้ปัญหา 0 rows error ใน Supabase JS v2
+                const { data: existingReceipt, error: checkError } = await supabaseClient
                     .from('receipts')
                     .select('invoice_no')
                     .eq('invoice_no', receipt.invoice_no)
-                    .single();
+                    .maybeSingle();
+                
+                if (checkError) throw checkError;
                 
                 if (!existingReceipt) {
-                    await supabaseClient.from('receipts').insert([receipt]);
+                    const { error: insertError } = await supabaseClient.from('receipts').insert([receipt]);
+                    if (insertError) throw insertError;
+                    syncedCount++;
                 }
             } catch (err) {
-                console.error('เกิดข้อผิดพลาดในการซิงค์:', err.message);
+                console.error('เกิดข้อผิดพลาดในการซิงค์แบบรายบุคคล:', err.message);
+                errorMsg = err.message;
             }
+        }
+
+        // แจ้งเตือนสถานะการบันทึก
+        if (syncedCount > 0) {
+            console.log(`ซิงค์ข้อมูลใบเสร็จสำเร็จ ${syncedCount} รายการ`);
+            // โค้ดแจ้งเตือนแบบย่อ (เอาคอมเมนต์ออกหากต้องการให้โชว์มุมขวาบนเมื่อบันทึกสำเร็จ)
+            // Swal.fire({ title: 'ซิงค์สำเร็จ', text: `บันทึกข้อมูลใบเสร็จใหม่ลง Supabase ${syncedCount} รายการ`, icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+        } else if (errorMsg !== "") {
+            console.error('Supabase Sync Error:', errorMsg);
+            // แสดง Popup ให้ทราบว่าติดสิทธิ์ RLS หรือขัดข้องตรงไหน
+            Swal.fire({ title: 'ไม่สามารถบันทึก Supabase ได้', text: errorMsg, icon: 'error', toast: true, position: 'top-end', showConfirmButton: false, timer: 5000 });
         }
     }
 </script>
