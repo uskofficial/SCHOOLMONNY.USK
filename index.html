@@ -3,23 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบปิดปรับปรุงชั่วคราว - โรงเรียนอุทยานศึกษากระบี่</title>
-    <!-- ฟอนต์ Prompt สไตล์ Modern & Official -->
+    <title>ระบบกำลังปรับปรุง - โรงเรียนอุทยานศึกษากระบี่</title>
+    <!-- นำเข้าฟอนต์ Sarabun เพื่อความเป็นทางการและสวยงาม -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --primary-accent: #38bdf8;
-            --glow-color: rgba(56, 189, 248, 0.15);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -27,197 +16,135 @@
         }
 
         body {
-            font-family: 'Prompt', sans-serif;
-            background: radial-gradient(circle at 50% 30%, #1e293b 0%, #0f172a 60%, #020617 100%);
-            color: var(--text-primary);
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f4f6f9;
+            color: #2c3e50;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 24px;
-            overflow-x: hidden;
-            position: relative;
+            padding: 20px;
         }
 
-        /* แสงเรืองแสงด้านหลัง Card */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(0,0,0,0) 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                        0 0 30px var(--glow-color);
-            max-width: 560px;
+        .maintenance-card {
+            background-color: #ffffff;
+            border-top: 5px solid #1e3a8a; /* สีกรมท่าทางการ */
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 520px;
             width: 100%;
-            padding: 48px 36px;
+            padding: 40px 30px;
             text-align: center;
         }
 
-        .logo-wrapper {
-            margin-bottom: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 120px;
+        .logo-container {
+            margin-bottom: 20px;
         }
 
         .logo {
-            width: 120px;
+            max-width: 120px;
             height: auto;
-            max-height: 120px;
             object-fit: contain;
-            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
         }
 
         .school-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-
-        .school-subtitle {
-            font-size: 0.85rem;
-            color: var(--primary-accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            margin-bottom: 28px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
         }
 
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--card-border), transparent);
-            margin: 0 auto 28px auto;
-            width: 100%;
+            background-color: #e2e8f0;
+            margin: 0 auto 24px auto;
+            width: 80%;
         }
 
-        .status-tag {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #f87171;
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 6px 18px;
-            border-radius: 30px;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #ef4444;
-            border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: 0 0 8px #ef4444;
+        .status-badge {
+            display: inline-block;
+            background-color: #fef3c7;
+            color: #92400e;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
         }
 
         .title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #ffffff;
-            line-height: 1.4;
-            margin-bottom: 16px;
+            color: #0f172a;
+            margin-bottom: 12px;
         }
 
         .description {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 32px;
-            font-weight: 300;
-        }
-
-        .schedule-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 28px;
-        }
-
-        .schedule-title {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
+            font-size: 1rem;
             font-weight: 400;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 24px;
         }
 
-        .schedule-time {
-            font-size: 1.25rem;
+        .time-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .time-title {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .time-value {
+            font-size: 1.125rem;
             font-weight: 600;
-            color: #38bdf8;
-            letter-spacing: 0.3px;
+            color: #1e3a8a;
         }
 
-        .footer-text {
+        .footer-note {
             font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 300;
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- โลโก้โรงเรียน (หากอัปโหลดขึ้น GitHub Repo สามารถใส่ src="IMG-7790.png" ได้ครับ) -->
-        <div class="logo-wrapper">
-            <img 
-                src="https://i.postimg.cc/Vk7DjXC1/IMG-7790.png" 
-                alt="โลโก้โรงเรียนอุทยานศึกษากระบี่" 
-                class="logo"
-                crossorigin="anonymous"
-                referrerpolicy="no-referrer"
-            >
+    <div class="maintenance-card">
+        <!-- โลโก้โรงเรียน (ดึงไฟล์ logo.png จาก GitHub Repository ในโฟลเดอร์เดียวกัน) -->
+        <div class="logo-container">
+            <img src="logo.png" alt="โลโก้โรงเรียนอุทยานศึกษากระบี่" class="logo">
         </div>
 
         <!-- ชื่อโรงเรียน -->
         <h1 class="school-name">โรงเรียนอุทยานศึกษากระบี่</h1>
-        <div class="school-subtitle">Utayan Suksa Krabi School</div>
 
         <div class="divider"></div>
 
-        <!-- แท็กสถานะ -->
-        <div class="status-tag">
-            <span class="status-dot"></span> System Maintenance
-        </div>
+        <!-- สถานะ -->
+        <div class="status-badge">ระบบปิดปรับปรุงชั่วคราว</div>
 
-        <!-- หัวข้อ -->
+        <!-- หัวข้อหลัก -->
         <h2 class="title">ขณะนี้ระบบกำลังอยู่ระหว่างการปรับปรุง</h2>
 
         <!-- รายละเอียด -->
         <p class="description">
-            เพื่อพัฒนาระบบและเพิ่มประสิทธิภาพการให้บริการของโรงเรียน<br>
-            ระบบจะปิดให้บริการชั่วคราวและกลับมาใช้งานได้ตามปกติอีกครั้ง
+            ขออภัยในความไม่สะดวก ทางโรงเรียนกำลังทำการปรับปรุงและเพิ่มประสิทธิภาพการใช้งานระบบ เพื่อให้การบริการมีความเสถียรและปลอดภัยมากยิ่งขึ้น
         </p>
 
-        <!-- กำหนดเวลา -->
-        <div class="schedule-card">
-            <div class="schedule-title">คาดการณ์เวลาเปิดใช้งานระบบ</div>
-            <div class="schedule-time">วันที่ 24 ตุลาคม 2569 เวลา 04:00 น.</div>
+        <!-- กำหนดการเปิดใช้งาน -->
+        <div class="time-box">
+            <div class="time-title">คาดว่าจะเปิดให้บริการอีกครั้งใน</div>
+            <div class="time-value">วันที่ 24 ตุลาคม 2569 เวลา 04:00 น.</div>
         </div>
 
-        <p class="footer-text">ขออภัยในความไม่สะดวกมา ณ ที่นี้</p>
+        <p class="footer-note">ขออภัยในความไม่สะดวกมา ณ ที่นี้</p>
     </div>
 
 </body>
